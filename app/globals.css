@@ -1,0 +1,266 @@
+@import "tailwindcss";
+
+/* ── Design tokens compartidos por todo el sistema ─────────── */
+:root {
+  --pf: var(--font-playfair, 'Playfair Display', Georgia, serif);
+  --dm: var(--font-dm, 'DM Sans', system-ui, sans-serif);
+
+  /* Brand: rojo institucional (insignia del colegio) */
+  --brand-950: #3d0808;
+  --brand-900: #5c0e0e;
+  --brand-800: #7c1414;
+  --brand-700: #991b1b;
+  --brand-600: #b1252a;
+  --brand-500: #c43838;
+  --brand-300: #fca5a5;
+  --brand-100: #fee2e2;
+  --brand-50:  #fef2f2;
+
+  /* Acento: dorado clásico */
+  --gold-900: #6b4f0a;
+  --gold-800: #8a6914;
+  --gold-700: #a37a18;
+  --gold-600: #c19527;
+  --gold-500: #d4af37;
+  --gold-400: #e0bf52;
+  --gold-300: #ecd082;
+  --gold-100: #faf2d8;
+
+  /* Superficies cálidas — marfiles saturados que sí se ven */
+  --ivory-50:  #faf3e6;  /* crema cálida visible */
+  --ivory-100: #f3e6cf;  /* beige claro */
+  --ivory-200: #ead4ad;  /* beige medio */
+
+  /* Rosa institucional — derivada del brand para acentos suaves */
+  --rose-50:   #fef4f4;
+  --rose-100:  #fde2e2;
+  --rose-200:  #fbc9c9;
+
+  --surface-0:   #ffffff;
+  --surface-50:  #fafaf9;
+  --surface-100: #f5f5f4;
+  --surface-200: #e7e5e4;
+  --surface-300: #d6d3d1;
+
+  /* Texto cálido (stone) — armoniza con el rojo */
+  --ink-900: #1c1917;
+  --ink-700: #44403c;
+  --ink-500: #78716c;
+  --ink-300: #a8a29e;
+
+  /* Semánticos para estados de datos (no para branding) */
+  --green-700: #047857;
+  --green-500: #10b981;
+  --green-100: #d1fae5;
+  --green-50:  #ecfdf5;
+  --red-700:   #b91c1c;
+  --red-500:   #ef4444;
+  --red-100:   #fee2e2;
+  --red-50:    #fef2f2;
+  --amber-700: #b45309;
+  --amber-500: #f59e0b;
+  --amber-100: #fef3c7;
+
+  /* Sombras con tinte cálido */
+  --el-1: 0 1px 2px rgba(60,8,8,.04), 0 2px 8px rgba(60,8,8,.06);
+  --el-2: 0 4px 12px rgba(60,8,8,.05), 0 8px 24px rgba(60,8,8,.08);
+  --el-3: 0 8px 24px rgba(60,8,8,.08), 0 24px 56px rgba(60,8,8,.12);
+  --el-4: 0 16px 48px rgba(60,8,8,.14), 0 48px 96px rgba(60,8,8,.2);
+
+  /* ════════════════════════════════════════════════════════════
+     SISTEMA INTERNO (post-login) — paleta moderna, formal y clara.
+     Coexiste con --brand/--gold (que son de la landing pública).
+     Usar var(--ui-*) en login, admin, docente, alumno y padre.
+     ════════════════════════════════════════════════════════════ */
+
+  /* Primary — Navy institucional (decisión del login). Confiable, escuela/banca. */
+  --ui-primary-50:  #eff3fa;
+  --ui-primary-100: #d9e2f1;
+  --ui-primary-200: #b6c5e3;
+  --ui-primary-300: #7a93c2;
+  --ui-primary-400: #3f5d97;
+  --ui-primary-500: #1E40AF;
+  --ui-primary-600: #143875;
+  --ui-primary-700: #0B2447;  /* navy institucional principal */
+  --ui-primary-800: #081832;
+  --ui-primary-900: #050e1f;
+
+  /* Accent — Sky/teal para acciones secundarias y highlights */
+  --ui-accent-50:  #f0f9ff;
+  --ui-accent-100: #e0f2fe;
+  --ui-accent-200: #bae6fd;
+  --ui-accent-400: #38bdf8;
+  --ui-accent-500: #0ea5e9;
+  --ui-accent-600: #0284c7;
+  --ui-accent-700: #0369a1;
+
+  /* Surfaces — slate frío, limpio */
+  --ui-surface-0:   #ffffff;
+  --ui-surface-50:  #f8fafc;
+  --ui-surface-100: #f1f5f9;
+  --ui-surface-200: #e2e8f0;
+  --ui-surface-300: #cbd5e1;
+
+  /* Ink — texto */
+  --ui-ink-900: #0f172a;
+  --ui-ink-700: #334155;
+  --ui-ink-500: #64748b;
+  --ui-ink-400: #94a3b8;
+  --ui-ink-300: #cbd5e1;
+
+  /* Border tokens semánticos */
+  --ui-border-subtle: #e2e8f0;
+  --ui-border-strong: #cbd5e1;
+  --ui-border-focus:  #143875;
+
+  /* Estados semánticos */
+  --ui-success-50:  #ecfdf5;
+  --ui-success-500: #10b981;
+  --ui-success-700: #047857;
+  --ui-warning-50:  #fffbeb;
+  --ui-warning-500: #f59e0b;
+  --ui-warning-700: #b45309;
+  --ui-danger-50:   #fef2f2;
+  --ui-danger-500:  #ef4444;
+  --ui-danger-700:  #b91c1c;
+
+  /* Sombras frías y suaves (slate) */
+  --ui-el-1: 0 1px 2px rgba(15,23,42,.04), 0 2px 6px rgba(15,23,42,.04);
+  --ui-el-2: 0 4px 8px rgba(15,23,42,.04), 0 8px 24px rgba(15,23,42,.06);
+  --ui-el-3: 0 10px 24px rgba(15,23,42,.08), 0 24px 48px rgba(15,23,42,.08);
+  --ui-el-4: 0 24px 48px rgba(15,23,42,.12), 0 48px 96px rgba(15,23,42,.14);
+
+  /* Focus ring estándar (navy con opacidad) */
+  --ui-ring: 0 0 0 4px rgba(11,36,71,.14);
+
+  /* Radius */
+  --ui-radius-sm: 8px;
+  --ui-radius-md: 12px;
+  --ui-radius-lg: 16px;
+  --ui-radius-xl: 20px;
+
+  /* Font sans del sistema interno (Manrope cargado en layout.tsx) */
+  --ui-font-sans: var(--font-manrope, system-ui, -apple-system, 'Segoe UI', sans-serif);
+  --ui-font-serif: var(--font-fraunces, Georgia, serif);
+  --ui-font-mono:  var(--font-plex-mono, ui-monospace, 'Cascadia Mono', Menlo, monospace);
+}
+
+/* ── Utilities del sistema interno ───────────────────────────── */
+.ui-app { font-family: var(--ui-font-sans); color: var(--ui-ink-900); }
+.ui-card {
+  background: var(--ui-surface-0);
+  border: 1px solid var(--ui-border-subtle);
+  border-radius: var(--ui-radius-lg);
+  box-shadow: var(--ui-el-1);
+}
+.ui-card-elevated {
+  background: var(--ui-surface-0);
+  border: 1px solid var(--ui-border-subtle);
+  border-radius: var(--ui-radius-xl);
+  box-shadow: var(--ui-el-3);
+}
+.ui-input {
+  font-family: var(--ui-font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ui-ink-900);
+  background: var(--ui-surface-0);
+  border: 1px solid var(--ui-border-subtle);
+  border-radius: var(--ui-radius-md);
+  padding: 11px 14px;
+  outline: none;
+  transition: border-color .15s ease, box-shadow .15s ease;
+  width: 100%;
+}
+.ui-input::placeholder { color: var(--ui-ink-400); font-weight: 400; }
+.ui-input:hover { border-color: var(--ui-border-strong); }
+.ui-input:focus { border-color: var(--ui-border-focus); box-shadow: var(--ui-ring); }
+.ui-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ui-ink-700);
+  margin-bottom: 6px;
+  letter-spacing: -.005em;
+}
+.ui-btn-primary {
+  font-family: var(--ui-font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ui-surface-0);
+  background: var(--ui-primary-700);
+  border: 1px solid var(--ui-primary-800);
+  border-radius: var(--ui-radius-md);
+  padding: 11px 18px;
+  cursor: pointer;
+  transition: background .15s ease, box-shadow .15s ease, transform .1s ease;
+  box-shadow: 0 1px 2px rgba(15,23,42,.06), 0 4px 12px rgba(11,36,71,.18);
+  letter-spacing: -.005em;
+}
+.ui-btn-primary:hover:not(:disabled) { background: var(--ui-primary-600); box-shadow: 0 2px 4px rgba(15,23,42,.08), 0 8px 20px rgba(11,36,71,.28); }
+.ui-btn-primary:active:not(:disabled) { transform: translateY(1px); }
+.ui-btn-primary:disabled { opacity: .55; cursor: not-allowed; }
+.ui-btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 4px rgba(11,36,71,.3); }
+.ui-btn-ghost {
+  font-family: var(--ui-font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ui-ink-700);
+  background: transparent;
+  border: 1px solid var(--ui-border-subtle);
+  border-radius: var(--ui-radius-md);
+  padding: 11px 18px;
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease;
+}
+.ui-btn-ghost:hover { background: var(--ui-surface-50); border-color: var(--ui-border-strong); }
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: var(--font-dm), system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--ink-900);
+}
+
+/* Números tabulares por defecto en clases utilitarias */
+.num { font-family: var(--dm); font-feature-settings: 'tnum' 1, 'lnum' 1; letter-spacing: -.01em; }
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--surface-100); }
+::-webkit-scrollbar-thumb { background: var(--surface-200); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--brand-300); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   ANTI-PARPADEO MÓVIL (definitivo) — admin, docente, alumno y todo el sistema.
+
+   Causa raíz en celulares: `backdrop-filter` (frosted glass) sobre fondos
+   `position: fixed`/animados obliga al navegador a re-muestrear la capa en
+   CADA frame; al colapsar/expandir la barra de URL el viewport cambia de alto
+   y esas capas (+ `will-change` permanente) se repintan → parpadeo y jank.
+
+   Aquí lo desactivamos globalmente SOLO en pantallas chicas o punteros
+   táctiles. Como la regla lleva `!important` desde la hoja de estilos,
+   sobrescribe también los `style={{ backdropFilter / willChange }}` inline
+   de los componentes (PortalMenuFoto, PortalShell, modales, escáner, etc.),
+   sin tener que tocarlos uno por uno. En escritorio el efecto queda intacto.
+   ════════════════════════════════════════════════════════════════ */
+@media (max-width: 768px), (hover: none), (pointer: coarse) {
+  *, *::before, *::after {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    will-change: auto !important;
+  }
+}
+
+/* Confirmación grande de escaneo de asistencia (alumnos): flash glanceable. */
+@keyframes scanpop {
+  0%   { opacity: 0; transform: scale(0.86); }
+  55%  { opacity: 1; transform: scale(1.03); }
+  100% { opacity: 1; transform: scale(1); }
+}
