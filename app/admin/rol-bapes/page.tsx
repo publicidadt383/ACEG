@@ -26,8 +26,8 @@ interface SalonRol {
 }
 
 const GRADOS_ORDEN = [
-  '1° Primaria','2° Primaria','3° Primaria','4° Primaria','5° Primaria','6° Primaria',
-  '1° Secundaria','2° Secundaria','3° Secundaria','4° Secundaria','5° Secundaria',
+  '1° Ciclo Cocina','2° Ciclo Cocina','3° Ciclo Cocina','4° Ciclo Cocina',
+  '1° Ciclo Pastelería','2° Ciclo Pastelería',
 ]
 
 function displayAlumno(a: { nombre: string; apellidos?: string | null }) {
@@ -101,7 +101,7 @@ function buildSalonHTML(
   overrides: Record<string, string>,
   offset = 0,
 ): string {
-  const esPrimaria = salon.grado.includes('Primaria')
+  const esPrimaria = salon.grado.includes('Cocina')
   const accentColor = esPrimaria ? '#059669' : '#0B2447'
   const accentLight = esPrimaria ? '#d1fae5' : '#F1F5F9'
 
@@ -128,7 +128,7 @@ function buildSalonHTML(
       <span class="salon-seccion">Sección ${salon.grupo}</span>
       ${salon.salon_nombre ? `<span class="salon-sep">·</span><span class="salon-nombre-plain" style="color:${accentColor}">${salon.salon_nombre}</span>` : ''}
     </div>
-    <div class="salon-count" style="color:${accentColor}">${salon.alumnos.length} alumnos</div>
+    <div class="salon-count" style="color:${accentColor}">${salon.alumnos.length} estudiantes</div>
   </div>
   <table>
     <thead>
@@ -143,7 +143,7 @@ function buildSalonHTML(
     <tbody>${filas}</tbody>
   </table>
   <div class="footer-salon">
-    <span>Total: <strong>${salon.alumnos.length}</strong> alumno${salon.alumnos.length !== 1 ? 's' : ''}</span>
+    <span>Total: <strong>${salon.alumnos.length}</strong> estudiante${salon.alumnos.length !== 1 ? 's' : ''}</span>
     <span>${cicloNombre}</span>
   </div>
 </div>`
@@ -160,10 +160,10 @@ function buildPageHeader(cicloNombre: string, logoSrc: string, subtitulo = ''): 
       <img class="logo" src="${logoSrc}" alt="Escudo"/>
     </div>
     <div class="header-center">
-      <div class="inst-tipo">IES COLEGIO DE ALTA COMPETENCIA</div>
-      <div class="inst-nombre">"EDUARDO DE HABICH"</div>
+      <div class="inst-tipo">ESCUELA GASTRONÓMICA</div>
+      <div class="inst-nombre">"ACEG"</div>
       <div class="inst-divider"><span></span><span class="divider-diamond">◆</span><span></span></div>
-      <div class="inst-titulo">ROL DE BAPES</div>
+      <div class="inst-titulo">ROL DE CLASES</div>
       ${subtitulo ? `<div class="inst-subtitulo">${subtitulo}</div>` : ''}
     </div>
     <div class="header-right-col">
@@ -471,7 +471,7 @@ export function RolBapesContent({ embedded = false }: RolBapesProps = {}) {
     if (!cid) return
     if (!(await confirmar({
       titulo: '¿Limpiar todas las fechas de este ciclo?',
-      mensaje: 'Se borrará la fecha base, las fechas encadenadas de todas las secciones y los ajustes individuales de alumnos. Esta acción no se puede deshacer.',
+      mensaje: 'Se borrará la fecha base, las fechas encadenadas de todas las secciones y los ajustes individuales de estudiantes. Esta acción no se puede deshacer.',
       tono: 'peligro', confirmarLabel: 'Limpiar todo',
     }))) return
     setLimpiando(true)
@@ -502,12 +502,12 @@ export function RolBapesContent({ embedded = false }: RolBapesProps = {}) {
   /* ── imprimir un salón ── */
   function imprimirSalon(salon: SalonRol, key: string) {
     const cicloNombre = ciclos.find(c => c.id === cicloId)?.nombre ?? ''
-    const logoSrc = window.location.origin + '/colegio.png'
+    const logoSrc = window.location.origin + '/aceg-isotipo.png'
     const bodyHTML = buildSalonHTML(salon, cicloNombre, fechas[key] ?? '', overrides, offsets[key] ?? 0)
     const headerHTML = buildPageHeader(cicloNombre, logoSrc, `${salon.grado} &mdash; Sección ${salon.grupo}${salon.salon_nombre ? ` &middot; ${salon.salon_nombre}` : ''}`)
 
     const html = `<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"/>
-<title>Rol de Bapes · ${salon.grado} ${salon.grupo}</title>
+<title>Rol de Clases · ${salon.grado} ${salon.grupo}</title>
 <style>${PRINT_STYLES}</style></head><body>
 ${headerHTML}
 ${bodyHTML}
@@ -525,17 +525,17 @@ ${bodyHTML}
     if (salonesFiltrados.length === 0) return
     setImprimiendoTodo(true)
     const cicloNombre = ciclos.find(c => c.id === cicloId)?.nombre ?? ''
-    const logoSrc = window.location.origin + '/colegio.png'
+    const logoSrc = window.location.origin + '/aceg-isotipo.png'
 
     const bloques = salonesFiltrados.map(salon => {
       const key = `${salon.grado}-${salon.grupo}`
       return buildSalonHTML(salon, cicloNombre, fechas[key] ?? '', overrides, offsets[key] ?? 0)
     }).join('')
 
-    const headerHTML = buildPageHeader(cicloNombre, logoSrc, `${salonesFiltrados.length} salones &nbsp;&middot;&nbsp; ${salonesFiltrados.reduce((n, s) => n + s.alumnos.length, 0)} alumnos`)
+    const headerHTML = buildPageHeader(cicloNombre, logoSrc, `${salonesFiltrados.length} salones &nbsp;&middot;&nbsp; ${salonesFiltrados.reduce((n, s) => n + s.alumnos.length, 0)} estudiantes`)
 
     const html = `<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"/>
-<title>Rol de Bapes · ${cicloNombre}</title>
+<title>Rol de Clases · ${cicloNombre}</title>
 <style>${PRINT_STYLES}</style></head><body>
 ${headerHTML}
 ${bloques}
@@ -550,7 +550,7 @@ ${bloques}
 
   /* ── helper: agrega hoja Excel de un salón al workbook ── */
   function agregarHojaExcel(wb: import('exceljs').Workbook, salon: SalonRol, key: string, cicloNombre: string, rawFecha: string, ovr: Record<string, string>, offset = 0) {
-    const esPrimaria = salon.grado.includes('Primaria')
+    const esPrimaria = salon.grado.includes('Cocina')
     const C_WINE     = 'FF6B1A1A'
     const C_WINE_MED = 'FF7F1D1D'
     const C_WINE_HDR = esPrimaria ? 'FF059669' : 'FF991B1B'
@@ -593,7 +593,7 @@ ${bloques}
     ws.getCell('A1').fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: C_WHITE } }
     ws.mergeCells(`B1:${lastCol}1`)
     const r1 = ws.getCell('B1')
-    r1.value = 'COLEGIO DE ALTA COMPETENCIA  ·  EDUARDO DE HABICH'
+    r1.value = 'ESCUELA GASTRONÓMICA  ·  ACEG'
     r1.font  = { bold: true, size: 14, color: { argb: C_WHITE }, name: 'Calibri' }
     r1.alignment = { vertical: 'bottom', horizontal: 'center' }
     r1.fill  = { type: 'pattern', pattern: 'solid', fgColor: { argb: C_WINE } }
@@ -610,7 +610,7 @@ ${bloques}
     ws.getRow(5).height = 28
     ws.mergeCells(`A5:${lastCol}5`)
     const r5 = ws.getCell('A5')
-    r5.value = 'ROL DE BAPES'
+    r5.value = 'ROL DE CLASES'
     r5.font  = { bold: true, size: 12, color: { argb: C_WINE }, name: 'Calibri' }
     r5.alignment = { vertical: 'middle', horizontal: 'left', indent: 2 }
     r5.fill  = { type: 'pattern', pattern: 'solid', fgColor: { argb: C_WHITE } }
@@ -628,7 +628,7 @@ ${bloques}
     ws.getRow(7).height = 18
     ws.mergeCells(`A7:${lastCol}7`)
     const r7 = ws.getCell('A7')
-    r7.value = `Total: ${salon.alumnos.length} alumnos     ·     Generado el ${new Date().toLocaleDateString('es-PE', { day: '2-digit', month: 'long', year: 'numeric' })}`
+    r7.value = `Total: ${salon.alumnos.length} estudiantes     ·     Generado el ${new Date().toLocaleDateString('es-PE', { day: '2-digit', month: 'long', year: 'numeric' })}`
     r7.font  = { size: 9, color: { argb: C_GRAY }, name: 'Calibri' }
     r7.alignment = { vertical: 'middle', horizontal: 'left', indent: 2 }
     r7.fill  = { type: 'pattern', pattern: 'solid', fgColor: { argb: C_GRAY_LT } }
@@ -673,7 +673,7 @@ ${bloques}
     ws.getRow(totalRow).height = 20
     ws.mergeCells(`A${totalRow}:${lastCol}${totalRow}`)
     const totalCell = ws.getCell(`A${totalRow}`)
-    totalCell.value = `TOTAL: ${salon.alumnos.length} alumno${salon.alumnos.length !== 1 ? 's' : ''}`
+    totalCell.value = `TOTAL: ${salon.alumnos.length} estudiante${salon.alumnos.length !== 1 ? 's' : ''}`
     totalCell.font  = { bold: true, size: 10, color: { argb: C_WINE }, name: 'Calibri' }
     totalCell.alignment = { vertical: 'middle', horizontal: 'right', indent: 2 }
     totalCell.fill  = { type: 'pattern', pattern: 'solid', fgColor: { argb: C_GOLD_LT } }
@@ -683,7 +683,7 @@ ${bloques}
     ws.getRow(footerRow).height = 16
     ws.mergeCells(`A${footerRow}:${lastCol}${footerRow}`)
     const footer = ws.getCell(`A${footerRow}`)
-    footer.value = `© ${new Date().getFullYear()} Colegio de Alta Competencia Eduardo de Habich — Sistema de Gestión Académica`
+    footer.value = `© ${new Date().getFullYear()} Escuela Gastronómica ACEG — Arte Culinario, Emprendimiento y Gestión`
     footer.font  = { size: 8, color: { argb: C_GRAY }, italic: true, name: 'Calibri' }
     footer.alignment = { vertical: 'middle', horizontal: 'center' }
     footer.fill  = { type: 'pattern', pattern: 'solid', fgColor: { argb: C_GRAY_LT } }
@@ -698,7 +698,7 @@ ${bloques}
       const rawFecha = fechas[key] ?? ''
       const ExcelJS = (await import('exceljs')).default
       const wb = new ExcelJS.Workbook()
-      wb.creator = 'Sistema Eduardo de Habich'; wb.created = new Date()
+      wb.creator = 'Sistema ACEG'; wb.created = new Date()
       agregarHojaExcel(wb, salon, key, cicloNombre, rawFecha, overrides, offsets[key] ?? 0)
       const buffer = await wb.xlsx.writeBuffer()
       const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' })
@@ -720,7 +720,7 @@ ${bloques}
       const cicloNombre = ciclos.find(c => c.id === cicloId)?.nombre ?? ''
       const ExcelJS = (await import('exceljs')).default
       const wb = new ExcelJS.Workbook()
-      wb.creator = 'Sistema Eduardo de Habich'; wb.created = new Date()
+      wb.creator = 'Sistema ACEG'; wb.created = new Date()
       for (const salon of salonesFiltrados) {
         const key = `${salon.grado}-${salon.grupo}`
         agregarHojaExcel(wb, salon, key, cicloNombre, fechas[key] ?? '', overrides, offsets[key] ?? 0)
@@ -745,7 +745,7 @@ ${bloques}
       const cicloNombre = ciclos.find(c => c.id === cicloId)?.nombre ?? ''
       const rawFecha    = fechas[key] ?? ''
       const offset      = offsets[key] ?? 0
-      const esPrimaria  = salon.grado.includes('Primaria')
+      const esPrimaria  = salon.grado.includes('Cocina')
       const accent      = esPrimaria ? '#059669' : '#0B2447'
       const accentLight = esPrimaria ? '#d1fae5'  : '#F1F5F9'
       const fechaImp    = new Date().toLocaleDateString('es-PE', { day: '2-digit', month: 'long', year: 'numeric' })
@@ -758,14 +758,14 @@ ${bloques}
         <div style="height:8px;background:linear-gradient(90deg,#0B2447,#1E3A8A,#1E40AF)"></div>
         <div style="display:flex;align-items:center;gap:0;padding:14px 24px;background:white;border-bottom:1px solid #e8d5b7">
           <div style="text-align:center;flex:1">
-            <div style="font-size:11px;font-weight:800;color:#374151;text-transform:uppercase;letter-spacing:.3px">IES COLEGIO DE ALTA COMPETENCIA</div>
-            <div style="font-size:18px;font-weight:900;color:#0B2447;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px">"EDUARDO DE HABICH"</div>
+            <div style="font-size:11px;font-weight:800;color:#374151;text-transform:uppercase;letter-spacing:.3px">ESCUELA GASTRONÓMICA</div>
+            <div style="font-size:18px;font-weight:900;color:#0B2447;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px">"ACEG"</div>
             <div style="display:flex;align-items:center;gap:6px;justify-content:center;margin:4px 0 6px">
               <div style="flex:1;height:2px;background:linear-gradient(90deg,transparent,#1E40AF)"></div>
               <span style="color:#1E40AF;font-size:10px">◆</span>
               <div style="flex:1;height:2px;background:linear-gradient(90deg,#1E40AF,transparent)"></div>
             </div>
-            <div style="font-size:23px;font-weight:900;color:#0B2447;letter-spacing:3px;text-transform:uppercase">ROL DE BAPES</div>
+            <div style="font-size:23px;font-weight:900;color:#0B2447;letter-spacing:3px;text-transform:uppercase">ROL DE CLASES</div>
             <div style="font-size:11px;color:#374151;font-weight:700;margin-top:5px">${salon.grado} &mdash; Sección ${salon.grupo}${salon.salon_nombre ? ` &middot; ${salon.salon_nombre}` : ''}</div>
             <div style="font-size:9px;color:#94a3b8;margin-top:3px">Ciclo ${cicloNombre} &nbsp;·&nbsp; Emitido el ${fechaImp}</div>
           </div>
@@ -781,7 +781,7 @@ ${bloques}
               <span style="font-size:11px;font-weight:600;color:#374151">Sección ${salon.grupo}</span>
               ${salon.salon_nombre ? `<span style="color:#cbd5e1;font-size:12px">·</span><span style="font-size:10px;font-weight:700;color:${accent}">${salon.salon_nombre}</span>` : ''}
             </div>
-            <div style="flex-shrink:0;font-size:10px;font-weight:800;color:${accent}">${salon.alumnos.length} alumnos</div>
+            <div style="flex-shrink:0;font-size:10px;font-weight:800;color:${accent}">${salon.alumnos.length} estudiantes</div>
           </div>
 
           <!-- tabla -->
@@ -813,7 +813,7 @@ ${bloques}
           </table>
 
           <div style="display:flex;justify-content:space-between;padding:5px 14px;background:#f8f6f4;font-size:9px;color:#94a3b8;font-weight:600;border-top:1px solid #E4E8EF;margin-top:0">
-            <span>Total: <strong style="color:${accent}">${salon.alumnos.length}</strong> alumno${salon.alumnos.length !== 1 ? 's' : ''}</span>
+            <span>Total: <strong style="color:${accent}">${salon.alumnos.length}</strong> estudiante${salon.alumnos.length !== 1 ? 's' : ''}</span>
             <span>${cicloNombre}</span>
           </div>
         </div>
@@ -879,7 +879,7 @@ ${bloques}
             <span className="text-slate-300">/</span>
             <div>
               <p className="text-slate-800 font-black text-sm leading-tight">Rol de Clases</p>
-              <p className="text-[10px] text-slate-400 font-medium">Lista de alumnos por salón</p>
+              <p className="text-[10px] text-slate-400 font-medium">Lista de estudiantes por salón</p>
             </div>
           </div>
 
@@ -932,7 +932,7 @@ ${bloques}
             <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
               <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35M17 11A6 6 0 111 11a6 6 0 0116 0z"/>
             </svg>
-            <input type="text" placeholder="Buscar alumno, DNI o código…"
+            <input type="text" placeholder="Buscar estudiante, DNI o código…"
               value={busqueda} onChange={e => setBusqueda(e.target.value)}
               className="pl-8 pr-3 py-2 text-xs rounded-xl outline-none w-64 transition-all"
               style={{ background: 'white', border: '1.5px solid #E4E8EF', color: '#1c1c1c' }}
@@ -1016,7 +1016,7 @@ ${bloques}
         {!cargando && salonesFiltrados.length === 0 && (
           <div className="py-16 text-center rounded-3xl bg-white" style={{ border: '1.5px solid #E4E8EF' }}>
             <p className="text-slate-400 text-sm font-semibold">
-              {busqueda ? 'Sin resultados para la búsqueda.' : 'No hay alumnos matriculados en este ciclo.'}
+              {busqueda ? 'Sin resultados para la búsqueda.' : 'No hay estudiantes matriculados en este ciclo.'}
             </p>
           </div>
         )}
@@ -1026,7 +1026,7 @@ ${bloques}
           {salonesFiltrados.map(salon => {
             const key     = `${salon.grado}-${salon.grupo}`
             const abierto = abiertos.has(key)
-            const esPrimaria = salon.grado.includes('Primaria')
+            const esPrimaria = salon.grado.includes('Cocina')
             const exporting = exportandoPNG.has(key)
             const fullIdx = salones.findIndex(s => `${s.grado}-${s.grupo}` === key)
             const esBase  = fullIdx === 0
@@ -1082,7 +1082,7 @@ ${bloques}
                         )}
                       </div>
                       <p className="text-[11px] text-slate-400 font-medium mt-0.5">
-                        Sección {salon.grupo} · {salon.alumnos.length} alumno{salon.alumnos.length !== 1 ? 's' : ''}
+                        Sección {salon.grupo} · {salon.alumnos.length} estudiante{salon.alumnos.length !== 1 ? 's' : ''}
                       </p>
                     </div>
                     <div className="flex items-center gap-3 shrink-0">
@@ -1253,7 +1253,7 @@ ${bloques}
                     <div className="px-5 py-2 flex items-center justify-end"
                       style={{ borderTop: '1px solid #E4E8EF', background: '#faf8f7' }}>
                       <span className="text-[10px] font-black text-slate-400">
-                        Total: <span style={{ color: esPrimaria ? '#16a34a' : '#0B2447' }}>{salon.alumnos.length}</span> alumno{salon.alumnos.length !== 1 ? 's' : ''}
+                        Total: <span style={{ color: esPrimaria ? '#16a34a' : '#0B2447' }}>{salon.alumnos.length}</span> estudiante{salon.alumnos.length !== 1 ? 's' : ''}
                       </span>
                     </div>
                   </div>
@@ -1266,7 +1266,7 @@ ${bloques}
         {!cargando && salones.length > 0 && (
           <div className="text-center py-4">
             <p className="text-[10px] text-slate-300 font-medium">
-              {salones.length} salones · {totalAlumnos} alumnos · {ciclos.find(c => c.id === cicloId)?.nombre}
+              {salones.length} salones · {totalAlumnos} estudiantes · {ciclos.find(c => c.id === cicloId)?.nombre}
             </p>
           </div>
         )}

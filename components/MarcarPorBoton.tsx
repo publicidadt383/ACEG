@@ -21,7 +21,7 @@ function formatoDist(m: number) {
 }
 
 /**
- * Marcado de asistencia por botón (sin QR): muestra la zona del colegio en el
+ * Marcado de asistencia por botón (sin QR): muestra la zona de la escuela en el
  * mapa junto a la posición en vivo del usuario, y habilita el botón solo dentro
  * del radio. El servidor vuelve a validar la distancia (registrar_asistencia_boton).
  */
@@ -99,7 +99,7 @@ export default function MarcarPorBoton({ disabled, etiqueta, onMarcar }: Props) 
           style={{ background: '#ecfdf5', border: '1.5px solid #6ee7b7' }}>
           <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 shrink-0" />
           <p className="text-xs font-bold" style={{ color: '#047857' }}>
-            Estás dentro del colegio — puedes marcar tu asistencia.
+            Estás dentro de la escuela — puedes marcar tu asistencia.
           </p>
         </div>
       ) : (
@@ -107,7 +107,7 @@ export default function MarcarPorBoton({ disabled, etiqueta, onMarcar }: Props) 
           style={{ background: '#fef2f2', border: '1.5px solid #fecaca' }}>
           <span className="w-2.5 h-2.5 rounded-full bg-red-500 shrink-0" />
           <p className="text-xs font-bold" style={{ color: '#b91c1c' }}>
-            Estás a {formatoDist(dist!)} del colegio. Acércate para poder marcar.
+            Estás a {formatoDist(dist!)} de la escuela. Acércate para poder marcar.
           </p>
         </div>
       )}

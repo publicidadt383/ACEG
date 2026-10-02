@@ -17,7 +17,7 @@ export default function Error({
       error={error}
       retry={retry}
       titulo="No se pudo cargar el portal"
-      detalle="Ocurrió un error en el portal del alumno. Intenta de nuevo; si persiste, recarga la página o vuelve a iniciar sesión."
+      detalle="Ocurrió un error en el portal del estudiante. Intenta de nuevo; si persiste, recarga la página o vuelve a iniciar sesión."
     />
   )
 }

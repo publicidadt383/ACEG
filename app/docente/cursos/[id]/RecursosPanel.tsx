@@ -148,8 +148,8 @@ export default function RecursosPanel({ sesionId, color }: { sesionId: string; c
     if (!(await confirmar({
       titulo: `¿Eliminar el recurso "${r.nombre}"?`,
       mensaje: esArchivoTipo(r.tipo)
-        ? 'El archivo se borra del almacenamiento y tus alumnos ya no podrán verlo ni descargarlo. Esta acción no se puede deshacer.'
-        : 'Tus alumnos dejarán de ver este enlace en la sesión. Esta acción no se puede deshacer.',
+        ? 'El archivo se borra del almacenamiento y tus estudiantes ya no podrán verlo ni descargarlo. Esta acción no se puede deshacer.'
+        : 'Tus estudiantes dejarán de ver este enlace en la sesión. Esta acción no se puede deshacer.',
       tono: 'peligro', confirmarLabel: 'Eliminar recurso',
     }))) return
     setEliminandoId(r.id)

@@ -76,7 +76,7 @@ export default function AdminAnunciosPage() {
   async function eliminar(id: string) {
     if (!(await confirmar({
       titulo: '¿Eliminar este anuncio?',
-      mensaje: 'Todos los que lo ven (docentes, alumnos y padres) dejarán de verlo. Esta acción no se puede deshacer.',
+      mensaje: 'Todos los que lo ven (docentes y estudiantes) dejarán de verlo. Esta acción no se puede deshacer.',
       tono: 'peligro', confirmarLabel: 'Eliminar',
     }))) return
     await supabase.from('anuncios').delete().eq('id', id)
@@ -91,7 +91,7 @@ export default function AdminAnunciosPage() {
       <div className="flex items-end justify-between">
         <div>
           <h1 className="text-2xl font-black text-slate-800">Comunicados globales</h1>
-          <p className="text-sm text-slate-400 mt-0.5">Visibles para todos los alumnos y docentes</p>
+          <p className="text-sm text-slate-400 mt-0.5">Visibles para todos los estudiantes y docentes</p>
         </div>
         <button onClick={() => { setAbierto(v => !v); setError('') }}
           className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-black text-white"

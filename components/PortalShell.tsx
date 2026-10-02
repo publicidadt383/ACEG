@@ -115,7 +115,7 @@ export default function PortalShell({
                 background: '#FFFFFF', flexShrink: 0,
                 boxShadow: '0 2px 8px rgba(15,23,42,.06)',
               }}>
-                <Image src="/colegio-trans.png" alt="Logo" fill sizes="38px" style={{ objectFit: 'contain' }} />
+                <Image src="/aceg-isotipo.png" alt="Logo" fill sizes="38px" style={{ objectFit: 'contain' }} />
               </div>
             )}
 

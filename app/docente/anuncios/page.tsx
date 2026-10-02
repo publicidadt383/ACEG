@@ -99,7 +99,7 @@ export default function DocenteAnunciosPage() {
   async function eliminar(id: string) {
     if (!(await confirmar({
       titulo: '¿Eliminar este anuncio?',
-      mensaje: 'Tus alumnos dejarán de verlo. Esta acción no se puede deshacer.',
+      mensaje: 'Tus estudiantes dejarán de verlo. Esta acción no se puede deshacer.',
       tono: 'peligro', confirmarLabel: 'Eliminar',
     }))) return
     await supabase.from('anuncios').delete().eq('id', id)
@@ -120,7 +120,7 @@ export default function DocenteAnunciosPage() {
       <div className="flex items-end justify-between">
         <div>
           <h1 className="text-2xl font-black text-slate-800">Anuncios</h1>
-          <p className="text-sm text-slate-400 mt-0.5">Comunica novedades a tus alumnos</p>
+          <p className="text-sm text-slate-400 mt-0.5">Comunica novedades a tus estudiantes</p>
         </div>
         <button onClick={() => { setAbierto(v => !v); setError('') }}
           className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-black text-white transition-all"
@@ -175,7 +175,7 @@ export default function DocenteAnunciosPage() {
           <div>
             <label className="block text-xs font-bold text-slate-500 mb-1.5">Contenido</label>
             <textarea value={contenido} onChange={e => setContenido(e.target.value)}
-              rows={4} placeholder="Escribe el mensaje para tus alumnos…"
+              rows={4} placeholder="Escribe el mensaje para tus estudiantes…"
               className="w-full px-4 py-2.5 rounded-xl text-sm outline-none resize-none"
               style={{ background: '#F6F8FB', border: `1.5px solid ${asigId ? colorSel + '40' : '#E4E8EF'}` }} />
           </div>

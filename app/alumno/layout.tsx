@@ -147,7 +147,7 @@ export default function AlumnoLayout({ children }: { children: React.ReactNode }
   return (
     <Ctx.Provider value={ctx}>
       <PortalShell
-        title="Portal Alumno"
+        title="Portal Estudiante"
         sectionTitle={sectionTitle}
         onBack={() => router.push('/alumno')}
         backLabel="Inicio"

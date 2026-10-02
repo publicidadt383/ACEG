@@ -66,7 +66,7 @@ export default function BoletinPage() {
       setGrado(alumno.grado)
       setGrupo(alumno.grupo)
 
-      // Libreta oficial (notas y exámenes publicados por el colegio)
+      // Libreta oficial (notas y exámenes publicados por la escuela)
       supabase.rpc('libreta_alumno').then(({ data }) => {
         setLibreta((data ?? []) as LibretaPeriodo[])
       })
@@ -224,14 +224,14 @@ export default function BoletinPage() {
         </div>
       </div>
 
-      {/* Libreta oficial (publicada por el colegio) */}
+      {/* Libreta oficial (publicada por la escuela) */}
       {libreta.length > 0 && (
         <div className="space-y-3">
           <div className="flex items-center gap-2">
             <h2 className="text-sm font-black text-slate-700 uppercase tracking-wider">Libreta oficial</h2>
             <span className="text-[10px] font-black px-2 py-0.5 rounded-full"
               style={{ background: '#ccfbf1', color: '#0d9488' }}>
-              Publicado por el colegio
+              Publicado por la escuela
             </span>
           </div>
 

@@ -20,13 +20,13 @@ interface GaleriaItem { id: string; url: string; descripcion: string | null }
 interface Comunicado  { id: string; titulo: string; contenido: string; created_at: string; imagen_url: string | null }
 
 const DEFAULTS: LandingConfig = {
-  mision:         'Formar estudiantes de alta competencia con valores sólidos y excelencia académica, preparándolos para afrontar los retos del mundo moderno con disciplina, creatividad y responsabilidad.',
-  vision:         'Ser el colegio preuniversitario referente del sur del Perú, reconocido por la formación integral, el logro académico y el desarrollo de líderes que transformen su comunidad.',
-  valores:        'Excelencia · Disciplina · Responsabilidad · Innovación · Respeto · Solidaridad',
-  direccion:      'Juliaca, Puno, Perú',
-  telefono:       null,
+  mision:         'Formar profesionales de la gastronomía con sólida técnica culinaria, criterio de estandarización y visión emprendedora, a través de la práctica constante y el aprovechamiento de los productos de nuestra región.',
+  vision:         'Ser la escuela gastronómica referente del sur del Perú, reconocida por la excelencia técnica de sus egresados y por impulsar emprendimientos que pongan en valor la cocina regional.',
+  valores:        'Excelencia técnica · Disciplina · Creatividad · Emprendimiento · Higiene y seguridad · Trabajo en equipo',
+  direccion:      'Jr. Sandia 843, Juliaca, Puno, Perú',
+  telefono:       '+51 963 741 700',
   email_contacto: null,
-  facebook_url:   null,
+  facebook_url:   'https://www.facebook.com/EscuelaGastronomicaAntonioCardenaz/',
   instagram_url:  null,
   fondo_url:      null,
 }
@@ -99,12 +99,12 @@ const IconPhoto    = SVG(<><rect x="3" y="3" width="18" height="18" rx="2"/><cir
 const CSS = `
   /* ── Paleta institucional navy (estilo login) ── */
   .lp {
-    --navy:   #0B2447;
-    --navy-2: #143875;
-    --blue:   #1E40AF;
-    --blue-l: #2563EB;
+    --navy:   #0E0F21;
+    --navy-2: #1C1E3A;
+    --blue:   #D9042F;
+    --blue-l: #FE0638;
     --cyan:   #0E7490;
-    --wine:   #7e1d2e;          /* rojo vino (acento de herencia) */
+    --wine:   #9E0024;          /* rojo profundo (acento de marca) */
     --gold:   #c8a24b;          /* oro mate (acento de excelencia) */
     --gold-soft: rgba(200,162,75,.5);
     --ink:    #0F172A;
@@ -113,7 +113,7 @@ const CSS = `
     --line:   #E7E2D8;          /* hairline cálido (combina con el marfil) */
     --bg-soft:#F7F3EA;          /* marfil cálido */
     --navy-08: rgba(11,36,71,.06);
-    --grad:   linear-gradient(135deg, #1E40AF 0%, #0B2447 100%);
+    --grad:   linear-gradient(135deg, #D9042F 0%, #0E0F21 100%);
     --sh-1: 0 1px 2px rgba(11,36,71,.05);
     --sh-2: 0 14px 36px -18px rgba(11,36,71,.28), 0 2px 8px rgba(11,36,71,.06);
     --sh-3: 0 30px 64px -28px rgba(11,36,71,.4), 0 6px 16px rgba(11,36,71,.08);
@@ -204,11 +204,12 @@ const CSS = `
   .hero-blob.b3 { top: 34%; left: 40%; width: 360px; height: 360px; background: radial-gradient(circle, rgba(126,29,46,.4), transparent 70%); animation: drift-a 27s ease-in-out infinite; animation-delay: -9s; }
   .hero-content { position: relative; z-index: 5; text-align: center; padding: 128px 24px 120px; max-width: 880px; margin: 0 auto; }
 
-  .hero-logo { position: relative; width: 150px; height: 150px; margin: 0 auto 30px; transform: translate3d(calc(var(--mx) * 8px), calc(var(--my) * 6px), 0); transition: transform .35s cubic-bezier(.2,.7,.2,1); will-change: transform; }
-  .logo-glow { position: absolute; inset: -26px; border-radius: 50%; background: radial-gradient(circle, rgba(147,197,253,.55), transparent 65%); filter: blur(24px); animation: pulse-glow 4.5s ease-in-out infinite; z-index: 0; pointer-events: none; }
+  .hero-logo { position: relative; width: min(420px, 80vw); margin: 0 auto 30px; transform: translate3d(calc(var(--mx) * 8px), calc(var(--my) * 6px), 0); transition: transform .35s cubic-bezier(.2,.7,.2,1); will-change: transform; }
+  .logo-glow { position: absolute; inset: -26px; border-radius: 40px; background: radial-gradient(ellipse, rgba(254,6,56,.35), transparent 70%); filter: blur(24px); animation: pulse-glow 4.5s ease-in-out infinite; z-index: 0; pointer-events: none; }
   .logo-orbit { position: absolute; inset: -18px; border-radius: 50%; border: 1.5px dashed rgba(255,255,255,.5); animation: lp-spin 40s linear infinite; z-index: 1; pointer-events: none; }
   .logo-arc { position: absolute; inset: -9px; border-radius: 50%; border: 1.5px solid transparent; border-top-color: rgba(255,255,255,.85); border-right-color: rgba(255,255,255,.4); animation: lp-spinr 28s linear infinite; z-index: 1; pointer-events: none; }
-  .logo-inner { position: absolute; inset: 0; border-radius: 50%; background: #fff; overflow: hidden; padding: 12px; z-index: 2; box-shadow: 0 18px 50px rgba(11,36,71,.5), 0 6px 14px rgba(0,0,0,.25); }
+  .logo-inner { position: relative; border-radius: 22px; background: #fff; overflow: hidden; padding: clamp(14px, 3vw, 22px) clamp(18px, 4vw, 30px); z-index: 2; box-shadow: 0 18px 50px rgba(11,36,71,.5), 0 6px 14px rgba(0,0,0,.25); }
+  .logo-img { position: relative; width: 100%; aspect-ratio: 1200 / 417; }
 
   .hero-eyebrow { color: rgba(255,255,255,.88); margin-bottom: 18px; text-shadow: 0 1px 10px rgba(8,17,33,.6); }
   .hero-title { font-weight: 800; line-height: 1; letter-spacing: -.03em; margin: 0; text-shadow: 0 4px 30px rgba(8,17,33,.55); }
@@ -526,17 +527,17 @@ export default function LandingPage() {
         <div className="container nav-row">
           <div className="brand">
             <div className="brand-logo">
-              <Image src="/colegio.png" alt="Logo del colegio" fill className="object-contain" />
+              <Image src="/aceg-isotipo.png" alt="Logo de ACEG" fill className="object-contain" />
             </div>
             <div className="hidden sm:block">
-              <p className="brand-text-eb">Colegio de Alta Competencia</p>
-              <p className="brand-text-tt">Eduardo de Habich</p>
+              <p className="brand-text-eb">Escuela Gastronómica</p>
+              <p className="brand-text-tt">ACEG</p>
             </div>
           </div>
 
           <div className="nav-links only-desktop">
             {NAV.map(l => <a key={l.href} href={l.href} className="nav-link">{l.label}</a>)}
-            <Link href="/padres" className="nav-link">Padres</Link>
+            <Link href="/padres" className="nav-link">Consulta de notas</Link>
             <Link href="/login" className={`btn btn-sm ${scrolled ? 'btn-primary' : 'btn-ghost-light'}`}>
               Ingresar <IconArrowR size={14} />
             </Link>
@@ -555,7 +556,7 @@ export default function LandingPage() {
             {NAV.map(l => (
               <a key={l.href} href={l.href} onClick={() => setMenuOpen(false)} className="mobile-item">{l.label}</a>
             ))}
-            <Link href="/padres" onClick={() => setMenuOpen(false)} className="mobile-item">Padres de familia</Link>
+            <Link href="/padres" onClick={() => setMenuOpen(false)} className="mobile-item">Consulta de notas</Link>
           </div>
         )}
       </nav>
@@ -563,31 +564,31 @@ export default function LandingPage() {
       {/* ── HERO ── */}
       <section className="hero">
         <div className="hero-bg">
-          <Image src={config.fondo_url ?? '/foto_colegio.jpg'} alt="Colegio Eduardo de Habich" fill className="object-cover" priority />
+          <Image src={config.fondo_url ?? '/foto_colegio.jpg'} alt="Escuela Gastronómica ACEG" fill className="object-cover" priority />
         </div>
         <div className="hero-scrim" />
         <div aria-hidden className="hero-blob b1" />
         <div aria-hidden className="hero-blob b2" />
         <div aria-hidden className="hero-blob b3" />
-        <div aria-hidden className="hero-watermark"><span>HABICH</span></div>
-        <div aria-hidden className="hero-rail l"><span className="hero-rail-label">Colegio · Juliaca</span></div>
-        <div aria-hidden className="hero-rail r"><span className="hero-rail-label">Est. 2023</span></div>
+        <div aria-hidden className="hero-watermark"><span>ACEG</span></div>
+        <div aria-hidden className="hero-rail l"><span className="hero-rail-label">Gastronomía · Juliaca</span></div>
+        <div aria-hidden className="hero-rail r"><span className="hero-rail-label">Cocina · Pastelería</span></div>
 
         <div className="hero-content">
           <div className="hero-logo">
             <div aria-hidden className="logo-glow" />
-            <div aria-hidden className="logo-orbit" />
-            <div aria-hidden className="logo-arc" />
             <div className="logo-inner">
-              <Image src="/colegio.png" alt="" fill className="object-contain" />
+              <div className="logo-img">
+                <Image src="/aceg-logo.png" alt="ACEG · Arte Culinario, Emprendimiento y Gestión" fill priority sizes="(max-width: 600px) 80vw, 420px" className="object-contain" />
+              </div>
             </div>
           </div>
 
-          <div className="eyebrow hero-eyebrow">Colegio de Alta Competencia</div>
+          <div className="eyebrow hero-eyebrow">Arte Culinario · Emprendimiento · Gestión</div>
 
           <h1 className="hero-title">
-            <span className="hero-title-first">Eduardo</span>
-            <span className="hero-title-second">de Habich</span>
+            <span className="hero-title-first">Escuela Gastronómica</span>
+            <span className="hero-title-second">ACEG</span>
           </h1>
 
           <div className="hero-meta">
@@ -596,15 +597,15 @@ export default function LandingPage() {
           </div>
 
           <p className="hero-quote">
-            Formando estudiantes de excelencia académica y valores sólidos,
-            listos para transformar el futuro.
+            Formamos profesionales de la cocina con práctica constante,
+            criterio técnico y visión emprendedora.
           </p>
 
           <div className="hero-ctas">
             <Link href="/login" className="btn btn-white">
               Ingresar al sistema <IconArrowR size={14} />
             </Link>
-            <a href="#nosotros" className="btn btn-ghost-light">Conoce el colegio</a>
+            <a href="#nosotros" className="btn btn-ghost-light">Conoce la escuela</a>
           </div>
         </div>
 
@@ -617,16 +618,16 @@ export default function LandingPage() {
       <section id="stats" className="stats-wrap">
         <div className="stats">
           <div className="stat-cell">
-            <StatNum value={3} suffix="años" />
-            <p className="stat-label">Formando líderes</p>
+            <StatNum value={8} suffix="años" />
+            <p className="stat-label">Enseñando gastronomía</p>
           </div>
           <div className="stat-cell">
-            <StatNum value={148} className="blue" />
-            <p className="stat-label">Alumnos en aula</p>
+            <StatNum value={2} suffix="años" className="blue" />
+            <p className="stat-label">Carrera de Cocina</p>
           </div>
           <div className="stat-cell">
-            <p className="stat-num wine">A<em>+</em></p>
-            <p className="stat-label">Rendimiento académico</p>
+            <p className="stat-num wine">8<em> meses</em></p>
+            <p className="stat-label">Panadería y Pastelería</p>
           </div>
         </div>
       </section>
@@ -649,7 +650,7 @@ export default function LandingPage() {
             <div className="eyebrow"><span className="eyebrow-n">01</span>Quiénes somos</div>
             <h2 className="h-section">Identidad <em>institucional</em></h2>
             <p className="section-lead">
-              Tres pilares que guían cada decisión académica y cada día en el aula.
+              Tres pilares que guían cada decisión académica y cada jornada en la cocina.
             </p>
           </div>
 
@@ -694,22 +695,22 @@ export default function LandingPage() {
             <div className="principle reveal gold" style={{ transitionDelay: '0ms' }}>
               <div className="principle-icon"><IconLaurel size={22} /></div>
               <div>
-                <p className="principle-title">Excelencia Académica</p>
-                <p className="principle-desc">Altos estándares que preparan a nuestros estudiantes para competir al más alto nivel nacional.</p>
+                <p className="principle-title">Práctica constante</p>
+                <p className="principle-desc">Aprendes cocinando: cada clase se desarrolla en cocina, con producción real y retroalimentación del chef.</p>
               </div>
             </div>
             <div className="principle reveal" style={{ transitionDelay: '90ms' }}>
               <div className="principle-icon"><IconAcademic size={22} /></div>
               <div>
-                <p className="principle-title">Formación Integral</p>
-                <p className="principle-desc">Desarrollo cognitivo, social y de valores que acompañan al estudiante toda la vida.</p>
+                <p className="principle-title">Criterio técnico</p>
+                <p className="principle-desc">Técnicas básicas y avanzadas, estandarización de recetas y manejo de brigadas de cocina, panadería, pastelería y bar.</p>
               </div>
             </div>
             <div className="principle reveal" style={{ transitionDelay: '180ms' }}>
               <div className="principle-icon"><IconSpark size={22} /></div>
               <div>
-                <p className="principle-title">Visión de Futuro</p>
-                <p className="principle-desc">Metodologías modernas para enfrentar los retos de un mundo en constante evolución.</p>
+                <p className="principle-title">Emprendimiento y gestión</p>
+                <p className="principle-desc">Herramientas para crear tu propio negocio gastronómico o liderar una cocina profesional.</p>
               </div>
             </div>
           </div>
@@ -727,13 +728,13 @@ export default function LandingPage() {
           {galeria.length === 0 ? (
             <div className="empty">
               <div className="empty-icon"><IconPhoto size={26} /></div>
-              <p className="empty-text">Las fotos del colegio aparecerán aquí</p>
+              <p className="empty-text">Las fotos de la escuela aparecerán aquí</p>
             </div>
           ) : (
             <div className="gal">
               {galeria.map((img, i) => (
                 <div key={img.id} className="gal-item" style={galSpan(i)} onClick={() => setLightbox(img.url)}>
-                  <Image src={img.url} alt={img.descripcion ?? 'Foto del colegio'} fill className="object-cover" />
+                  <Image src={img.url} alt={img.descripcion ?? 'Foto de la escuela'} fill className="object-cover" />
                   <div className="gal-ov">
                     <span className="ov-zoom"><IconZoom size={18} /></span>
                     {img.descripcion && <p>{img.descripcion}</p>}
@@ -783,13 +784,13 @@ export default function LandingPage() {
       <section className="cta-band">
         <div className="container">
           <div className="eyebrow cta-eyebrow reveal">Educación de excelencia</div>
-          <h2 className="cta-title reveal">Forma parte de una comunidad que <em>transforma</em></h2>
+          <h2 className="cta-title reveal">Convierte tu pasión por la cocina en tu <em>profesión</em></h2>
           <p className="cta-lead reveal">
-            Accede al sistema académico o consulta el progreso de tu hijo desde el portal de padres.
+            Ingresa al sistema académico o consulta tus notas y asistencia con tu DNI.
           </p>
           <div className="cta-actions reveal">
             <Link href="/login" className="btn btn-white">Ingresar al sistema <IconArrowR size={14} /></Link>
-            <Link href="/padres" className="btn btn-ghost-light">Portal de padres</Link>
+            <Link href="/padres" className="btn btn-ghost-light">Consulta de notas</Link>
           </div>
         </div>
       </section>
@@ -801,15 +802,15 @@ export default function LandingPage() {
             <div>
               <div className="foot-brand">
                 <div className="foot-logo">
-                  <Image src="/colegio.png" alt="Logo" fill className="object-contain" />
+                  <Image src="/aceg-isotipo.png" alt="Logo" fill className="object-contain" />
                 </div>
                 <div>
-                  <p className="foot-label" style={{ marginBottom: 4 }}>Alta Competencia</p>
-                  <p style={{ fontSize: 15, fontWeight: 800, color: '#fff', lineHeight: 1, letterSpacing: '-.01em' }}>Eduardo de Habich</p>
+                  <p className="foot-label" style={{ marginBottom: 4 }}>Escuela Gastronómica</p>
+                  <p style={{ fontSize: 15, fontWeight: 800, color: '#fff', lineHeight: 1, letterSpacing: '-.01em' }}>ACEG</p>
                 </div>
               </div>
               <p className="foot-text">
-                Formando líderes con excelencia académica en Juliaca, Puno, Perú.
+                Formando profesionales de la gastronomía en Juliaca, Puno, Perú.
               </p>
             </div>
 
@@ -848,7 +849,7 @@ export default function LandingPage() {
 
           <div className="foot-bottom">
             <p className="foot-bottom-text">
-              © {new Date().getFullYear()} Colegio Eduardo de Habich · Todos los derechos reservados
+              © {new Date().getFullYear()} Escuela Gastronómica ACEG · Todos los derechos reservados
             </p>
             <Link href="/login" className="foot-bottom-link">
               Acceso al sistema <IconArrowR size={12} />

@@ -28,8 +28,8 @@ interface PuntoTendencia {
 }
 
 const GRADOS_ORDEN = [
-  '1° Primaria','2° Primaria','3° Primaria','4° Primaria','5° Primaria','6° Primaria',
-  '1° Secundaria','2° Secundaria','3° Secundaria','4° Secundaria','5° Secundaria',
+  '1° Ciclo Cocina','2° Ciclo Cocina','3° Ciclo Cocina','4° Ciclo Cocina',
+  '1° Ciclo Pastelería','2° Ciclo Pastelería',
 ]
 
 /* Paleta del módulo (validada con el skill de dataviz): azul = puntuales,
@@ -120,7 +120,7 @@ export function EstadisticasAsistenciaContent({ embedded = false }: Props = {}) 
   const [cargandoTend, setCargandoTend] = useState(false)
   const [hoverTend,    setHoverTend]    = useState<number | null>(null)
 
-  const [nivelFiltro, setNivelFiltro] = useState<'Todos' | 'Primaria' | 'Secundaria'>('Todos')
+  const [nivelFiltro, setNivelFiltro] = useState<'Todos' | 'Cocina' | 'Pastelería'>('Todos')
   const [vista,       setVista]       = useState<'graficas' | 'tabla'>('graficas')
 
   // Tooltip compartido de las barras (sigue a la fila, no gatea: los valores están en la etiqueta y la tabla)
@@ -320,7 +320,7 @@ export function EstadisticasAsistenciaContent({ embedded = false }: Props = {}) 
             style={{ background: '#DCFCE7', color: '#166534', border: '1px solid #bbf7d0' }}>
             ● Ciclo {ciclo.nombre}
           </span>
-          <span className="text-[11px] text-slate-400 font-semibold hidden sm:inline">Asistencia diaria al colegio</span>
+          <span className="text-[11px] text-slate-400 font-semibold hidden sm:inline">Asistencia diaria a la escuela</span>
         </div>
         <div className="flex items-center gap-1.5 flex-wrap">
           <button onClick={() => setFecha(f => sumarDias(f, -1))}
@@ -380,8 +380,8 @@ export function EstadisticasAsistenciaContent({ embedded = false }: Props = {}) 
       <div className="rounded-2xl p-5" style={card}>
         <div className="flex items-center justify-between gap-3">
           <div>
-            <p className="font-black text-sm" style={{ color: C_INK }}>Total del colegio</p>
-            <p className="text-[11px] text-slate-400 font-semibold">Alumnos que asistieron · últimos 10 días con asistencia llamada</p>
+            <p className="font-black text-sm" style={{ color: C_INK }}>Total de la escuela</p>
+            <p className="text-[11px] text-slate-400 font-semibold">Estudiantes que asistieron · últimos 10 días con asistencia llamada</p>
           </div>
         </div>
         {cargandoTend && tendencia.length === 0 ? (
@@ -509,7 +509,7 @@ export function EstadisticasAsistenciaContent({ embedded = false }: Props = {}) 
             <p className="text-[11px] text-slate-400 font-semibold">Cada barra es una sección; el fondo claro es el total de matriculados</p>
           </div>
           <div className="flex gap-1">
-            {(['Todos', 'Primaria', 'Secundaria'] as const).map(niv => (
+            {(['Todos', 'Cocina', 'Pastelería'] as const).map(niv => (
               <button key={niv} onClick={() => setNivelFiltro(niv)}
                 className="px-3 py-1.5 rounded-lg text-xs font-black transition-all"
                 style={nivelFiltro === niv

@@ -47,15 +47,15 @@ const CAMPOS_DISPONIBLES = [
   { key: 'sexo',              label: 'Sexo',                 default: false },
   { key: 'fecha_nacimiento',  label: 'Fecha de nacimiento',  default: false },
   { key: 'codigo_estudiante', label: 'Código de estudiante', default: false },
-  { key: 'celular',           label: 'Tel. alumno',          default: false },
-  { key: 'celular_apoderado', label: 'Tel. apoderado',       default: false },
+  { key: 'celular',           label: 'Tel. estudiante',          default: false },
+  { key: 'celular_apoderado', label: 'Tel. contacto de emergencia',       default: false },
 ] as const
 
 type CampoKey = typeof CAMPOS_DISPONIBLES[number]['key']
 
 const GRADOS_ORDEN = [
-  '1° Primaria','2° Primaria','3° Primaria','4° Primaria','5° Primaria','6° Primaria',
-  '1° Secundaria','2° Secundaria','3° Secundaria','4° Secundaria','5° Secundaria',
+  '1° Ciclo Cocina','2° Ciclo Cocina','3° Ciclo Cocina','4° Ciclo Cocina',
+  '1° Ciclo Pastelería','2° Ciclo Pastelería',
 ]
 
 function splitNombreCompleto(texto: string): string {
@@ -266,12 +266,12 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
       const img = new Image(); img.crossOrigin = 'anonymous'
       img.onload = () => { ctx.drawImage(img, logoBoxX + 10, logoBoxY + 10, 60, 60); resolve() }
       img.onerror = () => resolve()
-      img.src = '/colegio.png'
+      img.src = '/aceg-isotipo.png'
     })
 
     ctx.fillStyle = DORADO2; ctx.textAlign = 'center'
-    ctx.font = 'bold 12px system-ui, sans-serif'; ctx.fillText('IES COLEGIO DE ALTA COMPETENCIA', W / 2, 126)
-    ctx.font = 'bold 18px system-ui, sans-serif'; ctx.fillText('EDUARDO DE HABICH', W / 2, 147)
+    ctx.font = 'bold 12px system-ui, sans-serif'; ctx.fillText('ESCUELA GASTRONÓMICA', W / 2, 126)
+    ctx.font = 'bold 18px system-ui, sans-serif'; ctx.fillText('ACEG', W / 2, 147)
     ctx.strokeStyle = DORADO + '80'; ctx.lineWidth = 1
     ctx.beginPath(); ctx.moveTo(28, 135); ctx.lineTo(78, 135); ctx.stroke()
     ctx.beginPath(); ctx.moveTo(W - 28, 135); ctx.lineTo(W - 78, 135); ctx.stroke()
@@ -433,13 +433,13 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
     try {
       const ExcelJS = (await import('exceljs')).default
       const wb = new ExcelJS.Workbook()
-      wb.creator = 'Sistema Eduardo de Habich'
+      wb.creator = 'Sistema ACEG'
       wb.created  = new Date()
 
       /* ─ fetch logo una sola vez ─ */
       let logoBuf: ArrayBuffer | null = null
       try {
-        const res = await fetch('/colegio.png')
+        const res = await fetch('/aceg-isotipo.png')
         if (res.ok) logoBuf = await res.arrayBuffer()
       } catch { /* sin logo */ }
 
@@ -474,7 +474,7 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
         if (numCols > 1) {
           ws.mergeCells(`B1:${lastCol}1`)
           const r1 = ws.getCell('B1')
-          r1.value = 'COLEGIO DE ALTA COMPETENCIA  ·  EDUARDO DE HABICH'
+          r1.value = 'ESCUELA GASTRONÓMICA  ·  ACEG'
           r1.font  = { bold: true, size: 14, color: { argb: C_WHITE }, name: 'Calibri' }
           r1.alignment = { vertical: 'bottom', horizontal: 'center' }
           r1.fill  = { type: 'pattern', pattern: 'solid', fgColor: { argb: C_WINE } }
@@ -504,7 +504,7 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
         ws.getRow(6).height = 18
         ws.mergeCells(`A6:${lastCol}6`)
         const r6 = ws.getCell('A6')
-        r6.value = `Ciclo académico: ${cicloActual?.nombre ?? '—'}     ·     Total alumnos: ${lista.length}     ·     Generado el ${fechaGen}`
+        r6.value = `Ciclo académico: ${cicloActual?.nombre ?? '—'}     ·     Total estudiantes: ${lista.length}     ·     Generado el ${fechaGen}`
         r6.font  = { size: 9, color: { argb: C_GRAY }, name: 'Calibri' }
         r6.alignment = { vertical: 'middle', horizontal: 'left', indent: 2 }
         r6.fill  = { type: 'pattern', pattern: 'solid', fgColor: { argb: C_GRAY_LIGHT } }
@@ -549,7 +549,7 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
         ws.getRow(totalRow).height = 20
         ws.mergeCells(`A${totalRow}:${lastCol}${totalRow}`)
         const totalCell = ws.getCell(`A${totalRow}`)
-        totalCell.value = `TOTAL: ${lista.length} alumno${lista.length !== 1 ? 's' : ''}`
+        totalCell.value = `TOTAL: ${lista.length} estudiante${lista.length !== 1 ? 's' : ''}`
         totalCell.font  = { bold: true, size: 10, color: { argb: C_WINE }, name: 'Calibri' }
         totalCell.alignment = { vertical: 'middle', horizontal: 'right', indent: 2 }
         totalCell.fill  = { type: 'pattern', pattern: 'solid', fgColor: { argb: C_GOLD_LIGHT } }
@@ -559,7 +559,7 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
         ws.getRow(footerRow).height = 16
         ws.mergeCells(`A${footerRow}:${lastCol}${footerRow}`)
         const footer = ws.getCell(`A${footerRow}`)
-        footer.value = `© ${new Date().getFullYear()} Colegio de Alta Competencia Eduardo de Habich — Sistema de Gestión Académica`
+        footer.value = `© ${new Date().getFullYear()} Escuela Gastronómica ACEG — Arte Culinario, Emprendimiento y Gestión`
         footer.font  = { size: 8, color: { argb: C_GRAY }, italic: true, name: 'Calibri' }
         footer.alignment = { vertical: 'middle', horizontal: 'center' }
         footer.fill  = { type: 'pattern', pattern: 'solid', fgColor: { argb: C_GRAY_LIGHT } }
@@ -569,7 +569,7 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
       if (dlScope === 'salon' && salonSel) {
         /* ── Un salón → una sola hoja ── */
         const lista  = alumnos.filter(a => a.grado === salonSel.grado && a.grupo === salonSel.grupo)
-        const titulo = `Lista de Alumnos — ${salonSel.grado}  ·  Sección ${salonSel.grupo}${salonSel.salon_nombre ? `  ·  ${salonSel.salon_nombre}` : ''}`
+        const titulo = `Lista de Estudiantes — ${salonSel.grado}  ·  Sección ${salonSel.grupo}${salonSel.salon_nombre ? `  ·  ${salonSel.salon_nombre}` : ''}`
         const nombreArchivo = `${salonSel.grado} ${salonSel.grupo}${salonSel.salon_nombre ? ` - ${salonSel.salon_nombre}` : ''}`
         const logoId = logoBuf ? wb.addImage({ buffer: logoBuf, extension: 'png' }) : null
         const ws = wb.addWorksheet('Alumnos', {
@@ -604,7 +604,7 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
 
         for (const s of salonesActivos) {
           const lista = alumnos.filter(a => a.grado === s.grado && a.grupo === s.grupo)
-          const titulo = `Lista de Alumnos — ${s.grado}  ·  Sección ${s.grupo}${s.salon_nombre ? `  ·  ${s.salon_nombre}` : ''}`
+          const titulo = `Lista de Estudiantes — ${s.grado}  ·  Sección ${s.grupo}${s.salon_nombre ? `  ·  ${s.salon_nombre}` : ''}`
           const logoId = logoBuf ? wb.addImage({ buffer: logoBuf, extension: 'png' }) : null
           const ws = wb.addWorksheet(sheetName(s.grado, s.grupo), {
             pageSetup: { fitToPage: true, orientation: 'portrait', margins: { left: 0.5, right: 0.5, top: 0.75, bottom: 0.75, header: 0.3, footer: 0.3 } },
@@ -618,7 +618,7 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
         const blob   = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' })
         const url    = URL.createObjectURL(blob)
         const link   = document.createElement('a')
-        link.href = url; link.download = `Alumnos - ${cicloNombre}.xlsx`; link.click()
+        link.href = url; link.download = `Estudiantes - ${cicloNombre}.xlsx`; link.click()
         URL.revokeObjectURL(url)
       }
 
@@ -661,7 +661,7 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0112 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/>
             </svg>
           </div>
-          <p className="font-black text-slate-800 text-sm">Salones y Alumnos</p>
+          <p className="font-black text-slate-800 text-sm">Salones y Estudiantes</p>
         </div>
 
         {/* Fondos QR + Ciclo selector */}
@@ -727,7 +727,7 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
         {/* ── Stats bar ── */}
         <div className="grid grid-cols-3 gap-3">
           {[
-            { label: 'Total alumnos', value: alumnos.length, color: '#0B2447' },
+            { label: 'Total estudiantes', value: alumnos.length, color: '#0B2447' },
             { label: 'Salones',       value: salones.length, color: '#1E40AF' },
             { label: 'Ciclo',         value: cicloActual?.nombre ?? '—', color: '#0d9488' },
           ].map(s => (
@@ -744,7 +744,7 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
           <div className="flex p-1 rounded-xl gap-1" style={{ background: 'white', border: '1.5px solid #E4E8EF' }}>
             {([
               { id: 'salones', label: 'Por salón',       icon: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4' },
-              { id: 'todos',   label: 'Todos los alumnos', icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z' },
+              { id: 'todos',   label: 'Todos los estudiantes', icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z' },
             ] as const).map(v => (
               <button key={v.id} onClick={() => { setView(v.id); setSearch(''); setSalonSel(null) }}
                 className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-black transition-all"
@@ -788,13 +788,13 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="#0B2447" strokeWidth="4"/>
                 <path className="opacity-75" fill="#0B2447" d="M4 12a8 8 0 018-8v8z"/>
               </svg>
-              <p className="text-xs text-slate-400 font-semibold">Cargando alumnos…</p>
+              <p className="text-xs text-slate-400 font-semibold">Cargando estudiantes…</p>
             </div>
           </div>
         ) : alumnos.length === 0 ? (
           <div className="rounded-2xl py-16 text-center"
             style={{ background: 'white', border: '1.5px solid #E4E8EF' }}>
-            <p className="text-slate-400 text-sm font-bold">No hay alumnos matriculados en este ciclo</p>
+            <p className="text-slate-400 text-sm font-bold">No hay estudiantes matriculados en este ciclo</p>
           </div>
         ) : view === 'salones' ? (
 
@@ -855,7 +855,7 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
                         <span className="ml-2 text-xs font-semibold text-indigo-800">· {salonSel.salon_nombre}</span>
                       )}
                     </p>
-                    <p className="text-xs text-slate-400 mt-0.5">{salonSel.count} alumnos</p>
+                    <p className="text-xs text-slate-400 mt-0.5">{salonSel.count} estudiantes</p>
                   </div>
                   <div className="flex items-center gap-2">
                     <button
@@ -1061,7 +1061,7 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
                 <p className="text-xs font-black text-slate-500 uppercase tracking-widest mb-2.5">Alcance</p>
                 <div className="grid grid-cols-2 gap-2">
                   {([
-                    { id: 'todos',  label: 'Todos los alumnos', sub: `${alumnos.length} alumnos`, icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z' },
+                    { id: 'todos',  label: 'Todos los estudiantes', sub: `${alumnos.length} estudiantes`, icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z' },
                     { id: 'salon',  label: 'Solo este salón',   sub: salonSel ? `${salonSel.grado} ${salonSel.grupo}` : 'Selecciona un salón primero', icon: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4' },
                   ] as const).map(opt => (
                     <button key={opt.id}
@@ -1180,7 +1180,7 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
             </div>
             <div className="text-center">
               <p className="font-black text-slate-800 text-sm">Generando tarjetas QR…</p>
-              <p className="text-xs text-slate-400 mt-1">{qrProgreso} de {qrTotal} alumnos</p>
+              <p className="text-xs text-slate-400 mt-1">{qrProgreso} de {qrTotal} estudiantes</p>
             </div>
             <div className="w-full rounded-full overflow-hidden" style={{ background: '#E4E8EF', height: 8 }}>
               <div className="h-full rounded-full transition-all"

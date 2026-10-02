@@ -393,7 +393,7 @@ export default function PortalMenuFoto({
                 overflow: 'hidden',
                 zIndex: 2,
               }}>
-                <Image src="/colegio-trans.png" alt="Logo del colegio" fill sizes="72px" style={{ objectFit: 'contain' }} />
+                <Image src="/aceg-isotipo.png" alt="Logo de ACEG" fill sizes="72px" style={{ objectFit: 'contain' }} />
               </div>
             </div>
           )}
@@ -644,7 +644,7 @@ export default function PortalMenuFoto({
           color: 'rgba(255,255,255,.6)',
           margin: 0,
         }}>
-          Eduardo de Habich · Juliaca · Puno
+          Escuela Gastronómica ACEG · Juliaca · Puno
         </p>
         <div style={{ height: 1, width: 60, background: 'linear-gradient(90deg, rgba(255,255,255,.4), transparent)' }} />
       </footer>

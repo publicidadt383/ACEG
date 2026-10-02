@@ -8,11 +8,11 @@ import { supabase } from '@/lib/supabase'
 import Spinner from '@/components/Spinner'
 
 /* ────────────────────────────────────────────────────────────────
-   INSTITUCIONAL MODERNO — Login del colegio
+   INSTITUCIONAL MODERNO — Login de la escuela
    Concepto: portal académico confiable (Google Workspace / BCP)
    · Manrope, una sola tipografía sans
    · Blanco + azul marino institucional
-   · Logo del colegio como protagonista
+   · Logo de la escuela como protagonista
    · Una columna, foco absoluto en la acción
    ──────────────────────────────────────────────────────────────── */
 
@@ -21,13 +21,13 @@ const C = {
   card:      '#FFFFFF',
   border:    '#E4E8EF',
   borderHi:  '#CBD3DE',
-  navy:      '#0B2447',  // azul marino institucional
-  navyHi:    '#143875',
-  navySoft:  '#1E40AF',
+  navy:      '#0E0F21',  // azul noche de la marca ACEG
+  navyHi:    '#1C1E3A',
+  navySoft:  '#D9042F',
   ink:       '#0F172A',
   inkSoft:   '#475569',
   inkMuted:  '#94A3B8',
-  ring:      'rgba(11,36,71,.10)',
+  ring:      'rgba(14,15,33,.10)',
   amber:     '#B45309',
   amberSoft: '#FEF3C7',
   danger:    '#B91C1C',
@@ -120,7 +120,7 @@ function LoginForm() {
   return (
     <div ref={wrapRef} className="habich-login min-h-screen flex flex-col" style={{ color: C.ink }}>
 
-      {/* ── Fondo: foto del colegio + scrim ─────────────────────── */}
+      {/* ── Fondo: foto de la escuela + scrim ─────────────────────── */}
       <div aria-hidden className="login-photo">
         <Image
           src="/foto_colegio.jpg"
@@ -163,7 +163,7 @@ function LoginForm() {
               <div className="logo-orbit" aria-hidden />
               <div className="logo-arc" aria-hidden />
               <div className="logo-inner">
-                <Image src="/colegio-trans.png" alt="Colegio Eduardo de Habich" fill priority sizes="180px" className="object-contain" />
+                <Image src="/aceg-isotipo.png" alt="Escuela Gastronómica ACEG" fill priority sizes="180px" className="object-contain" />
               </div>
             </div>
 
@@ -180,7 +180,7 @@ function LoginForm() {
               className="reveal reveal-3 text-[24px] sm:text-[26px] font-bold leading-[1.1] text-white"
               style={{ letterSpacing: '-.024em', textShadow: '0 2px 18px rgba(0,0,0,.5)' }}
             >
-              Colegio Eduardo de Habich
+              Escuela Gastronómica ACEG
             </h1>
             <p
               className="reveal reveal-3 mt-1.5 text-[13.5px] font-medium text-white/80"
@@ -310,7 +310,7 @@ function LoginForm() {
       <footer className="relative z-10">
         <div className="mx-auto max-w-6xl px-6 sm:px-8 py-4 border-t border-white/10">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-[12px] text-white/65">
-            <span>© {new Date().getFullYear()} · Colegio Eduardo de Habich</span>
+            <span>© {new Date().getFullYear()} · Escuela Gastronómica ACEG</span>
             <span>Juliaca · Puno · Perú</span>
           </div>
         </div>
@@ -325,7 +325,7 @@ function LoginForm() {
           --mx: 0; --my: 0;
         }
 
-        /* Foto del colegio a pantalla completa con ken-burns */
+        /* Foto de la escuela a pantalla completa con ken-burns */
         .login-photo {
           position: fixed; inset: 0; z-index: 0; overflow: hidden;
           transform: translate3d(calc(var(--mx) * -10px), calc(var(--my) * -8px), 0);

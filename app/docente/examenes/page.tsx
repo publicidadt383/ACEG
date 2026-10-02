@@ -274,7 +274,7 @@ export default function ExamenesDocente() {
   async function eliminarPregunta(id: string) {
     if (!(await confirmar({
       titulo: '¿Eliminar esta pregunta?',
-      mensaje: 'Se borra del examen junto con sus opciones. Si algún alumno ya respondió, sus respuestas a esta pregunta se pierden.',
+      mensaje: 'Se borra del examen junto con sus opciones. Si algún estudiante ya respondió, sus respuestas a esta pregunta se pierden.',
       tono: 'peligro', confirmarLabel: 'Eliminar pregunta',
     }))) return
     await supabase.from('preguntas').delete().eq('id', id)
@@ -678,7 +678,7 @@ export default function ExamenesDocente() {
               <div className="rounded-2xl overflow-hidden" style={{ background: 'white', border: '1.5px solid #E4E8EF' }}>
                 <div className="px-5 py-4" style={{ borderBottom: '1px solid #f1f5f9' }}>
                   <p className="font-black text-slate-800">{verResultados.titulo}</p>
-                  <p className="text-xs text-slate-400 mt-0.5">Resultados de alumnos</p>
+                  <p className="text-xs text-slate-400 mt-0.5">Resultados de estudiantes</p>
                 </div>
                 {loadingInts ? (
                   <div className="flex justify-center py-8">
@@ -688,7 +688,7 @@ export default function ExamenesDocente() {
                     </svg>
                   </div>
                 ) : intentos.length === 0 ? (
-                  <p className="text-center text-slate-300 text-sm py-8">Ningún alumno ha rendido este examen aún</p>
+                  <p className="text-center text-slate-300 text-sm py-8">Ningún estudiante ha rendido este examen aún</p>
                 ) : (
                   <div className="divide-y divide-slate-50">
                     {intentos.map((it, i) => (
@@ -748,7 +748,7 @@ export default function ExamenesDocente() {
             </div>
             <h3 className="text-base font-black text-slate-800 text-center mb-1">¿Eliminar examen?</h3>
             <p className="text-sm text-slate-500 text-center mb-5">
-              Se perderán todas las preguntas y resultados de alumnos. Esta acción no se puede deshacer.
+              Se perderán todas las preguntas y resultados de estudiantes. Esta acción no se puede deshacer.
             </p>
             <div className="flex gap-3">
               <button onClick={() => setConfirmEliminarId(null)}

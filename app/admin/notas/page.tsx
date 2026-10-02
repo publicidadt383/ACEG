@@ -27,8 +27,8 @@ interface PlantillaCursos {
 const MAX_PLANTILLAS = 4
 
 const GRADOS_ORDEN = [
-  '1° Primaria','2° Primaria','3° Primaria','4° Primaria','5° Primaria','6° Primaria',
-  '1° Secundaria','2° Secundaria','3° Secundaria','4° Secundaria','5° Secundaria',
+  '1° Ciclo Cocina','2° Ciclo Cocina','3° Ciclo Cocina','4° Ciclo Cocina',
+  '1° Ciclo Pastelería','2° Ciclo Pastelería',
 ]
 
 const keyDe = (alumnoId: string, evalId: string) => `${alumnoId}::${evalId}`
@@ -177,7 +177,7 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
     if (!p.publicado) {
       const res = await confirmar({
         titulo: `¿Publicar "${p.nombre}"?`,
-        mensaje: 'Las notas de este periodo se volverán visibles para los padres de familia en el portal público (consulta por DNI). Puedes despublicarlo en cualquier momento.',
+        mensaje: 'Las notas de este periodo se volverán visibles en la consulta pública de notas (consulta por DNI). Puedes despublicarlo en cualquier momento.',
         tono: 'advertencia',
         confirmarLabel: 'Publicar',
       })
@@ -204,7 +204,7 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
       mensaje: (
         <>
           Se eliminará el periodo con sus evaluaciones <b>y sus {count ?? 0} notas registradas</b>.
-          {p.publicado && <> Los padres dejarán de verlo de inmediato.</>} Esta acción no se puede deshacer.
+          {p.publicado && <> Dejará de verse en la consulta de notas de inmediato.</>} Esta acción no se puede deshacer.
         </>
       ),
       tono: 'peligro',
@@ -583,7 +583,7 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
         plantillaExamenCsv(ex, resp)
         setImportMsg(
           `Plantilla «${pl.nombre}» aplicada y Excel del examen «${ex.titulo}» descargado (${ex.preguntas.length} preguntas). ` +
-          `Marca 1 = correcta y 0 = incorrecta por alumno e impórtalo con el botón «Importar».`
+          `Marca 1 = correcta y 0 = incorrecta por estudiante e impórtalo con el botón «Importar».`
         )
         setModalPlantilla(false)
         return
@@ -643,7 +643,7 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
     plantillaExamenCsv(nuevo, {})
     setTituloExamen('')
     setImportMsg(
-      `Examen «${nuevo.titulo}» creado (${n} preguntas) y plantilla descargada. Marca 1 = correcta y 0 = incorrecta por alumno ` +
+      `Examen «${nuevo.titulo}» creado (${n} preguntas) y plantilla descargada. Marca 1 = correcta y 0 = incorrecta por estudiante ` +
       `y súbela con el botón «Importar respuestas» del examen. Cada pregunta correcta vale 1 punto.`
     )
     setModalPlantilla(false)
@@ -654,11 +654,11 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
     setImportMsg(''); setErrorMsg('')
     const raw = (await file.text()).replace(/^﻿/, '')
     const lineas = raw.split(/\r?\n/).filter(l => l.trim() !== '')
-    if (lineas.length < 2) { setErrorMsg('El archivo está vacío o no tiene filas de alumnos.'); return }
+    if (lineas.length < 2) { setErrorMsg('El archivo está vacío o no tiene filas de estudiantes.'); return }
 
     const sep = (lineas[0].match(/;/g)?.length ?? 0) >= (lineas[0].match(/,/g)?.length ?? 0) ? ';' : ','
     const header = parseCsvLine(lineas[0], sep).map(h => h.trim())
-    if (header.length < 3) { setErrorMsg('La plantilla debe tener las columnas DNI, Alumno y al menos una evaluación.'); return }
+    if (header.length < 3) { setErrorMsg('La plantilla debe tener las columnas DNI, Estudiante y al menos una evaluación.'); return }
     const titulosCsv = header.slice(2).filter(t => t !== '')
 
     // ¿Es plantilla de examen por preguntas? (cabeceras "P1 [Área]" o "P1")
@@ -754,7 +754,7 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
     setGuardadoOk(false)
     const partes = [`${aplicadas} notas cargadas en la tabla`]
     if (columnasNuevas) partes.push(`${columnasNuevas} columnas nuevas creadas`)
-    if (sinAlumno)  partes.push(`${sinAlumno} filas sin alumno reconocido`)
+    if (sinAlumno)  partes.push(`${sinAlumno} filas sin estudiante reconocido`)
     if (invalidas)  partes.push(`${invalidas} valores inválidos ignorados (deben ser puntos de 0 hasta el máximo de preguntas de su área)`)
     setImportMsg(`Importación lista: ${partes.join(' · ')}. Revisa la tabla y pulsa «Guardar cambios».`)
   }
@@ -806,7 +806,7 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
       .eq('examen_id', ex.id)
     const res = await confirmar({
       titulo: `¿Eliminar el examen "${ex.titulo}"?`,
-      mensaje: <>Se eliminará el examen <b>y las respuestas de {count ?? 0} alumnos</b>. Los padres y alumnos dejarán de verlo. Esta acción no se puede deshacer.</>,
+      mensaje: <>Se eliminará el examen <b>y las respuestas de {count ?? 0} estudiantes</b>. Los estudiantes dejarán de verlo. Esta acción no se puede deshacer.</>,
       tono: 'peligro',
       confirmarLabel: 'Eliminar examen',
     })
@@ -824,7 +824,7 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
     setImportMsg(''); setErrorMsg('')
     const raw = (await file.text()).replace(/^﻿/, '')
     const lineas = raw.split(/\r?\n/).filter(l => l.trim() !== '')
-    if (lineas.length < 2) { setErrorMsg('El archivo está vacío o no tiene filas de alumnos.'); return }
+    if (lineas.length < 2) { setErrorMsg('El archivo está vacío o no tiene filas de estudiantes.'); return }
 
     const sep = (lineas[0].match(/;/g)?.length ?? 0) >= (lineas[0].match(/,/g)?.length ?? 0) ? ';' : ','
     const header = parseCsvLine(lineas[0], sep).map(h => h.trim())
@@ -883,9 +883,9 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
     await cargarRespuestasTodas(examenes)
     if (examenSel?.id === ex.id) setRespuestas(await cargarRespuestas(ex))
     else await verExamen(ex)
-    const partes = [`${alumnosOk} alumnos con respuestas guardadas`]
-    if (sinAlumno)     partes.push(`${sinAlumno} filas sin alumno reconocido`)
-    if (sinRespuestas) partes.push(`${sinRespuestas} alumnos sin respuestas (fila vacía, no rindieron)`)
+    const partes = [`${alumnosOk} estudiantes con respuestas guardadas`]
+    if (sinAlumno)     partes.push(`${sinAlumno} filas sin estudiante reconocido`)
+    if (sinRespuestas) partes.push(`${sinRespuestas} estudiantes sin respuestas (fila vacía, no rindieron)`)
     if (invalidas)     partes.push(`${invalidas} valores distintos de 0/1 tomados como incorrectos`)
     setImportMsg(`Respuestas de «${ex.titulo}» importadas: ${partes.join(' · ')}.`)
   }
@@ -1034,7 +1034,7 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
               <circle cx="12" cy="9" r="6"/><path strokeLinecap="round" strokeLinejoin="round" d="m9 15-2 7 5-3 5 3-2-7"/>
             </svg>
           </div>
-          <p className="font-black text-slate-800 text-sm">Notas para Padres</p>
+          <p className="font-black text-slate-800 text-sm">Libreta de Notas</p>
         </div>
         <div className="ml-auto">{selectorCiclo}</div>
       </header>
@@ -1058,7 +1058,7 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
             llenarla en Excel e importarla: de notas directas (puntos por evaluación) o de <b>examen por preguntas</b> (marcas
             1 = correcta / 0 = incorrecta y el sistema suma los puntos por área). La nota final es la <b>suma de puntos</b>,
             no un promedio. Cuando todo esté listo pulsa{' '}
-            <b>Publicar</b>: recién entonces los padres verán las notas en el portal consultando con el DNI del alumno.
+            <b>Publicar</b>: recién entonces las notas serán visibles en la consulta de notas consultando con el DNI del estudiante.
           </p>
         </div>
 
@@ -1092,7 +1092,7 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
                     </span>
                   </button>
                   <button onClick={() => togglePublicar(p)}
-                    title={p.publicado ? 'Ocultar a los padres' : 'Publicar para los padres'}
+                    title={p.publicado ? 'Ocultar de la consulta' : 'Publicar en la consulta'}
                     className="w-6 h-6 rounded-lg flex items-center justify-center transition-all hover:opacity-75"
                     style={{ background: p.publicado ? '#fef3c7' : '#dcfce7' }}>
                     {p.publicado ? (
@@ -1147,7 +1147,7 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
         ) : alumnos.length === 0 ? (
           <div className="rounded-2xl py-12 text-center"
             style={{ background: 'white', border: '1.5px solid #E4E8EF' }}>
-            <p className="text-slate-400 text-sm font-bold">No hay alumnos matriculados en este ciclo</p>
+            <p className="text-slate-400 text-sm font-bold">No hay estudiantes matriculados en este ciclo</p>
           </div>
         ) : (
           <div className="space-y-4">
@@ -1289,7 +1289,7 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
                           <input value={nombrePlantilla} autoFocus
                             onChange={e => setNombrePlantilla(e.target.value)}
                             onKeyDown={e => { if (e.key === 'Enter') guardarPlantilla(); if (e.key === 'Escape') setNombrePlantilla(null) }}
-                            placeholder="Nombre (p. ej. Cursos Secundaria)"
+                            placeholder="Nombre (p. ej. Cursos de Cocina)"
                             className="text-xs font-bold px-3 py-1.5 rounded-xl outline-none min-w-48"
                             style={{ background: 'white', border: '1.5px solid #1d4ed8', color: '#0B2447' }} />
                           <button onClick={guardarPlantilla} disabled={!(nombrePlantilla ?? '').trim()}
@@ -1349,7 +1349,7 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
                       <thead>
                         <tr style={{ background: '#F1F5F9' }}>
                           <th className="text-left px-3 py-2 font-black text-slate-500 uppercase tracking-wider sticky left-0"
-                            style={{ background: '#F1F5F9', minWidth: 180 }}>Alumno</th>
+                            style={{ background: '#F1F5F9', minWidth: 180 }}>Estudiante</th>
                           {evaluaciones.map(ev => (
                             <th key={ev.id} className="text-center px-2 py-2 font-black text-slate-500" style={{ minWidth: 84 }}>
                               <div className="flex flex-col items-center gap-1">
@@ -1517,7 +1517,7 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
                               <thead>
                                 <tr style={{ background: '#F1F5F9' }}>
                                   <th className="text-left px-3 py-2 font-black text-slate-500 uppercase tracking-wider sticky left-0"
-                                    style={{ background: '#F1F5F9', minWidth: 180 }}>Alumno</th>
+                                    style={{ background: '#F1F5F9', minWidth: 180 }}>Estudiante</th>
                                   {areasEx.map(a => (
                                     <th key={a} className="text-center px-2 py-2 font-black text-slate-500" style={{ minWidth: 80 }}>{a}</th>
                                   ))}
@@ -1659,7 +1659,7 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
             <div className="px-6 pt-5 pb-4" style={{ background: 'linear-gradient(135deg,#0B2447,#1E3A8A)' }}>
               <p className="font-black text-white text-sm">Generar plantilla</p>
               <p className="text-xs mt-0.5" style={{ color: 'rgba(255,255,255,.7)' }}>
-                {periodoSel.nombre} · {salonSel.grado} — Sección {salonSel.grupo} · {alumnosSalon.length} alumnos
+                {periodoSel.nombre} · {salonSel.grado} — Sección {salonSel.grupo} · {alumnosSalon.length} estudiantes
               </p>
             </div>
 
@@ -1675,7 +1675,7 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
                   <p className="text-xs font-black" style={{ color: '#0B2447' }}>Notas directas (puntos por evaluación)</p>
                   <p className="text-[11px] text-slate-400 font-semibold mt-0.5 leading-relaxed">
                     Una columna por evaluación ({evaluaciones.length ? evaluaciones.map(e => e.titulo).join(', ') : 'aún sin columnas: puedes agregarlas en Excel'}).
-                    Escribes los puntos que obtuvo cada alumno; el total es la suma.
+                    Escribes los puntos que obtuvo cada estudiante; el total es la suma.
                   </p>
                 </button>
                 {plantillaTipo === 'directa' && plantillas.length > 0 && (
@@ -1769,10 +1769,10 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
                   </button>
                   <p className="text-[11px] text-slate-400 font-semibold leading-relaxed">
                     Ejemplo: preguntas 1 a 3 → Matemática, 4 a 7 → Comunicación. Todas las preguntas deben tener área.
-                    En la plantilla cada pregunta sale como «P1 [Matemática]» y marcas <b>1</b> si el alumno acertó
+                    En la plantilla cada pregunta sale como «P1 [Matemática]» y marcas <b>1</b> si el estudiante acertó
                     o <b>0</b> si falló (vacío cuenta como incorrecta). <b>Cada correcta vale 1 punto</b>: se muestra el
                     acumulado por área (p. ej. 3 puntos Matemática, 5 Comunicación), la nota final (total de puntos)
-                    y el detalle pregunta por pregunta — visible también para padres y alumnos al publicar.
+                    y el detalle pregunta por pregunta — visible también para los estudiantes al publicar.
                   </p>
                 </div>
               )}

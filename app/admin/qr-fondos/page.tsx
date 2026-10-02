@@ -11,8 +11,8 @@ import { useConfirm } from '@/components/ConfirmModal'
 interface SeccionInfo { grado: string; grupo: string; salon_nombre: string | null }
 
 const GRADOS_ORDEN = [
-  '1° Primaria','2° Primaria','3° Primaria','4° Primaria','5° Primaria','6° Primaria',
-  '1° Secundaria','2° Secundaria','3° Secundaria','4° Secundaria','5° Secundaria',
+  '1° Ciclo Cocina','2° Ciclo Cocina','3° Ciclo Cocina','4° Ciclo Cocina',
+  '1° Ciclo Pastelería','2° Ciclo Pastelería',
 ]
 
 type Slot =
@@ -325,7 +325,7 @@ export default function QrFondosPage() {
         {secciones.length === 0 && (
           <div className="rounded-2xl p-12 text-center"
             style={{ background: 'white', border: '1.5px solid #E4E8EF' }}>
-            <p className="text-sm font-bold text-slate-400">No hay ciclo activo con alumnos matriculados.</p>
+            <p className="text-sm font-bold text-slate-400">No hay ciclo activo con estudiantes matriculados.</p>
           </div>
         )}
 

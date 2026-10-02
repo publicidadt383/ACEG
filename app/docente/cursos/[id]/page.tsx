@@ -139,7 +139,7 @@ export default function CursoDetallePage({ params }: { params: Promise<{ id: str
   async function handleEliminarUnidad(u: Unidad) {
     if (!(await confirmar({
       titulo: `¿Eliminar la unidad "${u.nombre}"?`,
-      mensaje: 'Tus alumnos dejarán de ver esta unidad y todo su contenido (sesiones, tareas y recursos). Esta acción no se puede deshacer.',
+      mensaje: 'Tus estudiantes dejarán de ver esta unidad y todo su contenido (sesiones, tareas y recursos). Esta acción no se puede deshacer.',
       tono: 'peligro', confirmarLabel: 'Eliminar unidad',
     }))) return
     setEliminandoUId(u.id)
@@ -186,7 +186,7 @@ export default function CursoDetallePage({ params }: { params: Promise<{ id: str
   async function handleEliminarSesion(s: Sesion) {
     if (!(await confirmar({
       titulo: `¿Eliminar la sesión "${s.titulo}"?`,
-      mensaje: 'Sus tareas, recursos y entregas asociadas dejarán de estar disponibles para tus alumnos. Esta acción no se puede deshacer.',
+      mensaje: 'Sus tareas, recursos y entregas asociadas dejarán de estar disponibles para tus estudiantes. Esta acción no se puede deshacer.',
       tono: 'peligro', confirmarLabel: 'Eliminar sesión',
     }))) return
     setEliminandoSId(s.id)

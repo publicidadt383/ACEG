@@ -135,16 +135,16 @@ export default function MiQrPage() {
         resolve()
       }
       img.onerror = () => resolve()
-      img.src = '/colegio.png'
+      img.src = '/aceg-isotipo.png'
     })
 
     // ── Nombre institución (2 líneas) ────────────────────────────
     ctx.fillStyle = DORADO2
     ctx.textAlign = 'center'
     ctx.font      = 'bold 12px system-ui, sans-serif'
-    ctx.fillText('IES COLEGIO DE ALTA COMPETENCIA', W / 2, 126)
+    ctx.fillText('ESCUELA GASTRONÓMICA', W / 2, 126)
     ctx.font      = 'bold 18px system-ui, sans-serif'
-    ctx.fillText('EDUARDO DE HABICH', W / 2, 147)
+    ctx.fillText('ACEG', W / 2, 147)
 
     // Líneas decorativas laterales (centradas entre las dos líneas)
     ctx.strokeStyle = DORADO + '80'

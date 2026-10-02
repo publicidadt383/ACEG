@@ -74,7 +74,7 @@ export default function AdminLandingPage() {
   async function eliminarFondo() {
     if (!fondoUrl) return
     if (!(await confirmar({
-      titulo: '¿Quitar el fondo de la página del colegio?',
+      titulo: '¿Quitar el fondo de la página de la escuela?',
       mensaje: 'La imagen se borra del almacenamiento y la web pública vuelve al fondo por defecto. Esta acción no se puede deshacer.',
       tono: 'peligro', confirmarLabel: 'Quitar fondo',
     }))) return
@@ -109,7 +109,7 @@ export default function AdminLandingPage() {
   async function eliminarFoto(item: GaleriaItem) {
     if (!(await confirmar({
       titulo: '¿Eliminar esta foto de la galería?',
-      mensaje: 'Desaparece de la web pública del colegio y el archivo se borra del almacenamiento. Esta acción no se puede deshacer.',
+      mensaje: 'Desaparece de la web pública de la escuela y el archivo se borra del almacenamiento. Esta acción no se puede deshacer.',
       tono: 'peligro', confirmarLabel: 'Eliminar foto',
     }))) return
     const nombreArchivo = item.url.split('/').pop()
@@ -172,7 +172,7 @@ export default function AdminLandingPage() {
   async function eliminarComunicado(a: AnuncioRow) {
     if (!(await confirmar({
       titulo: `¿Eliminar el comunicado "${a.titulo}"?`,
-      mensaje: 'Se borra de la web pública y del sistema (docentes, alumnos y padres dejarán de verlo). Esta acción no se puede deshacer.',
+      mensaje: 'Se borra de la web pública y del sistema (docentes y estudiantes dejarán de verlo). Esta acción no se puede deshacer.',
       tono: 'peligro', confirmarLabel: 'Eliminar comunicado',
     }))) return
     if (a.imagen_url) {
@@ -228,7 +228,7 @@ export default function AdminLandingPage() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064"/>
             </svg>
           </div>
-          <p className="font-black text-slate-800 text-sm">Web del Colegio</p>
+          <p className="font-black text-slate-800 text-sm">Web de la Escuela</p>
         </div>
         <div className="ml-auto flex items-center gap-2">
           <button onClick={recargarPreview}

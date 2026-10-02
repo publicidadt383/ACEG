@@ -61,8 +61,8 @@ const NAVY  = '#0B2447'
 const NAVY2 = '#1E3A8A'
 const STONE = '#f7f5f1'
 
-const GRADOS_PRIMARIA   = ['1° Primaria','2° Primaria','3° Primaria','4° Primaria','5° Primaria','6° Primaria']
-const GRADOS_SECUNDARIA = ['1° Secundaria','2° Secundaria','3° Secundaria','4° Secundaria','5° Secundaria']
+const GRADOS_PRIMARIA   = ['1° Ciclo Cocina','2° Ciclo Cocina','3° Ciclo Cocina','4° Ciclo Cocina']
+const GRADOS_SECUNDARIA = ['1° Ciclo Pastelería','2° Ciclo Pastelería']
 
 // Suma N semanas a una fecha ISO (yyyy-mm-dd) y devuelve la fecha de cierre del bimestre (inclusive).
 function sumarSemanas(inicioIso: string, semanas: number): string {
@@ -818,16 +818,16 @@ function VistaPlantillas({
   onCrearBimestres: () => Promise<boolean>
   trabajando: boolean
 }) {
-  const [nivelSel, setNivelSel] = useState<'' | 'Primaria' | 'Secundaria'>('')
+  const [nivelSel, setNivelSel] = useState<'' | 'Cocina' | 'Pastelería'>('')
   const [gradoSel, setGradoSel] = useState<string>('')
   const [cursoSel, setCursoSel] = useState<string>('')
   const [bimSel,   setBimSel]   = useState<string>('')   // '' = todos; si no, id del bimestre
 
   const bimestresVisibles = bimSel ? bimestres.filter(b => b.id === bimSel) : bimestres
 
-  const gradosDelNivel = nivelSel === 'Primaria'
+  const gradosDelNivel = nivelSel === 'Cocina'
     ? GRADOS_PRIMARIA
-    : nivelSel === 'Secundaria'
+    : nivelSel === 'Pastelería'
       ? GRADOS_SECUNDARIA
       : []
 
@@ -899,8 +899,8 @@ function VistaPlantillas({
         </div>
         <div className="px-5 py-4 flex flex-wrap items-end gap-3">
           <FiltroSelect label="1 · Nivel" value={nivelSel}
-            onChange={v => { setNivelSel(v as '' | 'Primaria' | 'Secundaria'); setGradoSel('') }}
-            options={[{ v: '', t: '— Selecciona —' }, { v: 'Primaria', t: 'Primaria' }, { v: 'Secundaria', t: 'Secundaria' }]}
+            onChange={v => { setNivelSel(v as '' | 'Cocina' | 'Pastelería'); setGradoSel('') }}
+            options={[{ v: '', t: '— Selecciona —' }, { v: 'Cocina', t: 'Cocina' }, { v: 'Pastelería', t: 'Pastelería' }]}
             minWidth={160} />
 
           <FiltroSelect label="2 · Grado" value={gradoSel}
@@ -1360,7 +1360,7 @@ function VistaPlanAnual({
         }
         eyebrow="Resultados esperados"
         titulo="Objetivos del año"
-        descripcion="¿Qué aprenderán los alumnos al terminar el año en este curso? Un objetivo por fila; luego vincula cada semana con su objetivo desde el editor del bimestre.">
+        descripcion="¿Qué aprenderán los estudiantes al terminar el año en este curso? Un objetivo por fila; luego vincula cada semana con su objetivo desde el editor del bimestre.">
         <div className="space-y-2">
           {objetivos.map(o => {
             // Bimestres donde alguna semana está vinculada a este objetivo
@@ -1482,7 +1482,7 @@ function VistaPlanAnual({
         }
         eyebrow={`Calendario · ${anio}`}
         titulo="Fechas y duración de los bimestres"
-        descripcion="Estos datos aplican a todo el colegio. Al ingresar la fecha de inicio se autocalcula la fecha de fin con las semanas configuradas.">
+        descripcion="Estos datos aplican a toda la escuela. Al ingresar la fecha de inicio se autocalcula la fecha de fin con las semanas configuradas.">
         <CalendarioBimestres
           bimestres={bimestres}
           onNuevo={onNuevoBimestre}
@@ -1835,7 +1835,7 @@ function PrintPlanAnual({
       <div id="print-plan">
         <div style={{ textAlign: 'center', marginBottom: 18 }}>
           <p style={{ fontSize: 11, letterSpacing: '.12em', textTransform: 'uppercase', margin: 0 }}>
-            Colegio Eduardo de Habich · Juliaca · Puno
+            Escuela Gastronómica ACEG · Juliaca · Puno
           </p>
           <h1 style={{ fontSize: 18, fontWeight: 900, margin: '6px 0 0' }}>PROGRAMACIÓN ANUAL {anio}</h1>
           <p style={{ fontSize: 13, fontWeight: 700, margin: '2px 0 0' }}>{curso.nombre} — {grado}</p>

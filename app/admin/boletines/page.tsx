@@ -19,8 +19,8 @@ interface CursoReporte {
 interface AlumnoReporte extends AlumnoRow { cursos: CursoReporte[] }
 
 const GRADOS_ORDEN = [
-  '1° Primaria','2° Primaria','3° Primaria','4° Primaria','5° Primaria','6° Primaria',
-  '1° Secundaria','2° Secundaria','3° Secundaria','4° Secundaria','5° Secundaria',
+  '1° Ciclo Cocina','2° Ciclo Cocina','3° Ciclo Cocina','4° Ciclo Cocina',
+  '1° Ciclo Pastelería','2° Ciclo Pastelería',
 ]
 
 /* ─────────────────────── helpers ─────────────────────── */
@@ -247,15 +247,15 @@ export function BoletinesContent({ embedded = false }: BoletinesProps = {}) {
       const img = new Image(); img.crossOrigin = 'anonymous'
       img.onload = () => { ctx.drawImage(img, lbX + 8, lbY + 8, lbS - 16, lbS - 16); resolve() }
       img.onerror = () => resolve()
-      img.src = '/colegio.png'
+      img.src = '/aceg-isotipo.png'
     })
 
     /* ── Texto header ── */
     ctx.textAlign = 'left'
     ctx.fillStyle = '#FDF3DC'; ctx.font = 'bold 10px system-ui, sans-serif'
-    ctx.fillText('IES COLEGIO DE ALTA COMPETENCIA', 102, 54)
+    ctx.fillText('ESCUELA GASTRONÓMICA', 102, 54)
     ctx.fillStyle = WHITE; ctx.font = 'bold 18px system-ui, sans-serif'
-    ctx.fillText('EDUARDO DE HABICH', 102, 74)
+    ctx.fillText('ACEG', 102, 74)
     ctx.fillStyle = 'rgba(255,255,255,.55)'; ctx.font = '500 10px system-ui, sans-serif'
     ctx.fillText('Juliaca · Puno · Perú', 102, 92)
 
@@ -398,7 +398,7 @@ export function BoletinesContent({ embedded = false }: BoletinesProps = {}) {
     /* ── Footer ── */
     const fY = sumY + 36 + 10
     ctx.fillStyle = GRAY; ctx.font = '400 8.5px system-ui, sans-serif'; ctx.textAlign = 'center'
-    ctx.fillText(`© ${new Date().getFullYear()} Colegio de Alta Competencia Eduardo de Habich`, W / 2, fY + 12)
+    ctx.fillText(`© ${new Date().getFullYear()} Escuela Gastronómica ACEG`, W / 2, fY + 12)
     ctx.fillText('Documento generado automáticamente · Solo para uso interno', W / 2, fY + 26)
 
     /* ── Franja dorada inferior ── */
@@ -528,7 +528,7 @@ export function BoletinesContent({ embedded = false }: BoletinesProps = {}) {
         {/* Stats */}
         <div className="grid grid-cols-3 gap-3">
           {[
-            { label: 'Total alumnos', value: alumnos.length, color: '#0B2447' },
+            { label: 'Total estudiantes', value: alumnos.length, color: '#0B2447' },
             { label: 'Salones',       value: salones.length, color: '#1E40AF' },
             { label: 'Ciclo',         value: cicloActual?.nombre ?? '—', color: '#0d9488' },
           ].map(s => (
@@ -562,7 +562,7 @@ export function BoletinesContent({ embedded = false }: BoletinesProps = {}) {
         ) : alumnos.length === 0 ? (
           <div className="rounded-2xl py-16 text-center"
             style={{ background: 'white', border: '1.5px solid #E4E8EF' }}>
-            <p className="text-slate-400 text-sm font-bold">No hay alumnos matriculados en este ciclo</p>
+            <p className="text-slate-400 text-sm font-bold">No hay estudiantes matriculados en este ciclo</p>
           </div>
         ) : (
           <div className="space-y-4">
@@ -622,7 +622,7 @@ export function BoletinesContent({ embedded = false }: BoletinesProps = {}) {
                         <span className="ml-2 text-xs font-semibold text-indigo-800">· {salonSel.salon_nombre}</span>
                       )}
                     </p>
-                    <p className="text-xs text-slate-400 mt-0.5">{salonSel.count} alumnos</p>
+                    <p className="text-xs text-slate-400 mt-0.5">{salonSel.count} estudiantes</p>
                   </div>
                   <button
                     onClick={descargarTodos}
@@ -770,7 +770,7 @@ export function BoletinesContent({ embedded = false }: BoletinesProps = {}) {
             </div>
             <div className="text-center">
               <p className="font-black text-slate-800 text-sm">Generando boletines…</p>
-              <p className="text-xs text-slate-400 mt-1">{dlProgreso} de {dlTotal} alumnos</p>
+              <p className="text-xs text-slate-400 mt-1">{dlProgreso} de {dlTotal} estudiantes</p>
             </div>
             <div className="w-full rounded-full overflow-hidden" style={{ background: '#E4E8EF', height: 8 }}>
               <div className="h-full rounded-full transition-all"

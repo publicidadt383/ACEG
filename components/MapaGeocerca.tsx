@@ -28,7 +28,7 @@ const PIN_SVG = `
 </svg>`
 
 /**
- * Mapa de la geocerca de asistencia: muestra el punto del colegio y el círculo
+ * Mapa de la geocerca de asistencia: muestra el punto de la escuela y el círculo
  * del radio donde se permite marcar. En modo editable el punto se fija con clic
  * o arrastrando el marcador; en modo lectura puede mostrar además la posición
  * en vivo del usuario. Leaflet se carga dinámicamente (usa window, sin SSR).

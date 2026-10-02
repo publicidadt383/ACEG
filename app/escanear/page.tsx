@@ -234,10 +234,10 @@ export default function EscanearPage() {
           style={{ paddingTop: 'max(10px, env(safe-area-inset-top, 0px))' }}>
           <div className="relative w-9 h-9 rounded-xl overflow-hidden shrink-0"
             style={{ border: '1.5px solid #E4E8EF', boxShadow: '0 2px 8px rgba(11,36,71,.1)' }}>
-            <Image src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/colegio.png`} alt="Logo" fill className="object-contain p-0.5" />
+            <Image src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/aceg-isotipo.png`} alt="Logo" fill className="object-contain p-0.5" />
           </div>
           <div className="min-w-0 flex-1">
-            <p className="text-slate-900 font-bold text-sm leading-tight truncate">Eduardo de Habich</p>
+            <p className="text-slate-900 font-bold text-sm leading-tight truncate">Escuela Gastronómica ACEG</p>
             {userName && (
               <p className="text-[11px] text-slate-500 leading-tight truncate">
                 Hola, <span className="font-semibold" style={{ color: '#0B2447' }}>{userName}</span>
@@ -375,7 +375,7 @@ export default function EscanearPage() {
               ? 'Tu entrada ya está registrada. Marca al final de la jornada para registrar tu SALIDA.'
               : marcasHoy === 2
                 ? 'Ya registraste entrada y salida de hoy. ¡Hasta mañana!'
-                : 'Presiona el botón estando dentro del colegio'}
+                : 'Presiona el botón estando dentro de la escuela'}
           </p>
         </div>
 

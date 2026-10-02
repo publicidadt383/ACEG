@@ -300,7 +300,7 @@ export default function TareasPanel({ sesionId }: { sesionId: string }) {
                     {cargandoEnt ? (
                       <div className="flex items-center gap-2 py-3 text-slate-400 text-xs"><Spinner /><span>Cargando…</span></div>
                     ) : entregasTarea.length === 0 ? (
-                      <p className="text-xs text-slate-400 py-3 text-center">Ningún alumno ha entregado aún.</p>
+                      <p className="text-xs text-slate-400 py-3 text-center">Ningún estudiante ha entregado aún.</p>
                     ) : entregasTarea.map(ent => {
                       const cal = ent.calificaciones?.[0] ?? null
                       const isCalif = calificandoId === ent.id
@@ -422,7 +422,7 @@ export default function TareasPanel({ sesionId }: { sesionId: string }) {
           </div>
           <div>
             <label className={labelCls}>Descripción (opcional)</label>
-            <textarea rows={2} className={inputCls} placeholder="Instrucciones para el alumno…"
+            <textarea rows={2} className={inputCls} placeholder="Instrucciones para el estudiante…"
               value={descripcion} onChange={e => setDescripcion(e.target.value)} />
           </div>
           <div className="flex gap-2 justify-end">

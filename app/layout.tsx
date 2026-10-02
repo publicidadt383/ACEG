@@ -41,7 +41,7 @@ const plexMono = IBM_Plex_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "Eduardo de Habich",
+  title: "ACEG · Escuela Gastronómica",
   description: "Sistema de asistencia mediante código QR",
 };
 

@@ -213,7 +213,7 @@ export default function DocenteAsistenciaPage() {
       {/* Header */}
       <div>
         <h1 className="text-2xl font-black text-slate-800">Asistencia</h1>
-        <p className="text-sm text-slate-400 mt-0.5">Registra la asistencia de tus alumnos por clase</p>
+        <p className="text-sm text-slate-400 mt-0.5">Registra la asistencia de tus estudiantes por clase</p>
       </div>
 
       {asigs.length === 0 ? (
@@ -297,8 +297,8 @@ export default function DocenteAsistenciaPage() {
                 </div>
               ) : alumnos.length === 0 ? (
                 <div className="flex flex-col items-center justify-center py-16 gap-2">
-                  <p className="text-sm font-bold text-slate-400">Sin alumnos en esta sección</p>
-                  <p className="text-xs text-slate-400">Verifica que haya alumnos registrados en {asig?.grado} {asig?.grupo}</p>
+                  <p className="text-sm font-bold text-slate-400">Sin estudiantes en esta sección</p>
+                  <p className="text-xs text-slate-400">Verifica que haya estudiantes registrados en {asig?.grado} {asig?.grupo}</p>
                 </div>
               ) : (
                 <>
@@ -314,7 +314,7 @@ export default function DocenteAsistenciaPage() {
                       style={{ background: '#fff1f2', color: '#ef4444', border: '1.5px solid #fecdd3' }}>
                       Todos ausentes
                     </button>
-                    <span className="ml-auto text-[11px] text-slate-400 font-bold">{alumnos.length} alumnos</span>
+                    <span className="ml-auto text-[11px] text-slate-400 font-bold">{alumnos.length} estudiantes</span>
                   </div>
 
                   {/* Lista */}
@@ -387,7 +387,7 @@ export default function DocenteAsistenciaPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
                 <p className="text-xs font-medium" style={{ color }}>
-                  Los alumnos deben mostrar su QR desde su portal. Cada escaneo marca al alumno como <strong>presente</strong> en <strong>{asig?.cursos?.nombre} — {asig?.grado} {asig?.grupo}</strong> para el <strong>{formatFecha(fecha)}</strong>.
+                  Los estudiantes deben mostrar su QR desde su portal. Cada escaneo marca al estudiante como <strong>presente</strong> en <strong>{asig?.cursos?.nombre} — {asig?.grado} {asig?.grupo}</strong> para el <strong>{formatFecha(fecha)}</strong>.
                 </p>
               </div>
 
@@ -445,7 +445,7 @@ export default function DocenteAsistenciaPage() {
                     <span className="text-xs font-black text-slate-400 uppercase tracking-widest">
                       Escaneados esta sesión
                     </span>
-                    <span className="text-xs font-bold" style={{ color }}>{scaneados.length} alumnos</span>
+                    <span className="text-xs font-bold" style={{ color }}>{scaneados.length} estudiantes</span>
                   </div>
                   <div className="divide-y divide-slate-50">
                     {scaneados.map((s, i) => (

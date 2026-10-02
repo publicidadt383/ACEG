@@ -190,7 +190,7 @@ export default function AsistenciaPanel({ asignacionId, grado, grupo, color }: P
           <div className="flex items-center justify-between gap-3 flex-wrap">
             <div>
               <p className="text-sm font-black text-slate-700">Registrar clase</p>
-              <p className="text-xs text-slate-400 mt-0.5">Marca la fecha y luego activa o desactiva alumnos</p>
+              <p className="text-xs text-slate-400 mt-0.5">Marca la fecha y luego activa o desactiva estudiantes</p>
             </div>
             <div className="flex items-center gap-2">
               <input type="date" value={fechaNueva} onChange={e => setFechaNueva(e.target.value)}
@@ -250,7 +250,7 @@ export default function AsistenciaPanel({ asignacionId, grado, grupo, color }: P
                   {/* Columna nombre */}
                   <th className="sticky left-0 z-10 text-left px-4 py-3 text-[10px] font-black uppercase tracking-widest text-slate-400 bg-white"
                     style={{ minWidth: 200, borderRight: '1px solid #f1f5f9' }}>
-                    Alumno
+                    Estudiante
                   </th>
                   {/* Columnas por fecha */}
                   {fechas.map(f => (

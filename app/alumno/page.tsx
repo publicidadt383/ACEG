@@ -123,8 +123,8 @@ export default function AlumnoHomePage() {
 
   return (
     <PortalMenuFoto
-      title="Eduardo de Habich"
-      subtitle="Portal Alumno"
+      title="ACEG"
+      subtitle="Portal Estudiante"
       userName={nombre}
       userRoleLabel={sub}
       cards={cards}

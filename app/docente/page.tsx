@@ -64,7 +64,7 @@ export default function DocenteHomePage() {
     {
       id: 'anuncios',
       label: 'Anuncios',
-      description: 'Comunicación con alumnos',
+      description: 'Comunicación con estudiantes',
       onClick: () => router.push('/docente/anuncios'),
       icon: (
         <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -110,7 +110,7 @@ export default function DocenteHomePage() {
 
   return (
     <PortalMenuFoto
-      title="Eduardo de Habich"
+      title="ACEG"
       subtitle="Portal Docente"
       userName={nombre}
       userRoleLabel="Docente"

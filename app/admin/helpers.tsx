@@ -59,8 +59,8 @@ export const PERIODOS_DEFAULT: Periodo[] = [
 export const DIAS_SEMANA = ['Lunes','Martes','Miércoles','Jueves','Viernes'] as const
 
 export const GRADOS = [
-  '1° Primaria','2° Primaria','3° Primaria','4° Primaria','5° Primaria','6° Primaria',
-  '1° Secundaria','2° Secundaria','3° Secundaria','4° Secundaria','5° Secundaria',
+  '1° Ciclo Cocina','2° Ciclo Cocina','3° Ciclo Cocina','4° Ciclo Cocina',
+  '1° Ciclo Pastelería','2° Ciclo Pastelería',
 ]
 export const GRUPOS = ['A','B','C','D','E','F']
 

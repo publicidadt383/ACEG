@@ -128,7 +128,7 @@ export default function AdminPage() {
   const [cursoBusquedaH,  setCursoBusquedaH]  = useState('')
   const [docenteBusquedaH,setDocenteBusquedaH]= useState('')
   const [busquedaPanelH,  setBusquedaPanelH]  = useState('')
-  const [nivelFiltroH,    setNivelFiltroH]    = useState<'Primaria'|'Secundaria'>('Primaria')
+  const [nivelFiltroH,    setNivelFiltroH]    = useState<'Cocina'|'Pastelería'>('Cocina')
 
   // Docentes — paginación + búsqueda servidor
   const [pageDocentes,    setPageDocentes]    = useState(0)
@@ -141,7 +141,7 @@ export default function AdminPage() {
   const [pageAlumnos,     setPageAlumnos]     = useState(0)
   const [totalAlumnos,    setTotalAlumnos]    = useState(0)
   const [searchAlumnos,   setSearchAlumnos]   = useState('')
-  const [gradoFiltroH,    setGradoFiltroH]    = useState('1° Primaria')
+  const [gradoFiltroH,    setGradoFiltroH]    = useState('1° Ciclo Cocina')
   const [grupoFiltroH,    setGrupoFiltroH]    = useState('A')
   const [periodos,        setPeriodos]        = useState<Periodo[]>(PERIODOS_DEFAULT)
   const [periodosOriginal,setPeriodosOriginal]= useState<Periodo[]>([])
@@ -163,7 +163,7 @@ export default function AdminPage() {
   const [mostrarCursoForm, setMostrarCursoForm] = useState(false)
   const [cursoLoading, setCursoLoading]       = useState(false)
   const [cursoForm, setCursoForm]             = useState({ nombre: '', color: '#143875' })
-  const [nivelCursoTab, setNivelCursoTab]     = useState<'Primaria'|'Secundaria'>('Primaria')
+  const [nivelCursoTab, setNivelCursoTab]     = useState<'Cocina'|'Pastelería'>('Cocina')
 
   const [asignaciones, setAsignaciones]         = useState<Asignacion[]>([])
   const [loadingAsig, setLoadingAsig]           = useState(false)
@@ -214,7 +214,7 @@ export default function AdminPage() {
   // ── Reportes alumnos state ────────────────────────────────────────────────
   const [reporteAlumnos,       setReporteAlumnos]       = useState<ReporteAlumno[]>([])
   const [loadingReporteAlumnos,setLoadingReporteAlumnos] = useState(false)
-  const [reporteGrado,         setReporteGrado]         = useState('1° Secundaria')
+  const [reporteGrado,         setReporteGrado]         = useState('1° Ciclo Cocina')
   const [reporteGrupo,         setReporteGrupo]         = useState('A')
   const [reporteAbiertoId,     setReporteAbiertoId]     = useState<string | null>(null)
 
@@ -671,7 +671,7 @@ export default function AdminPage() {
       if (wizTipo === 'nuevo') {
         const f = wizNuevoForm
         if (!f.nombre.trim() || !f.apellidos.trim() || !f.dni.trim()) {
-          throw new Error('Faltan datos del alumno: nombre, apellidos y DNI son obligatorios')
+          throw new Error('Faltan datos del estudiante: nombre, apellidos y DNI son obligatorios')
         }
         const { data: nuevoAlu, error: errAlu } = await supabase
           .from('alumnos')
@@ -685,10 +685,10 @@ export default function AdminPage() {
           })
           .select('id')
           .single()
-        if (errAlu) throw new Error(`Error al crear alumno: ${errAlu.message}`)
+        if (errAlu) throw new Error(`Error al crear estudiante: ${errAlu.message}`)
         alumnoId = nuevoAlu.id
       }
-      if (!alumnoId) throw new Error('No se seleccionó alumno')
+      if (!alumnoId) throw new Error('No se seleccionó estudiante')
       if (!wizCicloId || !wizGrado || !wizGrupo) throw new Error('Faltan datos de asignación')
 
       const { error: errMat } = await supabase
@@ -714,7 +714,7 @@ export default function AdminPage() {
           .eq('alumno_id', alumnoId).eq('ciclo_id', wizCicloId)
           .maybeSingle()
         if (!existente || !['retirado', 'trasladado', 'anulada'].includes(existente.estado)) {
-          throw new Error('El alumno ya tiene una matrícula vigente en este ciclo.')
+          throw new Error('El estudiante ya tiene una matrícula vigente en este ciclo.')
         }
         const { error: errUpd } = await supabase
           .from('matriculas')
@@ -817,7 +817,7 @@ export default function AdminPage() {
     const nombreCompleto = `${fila.apellidos ?? ''} ${fila.nombre}`.trim()
     const res = await confirmar({
       titulo: estado === 'retirado'
-        ? `¿Retirar del colegio a ${nombreCompleto}?`
+        ? `¿Retirar de la escuela a ${nombreCompleto}?`
         : `¿Registrar el traslado de ${nombreCompleto}?`,
       mensaje: (
         <>
@@ -827,8 +827,8 @@ export default function AdminPage() {
         </>
       ),
       tono: estado === 'retirado' ? 'peligro' : 'advertencia',
-      confirmarLabel: estado === 'retirado' ? 'Retirar alumno' : 'Registrar traslado',
-      input: { label: 'Motivo', placeholder: estado === 'retirado' ? 'Ej. Motivos familiares' : 'Ej. Se traslada al colegio …', requerido: true },
+      confirmarLabel: estado === 'retirado' ? 'Retirar estudiante' : 'Registrar traslado',
+      input: { label: 'Motivo', placeholder: estado === 'retirado' ? 'Ej. Motivos familiares' : 'Ej. Se traslada a otra institución …', requerido: true },
     })
     if (!res) return
     setBajaMsg('')
@@ -1115,8 +1115,8 @@ export default function AdminPage() {
     setAsistDetalleId(null)
 
     const GRADOS_ORDEN_ASIST = [
-      '1° Primaria','2° Primaria','3° Primaria','4° Primaria','5° Primaria','6° Primaria',
-      '1° Secundaria','2° Secundaria','3° Secundaria','4° Secundaria','5° Secundaria',
+      '1° Ciclo Cocina','2° Ciclo Cocina','3° Ciclo Cocina','4° Ciclo Cocina',
+      '1° Ciclo Pastelería','2° Ciclo Pastelería',
     ]
     const cicloId = ciclos.find(c => c.activo)?.id ?? null
 
@@ -1236,7 +1236,7 @@ export default function AdminPage() {
     setGuardandoCeldaAsist(null)
   }
 
-  // Guarda/actualiza la observación del día (visible para los padres).
+  // Guarda/actualiza la observación del día (visible en la consulta de notas).
   // Solo en días con registro (P/T/J); para una falta, marca primero el estado.
   async function guardarObservacion(alumnoId: string, fecha: string, texto: string) {
     const regActual = asistSemanaMap[alumnoId]?.[fecha]
@@ -1341,14 +1341,14 @@ export default function AdminPage() {
       const img = new window.Image(); img.crossOrigin = 'anonymous'
       img.onload = () => { ctx.drawImage(img, lbX + 7, lbY + 7, lbS - 14, lbS - 14); resolve() }
       img.onerror = () => resolve()
-      img.src = '/colegio.png'
+      img.src = '/aceg-isotipo.png'
     })
 
     ctx.textAlign = 'left'
     ctx.fillStyle = '#FDF3DC'; ctx.font = 'bold 9px system-ui, sans-serif'
-    ctx.fillText('IES COLEGIO DE ALTA COMPETENCIA', 92, 38)
+    ctx.fillText('ESCUELA GASTRONÓMICA', 92, 38)
     ctx.fillStyle = WHITE; ctx.font = 'bold 16px system-ui, sans-serif'
-    ctx.fillText('EDUARDO DE HABICH', 92, 57)
+    ctx.fillText('ACEG', 92, 57)
     ctx.fillStyle = 'rgba(255,255,255,.55)'; ctx.font = '500 9px system-ui, sans-serif'
     ctx.fillText('Juliaca · Puno · Perú', 92, 73)
 
@@ -1375,7 +1375,7 @@ export default function AdminPage() {
     ctx.fillStyle = DARK; ctx.font = 'bold 12px system-ui, sans-serif'
     ctx.fillText(`${MESES_ES[month]} ${year}`, PAD + 12, infoY + 17)
     ctx.fillStyle = GRAY; ctx.font = '500 9px system-ui, sans-serif'
-    ctx.fillText(`${diasMes.length} días lectivos (Lun – Vie)  ·  ${asistAlumnos.length} alumnos`, PAD + 12, infoY + 33)
+    ctx.fillText(`${diasMes.length} días lectivos (Lun – Vie)  ·  ${asistAlumnos.length} estudiantes`, PAD + 12, infoY + 33)
     const cicloNombreM = ciclos.find(c => c.activo)?.nombre ?? ''
     if (cicloNombreM) {
       ctx.textAlign = 'right'
@@ -1489,7 +1489,7 @@ export default function AdminPage() {
     // ── Footer ───────────────────────────────────────────────────────────────
     const footerY = legendY + LEGEND_H
     ctx.fillStyle = GRAY; ctx.font = '400 7.5px system-ui, sans-serif'; ctx.textAlign = 'center'
-    ctx.fillText(`© ${new Date().getFullYear()} Colegio de Alta Competencia Eduardo de Habich`, W / 2, footerY + 10)
+    ctx.fillText(`© ${new Date().getFullYear()} Escuela Gastronómica ACEG`, W / 2, footerY + 10)
     ctx.fillText('Documento generado automáticamente · Solo para uso interno', W / 2, footerY + 22)
 
     const gradBot = ctx.createLinearGradient(0, 0, W, 0)
@@ -1573,7 +1573,7 @@ export default function AdminPage() {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const EJS: any = await import('exceljs')
     const wb = new EJS.Workbook()
-    wb.creator = 'Habich Sistema'
+    wb.creator = 'Sistema ACEG'
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const ws: any = wb.addWorksheet(`Asist ${MESES_ES[month].slice(0,3)} ${year}`, {
       pageSetup: { orientation: 'landscape', fitToPage: true, fitToWidth: 1, fitToHeight: 0 },
@@ -1605,8 +1605,8 @@ export default function AdminPage() {
       }
     }
 
-    // ── Fila 1: colegio ──────────────────────────────────────────────────────
-    const r1 = ws.addRow(['IES Colegio de Alta Competencia Eduardo de Habich  ·  Juliaca, Puno'])
+    // ── Fila 1: escuela ──────────────────────────────────────────────────────
+    const r1 = ws.addRow(['Escuela Gastronómica ACEG  ·  Juliaca, Puno'])
     r1.height = 22
     ws.mergeCells(1, 1, 1, totalCols)
     applyCell(r1.getCell(1), { bg:CW, fg:'FFFDF3DC', bold:true, size:11 })
@@ -1618,7 +1618,7 @@ export default function AdminPage() {
     applyCell(r2.getCell(1), { bg:CW2, fg:CWH, bold:true, size:12 })
 
     // ── Fila 3: info salón ───────────────────────────────────────────────────
-    const r3 = ws.addRow([`${salonStr}   |   Ciclo: ${cicloNom}   |   ${diasMes.length} días lectivos   |   ${asistAlumnos.length} alumnos`])
+    const r3 = ws.addRow([`${salonStr}   |   Ciclo: ${cicloNom}   |   ${diasMes.length} días lectivos   |   ${asistAlumnos.length} estudiantes`])
     r3.height = 20
     ws.mergeCells(3, 1, 3, totalCols)
     applyCell(r3.getCell(1), { bg:CG2, fg:CDK, size:10 })
@@ -1886,7 +1886,7 @@ export default function AdminPage() {
       titulo: `¿Activar el ciclo ${nombre}?`,
       mensaje: (
         <>
-          Todo el sistema pasará a trabajar con este ciclo: los alumnos tomarán el
+          Todo el sistema pasará a trabajar con este ciclo: los estudiantes tomarán el
           salón de su matrícula en {nombre || 'este ciclo'} y <b>quien no tenga
           matrícula quedará sin salón</b> (sin borrarse). Asegúrate de haber
           matriculado antes de activar.
@@ -1902,8 +1902,8 @@ export default function AdminPage() {
       setCicloMsg('Error al activar: ' + (error?.message ?? res?.error))
     } else {
       const partes = [`Ciclo ${res?.ciclo} activado.`]
-      if (res?.alumnos_sincronizados) partes.push(`${res.alumnos_sincronizados} alumnos actualizados de salón.`)
-      if (res?.alumnos_sin_matricula) partes.push(`${res.alumnos_sin_matricula} alumnos quedaron sin salón por no tener matrícula en este ciclo.`)
+      if (res?.alumnos_sincronizados) partes.push(`${res.alumnos_sincronizados} estudiantes actualizados de salón.`)
+      if (res?.alumnos_sin_matricula) partes.push(`${res.alumnos_sin_matricula} estudiantes quedaron sin salón por no tener matrícula en este ciclo.`)
       setCicloMsg(partes.join(' '))
     }
     await cargarCiclos()
@@ -2165,7 +2165,7 @@ export default function AdminPage() {
 
       const ExcelJS = (await import('exceljs')).default
       const wb = new ExcelJS.Workbook()
-      wb.creator = 'Sistema Eduardo de Habich'
+      wb.creator = 'Sistema ACEG'
       wb.created = new Date()
 
       const tituloNomina = filtro === 'todo' ? 'Nómina del Personal' : 'Nómina de Docentes'
@@ -2178,7 +2178,7 @@ export default function AdminPage() {
 
       let logoId: number | null = null
       try {
-        const res = await fetch('/colegio.png')
+        const res = await fetch('/aceg-isotipo.png')
         if (res.ok) { const buf = await res.arrayBuffer(); logoId = wb.addImage({ buffer: buf, extension: 'png' }) }
       } catch { /* sin logo */ }
 
@@ -2191,7 +2191,7 @@ export default function AdminPage() {
       if (numCols > 1) {
         ws.mergeCells(`B1:${lastCol}1`)
         const r1 = ws.getCell('B1')
-        r1.value = 'COLEGIO DE ALTA COMPETENCIA  ·  EDUARDO DE HABICH'
+        r1.value = 'ESCUELA GASTRONÓMICA  ·  ACEG'
         r1.font  = { bold: true, size: 14, color: { argb: C_WHITE }, name: 'Calibri' }
         r1.alignment = { vertical: 'bottom', horizontal: 'center' }
         r1.fill  = { type: 'pattern', pattern: 'solid', fgColor: { argb: C_WINE } }
@@ -2274,7 +2274,7 @@ export default function AdminPage() {
       ws.getRow(footerRow).height = 16
       ws.mergeCells(`A${footerRow}:${lastCol}${footerRow}`)
       const footer = ws.getCell(`A${footerRow}`)
-      footer.value = `© ${new Date().getFullYear()} Colegio de Alta Competencia Eduardo de Habich — Sistema de Gestión Académica`
+      footer.value = `© ${new Date().getFullYear()} Escuela Gastronómica ACEG — Arte Culinario, Emprendimiento y Gestión`
       footer.font  = { size: 8, color: { argb: C_GRAY }, italic: true, name: 'Calibri' }
       footer.alignment = { vertical: 'middle', horizontal: 'center' }
       footer.fill  = { type: 'pattern', pattern: 'solid', fgColor: { argb: C_GRAY_LT } }
@@ -2347,15 +2347,15 @@ export default function AdminPage() {
         const img = document.createElement('img'); img.crossOrigin = 'anonymous'
         img.onload = () => { ctx.drawImage(img, lbX + 7, lbY + 7, lbS - 14, lbS - 14); resolve() }
         img.onerror = () => resolve()
-        img.src = '/colegio.png'
+        img.src = '/aceg-isotipo.png'
       })
 
       const tx = MARGIN + lbS + 14
       ctx.textAlign = 'left'
       ctx.fillStyle = '#FDF3DC'; ctx.font = 'bold 9px system-ui, sans-serif'
-      ctx.fillText('IES COLEGIO DE ALTA COMPETENCIA', tx, 44)
+      ctx.fillText('ESCUELA GASTRONÓMICA', tx, 44)
       ctx.fillStyle = WHITE; ctx.font = 'bold 16px system-ui, sans-serif'
-      ctx.fillText('EDUARDO DE HABICH', tx, 62)
+      ctx.fillText('ACEG', tx, 62)
       ctx.fillStyle = 'rgba(255,255,255,.55)'; ctx.font = '500 9px system-ui, sans-serif'
       ctx.fillText('Juliaca · Puno · Perú', tx, 79)
 
@@ -2449,7 +2449,7 @@ export default function AdminPage() {
 
       const fY = tblBottom + SUM_H + 8
       ctx.fillStyle = GRAY; ctx.font = '400 8px system-ui, sans-serif'; ctx.textAlign = 'center'
-      ctx.fillText(`© ${new Date().getFullYear()} Colegio de Alta Competencia Eduardo de Habich`, W / 2, fY + 10)
+      ctx.fillText(`© ${new Date().getFullYear()} Escuela Gastronómica ACEG`, W / 2, fY + 10)
       ctx.fillText('Documento generado automáticamente · Solo para uso interno', W / 2, fY + 24)
 
       const gradBot = ctx.createLinearGradient(0, 0, W, 0)
@@ -2686,7 +2686,7 @@ export default function AdminPage() {
 
       // ── Ruta 2: generar desde cero (sin plantilla) ───────────────────────────
       const wb = new ExcelJS.Workbook()
-      wb.creator = 'Sistema Eduardo de Habich'
+      wb.creator = 'Sistema ACEG'
       wb.created = new Date()
 
       const ws = wb.addWorksheet('Formato 01', {
@@ -2771,7 +2771,7 @@ export default function AdminPage() {
       const instEnd = Math.floor(totalCols * 0.55)
       cs(5,1,{ value:'INSTITUCIÓN EDUCATIVA:', bold:true, size:8, hAlign:'right', bg:C_GRAY_LT })
       ws.mergeCells(5,2,5,instEnd)
-      cs(5,2,{ value:'COLEGIO DE ALTA COMPETENCIA EDUARDO DE HABICH', size:8, hAlign:'left', bg:C_WHITE })
+      cs(5,2,{ value:'ESCUELA GASTRONÓMICA ACEG', size:8, hAlign:'left', bg:C_WHITE })
       const niv = instEnd+1
       ws.mergeCells(5,niv,5,niv+1)
       cs(5,niv,{ value:'NIVEL EDUCATIVO Y MODALIDAD:', bold:true, size:8, hAlign:'right', bg:C_GRAY_LT })
@@ -2926,7 +2926,7 @@ export default function AdminPage() {
   async function eliminarAnuncio(id: string) {
     if (!(await confirmar({
       titulo: '¿Eliminar este anuncio?',
-      mensaje: 'Docentes, alumnos y padres dejarán de verlo. Esta acción no se puede deshacer.',
+      mensaje: 'Docentes y estudiantes dejarán de verlo. Esta acción no se puede deshacer.',
       tono: 'peligro', confirmarLabel: 'Eliminar',
     }))) return
     await supabase.from('anuncios').delete().eq('id', id)
@@ -2943,7 +2943,7 @@ export default function AdminPage() {
   }
 
   // Captura las coordenadas del punto donde está el super admin (debe hacerlo
-  // parado en el colegio) para usarlas como centro de la geocerca.
+  // parado en la escuela) para usarlas como centro de la geocerca.
   function capturarUbicacionColegio() {
     if (!navigator.geolocation) {
       setGeoMsg({ tipo: 'error', texto: 'Este navegador no soporta geolocalización.' })
@@ -2968,7 +2968,7 @@ export default function AdminPage() {
   async function guardarGeo() {
     const lat = parseFloat(geoLat), lng = parseFloat(geoLng), radio = parseInt(geoRadio, 10)
     if (geoActivo && (isNaN(lat) || isNaN(lng))) {
-      setGeoMsg({ tipo: 'error', texto: 'Registra las coordenadas del colegio antes de activar la restricción.' })
+      setGeoMsg({ tipo: 'error', texto: 'Registra las coordenadas de la escuela antes de activar la restricción.' })
       return
     }
     setGeoGuardando(true); setGeoMsg(null)
@@ -2986,7 +2986,7 @@ export default function AdminPage() {
     setGeoMsg({
       tipo: 'ok',
       texto: data.activo
-        ? `Restricción activada: solo se podrá marcar a menos de ${data.radio_m} m del colegio.`
+        ? `Restricción activada: solo se podrá marcar a menos de ${data.radio_m} m de la escuela.`
         : 'Configuración guardada. La restricción está desactivada.',
     })
   }
@@ -3131,7 +3131,7 @@ export default function AdminPage() {
     const desc = a ? `${(a.cursos as { nombre?: string } | null)?.nombre ?? 'el curso'} en ${a.grado} ${a.grupo}` : 'esta asignación'
     if (!(await confirmar({
       titulo: `¿Quitar ${desc}?`,
-      mensaje: 'El docente y los alumnos dejarán de ver este curso; sus unidades, tareas y notas quedarán inaccesibles.',
+      mensaje: 'El docente y los estudiantes dejarán de ver este curso; sus unidades, tareas y notas quedarán inaccesibles.',
       tono: 'peligro', confirmarLabel: 'Quitar asignación',
     }))) return
     await supabase.from('asignaciones').delete().eq('id', id)
@@ -3189,7 +3189,7 @@ export default function AdminPage() {
     setSeccionAddCurso('')
     setSeccionAddDocente('')
   }
-  async function handleAplicarDocenteACurso(curso_id: string, docente_id: string, nivel: 'Primaria'|'Secundaria') {
+  async function handleAplicarDocenteACurso(curso_id: string, docente_id: string, nivel: 'Cocina'|'Pastelería') {
     if (!docente_id) return
     const gradosNivel = GRADOS.filter(g => g.includes(nivel))
     // Optimistic: actualiza local todas las asignaciones del curso en el nivel
@@ -3353,11 +3353,11 @@ export default function AdminPage() {
       }
     }
 
-    // Para alumnos la contraseña ES el DNI (convención del colegio): así nunca
+    // Para alumnos la contraseña ES el DNI (convención de la escuela): así nunca
     // se desalinea de lo guardado en la tabla ni hay que recordar otra clave.
     const alumnoPwd = form.dni.trim()
     if (esAlumno && alumnoPwd.length < 6) {
-      setFormError('El DNI del alumno debe tener al menos 6 dígitos (se usa como contraseña).')
+      setFormError('El DNI del estudiante debe tener al menos 6 dígitos (se usa como contraseña).')
       setFormLoading(false)
       return
     }
@@ -3760,16 +3760,16 @@ export default function AdminPage() {
       const img = new window.Image(); img.crossOrigin = 'anonymous'
       img.onload = () => { ctx.drawImage(img, lbX + 6, lbY + 6, lbS - 12, lbS - 12); resolve() }
       img.onerror = () => resolve()
-      img.src = '/colegio.png'
+      img.src = '/aceg-isotipo.png'
     })
 
-    // Nombre colegio (izquierda)
+    // Nombre de la escuela (izquierda)
     const tx = lbX + lbS + 14
     ctx.textAlign = 'left'
     ctx.fillStyle = '#FDF3DC'; ctx.font = 'bold 8px system-ui,sans-serif'
-    ctx.fillText('IES COLEGIO DE ALTA COMPETENCIA', tx, 30)
+    ctx.fillText('ESCUELA GASTRONÓMICA', tx, 30)
     ctx.fillStyle = WHITE; ctx.font = 'bold 15px system-ui,sans-serif'
-    ctx.fillText('EDUARDO DE HABICH', tx, 48)
+    ctx.fillText('ACEG', tx, 48)
     ctx.fillStyle = 'rgba(255,255,255,.55)'; ctx.font = '500 8px system-ui,sans-serif'
     ctx.fillText('Juliaca · Puno · Perú', tx, 63)
 
@@ -3921,7 +3921,7 @@ export default function AdminPage() {
         if (mat !== clase.materia) mat += '…'
 
         const sec = clase.grado && clase.grupo
-          ? `${clase.grado.replace(' Primaria', ' Prim.').replace(' Secundaria', ' Sec.')} ${clase.grupo}`
+          ? `${clase.grado.replace(' Ciclo Cocina', ' Coc.').replace(' Ciclo Pastelería', ' Past.')} ${clase.grupo}`
           : (clase.docentes?.nombre ?? '')
         ctx.font = '500 8px system-ui,sans-serif'
         let s = sec
@@ -3967,7 +3967,7 @@ export default function AdminPage() {
     ctx.fillStyle = GOLD; ctx.fillRect(0, rowY, W, 2)
     ctx.textAlign = 'center'; ctx.fillStyle = 'rgba(255,255,255,.55)'
     ctx.font = '500 7.5px system-ui,sans-serif'
-    ctx.fillText('IES Colegio de Alta Competencia Eduardo de Habich — Juliaca, Puno, Perú', W / 2, rowY + FOOT_H / 2 + 10)
+    ctx.fillText('Escuela Gastronómica ACEG — Juliaca, Puno, Perú', W / 2, rowY + FOOT_H / 2 + 10)
 
     return canvas
   }
@@ -4356,11 +4356,11 @@ export default function AdminPage() {
     }
 
     const wb = new ExcelJS.Workbook()
-    wb.creator = 'Sistema Eduardo de Habich'; wb.created = new Date()
+    wb.creator = 'Sistema ACEG'; wb.created = new Date()
 
     let logoId: number | null = null
     try {
-      const res = await fetch('/colegio.png')
+      const res = await fetch('/aceg-isotipo.png')
       if (res.ok) { const buf = await res.arrayBuffer(); logoId = wb.addImage({ buffer: buf, extension: 'png' }) }
     } catch { /* sin logo */ }
 
@@ -4403,7 +4403,7 @@ export default function AdminPage() {
       ws.getCell('A1').border   = { right: { style: 'medium', color: { argb: C_GOLD } } }
       ws.mergeCells(`B1:${lastCol}1`)
       const r1 = ws.getCell('B1')
-      r1.value = 'COLEGIO DE ALTA COMPETENCIA  ·  EDUARDO DE HABICH'
+      r1.value = 'ESCUELA GASTRONÓMICA  ·  ACEG'
       r1.font  = { bold: true, size: 14, color: { argb: C_WHITE }, name: 'Calibri' }
       r1.alignment = { vertical: 'bottom', horizontal: 'center' }
       r1.fill  = { type: 'pattern', pattern: 'solid', fgColor: { argb: C_WINE } }
@@ -4697,7 +4697,7 @@ export default function AdminPage() {
           icon: <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/></svg> },
         { id: 'admins',   label: 'Admins',   count: admins.length,
           icon: <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg> },
-        { id: 'salones', label: 'Salones y Alumnos',
+        { id: 'salones', label: 'Salones y Estudiantes',
           icon: <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M3 21V8l9-6 9 6v13M9 21V12h6v9M3 21h18"/></svg> },
       ],
     },
@@ -4714,8 +4714,8 @@ export default function AdminPage() {
           icon: <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2M9 12h6M9 16h4"/></svg> },
         { id: 'boletines', label: 'Boletines',
           icon: <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg> },
-        // Solo administradores: crear periodos y subir notas visibles para los padres
-        ...(esAdminUser ? [{ id: 'notas-padres', label: 'Notas para Padres',
+        // Solo administradores: crear periodos y subir notas visibles en la consulta de notas
+        ...(esAdminUser ? [{ id: 'notas-padres', label: 'Libreta de Notas',
           icon: <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="9" r="6"/><path strokeLinecap="round" strokeLinejoin="round" d="m9 15-2 7 5-3 5 3-2-7"/></svg> }] : []),
       ],
     },
@@ -4724,7 +4724,7 @@ export default function AdminPage() {
       items: [
         { id: 'escaner-alumnos',  label: 'Escáner QR',       count: null,
           icon: <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"/></svg> },
-        { id: 'asist-alumnos',   label: 'Asistencia Alumnos', count: null,
+        { id: 'asist-alumnos',   label: 'Asistencia Estudiantes', count: null,
           icon: <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg> },
         { id: 'estadisticas-asistencia', label: 'Estadísticas de Asistencia', count: null,
           icon: <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M9 17v-6m3 6V7m3 10v-3m2 7H7a2 2 0 01-2-2V5a2 2 0 012-2h10a2 2 0 012 2v14a2 2 0 01-2 2z"/></svg> },
@@ -4756,7 +4756,7 @@ export default function AdminPage() {
       items: [
         { id: 'simular', label: 'Simular Docente',
           icon: <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg> },
-        { id: 'buscar-alumnos', label: 'Buscar Alumnos',
+        { id: 'buscar-alumnos', label: 'Buscar Estudiantes',
           icon: <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="7"/><path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-3.5-3.5M11 8.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM7 14.5c.5-1.2 2-2 4-2s3.5.8 4 2"/></svg> },
         { id: 'auditoria', label: 'Auditoría', count: null,
           icon: <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg> },
@@ -4767,7 +4767,7 @@ export default function AdminPage() {
       items: [
         { id: 'comunicados', label: 'Comunicados', count: anuncios.length || null,
           icon: <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/></svg> },
-        { id: 'landing-ext',     label: 'Web del Colegio', href: '/admin/landing',
+        { id: 'landing-ext',     label: 'Web de la Escuela', href: '/admin/landing',
           icon: <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/></svg> },
       ],
     },
@@ -4869,8 +4869,8 @@ export default function AdminPage() {
   }
 
   const GROUP_DESC: Record<string, string> = {
-    'Usuarios':            'Docentes, alumnos, admins y salones',
-    'Académico':           'Cursos, horarios, boletines y notas para padres',
+    'Usuarios':            'Docentes, estudiantes, admins y salones',
+    'Académico':           'Cursos, horarios, boletines y libreta de notas',
     'Asistencia':          'Marcado, reportes, QR y justificaciones',
     'Año Escolar':         'Todo el nuevo año en orden: ciclo, matrícula, planificación y horario',
     'Herramientas':        'Simulación, búsqueda y auditoría',
@@ -4904,7 +4904,7 @@ export default function AdminPage() {
     const primerNombre = (adminNombre || '').split(' ')[0] || 'administrador'
     return (
       <PortalMenuFoto
-        title="Eduardo de Habich"
+        title="ACEG"
         subtitle="Panel de Administración"
         greeting={`Bienvenido, ${primerNombre}`}
         userName={adminNombre}
@@ -5693,7 +5693,7 @@ export default function AdminPage() {
             <div>
               <h2 className="text-slate-900 font-black text-xl">Marcado por Ubicación</h2>
               <p className="text-slate-400 text-xs mt-0.5">
-                El personal marca su asistencia con el botón &quot;Marcar mi asistencia&quot;, únicamente estando dentro del radio del colegio.
+                El personal marca su asistencia con el botón &quot;Marcar mi asistencia&quot;, únicamente estando dentro del radio de la escuela.
               </p>
             </div>
 
@@ -5706,7 +5706,7 @@ export default function AdminPage() {
                     <div>
                       <h3 className="text-slate-900 font-black text-sm">Marcado por ubicación (GPS)</h3>
                       <p className="text-slate-400 text-xs mt-0.5">
-                        El personal marca su asistencia presionando un botón, solo si su teléfono está dentro del radio del colegio.
+                        El personal marca su asistencia presionando un botón, solo si su teléfono está dentro del radio de la escuela.
                         <span className="font-bold" style={{ color: '#b45309' }}> Si la desactivas, el personal no tendrá forma de marcar.</span>
                       </p>
                     </div>
@@ -5747,12 +5747,12 @@ export default function AdminPage() {
                     </button>
                   </div>
                   <p className="text-[10px] text-slate-400 mt-2">
-                    Captura la ubicación estando en el colegio, pega las coordenadas desde Google Maps,
+                    Captura la ubicación estando en la escuela, pega las coordenadas desde Google Maps,
                     o haz clic directamente en el mapa. El círculo azul es la zona donde el personal podrá marcar
                     — dale un margen por la imprecisión del GPS (recomendado: 150 m o más).
                   </p>
 
-                  {/* Mapa: punto del colegio + círculo del radio (clic o arrastre fija el punto) */}
+                  {/* Mapa: punto de la escuela + círculo del radio (clic o arrastre fija el punto) */}
                   <div className="mt-3">
                     <MapaGeocerca
                       lat={Number.isFinite(parseFloat(geoLat)) ? parseFloat(geoLat) : null}
@@ -5769,7 +5769,7 @@ export default function AdminPage() {
                     <label className="inline-flex items-center gap-2 cursor-pointer select-none">
                       <input type="checkbox" checked={geoActivo} onChange={e => setGeoActivo(e.target.checked)}
                         className="w-4 h-4 accent-emerald-600" />
-                      <span className="text-xs font-bold text-slate-700">Exigir estar en el colegio para marcar</span>
+                      <span className="text-xs font-bold text-slate-700">Exigir estar en la escuela para marcar</span>
                     </label>
                     <button onClick={guardarGeo} disabled={geoGuardando}
                       className="px-4 py-2.5 rounded-xl text-sm font-black text-white transition-all disabled:opacity-60"
@@ -5821,11 +5821,11 @@ export default function AdminPage() {
           return (
             <div className="space-y-4 max-w-2xl mx-auto">
               <div>
-                <h2 className="text-slate-900 font-black text-xl">Escáner QR — Asistencia Alumnos</h2>
-                <p className="text-slate-400 text-xs mt-0.5">Escanea el QR del alumno — el grado y sección se detectan automáticamente</p>
+                <h2 className="text-slate-900 font-black text-xl">Escáner QR — Asistencia Estudiantes</h2>
+                <p className="text-slate-400 text-xs mt-0.5">Escanea el QR del estudiante — el grado y sección se detectan automáticamente</p>
               </div>
 
-              {/* Config: hora de entrada del colegio */}
+              {/* Config: hora de entrada de la escuela */}
               <div className="rounded-2xl p-4" style={card}>
                 <div className="flex flex-wrap items-end gap-3">
                   <div>
@@ -5911,7 +5911,7 @@ export default function AdminPage() {
                   <div className="px-5 py-3 flex items-center justify-between bg-slate-50/60"
                     style={{ borderBottom: '1px solid #E4E8EF' }}>
                     <span className="text-slate-400 text-xs font-bold uppercase tracking-widest">Escaneados esta sesión</span>
-                    <span className="text-xs font-bold text-indigo-900">{scanAdminList.length} alumnos</span>
+                    <span className="text-xs font-bold text-indigo-900">{scanAdminList.length} estudiantes</span>
                   </div>
                   <div className="divide-y divide-slate-50">
                     {scanAdminList.map((s, i) => (
@@ -6087,7 +6087,7 @@ export default function AdminPage() {
                 ) : asistAlumnos.length === 0 ? (
                   <div className="flex flex-col items-center justify-center py-14 gap-3">
                     <p className="text-slate-300 text-sm font-semibold">
-                      {asistGrado ? `Sin alumnos en ${asistGrado} "${asistGrupo}"` : 'Selecciona un salón'}
+                      {asistGrado ? `Sin estudiantes en ${asistGrado} "${asistGrupo}"` : 'Selecciona un salón'}
                     </p>
                   </div>
                 ) : (() => {
@@ -6108,7 +6108,7 @@ export default function AdminPage() {
                     <div>
                       {/* Cabecera días */}
                       <div className="grid px-4 py-2 bg-slate-50/60" style={{ gridTemplateColumns:'1fr repeat(5,52px)', borderBottom:'1px solid #E4E8EF' }}>
-                        <span className="text-[10px] font-black text-slate-400 uppercase">Alumno</span>
+                        <span className="text-[10px] font-black text-slate-400 uppercase">Estudiante</span>
                         {dias.map((d, idx) => (
                           <div key={idx} className="text-center">
                             <p className="text-[10px] font-black text-slate-500">{DIAS_LABEL[idx]}</p>
@@ -6281,7 +6281,7 @@ export default function AdminPage() {
                     Boletines — {reporteGrado} &quot;{reporteGrupo}&quot;
                     {cicloActivoInfo ? ` · Ciclo ${cicloActivoInfo.nombre}` : ''}
                   </span>
-                  <span className="text-slate-300 text-xs">{reporteAlumnos.length} alumnos</span>
+                  <span className="text-slate-300 text-xs">{reporteAlumnos.length} estudiantes</span>
                 </div>
 
                 {loadingReporteAlumnos ? (
@@ -6297,7 +6297,7 @@ export default function AdminPage() {
                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
                       </svg>
                     </div>
-                    <p className="text-slate-300 text-sm font-semibold">Sin alumnos en {reporteGrado} &quot;{reporteGrupo}&quot;</p>
+                    <p className="text-slate-300 text-sm font-semibold">Sin estudiantes en {reporteGrado} &quot;{reporteGrupo}&quot;</p>
                   </div>
                 ) : (
                   <div>
@@ -6546,7 +6546,7 @@ export default function AdminPage() {
         {tab === 'buscar-alumnos' && !portalAbierto && (
           <div className="space-y-4">
             <div>
-              <h2 className="text-slate-900 font-black text-xl">Buscar Alumnos</h2>
+              <h2 className="text-slate-900 font-black text-xl">Buscar Estudiantes</h2>
               <p className="text-slate-400 text-xs mt-0.5">Busca por nombre, apellido, DNI o código de estudiante</p>
             </div>
 
@@ -6658,7 +6658,7 @@ export default function AdminPage() {
               {/* ── Columna DERECHA: detalle del alumno seleccionado ───────── */}
               <div className="rounded-2xl overflow-hidden flex flex-col" style={{ background: 'white', border: '1.5px solid #E4E8EF' }}>
                 <div className="px-4 py-3 border-b" style={{ borderColor: '#E4E8EF' }}>
-                  <p className="text-[10px] font-black tracking-widest text-slate-500 uppercase">Detalle del alumno</p>
+                  <p className="text-[10px] font-black tracking-widest text-slate-500 uppercase">Detalle del estudiante</p>
                 </div>
                 <div className="flex-1 overflow-y-auto">
                   {!alumnoSeleccionado && (
@@ -6668,7 +6668,7 @@ export default function AdminPage() {
                           <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                         </svg>
                       </div>
-                      <p className="text-sm font-bold text-slate-500">Ningún alumno seleccionado</p>
+                      <p className="text-sm font-bold text-slate-500">Ningún estudiante seleccionado</p>
                       <p className="text-xs text-slate-400 mt-1">Selecciona uno desde la columna del centro</p>
                     </div>
                   )}
@@ -6723,9 +6723,9 @@ export default function AdminPage() {
                         <div className="grid grid-cols-2 gap-x-8 gap-y-2.5">
                           {(() => {
                             // Año de ingreso: año_actual - (numero_grado - 1)
-                            // Solo aplica a secundaria. Primaria queda sin calcular por ahora.
+                            // Solo aplica a Pastelería. Cocina queda sin calcular por ahora.
                             let anioIngreso: string | null = null
-                            if (alumnoSeleccionado.grado && !/primaria/i.test(alumnoSeleccionado.grado)) {
+                            if (alumnoSeleccionado.grado && !/cocina/i.test(alumnoSeleccionado.grado)) {
                               const m = alumnoSeleccionado.grado.match(/^(\d+)/)
                               if (m) {
                                 const n = parseInt(m[1], 10)
@@ -6775,7 +6775,7 @@ export default function AdminPage() {
                       {/* Sección: Apoderado — lista limpia */}
                       <div>
                         <p className="text-[11px] font-black tracking-widest text-slate-400 uppercase pb-2 mb-3 border-b" style={{ borderColor: '#E4E8EF' }}>
-                          Apoderado
+                          Contacto de emergencia
                         </p>
                         <div className="grid grid-cols-2 gap-x-8 gap-y-2.5">
                           {[
@@ -6809,7 +6809,7 @@ export default function AdminPage() {
                             { id: 'matricula-pdf', label: 'Matrícula PDF',
                               icon: <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/><path strokeLinecap="round" strokeLinejoin="round" d="M9 13l3 3 3-3M12 9v7"/></svg>,
                               onClick: () => alert('Matrícula PDF — próximamente') },
-                            { id: 'portal-alumno', label: 'Portal del alumno',
+                            { id: 'portal-alumno', label: 'Portal del estudiante',
                               icon: <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>,
                               onClick: () => cargarPortalAlumno(alumnoSeleccionado!) },
                           ].map(b => (
@@ -6883,7 +6883,7 @@ export default function AdminPage() {
                     {!planLoading && planCursos.length === 0 && (
                       <div className="py-16 text-center">
                         <p className="text-sm font-bold text-slate-500">Sin cursos asignados</p>
-                        <p className="text-xs text-slate-400 mt-1">El alumno no tiene asignaciones registradas para este año</p>
+                        <p className="text-xs text-slate-400 mt-1">El estudiante no tiene asignaciones registradas para este año</p>
                       </div>
                     )}
                     {!planLoading && planCursos.length > 0 && (() => {
@@ -6975,7 +6975,7 @@ export default function AdminPage() {
                   Volver a búsqueda
                 </button>
                 <div className="text-right">
-                  <p className="text-[10px] font-black tracking-widest text-white/70 uppercase">Portal del alumno</p>
+                  <p className="text-[10px] font-black tracking-widest text-white/70 uppercase">Portal del estudiante</p>
                   <p className="text-lg font-black text-white leading-tight mt-0.5">
                     {alumnoSeleccionado.nombre} {alumnoSeleccionado.apellidos}
                   </p>
@@ -7198,7 +7198,7 @@ export default function AdminPage() {
             <div className="flex items-end justify-between">
               <div>
                 <h2 className="text-slate-900 font-black text-xl">Comunicados globales</h2>
-                <p className="text-slate-400 text-xs mt-0.5">Visibles para todos los alumnos y docentes</p>
+                <p className="text-slate-400 text-xs mt-0.5">Visibles para todos los estudiantes y docentes</p>
               </div>
               <button onClick={() => { setAnuncioAbierto(v => !v); setAnuncioError('') }}
                 className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-black text-white"
@@ -7311,7 +7311,7 @@ export default function AdminPage() {
           const pasos: { titulo: string; desc: string; detalle?: string; estado: EstadoPaso; tab: Tab }[] = !g ? [] : [
             {
               titulo: 'Crear el ciclo lectivo nuevo',
-              desc: 'Con fecha de inicio y fin de clases (el portal de padres las usa).',
+              desc: 'Con fecha de inicio y fin de clases (la consulta de notas las usa).',
               detalle: g.nuevo ? (sinFechas ? `${g.nuevo.nombre} creado, pero sin fechas de inicio/fin` : `${g.nuevo.nombre} creado con fechas`) : undefined,
               estado: g.nuevo ? (sinFechas ? 'atencion' : 'listo') : 'pendiente',
               tab: 'ciclos',
@@ -7331,8 +7331,8 @@ export default function AdminPage() {
               tab: 'cursos',
             },
             {
-              titulo: 'Matricular / promover alumnos',
-              desc: 'La promoción de grado ES la matrícula: elige el ciclo nuevo y el grado que le toca a cada alumno.',
+              titulo: 'Matricular / promover estudiantes',
+              desc: 'La promoción de grado ES la matrícula: elige el ciclo nuevo y el grado que le toca a cada estudiante.',
               detalle: g.nuevo ? `${g.matriculas} matrícula${g.matriculas !== 1 ? 's' : ''} en ${g.nuevo.nombre}` : undefined,
               estado: !g.nuevo ? 'na' : g.matriculas > 0 ? 'listo' : 'pendiente',
               tab: 'matricula',
@@ -7353,7 +7353,7 @@ export default function AdminPage() {
             },
             {
               titulo: 'El día del cambio: activar el ciclo',
-              desc: 'Todo el sistema pasa al ciclo nuevo y los alumnos toman el salón de su matrícula. Hazlo cuando los pasos anteriores estén listos.',
+              desc: 'Todo el sistema pasa al ciclo nuevo y los estudiantes toman el salón de su matrícula. Hazlo cuando los pasos anteriores estén listos.',
               estado: !g.nuevo ? 'na' : 'pendiente',
               tab: 'ciclos',
             },
@@ -7370,7 +7370,7 @@ export default function AdminPage() {
                       <h2 className="text-slate-900 font-black text-xl">Guía del Año Escolar</h2>
                       <p className="text-slate-400 text-xs mt-0.5 max-w-lg">
                         Todo lo necesario para preparar el nuevo año en un solo lugar y en orden.
-                        Nada afecta a docentes ni alumnos hasta que actives el ciclo nuevo.
+                        Nada afecta a docentes ni estudiantes hasta que actives el ciclo nuevo.
                       </p>
                     </div>
                     <button onClick={cargarGuiaAnio} disabled={loadingGuiaAnio}
@@ -7467,7 +7467,7 @@ export default function AdminPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
                 <span>
-                  No hace falta editar el grado/grupo de cada alumno a mano: al activar el ciclo, cada uno toma
+                  No hace falta editar el grado/grupo de cada estudiante a mano: al activar el ciclo, cada uno toma
                   el salón de su matrícula. Las tareas, notas y asistencias del año anterior quedan intactas.
                 </span>
               </div>
@@ -7638,7 +7638,7 @@ export default function AdminPage() {
                       </div>
                     </div>
                     <p className="text-[11px] text-slate-400 mt-1.5">
-                      Recomendado: el portal de padres usa estas fechas para acotar la asistencia del ciclo.
+                      Recomendado: la consulta de notas usa estas fechas para acotar la asistencia del ciclo.
                     </p>
 
                     {(() => {
@@ -7906,13 +7906,13 @@ export default function AdminPage() {
         {/* ══ MATRÍCULA (Wizard 4 pasos) ═══════════════════════════════════════ */}
         {tab === 'matricula' && (() => {
           const TIPOS: { id: WizTipo; label: string; desc: string; color: string; icon: React.ReactNode }[] = [
-            { id: 'nuevo', label: 'Alumno nuevo', color: '#0d9488', desc: 'Primera vez en el colegio. Se creará su ficha de alumno.',
+            { id: 'nuevo', label: 'Estudiante nuevo', color: '#0d9488', desc: 'Primera vez en la escuela. Se creará su ficha de estudiante.',
               icon: <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg> },
             { id: 'continuidad', label: 'Continuidad', color: '#0B2447', desc: 'Estudiante del año anterior que pasa al siguiente grado.',
               icon: <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg> },
-            { id: 'reincorporacion', label: 'Reincorporación', color: '#d97706', desc: 'Alumno existente que estuvo fuera 1 o más ciclos.',
+            { id: 'reincorporacion', label: 'Reincorporación', color: '#d97706', desc: 'Estudiante existente que estuvo fuera 1 o más ciclos.',
               icon: <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg> },
-            { id: 'traslado', label: 'Traslado externo', color: '#0B2447', desc: 'Viene de otro colegio. Requiere certificado de estudios.',
+            { id: 'traslado', label: 'Traslado externo', color: '#0B2447', desc: 'Viene de otra institución. Requiere certificado de estudios.',
               icon: <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> },
           ]
           const tipoElegido = TIPOS.find(t => t.id === wizTipo)
@@ -7955,7 +7955,7 @@ export default function AdminPage() {
                   <p className="text-slate-400 text-xs mt-0.5">
                     {matriculaVista === 'wizard' ? 'Completa los 4 pasos para registrar la matrícula'
                       : matriculaVista === 'lista' ? 'Retiros y traslados se registran aquí, sin borrar el historial'
-                      : 'Alumnos retirados o trasladados — su información se conserva'}
+                      : 'Estudiantes retirados o trasladados — su información se conserva'}
                   </p>
                 </div>
                 <div className="flex rounded-xl overflow-hidden border" style={{ borderColor: '#E4E8EF' }}>
@@ -8044,7 +8044,7 @@ export default function AdminPage() {
                     <div className="p-10 flex justify-center"><Spinner cls="h-6 w-6" /></div>
                   ) : bajas.length === 0 ? (
                     <p className="p-10 text-center text-sm font-bold text-slate-400">
-                      No hay alumnos dados de baja — el historial está vacío
+                      No hay estudiantes dados de baja — el historial está vacío
                     </p>
                   ) : (
                     <div className="divide-y" style={{ borderColor: '#F1F5F9' }}>
@@ -8159,8 +8159,8 @@ export default function AdminPage() {
                   {wizPaso === 2 && wizTipo === 'nuevo' && (
                     <div className="space-y-4">
                       <div>
-                        <p className="text-sm font-bold text-slate-700">Datos del alumno nuevo</p>
-                        <p className="text-[11px] text-slate-400 mt-0.5">Se creará su ficha en la tabla de alumnos al confirmar</p>
+                        <p className="text-sm font-bold text-slate-700">Datos del estudiante nuevo</p>
+                        <p className="text-[11px] text-slate-400 mt-0.5">Se creará su ficha en la tabla de estudiantes al confirmar</p>
                       </div>
                       <div className="grid grid-cols-2 gap-3">
                         <div>
@@ -8209,7 +8209,7 @@ export default function AdminPage() {
                   {wizPaso === 2 && wizTipo && wizTipo !== 'nuevo' && (
                     <div className="space-y-4">
                       <div>
-                        <p className="text-sm font-bold text-slate-700">Selecciona el alumno</p>
+                        <p className="text-sm font-bold text-slate-700">Selecciona el estudiante</p>
                         <p className="text-[11px] text-slate-400 mt-0.5">Busca por nombre, apellido, DNI o código</p>
                       </div>
                       <div className="flex gap-2">
@@ -8313,7 +8313,7 @@ export default function AdminPage() {
                         <div className="grid grid-cols-2 gap-x-8 gap-y-2 text-sm">
                           <p><span className="font-black text-slate-800">Tipo:</span> <span className="text-slate-700">{tipoElegido?.label}</span></p>
                           <p><span className="font-black text-slate-800">Ciclo:</span> <span className="text-slate-700">{cicloElegido?.nombre || '—'}</span></p>
-                          <p className="col-span-2"><span className="font-black text-slate-800">Alumno:</span> <span className="text-slate-700">
+                          <p className="col-span-2"><span className="font-black text-slate-800">Estudiante:</span> <span className="text-slate-700">
                             {wizTipo === 'nuevo'
                               ? `${wizNuevoForm.nombre} ${wizNuevoForm.apellidos} · DNI ${wizNuevoForm.dni}`
                               : (wizAlumno ? `${wizAlumno.nombre} ${wizAlumno.apellidos ?? ''} · DNI ${wizAlumno.dni ?? '—'}` : '—')}
@@ -8618,8 +8618,8 @@ export default function AdminPage() {
         {/* ══ CURSOS ═══════════════════════════════════════════════════════════ */}
         {tab === 'cursos' && (() => {
           const asigsFiltradas = asignaciones.filter(a => a.grado?.includes(nivelCursoTab))
-          const contPrimaria   = asignaciones.filter(a => a.grado?.includes('Primaria')).length
-          const contSecundaria = asignaciones.filter(a => a.grado?.includes('Secundaria')).length
+          const contPrimaria   = asignaciones.filter(a => a.grado?.includes('Cocina')).length
+          const contSecundaria = asignaciones.filter(a => a.grado?.includes('Pastelería')).length
 
           return (
           <div className="space-y-6">
@@ -8645,14 +8645,14 @@ export default function AdminPage() {
 
                 {/* Primaria */}
                 <button
-                  onClick={() => { setNivelCursoTab('Primaria'); setDocenteAsigAbierto(null) }}
+                  onClick={() => { setNivelCursoTab('Cocina'); setDocenteAsigAbierto(null) }}
                   className="relative rounded-2xl overflow-hidden text-left transition-all active:scale-[.98]"
                   style={{
-                    boxShadow: nivelCursoTab === 'Primaria'
+                    boxShadow: nivelCursoTab === 'Cocina'
                       ? '0 8px 32px rgba(16,185,129,.3)'
                       : '0 2px 12px rgba(0,0,0,.06)',
-                    border: nivelCursoTab === 'Primaria' ? '2.5px solid #10b981' : '2px solid #E4E8EF',
-                    transform: nivelCursoTab === 'Primaria' ? 'translateY(-2px)' : 'none',
+                    border: nivelCursoTab === 'Cocina' ? '2.5px solid #10b981' : '2px solid #E4E8EF',
+                    transform: nivelCursoTab === 'Cocina' ? 'translateY(-2px)' : 'none',
                   }}>
                   {/* Cabecera ilustrada */}
                   <div className="relative overflow-hidden" style={{ height: '140px', background: 'linear-gradient(135deg,#10b981,#34d399)' }}>
@@ -8682,7 +8682,7 @@ export default function AdminPage() {
                       </svg>
                     </div>
                     {/* Badge nivel activo */}
-                    {nivelCursoTab === 'Primaria' && (
+                    {nivelCursoTab === 'Cocina' && (
                       <div className="absolute top-3 right-3 w-6 h-6 rounded-full flex items-center justify-center"
                         style={{ background: 'white' }}>
                         <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="#10b981" strokeWidth="3">
@@ -8692,24 +8692,24 @@ export default function AdminPage() {
                     )}
                   </div>
                   {/* Cuerpo */}
-                  <div className="p-4" style={{ background: nivelCursoTab === 'Primaria' ? '#f0fdf9' : 'white' }}>
-                    <p className="font-black text-base" style={{ color: nivelCursoTab === 'Primaria' ? '#059669' : '#1e293b' }}>Primaria</p>
-                    <p className="text-xs font-semibold mt-0.5" style={{ color: nivelCursoTab === 'Primaria' ? '#34d399' : '#94a3b8' }}>
-                      1° — 6° grado · {contPrimaria} asignación{contPrimaria !== 1 ? 'es' : ''}
+                  <div className="p-4" style={{ background: nivelCursoTab === 'Cocina' ? '#f0fdf9' : 'white' }}>
+                    <p className="font-black text-base" style={{ color: nivelCursoTab === 'Cocina' ? '#059669' : '#1e293b' }}>Cocina</p>
+                    <p className="text-xs font-semibold mt-0.5" style={{ color: nivelCursoTab === 'Cocina' ? '#34d399' : '#94a3b8' }}>
+                      Ciclos 1° — 4° · {contPrimaria} asignación{contPrimaria !== 1 ? 'es' : ''}
                     </p>
                   </div>
                 </button>
 
                 {/* Secundaria */}
                 <button
-                  onClick={() => { setNivelCursoTab('Secundaria'); setDocenteAsigAbierto(null) }}
+                  onClick={() => { setNivelCursoTab('Pastelería'); setDocenteAsigAbierto(null) }}
                   className="relative rounded-2xl overflow-hidden text-left transition-all active:scale-[.98]"
                   style={{
-                    boxShadow: nivelCursoTab === 'Secundaria'
+                    boxShadow: nivelCursoTab === 'Pastelería'
                       ? '0 8px 32px rgba(11,36,71,.25)'
                       : '0 2px 12px rgba(0,0,0,.06)',
-                    border: nivelCursoTab === 'Secundaria' ? '2.5px solid #0B2447' : '2px solid #E4E8EF',
-                    transform: nivelCursoTab === 'Secundaria' ? 'translateY(-2px)' : 'none',
+                    border: nivelCursoTab === 'Pastelería' ? '2.5px solid #0B2447' : '2px solid #E4E8EF',
+                    transform: nivelCursoTab === 'Pastelería' ? 'translateY(-2px)' : 'none',
                   }}>
                   {/* Cabecera ilustrada */}
                   <div className="relative overflow-hidden" style={{ height: '140px', background: 'linear-gradient(135deg,#0B2447,#1E3A8A)' }}>
@@ -8734,7 +8734,7 @@ export default function AdminPage() {
                         <text x="68" y="70" fontSize="9" fontWeight="900" fill="white" fillOpacity=".5" fontFamily="monospace">∫</text>
                       </svg>
                     </div>
-                    {nivelCursoTab === 'Secundaria' && (
+                    {nivelCursoTab === 'Pastelería' && (
                       <div className="absolute top-3 right-3 w-6 h-6 rounded-full flex items-center justify-center"
                         style={{ background: 'white' }}>
                         <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="#0B2447" strokeWidth="3">
@@ -8744,10 +8744,10 @@ export default function AdminPage() {
                     )}
                   </div>
                   {/* Cuerpo */}
-                  <div className="p-4" style={{ background: nivelCursoTab === 'Secundaria' ? '#F1F5F9' : 'white' }}>
-                    <p className="font-black text-base" style={{ color: nivelCursoTab === 'Secundaria' ? '#0B2447' : '#1e293b' }}>Secundaria</p>
-                    <p className="text-xs font-semibold mt-0.5" style={{ color: nivelCursoTab === 'Secundaria' ? '#1E3A8A' : '#94a3b8' }}>
-                      1° — 5° grado · {contSecundaria} asignación{contSecundaria !== 1 ? 'es' : ''}
+                  <div className="p-4" style={{ background: nivelCursoTab === 'Pastelería' ? '#F1F5F9' : 'white' }}>
+                    <p className="font-black text-base" style={{ color: nivelCursoTab === 'Pastelería' ? '#0B2447' : '#1e293b' }}>Panadería y Pastelería</p>
+                    <p className="text-xs font-semibold mt-0.5" style={{ color: nivelCursoTab === 'Pastelería' ? '#1E3A8A' : '#94a3b8' }}>
+                      Ciclos 1° — 2° · {contSecundaria} asignación{contSecundaria !== 1 ? 'es' : ''}
                     </p>
                   </div>
                 </button>
@@ -9119,7 +9119,7 @@ export default function AdminPage() {
                                   style={{ background: color + '18', border: `1.5px solid ${color}44` }}>
                                   <div className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: color }}/>
                                   <span className="text-xs font-bold" style={{ color }}>
-                                    {curso?.nombre ?? '?'} · {a.grado.replace(' Primaria','° P').replace(' Secundaria','° S')}{a.grupo}
+                                    {curso?.nombre ?? '?'} · {a.grado.replace(' Ciclo Cocina',' Coc. ').replace(' Ciclo Pastelería',' Past. ')}{a.grupo}
                                   </span>
                                   <button onClick={() => handleEliminarAsignacion(a.id)}
                                     className="w-4 h-4 flex items-center justify-center rounded-md opacity-40 hover:opacity-100 transition-opacity"
@@ -9218,7 +9218,7 @@ export default function AdminPage() {
                       </div>
                     )
                   }
-                  const acentoBg = nivelCursoTab === 'Primaria' ? 'linear-gradient(135deg,#10b981,#34d399)' : 'linear-gradient(135deg,#0B2447,#1E3A8A)'
+                  const acentoBg = nivelCursoTab === 'Cocina' ? 'linear-gradient(135deg,#10b981,#34d399)' : 'linear-gradient(135deg,#0B2447,#1E3A8A)'
                   return (
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
                       {secciones.map(({ grado, grupo }) => {
@@ -9382,9 +9382,9 @@ export default function AdminPage() {
 
         {/* ══ HORARIO ══════════════════════════════════════════════════════════ */}
         {tab === 'horario' && (() => {
-          const gradosPrimaria    = GRADOS.filter(g => g.includes('Primaria'))
-          const gradosSecundaria  = GRADOS.filter(g => g.includes('Secundaria'))
-          const gradosNivel       = nivelFiltroH === 'Primaria' ? gradosPrimaria : gradosSecundaria
+          const gradosPrimaria    = GRADOS.filter(g => g.includes('Cocina'))
+          const gradosSecundaria  = GRADOS.filter(g => g.includes('Pastelería'))
+          const gradosNivel       = nivelFiltroH === 'Cocina' ? gradosPrimaria : gradosSecundaria
 
           // Vista por grado
           const asigsFiltradas    = asignaciones.filter(a => a.grado === gradoFiltroH && a.grupo === grupoFiltroH)
@@ -9439,10 +9439,10 @@ export default function AdminPage() {
                   {vistaHorario === 'grado' && (
                     <div className="flex flex-wrap items-center gap-2">
                       <div className="flex rounded-xl overflow-hidden border border-slate-200">
-                        {(['Primaria','Secundaria'] as const).map(n => (
+                        {(['Cocina','Pastelería'] as const).map(n => (
                           <button key={n} onClick={() => {
                             setNivelFiltroH(n)
-                            setGradoFiltroH((n === 'Primaria' ? gradosPrimaria : gradosSecundaria)[0])
+                            setGradoFiltroH((n === 'Cocina' ? gradosPrimaria : gradosSecundaria)[0])
                           }}
                             className="px-3 py-1.5 text-xs font-black transition-all"
                             style={nivelFiltroH === n
@@ -10303,7 +10303,7 @@ export default function AdminPage() {
                 <div className="p-5 space-y-4">
                   <div className="flex items-start justify-between gap-3">
                     <div>
-                      <h3 className="text-slate-900 font-bold text-sm">Importar alumnos desde Excel</h3>
+                      <h3 className="text-slate-900 font-bold text-sm">Importar estudiantes desde Excel</h3>
                       <p className="text-slate-400 text-xs mt-0.5">
                         Usuario y contraseña se generan automáticamente — descarga la plantilla para ver el formato
                       </p>
@@ -10377,7 +10377,7 @@ export default function AdminPage() {
                     style={{ background: 'linear-gradient(135deg, #0B2447, #1E3A8A)', boxShadow: '0 4px 16px rgba(11,36,71,.2)' }}>
                     <span className="flex items-center justify-center gap-2">
                       {importAlumnosLoading && <Spinner cls="h-4 w-4 text-white"/>}
-                      {importAlumnosLoading ? 'Importando...' : 'Importar alumnos'}
+                      {importAlumnosLoading ? 'Importando...' : 'Importar estudiantes'}
                     </span>
                   </button>
                 </div>
@@ -10464,7 +10464,7 @@ export default function AdminPage() {
                         <div className="sm:col-span-2">
                           <label className={labelCls}>Contraseña</label>
                           <p className="text-[12px] text-slate-500 mt-1">
-                            Se usará el <b>DNI</b> del alumno como contraseña inicial.
+                            Se usará el <b>DNI</b> del estudiante como contraseña inicial.
                           </p>
                         </div>
                       )}
@@ -10579,8 +10579,8 @@ export default function AdminPage() {
                       </svg>
                     </div>
                     <div className="text-center">
-                      <p className="text-slate-700 font-black text-base">Busca un alumno</p>
-                      <p className="text-slate-400 text-xs mt-1">{totalAlumnos} alumno{totalAlumnos !== 1 ? 's' : ''} registrados — busca por nombre, apellido, DNI o código</p>
+                      <p className="text-slate-700 font-black text-base">Busca un estudiante</p>
+                      <p className="text-slate-400 text-xs mt-1">{totalAlumnos} estudiante{totalAlumnos !== 1 ? 's' : ''} registrados — busca por nombre, apellido, DNI o código</p>
                     </div>
                   </div>
                 ) : (tab === 'admins' ? admins : tab === 'alumnos' ? alumnos : tab === 'docentes' && filtroTipo === 'administrativo' ? administrativos : tab === 'docentes' && filtroTipo === 'admin' ? admins : docentes).length === 0 ? (
@@ -10591,7 +10591,7 @@ export default function AdminPage() {
                         <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
                       </svg>
                     </div>
-                    <p className="text-slate-300 text-sm font-semibold">{tab === 'alumnos' ? 'No se encontraron alumnos.' : 'No hay registros.'}</p>
+                    <p className="text-slate-300 text-sm font-semibold">{tab === 'alumnos' ? 'No se encontraron estudiantes.' : 'No hay registros.'}</p>
                   </div>
 
                 ) : tab === 'alumnos' ? alumnos.map((a, i) => (
@@ -10635,7 +10635,7 @@ export default function AdminPage() {
                           )
                         )}
                         {/* Editar → abre modal completo */}
-                        <button onClick={() => abrirEditar(a, 'alumno')} title="Editar alumno"
+                        <button onClick={() => abrirEditar(a, 'alumno')} title="Editar estudiante"
                           className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all"
                           style={{ background: '#F1F5F9', color: '#0B2447', border: '1.5px solid #fecdd3' }}>
                           <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
@@ -11443,7 +11443,7 @@ export default function AdminPage() {
           </div>
         )}
 
-        {/* ══ NOTAS PARA PADRES (embebido, solo administradores) ══════════════ */}
+        {/* ══ LIBRETA DE NOTAS (embebido, solo administradores) ══════════════ */}
         {tab === 'notas-padres' && esAdminUser && (
           <div className="-mx-4 lg:-mx-6">
             <NotasContent embedded />
@@ -11697,7 +11697,7 @@ export default function AdminPage() {
                   <span className="w-4 h-4 rounded bg-indigo-100 flex items-center justify-center">
                     <svg width="9" height="9" fill="none" viewBox="0 0 24 24" stroke="#0B2447" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
                   </span>
-                  Datos del alumno
+                  Datos del estudiante
                 </p>
                 <div className="grid grid-cols-2 gap-3">
                   <div>
@@ -11729,7 +11729,7 @@ export default function AdminPage() {
                     <input type="text" value={editForm.codigo_estudiante} onChange={e => setEditForm({ ...editForm, codigo_estudiante: e.target.value })} className={inputCls}/>
                   </div>
                   <div>
-                    <label className={labelCls}>Celular alumno</label>
+                    <label className={labelCls}>Celular estudiante</label>
                     <input type="text" value={editForm.celular} onChange={e => setEditForm({ ...editForm, celular: e.target.value })} className={inputCls} placeholder="9XXXXXXXX"/>
                   </div>
                 </div>
@@ -11771,7 +11771,7 @@ export default function AdminPage() {
                   <span className="w-4 h-4 rounded bg-violet-100 flex items-center justify-center">
                     <svg width="9" height="9" fill="none" viewBox="0 0 24 24" stroke="#0B2447" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                   </span>
-                  Datos del apoderado
+                  Datos del contacto de emergencia
                 </p>
                 <div className="grid grid-cols-2 gap-3">
 
@@ -11816,19 +11816,19 @@ export default function AdminPage() {
                   </div>
 
                   <div className="col-span-2">
-                    <label className={labelCls}>Nombre completo del apoderado</label>
+                    <label className={labelCls}>Nombre completo del contacto de emergencia</label>
                     <input type="text" value={editForm.nombre_apoderado} onChange={e => setEditForm({ ...editForm, nombre_apoderado: e.target.value })} className={inputCls} placeholder="Nombres y apellidos"/>
                   </div>
                   <div>
-                    <label className={labelCls}>DNI del apoderado</label>
+                    <label className={labelCls}>DNI del contacto de emergencia</label>
                     <input type="text" value={editForm.dni_apoderado} onChange={e => setEditForm({ ...editForm, dni_apoderado: e.target.value.replace(/\D/g,'') })} maxLength={8} className={inputCls} placeholder="8 dígitos"/>
                   </div>
                   <div>
-                    <label className={labelCls}>Celular del apoderado</label>
+                    <label className={labelCls}>Celular del contacto de emergencia</label>
                     <input type="text" value={editForm.celular_apoderado} onChange={e => setEditForm({ ...editForm, celular_apoderado: e.target.value })} className={inputCls} placeholder="9XXXXXXXX"/>
                   </div>
                   <div className="col-span-2">
-                    <label className={labelCls}>Correo del apoderado</label>
+                    <label className={labelCls}>Correo del contacto de emergencia</label>
                     <input type="email" value={editForm.correo_apoderado} onChange={e => setEditForm({ ...editForm, correo_apoderado: e.target.value })} className={inputCls} placeholder="ejemplo@correo.com"/>
                   </div>
                 </div>

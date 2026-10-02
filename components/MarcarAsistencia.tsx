@@ -23,7 +23,7 @@ const ESTILO_MARCA: Record<Subtipo, { fondo: string; borde: string; color: strin
 
 /**
  * Marcado de asistencia del personal, embebido en el panel. Solo por ubicación
- * (GPS dentro de la geocerca del colegio); el QR institucional fue retirado.
+ * (GPS dentro de la geocerca de la escuela); el QR institucional fue retirado.
  */
 export default function MarcarAsistencia() {
   const [userId,     setUserId]     = useState('')
@@ -90,7 +90,7 @@ export default function MarcarAsistencia() {
     <div className="max-w-lg mx-auto w-full">
       <div className="mb-4">
         <h2 className="text-2xl font-black text-slate-800">Marcar mi asistencia</h2>
-        <p className="text-sm text-slate-400 mt-0.5">Presiona el botón estando dentro del colegio para registrar tu entrada o salida.</p>
+        <p className="text-sm text-slate-400 mt-0.5">Presiona el botón estando dentro de la escuela para registrar tu entrada o salida.</p>
       </div>
 
       {/* Estado del día */}

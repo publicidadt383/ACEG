@@ -292,7 +292,7 @@ const CSS = `
   .pp-grade-cm { font-size: 12px; color: var(--c-soft); font-style: italic; margin: 4px 0 0; }
   .pp-grade-n { font-family: var(--ui-font-mono), monospace; font-size: 22px; font-weight: 700; flex: none; letter-spacing: -.02em; }
 
-  /* Libreta de notas (oficial, publicada por el colegio) */
+  /* Libreta de notas (oficial, publicada por la escuela) */
   .pp-lib + .pp-lib { margin-top: 24px; }
   .pp-lib-h { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-bottom: 11px; }
   .pp-lib-t { font-family: var(--pf); font-size: 15px; font-weight: 700; color: var(--c-ink); margin: 0; }
@@ -340,7 +340,7 @@ export default function PadresPage() {
       .rpc('portal_datos_alumno', { p_dni: d })
 
     if (rpcErr || !data || data.error === 'not_found') {
-      setError('No se encontró ningún alumno con ese DNI. Verifica el número e intenta de nuevo.')
+      setError('No se encontró ningún estudiante con ese DNI. Verifica el número e intenta de nuevo.')
       setBuscando(false); return
     }
 
@@ -381,11 +381,11 @@ export default function PadresPage() {
         <div className="pp-wrap pp-head-in">
           <Link href="/" className="pp-brand">
             <div className="pp-brand-medal">
-              <Image src="/colegio.png" alt="Escudo del colegio" width={44} height={44} />
+              <Image src="/aceg-isotipo.png" alt="Logo de ACEG" width={44} height={44} />
             </div>
             <div className="pp-brand-txt">
-              <em>Colegio de Alta Competencia</em>
-              <b>Eduardo de Habich</b>
+              <em>Escuela Gastronómica</em>
+              <b>ACEG</b>
             </div>
           </Link>
           <Link href="/login" className="pp-head-cta">
@@ -400,11 +400,11 @@ export default function PadresPage() {
         {!alumno && (
           <div className="pp-hero">
             <div className="pp-crest">
-              <Image src="/colegio.png" alt="Escudo del Colegio Eduardo de Habich" width={96} height={96} />
+              <Image src="/aceg-isotipo.png" alt="Logo de la Escuela Gastronómica ACEG" width={96} height={96} />
             </div>
             <div className="pp-eyebrow">Portal del padre de familia</div>
-            <h1>Acompaña el <em>progreso</em><br />de tu hijo</h1>
-            <p>Consulta la asistencia, las tareas pendientes y las calificaciones recientes con el DNI del alumno.</p>
+            <h1>Consulta tu <em>progreso</em><br />en la escuela</h1>
+            <p>Revisa tu asistencia, tus tareas pendientes y tus calificaciones recientes ingresando tu DNI.</p>
           </div>
         )}
 
@@ -413,10 +413,10 @@ export default function PadresPage() {
           <div className="pp-card-pad">
             {alumno && (
               <button onClick={limpiar} className="pp-back">
-                <IconArrowL size={14} /> Buscar otro alumno
+                <IconArrowL size={14} /> Buscar otro estudiante
               </button>
             )}
-            <p className="pp-lbl">DNI del alumno</p>
+            <p className="pp-lbl">DNI del estudiante</p>
             <div className="pp-row">
               <div className="pp-field">
                 <IconSearch size={18} />
@@ -426,7 +426,7 @@ export default function PadresPage() {
                   onChange={e => setDni(e.target.value.replace(/\D/g, ''))}
                   onKeyDown={e => e.key === 'Enter' && buscar()}
                   className="pp-input"
-                  aria-label="DNI del alumno"
+                  aria-label="DNI del estudiante"
                 />
               </div>
               <button onClick={buscar} disabled={buscando || !dni.trim()} className="pp-btn">
@@ -451,11 +451,11 @@ export default function PadresPage() {
               <div className="pp-id-body">
                 <div className="pp-id-ava"><IconUser size={30} /></div>
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <p className="pp-id-meta">Alumno encontrado</p>
+                  <p className="pp-id-meta">Estudiante encontrado</p>
                   <h2 className="pp-id-name">{displayNombre}</h2>
                   <div className="pp-id-tags">
                     {alumno.grado && alumno.grupo && (
-                      <span className="pp-id-tag">{alumno.grado}° Secundaria · Sección {alumno.grupo}</span>
+                      <span className="pp-id-tag">{alumno.grado} · Sección {alumno.grupo}</span>
                     )}
                     {alumno.dni && <span className="pp-id-tag mono">DNI {alumno.dni}</span>}
                   </div>
@@ -482,7 +482,7 @@ export default function PadresPage() {
                     {asisInfo?.sin_registros ? (
                       <>
                         <p className="pp-empty-t" style={{ color: '#1d4ed8' }}>Aún sin registros en el ciclo {asisInfo.ciclo}</p>
-                        <p className="pp-empty-s">El colegio todavía no ha tomado asistencia este ciclo. Vuelve a consultar más adelante.</p>
+                        <p className="pp-empty-s">La escuela todavía no ha tomado asistencia este ciclo. Vuelve a consultar más adelante.</p>
                       </>
                     ) : (
                       <p className="pp-empty-t" style={{ color: 'var(--c-soft)' }}>Sin registros de asistencia</p>
@@ -580,7 +580,7 @@ export default function PadresPage() {
                       <IconCheck size={26} stroke={2.4} />
                     </div>
                     <p className="pp-empty-t" style={{ color: '#15803d' }}>¡Sin tareas pendientes!</p>
-                    <p className="pp-empty-s">El alumno está al día con sus entregas.</p>
+                    <p className="pp-empty-s">El estudiante está al día con sus entregas.</p>
                   </div>
                 ) : (
                   <div className="pp-list">
@@ -602,7 +602,7 @@ export default function PadresPage() {
               </div>
             </div>
 
-            {/* Libreta de notas (publicada por el colegio) */}
+            {/* Libreta de notas (publicada por la escuela) */}
             {libreta.length > 0 && (
               <div className="pp-card">
                 <div className="pp-card-pad">
@@ -611,7 +611,7 @@ export default function PadresPage() {
                       <div className="pp-card-ic"><IconAward size={18} /></div>
                       <h3 className="pp-card-t">Libreta de notas</h3>
                     </div>
-                    <span className="pp-tag">Oficial del colegio</span>
+                    <span className="pp-tag">Oficial de la escuela</span>
                   </div>
 
                   {libreta.map((per, i) => {
@@ -746,7 +746,7 @@ export default function PadresPage() {
           </div>
         )}
 
-        <p className="pp-foot">Colegio de Alta Competencia · Eduardo de Habich</p>
+        <p className="pp-foot">Escuela Gastronómica ACEG · Arte Culinario, Emprendimiento y Gestión</p>
       </div>
     </div>
   )
