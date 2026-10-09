@@ -67,7 +67,7 @@ export interface Curso {
   nombre: string
   color: string
 }
-export type Tab ='docentes' | 'admins' | 'alumnos' | 'cursos' | 'horario' | 'horas-docente' | 'reporte' | 'justificaciones' | 'auditoria' | 'reportes-alumnos' | 'escaner-alumnos' | 'asist-alumnos' | 'qr' | 'simular' | 'buscar-alumnos' | 'ciclos' | 'matricula' | 'comunicados' | 'salones' |'boletines' | 'notas-padres' | 'planificacion' | 'permisos' | 'marcar-asistencia' | 'anio-escolar' | 'estadisticas-asistencia'
+export type Tab ='docentes' | 'admins' | 'alumnos' | 'cursos' | 'horario' | 'horas-docente' | 'reporte' | 'justificaciones' | 'auditoria' | 'reportes-alumnos' | 'escaner-alumnos' | 'asist-alumnos' | 'qr' | 'simular' | 'buscar-alumnos' | 'ciclos' | 'matricula' | 'comunicados' | 'salones' |'boletines' | 'notas-padres' | 'planificacion' | 'permisos' | 'marcar-asistencia' | 'anio-escolar' | 'estadisticas-asistencia' | 'fondo-sistema'
 
 export interface ReporteAlumno {
   id: string

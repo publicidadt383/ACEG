@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import CambiarPassword from './CambiarPassword'
+import { PORTAL_FONDO_DEFAULT, getPortalFondo, guardarPortalFondoCache, portalFondoCache } from '@/lib/portalFondo'
 
 export interface MenuCard {
   id: string
@@ -212,7 +213,7 @@ const STYLES = `
 `
 
 export default function PortalMenuFoto({
-  fotoUrl = '/foto_colegio.jpg',
+  fotoUrl,
   title,
   subtitle,
   userName,
@@ -231,6 +232,22 @@ export default function PortalMenuFoto({
 }: PortalMenuFotoProps) {
   const [now, setNow] = useState<Date | null>(null)
   const rootRef = useRef<HTMLDivElement>(null)
+
+  // Fondo configurable desde Admin → Fondo del sistema. Se pinta primero el
+  // último conocido (caché) y luego se confirma contra la BD.
+  const [fondo, setFondo] = useState<string | null>(fotoUrl ?? null)
+  useEffect(() => {
+    if (fotoUrl) return
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setFondo(portalFondoCache() ?? PORTAL_FONDO_DEFAULT)
+    let vivo = true
+    getPortalFondo().then(url => {
+      if (!vivo) return
+      guardarPortalFondoCache(url)
+      setFondo(url ?? PORTAL_FONDO_DEFAULT)
+    })
+    return () => { vivo = false }
+  }, [fotoUrl])
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -280,16 +297,19 @@ export default function PortalMenuFoto({
         transition: 'transform .55s cubic-bezier(.2,.7,.2,1)',
         willChange: 'transform',
       }}>
-        <Image
-          src={fotoUrl}
-          alt=""
-          fill
-          priority
-          quality={85}
-          sizes="100vw"
-          style={{ objectFit: 'cover' }}
-          className="phm-photo"
-        />
+        {fondo && (
+          <Image
+            key={fondo}
+            src={fondo}
+            alt=""
+            fill
+            priority
+            quality={85}
+            sizes="100vw"
+            style={{ objectFit: 'cover' }}
+            className="phm-photo"
+          />
+        )}
       </div>
 
       {/* Scrim navy */}

@@ -17,6 +17,7 @@ import { BoletinesContent } from '@/app/admin/boletines/page'
 import { NotasContent } from '@/app/admin/notas/page'
 import { PlanificacionContent } from '@/app/admin/planificacion/page'
 import { EstadisticasAsistenciaContent } from '@/app/admin/estadisticas-asistencia/page'
+import { FondoSistemaContent } from '@/app/admin/fondo-sistema/page'
 import { formatFechaEscrita as formatFechaLarga, timeAgo } from '@/utils/formatters'
 import type { Asignacion } from '@/types'
 
@@ -4764,6 +4765,8 @@ export default function AdminPage() {
       items: [
         { id: 'comunicados', label: 'Comunicados', count: anuncios.length || null,
           icon: <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/></svg> },
+        { id: 'fondo-sistema',   label: 'Fondo del sistema',
+          icon: <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path strokeLinecap="round" strokeLinejoin="round" d="M21 15l-5-5L5 21"/></svg> },
         { id: 'landing-ext',     label: 'Web de la Escuela', href: '/admin/landing',
           icon: <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/></svg> },
       ],
@@ -11419,6 +11422,11 @@ export default function AdminPage() {
           <div className="-mx-4 lg:-mx-6">
             <SalonesContent embedded />
           </div>
+        )}
+
+        {/* ══ FONDO DEL SISTEMA (embebido) ════════════════════════════════════ */}
+        {tab === 'fondo-sistema' && (
+          <FondoSistemaContent embedded />
         )}
 
         {/* ══ ESTADÍSTICAS DE ASISTENCIA (embebido) ═══════════════════════════ */}
