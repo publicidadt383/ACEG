@@ -20,15 +20,25 @@ interface GaleriaItem { id: string; url: string; descripcion: string | null }
 interface Comunicado  { id: string; titulo: string; contenido: string; created_at: string; imagen_url: string | null }
 
 const DEFAULTS: LandingConfig = {
-  mision:         'Formar profesionales de la gastronomía con sólida técnica culinaria, criterio de estandarización y visión emprendedora, a través de la práctica constante y el aprovechamiento de los productos de nuestra región.',
-  vision:         'Ser la escuela gastronómica referente del sur del Perú, reconocida por la excelencia técnica de sus egresados y por impulsar emprendimientos que pongan en valor la cocina regional.',
-  valores:        'Excelencia técnica · Disciplina · Creatividad · Emprendimiento · Higiene y seguridad · Trabajo en equipo',
+  mision:         'Brindar formación técnica en gastronomía de alta calidad, con un enfoque basado en valores, responsabilidad social e innovación. Desarrollamos competencias en preparación, control, administración y gestión gastronómica, asegurando la empleabilidad de nuestros egresados.',
+  vision:         'Ser la institución líder en educación gastronómica en la región Puno, reconocida por su calidad académica, infraestructura adecuada y equipamiento funcional para la formación práctica, comprometida con el desarrollo económico, turístico y social.',
+  valores:        'Respeto y empatía · Vocación de servicio · Adaptabilidad · Responsabilidad y puntualidad · Compromiso · Ética profesional · Innovación · Calidad · Responsabilidad social · Trabajo en equipo · Identidad cultural · Sostenibilidad · Liderazgo y autonomía · Disciplina y perseverancia',
   direccion:      'Jr. Sandia 843, Juliaca, Puno, Perú',
   telefono:       '+51 963 741 700',
   email_contacto: null,
-  facebook_url:   'https://www.facebook.com/EscuelaGastronomicaAntonioCardenaz/',
-  instagram_url:  null,
+  facebook_url:   'https://www.facebook.com/AcegArteCulinarioEmprendimientoYGestion',
+  instagram_url:  'https://www.instagram.com/aceg_edu/',
   fondo_url:      null,
+}
+
+// Datos institucionales fijos (no están en landing_config)
+const ANIO_FUNDACION = 2020
+const TELEFONO_FIJO  = '051 622110'
+const SITIO_WEB      = 'www.aceg.edu.pe'
+const REDES_EXTRA = {
+  tiktok:   'https://www.tiktok.com/@aceg.edu',
+  youtube:  'https://www.youtube.com/@aceg',
+  whatsapp: 'https://wa.link/p2gds6',
 }
 
 function timeAgo(iso: string) {
@@ -90,7 +100,11 @@ const IconPhone    = SVG(<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6
 const IconMail     = SVG(<><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></>)
 const IconFacebook = SVG(<path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3Z"/>, true)
 const IconInstagram= SVG(<><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></>)
-const IconZoom     = SVG(<><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M11 8v6"/><path d="M8 11h6"/></>)
+const IconTiktok   = SVG(<path d="M16.6 5.8A4.3 4.3 0 0 1 15.5 3h-3.1v12.4a2.6 2.6 0 1 1-1.8-2.5V9.8a5.7 5.7 0 1 0 4.9 5.6V9.1a7.3 7.3 0 0 0 4.3 1.4V7.4a4.3 4.3 0 0 1-3.2-1.6Z"/>, true)
+const IconYoutube  = SVG(<path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8ZM9.7 15V9l5.8 3-5.8 3Z"/>, true)
+const IconWhatsapp = SVG(<><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/><path d="M9.5 8.5c0 3.3 2.7 6 6 6"/></>)
+const IconGlobe    = SVG(<><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18Z"/></>)
+const IconZoom     =SVG(<><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M11 8v6"/><path d="M8 11h6"/></>)
 const IconClose    = SVG(<><path d="M18 6 6 18"/><path d="m6 6 12 12"/></>)
 const IconMenu     = SVG(<><path d="M3 6h18"/><path d="M3 12h18"/><path d="M3 18h18"/></>)
 const IconBell     = SVG(<><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9Z"/><path d="M10 21a2 2 0 0 0 4 0"/></>)
@@ -155,7 +169,7 @@ const CSS = `
   .nav.scrolled { background: rgba(255,255,255,.86); -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px); border-color: var(--line); box-shadow: 0 6px 22px -16px rgba(11,36,71,.45); }
   .nav-row { height: 70px; display: flex; align-items: center; justify-content: space-between; }
   .brand { display: flex; align-items: center; gap: 13px; }
-  .brand-logo { position: relative; flex: none; width: 46px; height: 46px; border-radius: 50%; overflow: hidden; background: #fff; padding: 4px; box-shadow: 0 0 0 1px rgba(11,36,71,.08), 0 2px 10px rgba(11,36,71,.2); transition: width .3s ease, height .3s ease; }
+  .brand-logo { position: relative; flex: none; width: 46px; height: 46px; transition: width .3s ease, height .3s ease; }
   .nav.scrolled .brand-logo { width: 40px; height: 40px; }
   .brand-text-eb { font-size: 9px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; line-height: 1; transition: color .3s; }
   .brand-text-tt { font-size: 16px; font-weight: 800; line-height: 1.2; margin-top: 3px; letter-spacing: -.01em; transition: color .3s, font-size .3s; }
@@ -208,8 +222,8 @@ const CSS = `
   .logo-glow { position: absolute; inset: -26px; border-radius: 40px; background: radial-gradient(ellipse, rgba(254,6,56,.35), transparent 70%); filter: blur(24px); animation: pulse-glow 4.5s ease-in-out infinite; z-index: 0; pointer-events: none; }
   .logo-orbit { position: absolute; inset: -18px; border-radius: 50%; border: 1.5px dashed rgba(255,255,255,.5); animation: lp-spin 40s linear infinite; z-index: 1; pointer-events: none; }
   .logo-arc { position: absolute; inset: -9px; border-radius: 50%; border: 1.5px solid transparent; border-top-color: rgba(255,255,255,.85); border-right-color: rgba(255,255,255,.4); animation: lp-spinr 28s linear infinite; z-index: 1; pointer-events: none; }
-  .logo-inner { position: relative; border-radius: 22px; background: #fff; overflow: hidden; padding: clamp(14px, 3vw, 22px) clamp(18px, 4vw, 30px); z-index: 2; box-shadow: 0 18px 50px rgba(11,36,71,.5), 0 6px 14px rgba(0,0,0,.25); }
-  .logo-img { position: relative; width: 100%; aspect-ratio: 1200 / 417; }
+  .logo-inner { position: relative; z-index: 2; filter: drop-shadow(0 10px 26px rgba(0,0,0,.45)) drop-shadow(0 2px 6px rgba(0,0,0,.3)); }
+  .logo-img { position: relative; width: 100%; aspect-ratio: 1600 / 552; }
 
   .hero-eyebrow { color: rgba(255,255,255,.88); margin-bottom: 18px; text-shadow: 0 1px 10px rgba(8,17,33,.6); }
   .hero-title { font-weight: 800; line-height: 1; letter-spacing: -.03em; margin: 0; text-shadow: 0 4px 30px rgba(8,17,33,.55); }
@@ -352,7 +366,7 @@ const CSS = `
   .foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 52px; margin-bottom: 50px; }
   @media (max-width: 820px) { .foot-grid { grid-template-columns: 1fr; gap: 34px; } }
   .foot-brand { display: flex; align-items: center; gap: 13px; margin-bottom: 16px; }
-  .foot-logo { position: relative; width: 48px; height: 48px; flex: none; border-radius: 50%; overflow: hidden; background: #fff; padding: 4px; box-shadow: 0 0 0 1px rgba(255,255,255,.25); }
+  .foot-logo { position: relative; width: 48px; height: 48px; flex: none; }
   .foot-label { font-size: 10px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: rgba(255,255,255,.5); margin-bottom: 20px; }
   .foot-text { font-size: 13.5px; line-height: 1.75; color: rgba(255,255,255,.55); }
   .foot-row { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 13px; font-size: 13px; line-height: 1.6; color: rgba(255,255,255,.62); }
@@ -446,7 +460,8 @@ export default function LandingPage() {
           .eq('tipo', 'global').eq('en_landing', true)
           .order('created_at', { ascending: false }).limit(6),
       ])
-      if (cfg) setConfig({ ...DEFAULTS, ...cfg })
+      // Los campos vacíos en BD no deben pisar los valores institucionales por defecto
+      if (cfg) setConfig({ ...DEFAULTS, ...Object.fromEntries(Object.entries(cfg).filter(([, v]) => v != null && v !== '')) })
       setGaleria(gal ?? [])
       setComunicados(com ?? [])
     }
@@ -527,7 +542,7 @@ export default function LandingPage() {
         <div className="container nav-row">
           <div className="brand">
             <div className="brand-logo">
-              <Image src="/aceg-isotipo.png" alt="Logo de ACEG" fill className="object-contain" />
+              <Image src={scrolled ? '/aceg-isotipo.png' : '/aceg-isotipo-blanco.png'} alt="Logo de ACEG" fill className="object-contain" />
             </div>
             <div className="hidden sm:block">
               <p className="brand-text-eb">Escuela Gastronómica</p>
@@ -579,7 +594,7 @@ export default function LandingPage() {
             <div aria-hidden className="logo-glow" />
             <div className="logo-inner">
               <div className="logo-img">
-                <Image src="/aceg-logo.png" alt="ACEG · Arte Culinario, Emprendimiento y Gestión" fill priority sizes="(max-width: 600px) 80vw, 420px" className="object-contain" />
+                <Image src="/aceg-logo-blanco.png" alt="ACEG · Arte Culinario, Emprendimiento y Gestión" fill priority sizes="(max-width: 600px) 80vw, 420px" className="object-contain" />
               </div>
             </div>
           </div>
@@ -618,8 +633,8 @@ export default function LandingPage() {
       <section id="stats" className="stats-wrap">
         <div className="stats">
           <div className="stat-cell">
-            <StatNum value={8} suffix="años" />
-            <p className="stat-label">Enseñando gastronomía</p>
+            <StatNum value={new Date().getFullYear() - ANIO_FUNDACION} suffix="años" />
+            <p className="stat-label">Formando en gastronomía desde {ANIO_FUNDACION}</p>
           </div>
           <div className="stat-cell">
             <StatNum value={2} suffix="años" className="blue" />
@@ -802,7 +817,7 @@ export default function LandingPage() {
             <div>
               <div className="foot-brand">
                 <div className="foot-logo">
-                  <Image src="/aceg-isotipo.png" alt="Logo" fill className="object-contain" />
+                  <Image src="/aceg-isotipo-blanco.png" alt="Logo" fill className="object-contain" />
                 </div>
                 <div>
                   <p className="foot-label" style={{ marginBottom: 4 }}>Escuela Gastronómica</p>
@@ -810,7 +825,7 @@ export default function LandingPage() {
                 </div>
               </div>
               <p className="foot-text">
-                Formando profesionales de la gastronomía en Juliaca, Puno, Perú.
+                Desde {ANIO_FUNDACION} formando profesionales de la cocina, panadería y pastelería en Juliaca, Puno, Perú.
               </p>
             </div>
 
@@ -820,16 +835,17 @@ export default function LandingPage() {
                 <div className="foot-row"><IconPin size={14} /><span>{config.direccion ?? DEFAULTS.direccion}</span></div>
               )}
               {config.telefono && (
-                <div className="foot-row"><IconPhone size={14} /><span>{config.telefono}</span></div>
+                <div className="foot-row"><IconPhone size={14} /><span>{config.telefono} · {TELEFONO_FIJO}</span></div>
               )}
               {config.email_contacto && (
                 <div className="foot-row"><IconMail size={14} /><span>{config.email_contacto}</span></div>
               )}
+              <div className="foot-row"><IconGlobe size={14} /><span>{SITIO_WEB}</span></div>
             </div>
 
             <div>
               <p className="foot-label">Redes sociales</p>
-              <div style={{ display: 'flex', gap: 10 }}>
+              <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
                 {config.facebook_url && (
                   <a href={config.facebook_url} target="_blank" rel="noopener noreferrer" className="soc" aria-label="Facebook">
                     <IconFacebook size={16} />
@@ -840,9 +856,15 @@ export default function LandingPage() {
                     <IconInstagram size={16} />
                   </a>
                 )}
-                {!config.facebook_url && !config.instagram_url && (
-                  <p className="foot-text" style={{ fontSize: 12 }}>Próximamente</p>
-                )}
+                <a href={REDES_EXTRA.tiktok} target="_blank" rel="noopener noreferrer" className="soc" aria-label="TikTok">
+                  <IconTiktok size={16} />
+                </a>
+                <a href={REDES_EXTRA.youtube} target="_blank" rel="noopener noreferrer" className="soc" aria-label="YouTube">
+                  <IconYoutube size={16} />
+                </a>
+                <a href={REDES_EXTRA.whatsapp} target="_blank" rel="noopener noreferrer" className="soc" aria-label="WhatsApp">
+                  <IconWhatsapp size={16} />
+                </a>
               </div>
             </div>
           </div>

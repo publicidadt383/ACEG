@@ -125,8 +125,7 @@ const CSS = `
     border-bottom: 1px solid #eceff5; box-shadow: 0 6px 22px -16px rgba(20,28,60,.4); }
   .pp-head-in { height: 62px; display: flex; align-items: center; justify-content: space-between; }
   .pp-brand { display: flex; align-items: center; gap: 11px; text-decoration: none; }
-  .pp-brand-medal { width: 44px; height: 44px; border-radius: 50%; flex: none; background: #fff;
-    display: grid; place-items: center; padding: 3px; box-shadow: 0 0 0 1px #e6e9f2, 0 2px 6px rgba(20,28,60,.1); }
+  .pp-brand-medal { width: 44px; height: 44px; flex: none; display: grid; place-items: center; }
   .pp-brand-medal img { width: 100%; height: 100%; object-fit: contain; }
   .pp-brand-txt em { display: block; font-family: var(--dm); font-size: 8.5px; font-weight: 700; letter-spacing: .24em;
     color: var(--c-gold); text-transform: uppercase; font-style: normal; line-height: 1; }
@@ -138,9 +137,8 @@ const CSS = `
 
   /* ── Hero ── */
   .pp-hero { text-align: center; margin: 60px 0 36px; animation: pp-up .6s ease both; }
-  .pp-crest { width: 112px; height: 112px; margin: 0 auto 24px; border-radius: 50%; position: relative;
-    background: radial-gradient(circle at 50% 35%, #fff 0%, #f3f5fc 100%);
-    display: grid; place-items: center; box-shadow: 0 0 0 1px #e6e9f2, 0 0 0 8px #fff, 0 0 0 9px #eef0f7, var(--el-3); }
+  .pp-crest { width: 112px; height: 112px; margin: 0 auto 24px; position: relative;
+    display: grid; place-items: center; }
   .pp-crest::after { content: ''; position: absolute; inset: 5px; border-radius: 50%; border: 1px dashed rgba(37,99,235,.28); }
   .pp-crest img { width: 74%; height: 74%; object-fit: contain; }
   .pp-eyebrow { display: inline-flex; align-items: center; font-size: 10px; font-weight: 700; letter-spacing: .3em;

@@ -110,10 +110,7 @@ export default function PortalShell({
               </button>
             ) : (
               <div style={{
-                position: 'relative', width: 38, height: 38, borderRadius: '50%',
-                overflow: 'hidden', border: '1.5px solid #E4E8EF',
-                background: '#FFFFFF', flexShrink: 0,
-                boxShadow: '0 2px 8px rgba(15,23,42,.06)',
+                position: 'relative', width: 38, height: 38, flexShrink: 0,
               }}>
                 <Image src="/aceg-isotipo.png" alt="Logo" fill sizes="38px" style={{ objectFit: 'contain' }} />
               </div>

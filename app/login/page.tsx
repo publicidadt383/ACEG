@@ -163,7 +163,7 @@ function LoginForm() {
               <div className="logo-orbit" aria-hidden />
               <div className="logo-arc" aria-hidden />
               <div className="logo-inner">
-                <Image src="/aceg-isotipo.png" alt="Escuela Gastronómica ACEG" fill priority sizes="180px" className="object-contain" />
+                <Image src="/aceg-isotipo-blanco.png" alt="Escuela Gastronómica ACEG" fill priority sizes="180px" className="object-contain" />
               </div>
             </div>
 
@@ -402,16 +402,10 @@ function LoginForm() {
           z-index: 1;
           pointer-events: none;
         }
-        /* Círculo blanco — ajustado a la contextura de la insignia */
+        /* Isotipo transparente directamente sobre la foto (sin círculo blanco) */
         .logo-inner {
-          position: absolute; inset: 0; border-radius: 50%;
-          background: #FFFFFF;
-          border: 2px solid #FFFFFF;
-          box-shadow:
-            0 18px 50px rgba(11,36,71,.5),
-            0 6px 14px rgba(0,0,0,.25);
-          padding: 0;
-          overflow: hidden;
+          position: absolute; inset: 14px;
+          filter: drop-shadow(0 10px 24px rgba(0,0,0,.45)) drop-shadow(0 2px 6px rgba(0,0,0,.3));
           z-index: 2;
         }
         .logo-inner > img {

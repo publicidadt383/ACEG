@@ -384,16 +384,13 @@ export default function PortalMenuFoto({
                 animation: 'phm-spin-rev 28s linear infinite',
                 pointerEvents: 'none',
               }} />
-              {/* círculo blanco con el logo */}
+              {/* isotipo transparente sobre la foto */}
               <div style={{
-                position: 'absolute', inset: 0, borderRadius: '50%',
-                background: '#FFFFFF',
-                border: '2px solid #FFFFFF',
-                boxShadow: '0 12px 32px rgba(11,36,71,.45), 0 4px 10px rgba(0,0,0,.2)',
-                overflow: 'hidden',
+                position: 'absolute', inset: 6,
+                filter: 'drop-shadow(0 8px 18px rgba(0,0,0,.45)) drop-shadow(0 2px 5px rgba(0,0,0,.3))',
                 zIndex: 2,
               }}>
-                <Image src="/aceg-isotipo.png" alt="Logo de ACEG" fill sizes="72px" style={{ objectFit: 'contain' }} />
+                <Image src="/aceg-isotipo-blanco.png" alt="Logo de ACEG" fill sizes="72px" style={{ objectFit: 'contain' }} />
               </div>
             </div>
           )}
