@@ -13,7 +13,6 @@ import PortalMenuFoto, { type MenuCard } from '@/components/PortalMenuFoto'
 import CambiarPassword from '@/components/CambiarPassword'
 import { useConfirm } from '@/components/ConfirmModal'
 import { SalonesContent } from '@/app/admin/salones/page'
-import { RolBapesContent } from '@/app/admin/rol-bapes/page'
 import { BoletinesContent } from '@/app/admin/boletines/page'
 import { NotasContent } from '@/app/admin/notas/page'
 import { PlanificacionContent } from '@/app/admin/planificacion/page'
@@ -4710,8 +4709,6 @@ export default function AdminPage() {
           icon: <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> },
         { id: 'horas-docente', label: 'Horas Docente',
           icon: <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> },
-        { id: 'rol-bapes', label: 'Rol de Clases',
-          icon: <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2M9 12h6M9 16h4"/></svg> },
         { id: 'boletines', label: 'Boletines',
           icon: <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg> },
         // Solo administradores: crear periodos y subir notas visibles en la consulta de notas
@@ -11427,13 +11424,6 @@ export default function AdminPage() {
         {/* ══ ESTADÍSTICAS DE ASISTENCIA (embebido) ═══════════════════════════ */}
         {tab === 'estadisticas-asistencia' && (
           <EstadisticasAsistenciaContent embedded />
-        )}
-
-        {/* ══ ROL DE CLASES (embebido) ════════════════════════════════════════ */}
-        {tab === 'rol-bapes' && (
-          <div className="-mx-4 lg:-mx-6">
-            <RolBapesContent embedded />
-          </div>
         )}
 
         {/* ══ BOLETINES (embebido) ════════════════════════════════════════════ */}

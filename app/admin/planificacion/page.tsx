@@ -78,7 +78,6 @@ const AREA_ITEMS: SideItem[] = [
   { id: 'horario',         label: 'Horarios activos',      href: '/admin?tab=horario&group=Acad%C3%A9mico' },
   { id: 'planificacion',   label: 'Planificación de cursos', href: '/admin/planificacion', current: true },
   { id: 'horas-docente',   label: 'Horas Docente',         href: '/admin?tab=horas-docente&group=Acad%C3%A9mico' },
-  { id: 'rol-bapes',       label: 'Rol de Clases',         href: '/admin?tab=rol-bapes&group=Acad%C3%A9mico' },
   { id: 'boletines',       label: 'Boletines',             href: '/admin?tab=boletines&group=Acad%C3%A9mico' },
 ]
 
