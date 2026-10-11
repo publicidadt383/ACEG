@@ -211,7 +211,7 @@ export default function CursoDetallePage({ params }: { params: Promise<{ id: str
 
   if (loading || !asignacion) return null
 
-  const color  = asignacion.cursos?.color ?? '#143875'
+  const color  = asignacion.cursos?.color ?? '#2A2420'
   const nombre = asignacion.cursos?.nombre ?? 'Curso'
   const totalSesiones = Object.values(sesiones).reduce((s, a) => s + a.length, 0)
 
@@ -222,9 +222,9 @@ export default function CursoDetallePage({ params }: { params: Promise<{ id: str
       <div>
         <button onClick={() => router.push('/docente/cursos')}
           className="flex items-center gap-1.5 text-xs font-bold transition-colors mb-4"
-          style={{ color: '#6b7280' }}
+          style={{ color: '#80746B' }}
           onMouseEnter={e => { e.currentTarget.style.color = color }}
-          onMouseLeave={e => { e.currentTarget.style.color = '#6b7280' }}>
+          onMouseLeave={e => { e.currentTarget.style.color = '#80746B' }}>
           <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
             <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
           </svg>
@@ -266,7 +266,7 @@ export default function CursoDetallePage({ params }: { params: Promise<{ id: str
             className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-black transition-all"
             style={cursoTab === t.id
               ? { background: gradientFromColor(color), color: 'white', boxShadow: `0 4px 16px ${color}45` }
-              : { background: 'white', color: '#6b7280', border: '1.5px solid #E4E8EF' }}>
+              : { background: 'white', color: '#80746B', border: '1.5px solid #DFE0E0' }}>
             <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.2">
               <path strokeLinecap="round" strokeLinejoin="round" d={t.icon}/>
             </svg>
@@ -293,7 +293,7 @@ export default function CursoDetallePage({ params }: { params: Promise<{ id: str
             className="flex-1 py-2 rounded-xl text-xs font-black transition-all"
             style={mobTab === t
               ? { background: gradientFromColor(color), color: 'white', boxShadow: `0 4px 14px ${color}40` }
-              : { background: 'white', color: '#6b7280', border: '1.5px solid #E4E8EF' }}>
+              : { background: 'white', color: '#80746B', border: '1.5px solid #DFE0E0' }}>
             {t === 'nav' ? 'Sesiones' : 'Contenido'}
           </button>
         ))}
@@ -360,8 +360,8 @@ export default function CursoDetallePage({ params }: { params: Promise<{ id: str
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4"/>
                   </svg>
                 </div>
-                <p style={{ fontSize: '11px', color: '#9ca3af', fontWeight: '600' }}>Sin unidades aún</p>
-                <p style={{ fontSize: '10px', color: '#d1d5db', marginTop: '3px' }}>Usa el botón + Unidad</p>
+                <p style={{ fontSize: '11px', color: '#AFA49C', fontWeight: '600' }}>Sin unidades aún</p>
+                <p style={{ fontSize: '10px', color: '#DBD5D1', marginTop: '3px' }}>Usa el botón + Unidad</p>
               </div>
             )}
 
@@ -418,7 +418,7 @@ export default function CursoDetallePage({ params }: { params: Promise<{ id: str
                           </div>
                           <span style={{
                             flex: 1, fontSize: '12px', fontWeight: '800',
-                            color: expanded ? color : '#374151',
+                            color: expanded ? color : '#4E423A',
                             overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
                             transition: 'color .15s ease'
                           }}>
@@ -450,7 +450,7 @@ export default function CursoDetallePage({ params }: { params: Promise<{ id: str
                             </button>
                           </div>
                           {/* Chevron */}
-                          <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke={expanded ? color : '#d1d5db'} strokeWidth="2.5"
+                          <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke={expanded ? color : '#DBD5D1'} strokeWidth="2.5"
                             className="shrink-0 transition-transform" style={{ transform: expanded ? 'rotate(90deg)' : 'none' }}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/>
                           </svg>
@@ -461,7 +461,7 @@ export default function CursoDetallePage({ params }: { params: Promise<{ id: str
                           <div style={{ margin: '0 8px 8px 8px', borderRadius: '8px', background: 'white', border: `1px solid ${color}15`, overflow: 'hidden' }}>
 
                             {listaS.length === 0 && !mostrarFormSId && (
-                              <p style={{ fontSize: '10px', color: '#d1d5db', fontWeight: '600', padding: '10px 12px' }}>Sin sesiones</p>
+                              <p style={{ fontSize: '10px', color: '#DBD5D1', fontWeight: '600', padding: '10px 12px' }}>Sin sesiones</p>
                             )}
 
                             {listaS.map((s, si) => (
@@ -506,7 +506,7 @@ export default function CursoDetallePage({ params }: { params: Promise<{ id: str
                                     <span style={{
                                       flex: 1, fontSize: '11px', lineHeight: '1.35',
                                       fontWeight: sesionSel?.id === s.id ? '700' : '500',
-                                      color: sesionSel?.id === s.id ? '#111827' : '#6b7280',
+                                      color: sesionSel?.id === s.id ? '#201B18' : '#80746B',
                                       overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap'
                                     }}>
                                       {s.titulo}
@@ -602,7 +602,7 @@ export default function CursoDetallePage({ params }: { params: Promise<{ id: str
               </div>
               <div className="text-center">
                 <p style={{ fontSize: '14px', fontWeight: '800', color }}>Selecciona una sesión</p>
-                <p style={{ fontSize: '12px', color: '#9ca3af', marginTop: '4px' }}>El contenido aparecerá aquí</p>
+                <p style={{ fontSize: '12px', color: '#AFA49C', marginTop: '4px' }}>El contenido aparecerá aquí</p>
               </div>
             </div>
           ) : (
@@ -649,7 +649,7 @@ export default function CursoDetallePage({ params }: { params: Promise<{ id: str
                       <path strokeLinecap="round" strokeLinejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
                     </svg>
                   </div>
-                  <h3 style={{ fontSize: '13px', fontWeight: '800', color: '#111827' }}>Recursos</h3>
+                  <h3 style={{ fontSize: '13px', fontWeight: '800', color: '#201B18' }}>Recursos</h3>
                 </div>
                 <RecursosPanel sesionId={sesionSel.id} color={color}/>
               </div>
@@ -666,7 +666,7 @@ export default function CursoDetallePage({ params }: { params: Promise<{ id: str
                       <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
                     </svg>
                   </div>
-                  <h3 style={{ fontSize: '13px', fontWeight: '800', color: '#111827' }}>Tareas</h3>
+                  <h3 style={{ fontSize: '13px', fontWeight: '800', color: '#201B18' }}>Tareas</h3>
                 </div>
                 <TareasPanel sesionId={sesionSel.id}/>
               </div>

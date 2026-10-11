@@ -42,7 +42,7 @@ const TIPO_META: Record<TipoRecurso, { label: string; icon: React.ReactNode; bg:
   },
   link: {
     label: 'Enlace',
-    bg: '#eff6ff', color: '#2563eb', border: '#bfdbfe',
+    bg: '#FDEDF0', color: '#D9042F', border: '#F6C3CD',
     icon: (
       <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
         <path strokeLinecap="round" strokeLinejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
@@ -180,7 +180,7 @@ export default function RecursosPanel({ sesionId, color }: { sesionId: string; c
           <button
             onClick={() => { setMostrarForm(!mostrarForm); resetForm() }}
             className="flex items-center gap-1 text-[10px] font-black px-2 py-1 rounded-lg text-white transition-all"
-            style={{ background: mostrarForm ? '#94a3b8' : gradient }}>
+            style={{ background: mostrarForm ? '#8B837E' : gradient }}>
             {mostrarForm
               ? <><svg width="9" height="9" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>Cancelar</>
               : <><svg width="9" height="9" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4"/></svg>Agregar</>
@@ -203,8 +203,8 @@ export default function RecursosPanel({ sesionId, color }: { sesionId: string; c
                     className="flex flex-col items-center gap-1 py-2 rounded-xl text-[10px] font-black transition-all border-2"
                     style={tipo === t
                       ? { background: m.bg, borderColor: m.border, color: m.color }
-                      : { background: 'white', borderColor: '#e2e8f0', color: '#94a3b8' }}>
-                    <span style={{ color: tipo === t ? m.color : '#cbd5e1' }}>{m.icon}</span>
+                      : { background: 'white', borderColor: '#DCDEDE', color: '#8B837E' }}>
+                    <span style={{ color: tipo === t ? m.color : '#C9C5C1' }}>{m.icon}</span>
                     {m.label}
                   </button>
                 )
@@ -231,11 +231,11 @@ export default function RecursosPanel({ sesionId, color }: { sesionId: string; c
               <div>
                 <label className={labelCls}>{tipo === 'pdf' ? 'Archivo PDF' : 'Imagen'} <span className="text-rose-400">*</span></label>
                 <label className="flex items-center gap-2 px-3 py-2.5 rounded-xl cursor-pointer transition-all border border-dashed"
-                  style={{ background: archivo ? `${color}08` : '#f8fafc', borderColor: archivo ? color : '#cbd5e1' }}>
-                  <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke={archivo ? color : '#94a3b8'} strokeWidth="2">
+                  style={{ background: archivo ? `${color}08` : '#F7F7F6', borderColor: archivo ? color : '#C9C5C1' }}>
+                  <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke={archivo ? color : '#8B837E'} strokeWidth="2">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
                   </svg>
-                  <span className="text-xs font-semibold truncate" style={{ color: archivo ? color : '#94a3b8' }}>
+                  <span className="text-xs font-semibold truncate" style={{ color: archivo ? color : '#8B837E' }}>
                     {archivo ? archivo.name : `Seleccionar ${tipo === 'pdf' ? 'PDF' : 'imagen'}…`}
                   </span>
                   <input type="file" className="sr-only"
@@ -272,7 +272,7 @@ export default function RecursosPanel({ sesionId, color }: { sesionId: string; c
               </button>
               <button type="button" onClick={() => { setMostrarForm(false); resetForm() }}
                 className="px-3 py-2 rounded-xl text-xs font-bold text-slate-500"
-                style={{ background: '#f8fafc', border: '1.5px solid #e2e8f0' }}>
+                style={{ background: '#F7F7F6', border: '1.5px solid #DCDEDE' }}>
                 Cancelar
               </button>
             </div>
@@ -292,7 +292,7 @@ export default function RecursosPanel({ sesionId, color }: { sesionId: string; c
               const m = TIPO_META[r.tipo]
               return (
                 <div key={r.id} className="flex items-center gap-2 px-2.5 py-2 rounded-xl group"
-                  style={{ background: 'white', border: '1.5px solid #E4E8EF' }}>
+                  style={{ background: 'white', border: '1.5px solid #DFE0E0' }}>
                   {/* Icono tipo */}
                   <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0"
                     style={{ background: m.bg, color: m.color }}>

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { supabase } from '@/lib/supabase'
 
-const SANS = "var(--font-manrope), -apple-system, 'Segoe UI', system-ui, sans-serif"
+const SANS = "var(--font-barlow), -apple-system, 'Segoe UI', system-ui, sans-serif"
 
 interface Props {
   /** 'light' = header claro (texto navy); 'dark' = header sobre foto (glass blanco). */
@@ -52,9 +52,9 @@ function calcFuerza(p: string): number {
   return Math.min(s, 4)   // 0..4
 }
 const FUERZA_LABEL = ['—', 'Muy débil', 'Débil', 'Buena', 'Fuerte']
-const FUERZA_COLOR = ['#CBD5E1', '#DC2626', '#B45309', '#1E40AF', '#15803D']
+const FUERZA_COLOR = ['#C9C5C1', '#DC2626', '#B45309', '#D9042F', '#15803D']
 
-export default function CambiarPassword({ tone = 'light', accent = '#0B2447' }: Props) {
+export default function CambiarPassword({ tone = 'light', accent = '#1D1815' }: Props) {
   const [open, setOpen]         = useState(false)
   const [actual, setActual]     = useState('')
   const [nueva, setNueva]       = useState('')
@@ -124,8 +124,8 @@ export default function CambiarPassword({ tone = 'light', accent = '#0B2447' }: 
         backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)',
       }
     : {
-        background: '#EFF3FA',
-        border: '1.5px solid #b6c5e3',
+        background: '#F3F1EF',
+        border: '1.5px solid #D2CBC5',
         color: accent,
       }
 
@@ -197,30 +197,30 @@ export default function CambiarPassword({ tone = 'light', accent = '#0B2447' }: 
             .cp-overlay {
               position: fixed; inset: 0; z-index: 9999;
               display: flex; align-items: center; justify-content: center; padding: 20px;
-              background: radial-gradient(120% 90% at 50% 0%, rgba(20,56,117,.42), rgba(8,17,33,.66));
+              background: radial-gradient(120% 90% at 50% 0%, rgba(42,36,32,.42), rgba(20,16,14,.66));
               backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
               font-family: ${SANS};
               animation: cp-fade .18s ease both;
             }
             .cp-card {
               position: relative; width: 100%; max-width: 420px;
-              border-radius: 22px; overflow: hidden; color: #0F172A;
+              border-radius: 22px; overflow: hidden; color: #231E1B;
               background: rgba(255,255,255,.80);
               backdrop-filter: blur(26px) saturate(160%); -webkit-backdrop-filter: blur(26px) saturate(160%);
               border: 1px solid rgba(255,255,255,.65);
-              box-shadow: 0 1px 0 rgba(255,255,255,.7) inset, 0 30px 70px -20px rgba(8,20,45,.65), 0 8px 24px rgba(8,20,45,.28);
+              box-shadow: 0 1px 0 rgba(255,255,255,.7) inset, 0 30px 70px -20px rgba(30,26,23,.65), 0 8px 24px rgba(30,26,23,.28);
               animation: cp-pop .3s cubic-bezier(.2,.75,.2,1) both;
             }
 
             /* Banda de encabezado navy con textura de puntos */
             .cp-head {
               position: relative; padding: 20px 22px 18px; overflow: hidden;
-              background: linear-gradient(135deg, ${accent} 0%, #143875 52%, #1E40AF 100%);
+              background: linear-gradient(135deg, ${accent} 0%, #2A2420 52%, #D9042F 100%);
             }
             .cp-head::after {
               content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .5;
               background:
-                radial-gradient(60% 120% at 88% -10%, rgba(147,197,253,.35), transparent 60%),
+                radial-gradient(60% 120% at 88% -10%, rgba(253,147,168,.35), transparent 60%),
                 radial-gradient(rgba(255,255,255,.14) 1px, transparent 1.3px);
               background-size: auto, 16px 16px;
             }
@@ -235,26 +235,26 @@ export default function CambiarPassword({ tone = 'light', accent = '#0B2447' }: 
             .cp-body { padding: 20px 22px 22px; }
 
             .cp-field { position: relative; display: flex; align-items: center; }
-            .cp-field-ic { position: absolute; left: 13px; color: #94A3B8; display: flex; pointer-events: none; transition: color .15s ease; }
+            .cp-field-ic { position: absolute; left: 13px; color: #8B837E; display: flex; pointer-events: none; transition: color .15s ease; }
             .cp-field:focus-within .cp-field-ic { color: ${accent}; }
             .cp-input {
               width: 100%; height: 46px; padding: 0 42px 0 40px; box-sizing: border-box;
-              background: rgba(255,255,255,.6); border: 1px solid #E1E7F0; border-radius: 12px;
-              font-family: ${SANS}; font-size: 14.5px; font-weight: 500; color: #0F172A; outline: none;
+              background: rgba(255,255,255,.6); border: 1px solid #ECE8E5; border-radius: 12px;
+              font-family: ${SANS}; font-size: 14.5px; font-weight: 500; color: #231E1B; outline: none;
               transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
             }
-            .cp-input::placeholder { color: #9AA6B8; font-weight: 400; }
-            .cp-input:hover { border-color: #CBD3DE; }
+            .cp-input::placeholder { color: #B5A79D; font-weight: 400; }
+            .cp-input:hover { border-color: #DAD4CF; }
             .cp-input:focus { border-color: ${accent}; background: rgba(255,255,255,.96); box-shadow: 0 0 0 4px ${accent}1f; }
             .cp-eye {
               position: absolute; right: 8px; width: 30px; height: 30px; border: none; background: none;
-              display: grid; place-items: center; color: #94A3B8; cursor: pointer; border-radius: 8px; transition: color .15s, background .15s;
+              display: grid; place-items: center; color: #8B837E; cursor: pointer; border-radius: 8px; transition: color .15s, background .15s;
             }
             .cp-eye:hover { color: ${accent}; background: ${accent}0f; }
 
             /* Medidor de fuerza */
             .cp-meter { display: flex; gap: 5px; margin: 2px 0 3px; }
-            .cp-seg { flex: 1; height: 5px; border-radius: 999px; background: #E2E8F0; overflow: hidden; }
+            .cp-seg { flex: 1; height: 5px; border-radius: 999px; background: #DCDEDE; overflow: hidden; }
             .cp-seg > i { display: block; height: 100%; width: 0; border-radius: 999px; transition: width .3s ease, background .3s ease; }
 
             /* Requisitos */
@@ -264,7 +264,7 @@ export default function CambiarPassword({ tone = 'light', accent = '#0B2447' }: 
             .cp-primary { box-shadow: 0 1px 2px ${accent}2e, 0 8px 18px -6px ${accent}66; transition: filter .15s, box-shadow .15s, transform .1s; }
             .cp-primary:hover:not(:disabled) { filter: brightness(1.1); transform: translateY(-1px); box-shadow: 0 2px 4px ${accent}3a, 0 14px 28px -8px ${accent}85; }
             .cp-primary:active:not(:disabled) { transform: translateY(0); }
-            .cp-ghost:hover:not(:disabled) { background: #E2E8F0; border-color: #CBD5E1; }
+            .cp-ghost:hover:not(:disabled) { background: #DCDEDE; border-color: #C9C5C1; }
 
             @media (max-width: 640px), (hover: none) {
               .cp-card { background: rgba(255,255,255,.98); backdrop-filter: none; -webkit-backdrop-filter: none; }
@@ -304,10 +304,10 @@ export default function CambiarPassword({ tone = 'light', accent = '#0B2447' }: 
                     <CheckIcon size={28} />
                   </span>
                   <div>
-                    <p style={{ fontSize: '15.5px', fontWeight: 800, color: '#0F172A', margin: 0 }}>
+                    <p style={{ fontSize: '15.5px', fontWeight: 800, color: '#231E1B', margin: 0 }}>
                       ¡Contraseña actualizada!
                     </p>
-                    <p style={{ fontSize: '12.5px', color: '#64748B', margin: '4px 0 0' }}>
+                    <p style={{ fontSize: '12.5px', color: '#6B625D', margin: '4px 0 0' }}>
                       Usa tu nueva contraseña la próxima vez que ingreses.
                     </p>
                   </div>
@@ -338,13 +338,13 @@ export default function CambiarPassword({ tone = 'light', accent = '#0B2447' }: 
                   {/* Requisitos en vivo */}
                   <div style={{
                     display: 'grid', gap: '7px', marginTop: '4px', padding: '12px 14px',
-                    background: 'rgba(241,245,249,.7)', border: '1px solid #E6EBF2', borderRadius: '12px',
+                    background: 'rgba(246,245,244,.7)', border: '1px solid #EFECE9', borderRadius: '12px',
                   }}>
                     {reqs.map((r, i) => (
-                      <div key={i} className="cp-req" style={{ color: r.ok ? '#15803D' : '#94A3B8' }}>
+                      <div key={i} className="cp-req" style={{ color: r.ok ? '#15803D' : '#8B837E' }}>
                         <span className="cp-req-dot" style={{
                           background: r.ok ? '#15803D' : 'transparent',
-                          border: r.ok ? '1px solid #15803D' : '1.5px solid #CBD5E1',
+                          border: r.ok ? '1px solid #15803D' : '1.5px solid #C9C5C1',
                           color: '#fff',
                         }}>
                           {r.ok ? <CheckIcon size={10} /> : null}
@@ -374,7 +374,7 @@ export default function CambiarPassword({ tone = 'light', accent = '#0B2447' }: 
                       className="cp-ghost"
                       style={{
                         flex: 1, height: '46px', borderRadius: '12px',
-                        background: '#F1F5F9', border: '1px solid #E4E8EF', color: '#475569',
+                        background: '#EDEEEE', border: '1px solid #DFE0E0', color: '#5C5450',
                         fontFamily: SANS, fontSize: '13.5px', fontWeight: 600,
                         cursor: loading ? 'not-allowed' : 'pointer', transition: 'background .15s, border-color .15s',
                       }}
@@ -407,6 +407,6 @@ export default function CambiarPassword({ tone = 'light', accent = '#0B2447' }: 
 }
 
 const lblStyle: React.CSSProperties = {
-  display: 'block', fontSize: '12px', fontWeight: 700, color: '#334155',
+  display: 'block', fontSize: '12px', fontWeight: 700, color: '#3D3632',
   marginBottom: '6px', letterSpacing: '.01em',
 }

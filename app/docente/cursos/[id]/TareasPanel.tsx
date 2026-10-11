@@ -176,7 +176,7 @@ export default function TareasPanel({ sesionId }: { sesionId: string }) {
 
         return (
           <div key={t.id} className="rounded-2xl border overflow-hidden"
-            style={{ borderColor: '#E4E8EF', background: 'white' }}>
+            style={{ borderColor: '#DFE0E0', background: 'white' }}>
 
             {editId === t.id ? (
               /* ── MODO EDICIÓN ── */
@@ -212,7 +212,7 @@ export default function TareasPanel({ sesionId }: { sesionId: string }) {
                   </button>
                   <button onClick={() => handleGuardar(t)} disabled={guardando}
                     className="px-4 py-1.5 rounded-xl text-xs font-black text-white flex items-center gap-1.5"
-                    style={{ background: 'linear-gradient(135deg,#143875,#818cf8)' }}>
+                    style={{ background: 'linear-gradient(135deg,#2A2420,#F88199)' }}>
                     {guardando && <Spinner />} Guardar
                   </button>
                 </div>
@@ -223,8 +223,8 @@ export default function TareasPanel({ sesionId }: { sesionId: string }) {
                 <div className="flex items-start gap-3 p-4">
                   {/* Icono tarea */}
                   <div className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 mt-0.5"
-                    style={{ background: '#EFF3FA', border: '1.5px solid #b6c5e3' }}>
-                    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="#143875" strokeWidth="2">
+                    style={{ background: '#F3F1EF', border: '1.5px solid #D2CBC5' }}>
+                    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="#2A2420" strokeWidth="2">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
                     </svg>
                   </div>
@@ -237,7 +237,7 @@ export default function TareasPanel({ sesionId }: { sesionId: string }) {
                     <div className="flex items-center gap-3 mt-2 flex-wrap">
                       {/* Fecha */}
                       <span className="flex items-center gap-1 text-[11px] font-semibold"
-                        style={{ color: vencida ? '#ef4444' : '#64748b' }}>
+                        style={{ color: vencida ? '#ef4444' : '#6B625D' }}>
                         <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                           <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
                         </svg>
@@ -274,7 +274,7 @@ export default function TareasPanel({ sesionId }: { sesionId: string }) {
                 {/* Botón ver entregas */}
                 <button onClick={() => abrirEntregas(t.id)}
                   className="w-full flex items-center justify-between px-4 py-2.5 text-xs font-bold transition-colors"
-                  style={{ borderTop: '1px solid #f1f5f9', color: isOpenEnt ? '#143875' : '#94a3b8', background: isOpenEnt ? '#EFF3FA' : '#fafafa' }}>
+                  style={{ borderTop: '1px solid #EDEEEE', color: isOpenEnt ? '#2A2420' : '#8B837E', background: isOpenEnt ? '#F3F1EF' : '#fafafa' }}>
                   <span className="flex items-center gap-1.5">
                     <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
@@ -282,7 +282,7 @@ export default function TareasPanel({ sesionId }: { sesionId: string }) {
                     {isOpenEnt ? 'Ocultar entregas' : 'Ver entregas'}
                     {entregasTarea.length > 0 && (
                       <span className="px-1.5 py-0.5 rounded-full text-[9px] font-black"
-                        style={{ background: '#143875', color: 'white' }}>
+                        style={{ background: '#2A2420', color: 'white' }}>
                         {entregasTarea.length}
                       </span>
                     )}
@@ -296,7 +296,7 @@ export default function TareasPanel({ sesionId }: { sesionId: string }) {
                 {/* Listado de entregas */}
                 {isOpenEnt && (
                   <div className="px-4 pb-4 pt-2 space-y-2.5"
-                    style={{ background: '#f8fafc', borderTop: '1px solid #E4E8EF' }}>
+                    style={{ background: '#F7F7F6', borderTop: '1px solid #DFE0E0' }}>
                     {cargandoEnt ? (
                       <div className="flex items-center gap-2 py-3 text-slate-400 text-xs"><Spinner /><span>Cargando…</span></div>
                     ) : entregasTarea.length === 0 ? (
@@ -307,11 +307,11 @@ export default function TareasPanel({ sesionId }: { sesionId: string }) {
 
                       return (
                         <div key={ent.id} className="rounded-xl border bg-white p-3"
-                          style={{ borderColor: cal ? '#bbf7d0' : '#e2e8f0' }}>
+                          style={{ borderColor: cal ? '#bbf7d0' : '#DCDEDE' }}>
                           <div className="flex items-start gap-2.5">
                             {/* Avatar */}
                             <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 text-[10px] font-black text-white"
-                              style={{ background: 'linear-gradient(135deg,#143875,#818cf8)' }}>
+                              style={{ background: 'linear-gradient(135deg,#2A2420,#F88199)' }}>
                               {ent.alumnos?.nombre?.[0]?.toUpperCase()}{ent.alumnos?.apellidos?.[0]?.toUpperCase()}
                             </div>
                             <div className="flex-1 min-w-0">
@@ -348,7 +348,7 @@ export default function TareasPanel({ sesionId }: { sesionId: string }) {
                               ) : (
                                 <button onClick={() => { setCalificandoId(ent.id); setNotaVal(''); setComentCal('') }}
                                   className="px-2.5 py-1 rounded-lg text-[10px] font-black text-white"
-                                  style={{ background: 'linear-gradient(135deg,#143875,#818cf8)' }}>
+                                  style={{ background: 'linear-gradient(135deg,#2A2420,#F88199)' }}>
                                   Calificar
                                 </button>
                               )}
@@ -378,7 +378,7 @@ export default function TareasPanel({ sesionId }: { sesionId: string }) {
                                 </button>
                                 <button onClick={() => handleCalificar(ent.id, t.id)} disabled={guardandoCal}
                                   className="px-4 py-1.5 rounded-xl text-xs font-black text-white flex items-center gap-1.5"
-                                  style={{ background: 'linear-gradient(135deg,#143875,#818cf8)' }}>
+                                  style={{ background: 'linear-gradient(135deg,#2A2420,#F88199)' }}>
                                   {guardandoCal && <Spinner size={11} />} Guardar nota
                                 </button>
                               </div>
@@ -399,7 +399,7 @@ export default function TareasPanel({ sesionId }: { sesionId: string }) {
       {mostrarForm && (
         <form onSubmit={handleCrear}
           className="rounded-2xl border p-4 space-y-3"
-          style={{ borderColor: '#b6c5e3', background: '#EFF3FA' }}>
+          style={{ borderColor: '#D2CBC5', background: '#F3F1EF' }}>
           <p className="text-xs font-black text-indigo-700">Nueva tarea</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
@@ -432,7 +432,7 @@ export default function TareasPanel({ sesionId }: { sesionId: string }) {
             </button>
             <button type="submit" disabled={creando}
               className="px-4 py-1.5 rounded-xl text-xs font-black text-white flex items-center gap-1.5"
-              style={{ background: 'linear-gradient(135deg,#143875,#818cf8)' }}>
+              style={{ background: 'linear-gradient(135deg,#2A2420,#F88199)' }}>
               {creando && <Spinner size={11} />} Crear tarea
             </button>
           </div>
@@ -457,7 +457,7 @@ export default function TareasPanel({ sesionId }: { sesionId: string }) {
             <div className="flex gap-3">
               <button onClick={() => setConfirmId(null)}
                 className="flex-1 py-2.5 rounded-xl text-sm font-bold text-slate-600"
-                style={{ background: '#f1f5f9', border: '1.5px solid #e2e8f0' }}>
+                style={{ background: '#EDEEEE', border: '1.5px solid #DCDEDE' }}>
                 Cancelar
               </button>
               <button onClick={() => handleEliminar(confirmId)} disabled={eliminando}
@@ -475,8 +475,8 @@ export default function TareasPanel({ sesionId }: { sesionId: string }) {
       {!mostrarForm && (
         <button onClick={() => setMostrarForm(true)}
           className="w-full flex items-center justify-center gap-2 py-2.5 rounded-2xl text-xs font-black transition-all"
-          style={{ border: '1.5px dashed #b6c5e3', color: '#818cf8', background: 'transparent' }}
-          onMouseEnter={e => { e.currentTarget.style.background = '#EFF3FA' }}
+          style={{ border: '1.5px dashed #D2CBC5', color: '#F88199', background: 'transparent' }}
+          onMouseEnter={e => { e.currentTarget.style.background = '#F3F1EF' }}
           onMouseLeave={e => { e.currentTarget.style.background = 'transparent' }}>
           <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
             <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>

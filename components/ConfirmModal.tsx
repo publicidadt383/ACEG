@@ -33,7 +33,7 @@ export type ConfirmResultado = { texto: string } | false
 const TONOS = {
   peligro:     { color: '#B91C1C', bg: '#FEF2F2', borde: '#FECACA', boton: '#DC2626' },
   advertencia: { color: '#B45309', bg: '#FFFBEB', borde: '#FDE68A', boton: '#D97706' },
-  primario:    { color: '#0B2447', bg: '#EFF6FF', borde: '#DBEAFE', boton: '#0B2447' },
+  primario:    { color: '#1D1815', bg: '#FDEDF0', borde: '#FBDCE2', boton: '#1D1815' },
 }
 
 export function useConfirm() {
@@ -81,7 +81,7 @@ function ConfirmDialogo({
   return (
     <div
       className="fixed inset-0 z-[200] flex items-center justify-center p-4"
-      style={{ background: 'rgba(11,36,71,.45)', backdropFilter: 'blur(2px)' }}
+      style={{ background: 'rgba(29,24,21,.45)', backdropFilter: 'blur(2px)' }}
       onClick={onCancelar}>
       <div
         className="w-full max-w-md rounded-2xl bg-white shadow-2xl overflow-hidden"
@@ -118,14 +118,14 @@ function ConfirmDialogo({
                 rows={2}
                 autoFocus
                 className="w-full px-3 py-2.5 rounded-xl border text-sm font-medium text-slate-800 outline-none resize-none focus:ring-2"
-                style={{ borderColor: '#E4E8EF' }} />
+                style={{ borderColor: '#DFE0E0' }} />
             </div>
           )}
 
           <div className="flex gap-2.5 mt-5">
             <button onClick={onCancelar}
               className="flex-1 px-4 py-2.5 rounded-xl text-sm font-bold border bg-white hover:bg-slate-50 text-slate-600 transition-colors"
-              style={{ borderColor: '#E4E8EF' }}>
+              style={{ borderColor: '#DFE0E0' }}>
               {opciones.cancelarLabel ?? 'Cancelar'}
             </button>
             <button onClick={onConfirmar} disabled={inputInvalido}

@@ -134,9 +134,9 @@ export default function AlumnoHorarioPage() {
   if (loading) return null
 
   function colorDeCurso(materia: string | null) {
-    if (!materia) return '#0d9488'
+    if (!materia) return '#944C0D'
     const c = cursos.find(c => c.nombre === materia)
-    return c?.color ?? '#0d9488'
+    return c?.color ?? '#944C0D'
   }
 
   const diasActivos    = DIAS.filter(d => clases.some(c => c.dia === d))
@@ -242,7 +242,7 @@ export default function AlumnoHorarioPage() {
           {materias.length > 0 && (
             <select value={filtro} onChange={e => setFiltro(e.target.value)}
               className="no-print px-3 py-2 rounded-xl text-xs font-semibold text-slate-600 outline-none"
-              style={{ background: 'white', border: '1.5px solid #ccfbf1' }}>
+              style={{ background: 'white', border: '1.5px solid #FBE2CC' }}>
               <option value="todos">Todos los cursos</option>
               {materias.map(m => <option key={m} value={m}>{m}</option>)}
             </select>
@@ -250,9 +250,9 @@ export default function AlumnoHorarioPage() {
           {clases.length > 0 && (
             <button onClick={() => window.print()}
               className="no-print flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-black transition-all"
-              style={{ background: 'white', border: '1.5px solid #ccfbf1', color: '#64748b' }}
-              onMouseEnter={e => { e.currentTarget.style.background = '#f0fdfa'; e.currentTarget.style.color = '#0d9488' }}
-              onMouseLeave={e => { e.currentTarget.style.background = 'white'; e.currentTarget.style.color = '#64748b' }}>
+              style={{ background: 'white', border: '1.5px solid #FBE2CC', color: '#6B625D' }}
+              onMouseEnter={e => { e.currentTarget.style.background = '#FDF6F0'; e.currentTarget.style.color = '#944C0D' }}
+              onMouseLeave={e => { e.currentTarget.style.background = 'white'; e.currentTarget.style.color = '#6B625D' }}>
               <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/>
                 <rect x="6" y="14" width="12" height="8" rx="1"/>
@@ -272,20 +272,20 @@ export default function AlumnoHorarioPage() {
             return (
               <div key={dia} className="rounded-xl px-3 py-2.5 text-center"
                 style={{
-                  background: esHoy ? '#0d9488' : 'white',
-                  border: esHoy ? '1.5px solid #0f766e' : '1.5px solid #ccfbf1',
-                  boxShadow: esHoy ? '0 4px 16px rgba(13,148,136,.25)' : 'none',
+                  background: esHoy ? '#944C0D' : 'white',
+                  border: esHoy ? '1.5px solid #763F0F' : '1.5px solid #FBE2CC',
+                  boxShadow: esHoy ? '0 4px 16px rgba(148,76,13,.25)' : 'none',
                 }}>
                 <p className="text-[10px] font-black uppercase tracking-wider"
-                  style={{ color: esHoy ? '#99f6e4' : '#94a3b8' }}>
+                  style={{ color: esHoy ? '#F6C499' : '#8B837E' }}>
                   {dia.slice(0, 3)}
                 </p>
                 <p className="text-lg font-black mt-0.5"
-                  style={{ color: esHoy ? 'white' : '#1e293b' }}>
+                  style={{ color: esHoy ? 'white' : '#2A2420' }}>
                   {count}
                 </p>
                 <p className="text-[9px] font-semibold"
-                  style={{ color: esHoy ? '#5eead4' : '#94a3b8' }}>
+                  style={{ color: esHoy ? '#EA9F5E' : '#8B837E' }}>
                   {count === 1 ? 'clase' : 'clases'}
                 </p>
               </div>
@@ -296,13 +296,13 @@ export default function AlumnoHorarioPage() {
 
       {/* Grid */}
       <div className="rounded-2xl overflow-hidden"
-        style={{ background: 'white', border: '1.5px solid #ccfbf1', boxShadow: '0 4px 24px rgba(13,148,136,.06)' }}>
-        <div className="h-1" style={{ background: 'linear-gradient(90deg,#0F766E,#14B8A6,#5EEAD4)' }} />
+        style={{ background: 'white', border: '1.5px solid #FBE2CC', boxShadow: '0 4px 24px rgba(148,76,13,.06)' }}>
+        <div className="h-1" style={{ background: 'linear-gradient(90deg,#763F0F,#B86114,#EA9F5E)' }} />
 
         {clases.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-20 gap-3">
             <div className="w-14 h-14 rounded-2xl flex items-center justify-center"
-              style={{ background: '#f0fdfa', border: '1.5px solid #99f6e4' }}>
+              style={{ background: '#FDF6F0', border: '1.5px solid #F6C499' }}>
               <svg className="w-7 h-7 text-teal-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
               </svg>
@@ -324,7 +324,7 @@ export default function AlumnoHorarioPage() {
               <thead>
                 <tr>
                   <th className="px-4 py-3 text-left sticky left-0 z-10"
-                    style={{ background: '#f8fffe', borderBottom: '1.5px solid #ccfbf1' }}>
+                    style={{ background: '#FFFBF8', borderBottom: '1.5px solid #FBE2CC' }}>
                     <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Hora</span>
                   </th>
                   {diasActivos.map(d => {
@@ -332,18 +332,18 @@ export default function AlumnoHorarioPage() {
                     return (
                       <th key={d} className="px-2 py-3 text-center"
                         style={{
-                          background: esHoy ? '#f0fdfa' : '#f8fffe',
-                          borderLeft: '1px solid #ccfbf1',
-                          borderBottom: '1.5px solid #ccfbf1',
+                          background: esHoy ? '#FDF6F0' : '#FFFBF8',
+                          borderLeft: '1px solid #FBE2CC',
+                          borderBottom: '1.5px solid #FBE2CC',
                         }}>
                         <div className="flex flex-col items-center gap-0.5">
                           <span className="text-[11px] font-black"
-                            style={{ color: esHoy ? '#0d9488' : '#64748b' }}>
+                            style={{ color: esHoy ? '#944C0D' : '#6B625D' }}>
                             {d}
                           </span>
                           {esHoy && (
                             <span className="text-[8px] font-black px-1.5 py-0.5 rounded-full"
-                              style={{ background: '#0d9488', color: 'white' }}>
+                              style={{ background: '#944C0D', color: 'white' }}>
                               HOY
                             </span>
                           )}
@@ -360,9 +360,9 @@ export default function AlumnoHorarioPage() {
 
                   if (isBreak) {
                     return (
-                      <tr key={periodo.id} style={{ borderBottom: '1px solid #f0fdfa' }}>
+                      <tr key={periodo.id} style={{ borderBottom: '1px solid #FDF6F0' }}>
                         <td className="px-4 py-1.5 sticky left-0"
-                          style={{ background: bc!.bg, borderRight: '1px solid #ccfbf1', verticalAlign: 'middle' }}>
+                          style={{ background: bc!.bg, borderRight: '1px solid #FBE2CC', verticalAlign: 'middle' }}>
                           <p className="text-[10px] font-black" style={{ color: bc!.text }}>{periodo.nombre}</p>
                           <p className="text-[9px] font-mono" style={{ color: bc!.text, opacity: 0.7 }}>
                             {periodo.inicio} – {periodo.fin}
@@ -384,9 +384,9 @@ export default function AlumnoHorarioPage() {
 
                   return (
                     <tr key={periodo.id}
-                      style={{ borderBottom: idx < periodosVisibles.length - 1 ? '1px solid #f0fdfa' : 'none' }}>
+                      style={{ borderBottom: idx < periodosVisibles.length - 1 ? '1px solid #FDF6F0' : 'none' }}>
                       <td className="px-4 py-2 sticky left-0"
-                        style={{ background: '#f8fffe', verticalAlign: 'middle', borderRight: '1px solid #ccfbf1' }}>
+                        style={{ background: '#FFFBF8', verticalAlign: 'middle', borderRight: '1px solid #FBE2CC' }}>
                         <p className="text-[11px] font-black text-teal-600 font-mono tabular-nums">{periodo.inicio}</p>
                         <p className="text-[9px] text-slate-400 font-mono tabular-nums mt-0.5">{periodo.fin}</p>
                       </td>
@@ -394,14 +394,14 @@ export default function AlumnoHorarioPage() {
                         if (isCovered(dia, periodo.inicio, clasesFiltradas)) return null
                         const clase = clasesFiltradas.find(c => c.dia === dia && hi(c.hora_inicio) === periodo.inicio)
                         const esHoy = dia === diaHoy
-                        const color = clase ? colorDeCurso(clase.materia) : '#0d9488'
+                        const color = clase ? colorDeCurso(clase.materia) : '#944C0D'
                         const span  = clase ? calcSpan(clase, periodo.inicio) : 1
                         return (
                           <td key={dia} rowSpan={span} className="px-2 py-1.5"
                             style={{
-                              borderLeft: '1px solid #ccfbf1',
+                              borderLeft: '1px solid #FBE2CC',
                               verticalAlign: 'middle',
-                              background: esHoy ? '#f8fffe' : 'transparent',
+                              background: esHoy ? '#FFFBF8' : 'transparent',
                             }}>
                             {clase ? (
                               <div className="rounded-xl px-2 py-2.5 h-full flex flex-col items-center justify-center gap-0.5 text-center"
@@ -426,8 +426,8 @@ export default function AlumnoHorarioPage() {
                               <div className="rounded-xl flex items-center justify-center"
                                 style={{
                                   minHeight: '58px',
-                                  background: esHoy ? '#f0fdfa' : '#f8fafc',
-                                  border: '1px dashed #e2e8f0',
+                                  background: esHoy ? '#FDF6F0' : '#F7F7F6',
+                                  border: '1px dashed #DCDEDE',
                                 }}>
                                 <span className="text-[10px] font-semibold text-slate-300">—</span>
                               </div>

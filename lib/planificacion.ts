@@ -6,17 +6,17 @@ export type TipoSemana = 'clase' | 'evaluacion' | 'repaso' | 'feriado'
 
 // Tipos de semana (punto de vista del calendario del bimestre)
 export const TIPOS_SEMANA: { v: TipoSemana; t: string; bg: string; color: string; borde: string }[] = [
-  { v: 'clase',      t: 'Clase',      bg: '#EFF6FF', color: '#0B2447', borde: '#DBEAFE' },
+  { v: 'clase',      t: 'Clase',      bg: '#FDEDF0', color: '#1D1815', borde: '#FBDCE2' },
   { v: 'evaluacion', t: 'Evaluación', bg: '#FEF3C7', color: '#92400E', borde: '#FDE68A' },
   { v: 'repaso',     t: 'Repaso',     bg: '#ECFDF5', color: '#065F46', borde: '#A7F3D0' },
-  { v: 'feriado',    t: 'Feriado',    bg: '#F1F5F9', color: '#64748B', borde: '#E2E8F0' },
+  { v: 'feriado',    t: 'Feriado',    bg: '#EDEEEE', color: '#6B625D', borde: '#DCDEDE' },
 ]
 
 // Badge del estado de flujo de la plantilla (borrador → revisión → publicada)
 export const FLUJO_CFG: Record<EstadoPlantilla, { t: string; bg: string; color: string }> = {
   borrador:  { t: 'Borrador',    bg: '#FEF3C7', color: '#92400E' },
-  revision:  { t: 'En revisión', bg: '#EDE9FE', color: '#5B21B6' },
-  publicada: { t: 'Publicada',   bg: '#E0F2FE', color: '#075985' },
+  revision:  { t: 'En revisión', bg: '#F5F3F2', color: '#5B21B6' },
+  publicada: { t: 'Publicada',   bg: '#FDEBD7', color: '#850720' },
 }
 
 // Métricas de una plantilla para el semáforo de estado: semanas con título

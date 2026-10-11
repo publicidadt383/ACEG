@@ -41,10 +41,10 @@ export function displayAlumno(a: { nombre: string; apellidos?: string | null; us
 export const PAGE_DOCENTES = 20
 
 export const COLORES_CURSO = [
-  '#143875','#143875','#ec4899','#f43f5e','#f97316',
-  '#eab308','#22c55e','#06b6d4','#3b82f6','#64748b',
-  '#a855f7','#14b8a6','#ef4444','#f59e0b','#84cc16',
-  '#0ea5e9','#e11d48','#d97706','#10b981','#0B2447',
+  '#2A2420','#2A2420','#ec4899','#f43f5e','#f97316',
+  '#eab308','#22c55e','#CD670D','#E8173F','#6B625D',
+  '#a855f7','#B86114','#ef4444','#f59e0b','#84cc16',
+  '#F08A24','#e11d48','#d97706','#10b981','#1D1815',
 ]
 
 export const PERIODOS_DEFAULT: Periodo[] = [
@@ -96,8 +96,8 @@ export function calcularMinutosTarde(horaEntradaISO: string, horaEsperada: strin
 
 export function Avatar({ name, color = 'indigo' }: { name: string; color?: 'indigo' | 'violet' | 'emerald' }) {
   const styles = {
-    indigo:  { bg: '#F1F5F9', text: '#0B2447', border: '#fecdd3' },
-    violet:  { bg: '#f5f3ff', text: '#0B2447', border: '#ddd6fe' },
+    indigo:  { bg: '#EDEEEE', text: '#1D1815', border: '#fecdd3' },
+    violet:  { bg: '#FAF9F8', text: '#1D1815', border: '#EDEAE7' },
     emerald: { bg: '#ecfdf5', text: '#059669', border: '#a7f3d0' },
   }
   const s = styles[color]

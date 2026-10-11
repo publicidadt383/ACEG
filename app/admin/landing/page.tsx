@@ -15,7 +15,7 @@ interface AnuncioRow  {
 }
 
 const inputCls   = 'w-full px-3 py-2 rounded-xl text-sm text-slate-800 outline-none transition-all resize-none'
-const inputStyle = { background: '#F6F8FB', border: '1.5px solid #E4E8EF' }
+const inputStyle = { background: '#F5F5F4', border: '1.5px solid #DFE0E0' }
 
 export default function AdminLandingPage() {
   const router   = useRouter()
@@ -207,12 +207,12 @@ export default function AdminLandingPage() {
   )
 
   return (
-    <div className="flex flex-col h-screen" style={{ background: '#F6F8FB' }}>
+    <div className="flex flex-col h-screen" style={{ background: '#F5F5F4' }}>
       {dialogo}
 
       {/* ── Header ── */}
       <header className="flex items-center gap-3 px-4 py-2.5 shrink-0"
-        style={{ background: 'white', borderBottom: '1px solid #E4E8EF' }}>
+        style={{ background: 'white', borderBottom: '1px solid #DFE0E0' }}>
         <Link href="/admin"
           className="flex items-center gap-1 text-xs font-bold text-slate-400 hover:text-indigo-600 transition-colors">
           <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -223,7 +223,7 @@ export default function AdminLandingPage() {
         <span className="text-slate-200">/</span>
         <div className="flex items-center gap-2">
           <div className="w-6 h-6 rounded-lg flex items-center justify-center"
-            style={{ background: 'linear-gradient(135deg,#143875,#143875)' }}>
+            style={{ background: 'linear-gradient(135deg,#2A2420,#2A2420)' }}>
             <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth="2.5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064"/>
             </svg>
@@ -233,7 +233,7 @@ export default function AdminLandingPage() {
         <div className="ml-auto flex items-center gap-2">
           <button onClick={recargarPreview}
             className="flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-lg transition-all"
-            style={{ background: '#f1f5f9', color: '#64748b' }}>
+            style={{ background: '#EDEEEE', color: '#6B625D' }}>
             <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
               <polyline points="23 4 23 10 17 10"/>
               <path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/>
@@ -242,7 +242,7 @@ export default function AdminLandingPage() {
           </button>
           <a href="/" target="_blank" rel="noopener noreferrer"
             className="flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-lg transition-all"
-            style={{ background: '#EFF3FA', color: '#143875', border: '1.5px solid #b6c5e3' }}>
+            style={{ background: '#F3F1EF', color: '#2A2420', border: '1.5px solid #D2CBC5' }}>
             <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
               <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
             </svg>
@@ -255,9 +255,9 @@ export default function AdminLandingPage() {
       <div className="flex flex-1 min-h-0">
 
         {/* ── Preview iframe ── */}
-        <div className="flex-1 min-w-0 relative bg-slate-100" style={{ borderRight: '1px solid #E4E8EF' }}>
+        <div className="flex-1 min-w-0 relative bg-slate-100" style={{ borderRight: '1px solid #DFE0E0' }}>
           <div className="absolute top-3 left-3 z-10 flex items-center gap-2 px-3 py-1.5 rounded-lg text-[10px] font-black text-slate-500"
-            style={{ background: 'rgba(255,255,255,.9)', border: '1px solid #E4E8EF' }}>
+            style={{ background: 'rgba(255,255,255,.9)', border: '1px solid #DFE0E0' }}>
             <span className="w-2 h-2 rounded-full bg-emerald-400" />
             Vista previa en vivo
           </div>
@@ -274,12 +274,12 @@ export default function AdminLandingPage() {
         <div className="w-96 shrink-0 flex flex-col" style={{ background: 'white' }}>
 
           {/* Tabs panel */}
-          <div className="flex shrink-0 p-3 gap-2" style={{ borderBottom: '1px solid #f1f5f9' }}>
+          <div className="flex shrink-0 p-3 gap-2" style={{ borderBottom: '1px solid #EDEEEE' }}>
             <button onClick={() => setPanel('galeria')}
               className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-xl text-xs font-black transition-all"
               style={panel === 'galeria'
-                ? { background: 'linear-gradient(135deg,#143875,#143875)', color: 'white' }
-                : { background: '#F6F8FB', color: '#64748b' }}>
+                ? { background: 'linear-gradient(135deg,#2A2420,#2A2420)', color: 'white' }
+                : { background: '#F5F5F4', color: '#6B625D' }}>
               <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
               </svg>
@@ -288,8 +288,8 @@ export default function AdminLandingPage() {
             <button onClick={() => setPanel('comunicados')}
               className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-xl text-xs font-black transition-all"
               style={panel === 'comunicados'
-                ? { background: 'linear-gradient(135deg,#143875,#143875)', color: 'white' }
-                : { background: '#F6F8FB', color: '#64748b' }}>
+                ? { background: 'linear-gradient(135deg,#2A2420,#2A2420)', color: 'white' }
+                : { background: '#F5F5F4', color: '#6B625D' }}>
               <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/>
               </svg>
@@ -298,8 +298,8 @@ export default function AdminLandingPage() {
             <button onClick={() => setPanel('fondo')}
               className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-xl text-xs font-black transition-all"
               style={panel === 'fondo'
-                ? { background: 'linear-gradient(135deg,#143875,#143875)', color: 'white' }
-                : { background: '#F6F8FB', color: '#64748b' }}>
+                ? { background: 'linear-gradient(135deg,#2A2420,#2A2420)', color: 'white' }
+                : { background: '#F5F5F4', color: '#6B625D' }}>
               <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                 <rect x="3" y="3" width="18" height="18" rx="2"/>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3 9h18"/>
@@ -317,7 +317,7 @@ export default function AdminLandingPage() {
                 <p className="text-[10px] font-black text-slate-400 uppercase tracking-wide">Imagen de fondo del hero</p>
 
                 {/* Preview actual */}
-                <div className="relative w-full rounded-2xl overflow-hidden" style={{ aspectRatio: '16/9', background: '#f1f5f9' }}>
+                <div className="relative w-full rounded-2xl overflow-hidden" style={{ aspectRatio: '16/9', background: '#EDEEEE' }}>
                   {fondoUrl ? (
                     <>
                       <Image src={fondoUrl} alt="Fondo actual" fill className="object-cover" />
@@ -336,7 +336,7 @@ export default function AdminLandingPage() {
                     </>
                   ) : (
                     <div className="absolute inset-0 flex flex-col items-center justify-center gap-1">
-                      <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="#cbd5e1" strokeWidth="1.5">
+                      <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="#C9C5C1" strokeWidth="1.5">
                         <rect x="3" y="3" width="18" height="18" rx="2"/>
                         <circle cx="8.5" cy="8.5" r="1.5"/>
                         <polyline points="21 15 16 10 5 21"/>
@@ -350,16 +350,16 @@ export default function AdminLandingPage() {
                 <div
                   onClick={() => !subiendoFondo && fileFondoRef.current?.click()}
                   className="rounded-2xl p-5 text-center cursor-pointer transition-all border-2 border-dashed"
-                  style={{ borderColor: subiendoFondo ? '#143875' : '#b6c5e3', background: subiendoFondo ? '#EFF3FA' : '#F6F8FB' }}>
+                  style={{ borderColor: subiendoFondo ? '#2A2420' : '#D2CBC5', background: subiendoFondo ? '#F3F1EF' : '#F5F5F4' }}>
                   <div className="w-10 h-10 rounded-xl mx-auto mb-2 flex items-center justify-center"
-                    style={{ background: '#EFF3FA' }}>
+                    style={{ background: '#F3F1EF' }}>
                     {subiendoFondo ? (
                       <svg className="animate-spin" width="18" height="18" viewBox="0 0 24 24" fill="none">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="#143875" strokeWidth="4"/>
-                        <path className="opacity-75" fill="#143875" d="M4 12a8 8 0 018-8v8z"/>
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="#2A2420" strokeWidth="4"/>
+                        <path className="opacity-75" fill="#2A2420" d="M4 12a8 8 0 018-8v8z"/>
                       </svg>
                     ) : (
-                      <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#143875" strokeWidth="2">
+                      <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#2A2420" strokeWidth="2">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
                       </svg>
                     )}
@@ -382,16 +382,16 @@ export default function AdminLandingPage() {
                 <div
                   onClick={() => !subiendo && fileGalRef.current?.click()}
                   className="rounded-2xl p-5 text-center cursor-pointer transition-all border-2 border-dashed"
-                  style={{ borderColor: subiendo ? '#143875' : '#b6c5e3', background: subiendo ? '#EFF3FA' : '#F6F8FB' }}>
+                  style={{ borderColor: subiendo ? '#2A2420' : '#D2CBC5', background: subiendo ? '#F3F1EF' : '#F5F5F4' }}>
                   <div className="w-10 h-10 rounded-xl mx-auto mb-2 flex items-center justify-center"
-                    style={{ background: '#EFF3FA' }}>
+                    style={{ background: '#F3F1EF' }}>
                     {subiendo ? (
                       <svg className="animate-spin" width="18" height="18" viewBox="0 0 24 24" fill="none">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="#143875" strokeWidth="4"/>
-                        <path className="opacity-75" fill="#143875" d="M4 12a8 8 0 018-8v8z"/>
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="#2A2420" strokeWidth="4"/>
+                        <path className="opacity-75" fill="#2A2420" d="M4 12a8 8 0 018-8v8z"/>
                       </svg>
                     ) : (
-                      <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#143875" strokeWidth="2">
+                      <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#2A2420" strokeWidth="2">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
                       </svg>
                     )}
@@ -440,15 +440,15 @@ export default function AdminLandingPage() {
                 <button onClick={() => { setShowForm(v => !v); setComErr('') }}
                   className="w-full py-2.5 rounded-xl text-xs font-black transition-all"
                   style={showForm
-                    ? { background: '#f1f5f9', color: '#64748b' }
-                    : { background: 'linear-gradient(135deg,#143875,#143875)', color: 'white' }}>
+                    ? { background: '#EDEEEE', color: '#6B625D' }
+                    : { background: 'linear-gradient(135deg,#2A2420,#2A2420)', color: 'white' }}>
                   {showForm ? 'Cancelar' : '+ Nuevo comunicado'}
                 </button>
 
                 {/* Formulario */}
                 {showForm && (
                   <div className="rounded-2xl p-4 space-y-3"
-                    style={{ background: '#F6F8FB', border: '1.5px solid #E4E8EF' }}>
+                    style={{ background: '#F5F5F4', border: '1.5px solid #DFE0E0' }}>
 
                     <input placeholder="Título (opcional)" value={comForm.titulo}
                       onChange={e => setComForm(f => ({ ...f, titulo: e.target.value }))}
@@ -475,11 +475,11 @@ export default function AdminLandingPage() {
                       ) : (
                         <div onClick={() => !subiendoCom && fileComRef.current?.click()}
                           className="rounded-xl p-4 text-center cursor-pointer border-2 border-dashed transition-all"
-                          style={{ borderColor: '#b6c5e3', background: 'white' }}>
+                          style={{ borderColor: '#D2CBC5', background: 'white' }}>
                           {subiendoCom ? (
                             <svg className="animate-spin mx-auto" width="16" height="16" viewBox="0 0 24 24" fill="none">
-                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="#143875" strokeWidth="4"/>
-                              <path className="opacity-75" fill="#143875" d="M4 12a8 8 0 018-8v8z"/>
+                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="#2A2420" strokeWidth="4"/>
+                              <path className="opacity-75" fill="#2A2420" d="M4 12a8 8 0 018-8v8z"/>
                             </svg>
                           ) : (
                             <p className="text-[11px] font-bold text-slate-400">Subir imagen</p>
@@ -493,7 +493,7 @@ export default function AdminLandingPage() {
 
                     <button onClick={guardarComunicado} disabled={guardandoCom}
                       className="w-full py-2.5 rounded-xl text-xs font-black text-white transition-all"
-                      style={{ background: 'linear-gradient(135deg,#059669,#0d9488)', opacity: guardandoCom ? 0.7 : 1 }}>
+                      style={{ background: 'linear-gradient(135deg,#059669,#944C0D)', opacity: guardandoCom ? 0.7 : 1 }}>
                       {guardandoCom ? 'Publicando…' : 'Publicar en la web ✓'}
                     </button>
                   </div>
@@ -506,8 +506,8 @@ export default function AdminLandingPage() {
                   <div className="space-y-3">
                     {anuncios.map(a => (
                       <div key={a.id} className="rounded-2xl overflow-hidden transition-all"
-                        style={{ border: `1.5px solid ${a.en_landing ? '#b6c5e3' : '#e2e8f0'}` }}>
-                        <div className="h-1" style={{ background: a.en_landing ? 'linear-gradient(90deg,#143875,#143875)' : '#e2e8f0' }} />
+                        style={{ border: `1.5px solid ${a.en_landing ? '#D2CBC5' : '#DCDEDE'}` }}>
+                        <div className="h-1" style={{ background: a.en_landing ? 'linear-gradient(90deg,#2A2420,#2A2420)' : '#DCDEDE' }} />
 
                         {/* Imagen si tiene */}
                         {a.imagen_url && (
@@ -530,8 +530,8 @@ export default function AdminLandingPage() {
                             <button onClick={() => toggleLanding(a.id, a.en_landing)}
                               className="flex items-center gap-1.5 flex-1 py-1.5 rounded-lg text-[11px] font-bold transition-all"
                               style={a.en_landing
-                                ? { background: '#EFF3FA', color: '#143875' }
-                                : { background: '#f1f5f9', color: '#94a3b8' }}>
+                                ? { background: '#F3F1EF', color: '#2A2420' }
+                                : { background: '#EDEEEE', color: '#8B837E' }}>
                               <span className={`w-3 h-3 rounded-full transition-colors ${a.en_landing ? 'bg-indigo-500' : 'bg-slate-300'}`} />
                               {a.en_landing ? 'Visible en web' : 'Oculto'}
                             </button>

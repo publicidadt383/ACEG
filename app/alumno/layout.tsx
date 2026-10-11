@@ -126,7 +126,7 @@ export default function AlumnoLayout({ children }: { children: React.ReactNode }
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center"
-        style={{ background: '#F6F8FB' }}>
+        style={{ background: '#F5F5F4' }}>
         <Spinner cls="h-8 w-8" />
       </div>
     )
@@ -154,8 +154,8 @@ export default function AlumnoLayout({ children }: { children: React.ReactNode }
         onLogout={handleLogout}
         userName={nombre}
         userRoleLabel={`${grado} ${grupo}${nombreSalon ? ` · ${nombreSalon}` : ''}`}
-        accent="#0B2447"
-        pageBg="#F6F8FB">
+        accent="#1D1815"
+        pageBg="#F5F5F4">
         {children}
       </PortalShell>
     </Ctx.Provider>

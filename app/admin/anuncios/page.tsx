@@ -95,7 +95,7 @@ export default function AdminAnunciosPage() {
         </div>
         <button onClick={() => { setAbierto(v => !v); setError('') }}
           className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-black text-white"
-          style={{ background: 'linear-gradient(135deg,#0d9488,#06b6d4)' }}>
+          style={{ background: 'linear-gradient(135deg,#944C0D,#CD670D)' }}>
           <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth="2.5">
             <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
           </svg>
@@ -105,7 +105,7 @@ export default function AdminAnunciosPage() {
 
       {abierto && (
         <form onSubmit={publicar} className="rounded-2xl p-5 space-y-4"
-          style={{ background: 'white', border: '1.5px solid #99f6e4', boxShadow: '0 4px 24px rgba(13,148,136,.08)' }}>
+          style={{ background: 'white', border: '1.5px solid #F6C499', boxShadow: '0 4px 24px rgba(148,76,13,.08)' }}>
           <p className="text-sm font-black text-slate-700">Nuevo comunicado general</p>
 
           <div>
@@ -113,7 +113,7 @@ export default function AdminAnunciosPage() {
             <input value={titulo} onChange={e => setTitulo(e.target.value)}
               placeholder="Ej: Suspensión de clases el viernes"
               className="w-full px-4 py-2.5 rounded-xl text-sm outline-none"
-              style={{ background: '#f0fdfa', border: '1.5px solid #99f6e4' }} />
+              style={{ background: '#FDF6F0', border: '1.5px solid #F6C499' }} />
           </div>
 
           <div>
@@ -121,7 +121,7 @@ export default function AdminAnunciosPage() {
             <textarea value={contenido} onChange={e => setContenido(e.target.value)}
               rows={4} placeholder="Escribe el comunicado…"
               className="w-full px-4 py-2.5 rounded-xl text-sm outline-none resize-none"
-              style={{ background: '#f0fdfa', border: '1.5px solid #99f6e4' }} />
+              style={{ background: '#FDF6F0', border: '1.5px solid #F6C499' }} />
           </div>
 
           {error && <p className="text-xs text-red-500 font-semibold">{error}</p>}
@@ -133,7 +133,7 @@ export default function AdminAnunciosPage() {
             </button>
             <button type="submit" disabled={guardando}
               className="px-5 py-2 rounded-xl text-xs font-black text-white"
-              style={{ background: 'linear-gradient(135deg,#0d9488,#06b6d4)' }}>
+              style={{ background: 'linear-gradient(135deg,#944C0D,#CD670D)' }}>
               {guardando ? 'Publicando…' : 'Publicar'}
             </button>
           </div>
@@ -142,20 +142,20 @@ export default function AdminAnunciosPage() {
 
       {anuncios.length === 0 ? (
         <div className="rounded-2xl flex flex-col items-center justify-center py-20 gap-4"
-          style={{ background: 'white', border: '1.5px solid #ccfbf1' }}>
+          style={{ background: 'white', border: '1.5px solid #FBE2CC' }}>
           <p className="text-sm font-bold text-slate-400">Sin comunicados publicados</p>
         </div>
       ) : (
         <div className="space-y-3">
           {anuncios.map(a => (
             <div key={a.id} className="rounded-2xl overflow-hidden"
-              style={{ background: 'white', border: '1.5px solid #ccfbf1' }}>
-              <div className="h-1" style={{ background: 'linear-gradient(90deg,#0d9488,#06b6d4)' }} />
+              style={{ background: 'white', border: '1.5px solid #FBE2CC' }}>
+              <div className="h-1" style={{ background: 'linear-gradient(90deg,#944C0D,#CD670D)' }} />
               <div className="p-4 flex items-start justify-between gap-3">
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">
                     <span className="text-[10px] font-black px-2 py-0.5 rounded-full"
-                      style={{ background: '#f0fdfa', color: '#0d9488' }}>
+                      style={{ background: '#FDF6F0', color: '#944C0D' }}>
                       Comunicado general
                     </span>
                     <span className="text-[10px] text-slate-400">{timeAgo(a.created_at)}</span>
@@ -166,7 +166,7 @@ export default function AdminAnunciosPage() {
                 <button onClick={() => eliminar(a.id)}
                   className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-all hover:bg-red-50 text-slate-400"
                   onMouseEnter={e => (e.currentTarget.style.color = '#ef4444')}
-                  onMouseLeave={e => (e.currentTarget.style.color = '#94a3b8')}>
+                  onMouseLeave={e => (e.currentTarget.style.color = '#8B837E')}>
                   <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                     <polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6m4-6v6"/>
                   </svg>

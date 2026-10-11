@@ -162,7 +162,7 @@ export default function AdminPage() {
   const [cursos, setCursos]                   = useState<Curso[]>([])
   const [mostrarCursoForm, setMostrarCursoForm] = useState(false)
   const [cursoLoading, setCursoLoading]       = useState(false)
-  const [cursoForm, setCursoForm]             = useState({ nombre: '', color: '#143875' })
+  const [cursoForm, setCursoForm]             = useState({ nombre: '', color: '#2A2420' })
   const [nivelCursoTab, setNivelCursoTab]     = useState<'Cocina'|'Pastelería'>('Cocina')
 
   const [asignaciones, setAsignaciones]         = useState<Asignacion[]>([])
@@ -550,7 +550,7 @@ export default function AdminPage() {
         : null
       return {
         nombre:      a.cursos?.nombre ?? 'Curso',
-        color:       a.cursos?.color  ?? '#0d9488',
+        color:       a.cursos?.color  ?? '#944C0D',
         promedio,
         calificadas: calificadas.length,
         total:       tareasPorAsig.get(a.id) ?? 0,
@@ -601,7 +601,7 @@ export default function AdminPage() {
       .map(a => ({
         id:      a.id,
         nombre:  a.cursos?.nombre ?? 'Curso',
-        color:   a.cursos?.color  ?? '#0d9488',
+        color:   a.cursos?.color  ?? '#944C0D',
         docente: a.docentes?.nombre ?? 'Sin docente',
       }))
       .sort((a, b) => a.nombre.localeCompare(b.nombre))
@@ -1092,7 +1092,7 @@ export default function AdminPage() {
         const promedio = notas.length > 0
           ? Math.round(notas.reduce((s, n) => s + n, 0) / notas.length * 10) / 10
           : null
-        return { asigId: a.id, nombre: a.cursos?.nombre ?? 'Curso', color: a.cursos?.color ?? '#143875', promedio }
+        return { asigId: a.id, nombre: a.cursos?.nombre ?? 'Curso', color: a.cursos?.color ?? '#2A2420', promedio }
       })
       return { id: al.id, nombre: al.nombre, apellidos: al.apellidos, usuario: al.usuario, cursos: cursoData }
     })
@@ -1299,7 +1299,7 @@ export default function AdminPage() {
     const GOLD2 = '#FDF3DC'
     const WHITE = '#FFFFFF'
     const DARK  = '#1C1C1C'
-    const GRAY  = '#64748B'
+    const GRAY  = '#6B625D'
 
     // ── Dimensiones ──────────────────────────────────────────────────────────
     const COL_NAME  = 175
@@ -1408,7 +1408,7 @@ export default function AdminPage() {
     })
 
     // Borde exterior tabla
-    ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1
+    ctx.strokeStyle = '#EBE8E5'; ctx.lineWidth = 1
     ctx.strokeRect(tX, tY, tW, TABLE_HDR + asistAlumnos.length * ROW_H)
 
     // Separador columna nombre
@@ -1419,19 +1419,19 @@ export default function AdminPage() {
     const ST_CELL: Record<string, { bg: string; color: string }> = {
       P: { bg: '#f0fdf4', color: '#16a34a' },
       T: { bg: '#fffbeb', color: '#d97706' },
-      J: { bg: '#eff6ff', color: '#2563eb' },
+      J: { bg: '#FDEDF0', color: '#D9042F' },
       F: { bg: '#fff1f2', color: '#ef4444' },
     }
 
     asistAlumnos.forEach((al, rowIdx) => {
       const ry      = tY + TABLE_HDR + rowIdx * ROW_H
       const isEven  = rowIdx % 2 === 0
-      const rowBg   = isEven ? WHITE : '#f8fafc'
+      const rowBg   = isEven ? WHITE : '#F7F7F6'
 
       ctx.fillStyle = rowBg; ctx.fillRect(tX, ry, tW, ROW_H)
 
       if (rowIdx > 0) {
-        ctx.strokeStyle = '#f1f5f9'; ctx.lineWidth = 0.5
+        ctx.strokeStyle = '#EDEEEE'; ctx.lineWidth = 0.5
         ctx.beginPath(); ctx.moveTo(tX, ry); ctx.lineTo(tX + tW, ry); ctx.stroke()
       }
 
@@ -1450,7 +1450,7 @@ export default function AdminPage() {
         const sinClase = !esFuturo && !fechasConReg.has(fISO)
         const estado  = mapaM[al.id]?.[fISO] ?? (esFuturo || sinClase ? null : 'F')
         const cellX   = dayXs[i]
-        const st      = estado ? ST_CELL[estado] : { bg: rowBg, color: '#cbd5e1' }
+        const st      = estado ? ST_CELL[estado] : { bg: rowBg, color: '#C9C5C1' }
 
         ctx.fillStyle = st.bg; ctx.fillRect(cellX, ry, COL_DAY, ROW_H)
         if (estado) {
@@ -1467,7 +1467,7 @@ export default function AdminPage() {
     const legendItems = [
       { k:'P', label:'Presente',    bg:'#f0fdf4', color:'#16a34a', border:'#86efac' },
       { k:'T', label:'Tardanza',    bg:'#fffbeb', color:'#d97706', border:'#fde68a' },
-      { k:'J', label:'Justificado', bg:'#eff6ff', color:'#2563eb', border:'#bfdbfe' },
+      { k:'J', label:'Justificado', bg:'#FDEDF0', color:'#D9042F', border:'#F6C3CD' },
       { k:'F', label:'Falta',       bg:'#fff1f2', color:'#ef4444', border:'#fecdd3' },
     ]
     let legX = tX + 8
@@ -2311,7 +2311,7 @@ export default function AdminPage() {
       const WINE  = '#6B1A1A'; const WINE2 = '#991B1B'
       const GOLD  = '#C9A84C'; const GOLD2 = '#FDF3DC'
       const WHITE = '#FFFFFF'; const DARK  = '#1C1C1C'
-      const GRAY  = '#64748B'
+      const GRAY  = '#6B625D'
 
       const W      = 980
       const MARGIN = 20
@@ -2411,7 +2411,7 @@ export default function AdminPage() {
         const ry = tblY + HDR_H + idx * ROW_H
         ctx.fillStyle = idx % 2 === 0 ? WHITE : GOLD2
         ctx.fillRect(MARGIN, ry, TW, ROW_H)
-        ctx.strokeStyle = '#E5E7EB'; ctx.lineWidth = 0.5
+        ctx.strokeStyle = '#EBE8E5'; ctx.lineWidth = 0.5
         ctx.beginPath(); ctx.moveTo(MARGIN, ry + ROW_H); ctx.lineTo(MARGIN + TW, ry + ROW_H); ctx.stroke()
 
         COLS.forEach((c, ci) => {
@@ -2431,13 +2431,13 @@ export default function AdminPage() {
         let vx = MARGIN
         COLS.slice(0, -1).forEach(c => {
           vx += c.w
-          ctx.strokeStyle = '#E5E7EB'; ctx.lineWidth = 0.4
+          ctx.strokeStyle = '#EBE8E5'; ctx.lineWidth = 0.4
           ctx.beginPath(); ctx.moveTo(vx, ry); ctx.lineTo(vx, ry + ROW_H); ctx.stroke()
         })
       })
 
       const tblBottom = tblY + HDR_H + lista.length * ROW_H
-      ctx.strokeStyle = '#E5E7EB'; ctx.lineWidth = 1
+      ctx.strokeStyle = '#EBE8E5'; ctx.lineWidth = 1
       ctx.strokeRect(MARGIN, tblY, TW, HDR_H + lista.length * ROW_H)
 
       ctx.fillStyle = GOLD2
@@ -3094,7 +3094,7 @@ export default function AdminPage() {
     await supabase.from('cursos').insert({ nombre: cursoForm.nombre.trim(), color: cursoForm.color })
     setCursoLoading(false)
     setMostrarCursoForm(false)
-    setCursoForm({ nombre: '', color: '#143875' })
+    setCursoForm({ nombre: '', color: '#2A2420' })
     await cargarCursos()
   }
   async function handleEliminarCurso(id: string) {
@@ -3723,7 +3723,7 @@ export default function AdminPage() {
     asigList: Asignacion[],
     cicloNom: string,
   ): Promise<HTMLCanvasElement> {
-    const WINE = '#6B1A1A', GOLD = '#C9A84C', WHITE = '#FFFFFF', GRAY = '#64748B'
+    const WINE = '#6B1A1A', GOLD = '#C9A84C', WHITE = '#FFFFFF', GRAY = '#6B625D'
     const hi5 = (s: string) => (s ?? '').slice(0, 5)
     const periodosEfectivos: Periodo[] = periodosH
 
@@ -3817,8 +3817,8 @@ export default function AdminPage() {
 
     // ── Filas ────────────────────────────────────────────────────────────────
     function getColor(mat: string | null): string {
-      if (!mat) return '#143875'
-      return asigList.find(a => a.cursos?.nombre === mat)?.cursos?.color ?? '#143875'
+      if (!mat) return '#2A2420'
+      return asigList.find(a => a.cursos?.nombre === mat)?.cursos?.color ?? '#2A2420'
     }
 
     // Celdas cubiertas por un span anterior (hora_inicio normalizada)
@@ -3936,7 +3936,7 @@ export default function AdminPage() {
         ctx.font = 'bold 10px system-ui,sans-serif'; ctx.fillStyle = col
         ctx.fillText(mat, cx, startY)
         if (s) {
-          ctx.font = '500 8px system-ui,sans-serif'; ctx.fillStyle = '#64748B'
+          ctx.font = '500 8px system-ui,sans-serif'; ctx.fillStyle = '#6B625D'
           ctx.fillText(s, cx, startY + gap + lh2)
         }
       })
@@ -4653,7 +4653,7 @@ export default function AdminPage() {
     <div className="min-h-screen flex items-center justify-center"
       style={{ background: '#f7f5f1' }}>
       <div className="flex flex-col items-center gap-4 p-8 rounded-3xl bg-white"
-        style={{ boxShadow: '0 16px 48px rgba(11,36,71,.08)', border: '1.5px solid #E4E8EF' }}>
+        style={{ boxShadow: '0 16px 48px rgba(29,24,21,.08)', border: '1.5px solid #DFE0E0' }}>
         <Spinner cls="h-8 w-8 text-indigo-900" />
         <p className="text-slate-400 text-sm font-medium">Cargando panel...</p>
       </div>
@@ -4664,12 +4664,12 @@ export default function AdminPage() {
 
   const card = {
     background: 'white',
-    border: '1.5px solid #E4E8EF',
-    boxShadow: '0 4px 20px rgba(11,36,71,.05)',
+    border: '1.5px solid #DFE0E0',
+    boxShadow: '0 4px 20px rgba(29,24,21,.05)',
   }
 
   const accentBar = (
-    <div className="h-1.5" style={{ background: 'linear-gradient(90deg, #0B2447, #1E3A8A, #1E40AF)' }} />
+    <div className="h-1.5" style={{ background: 'linear-gradient(90deg, #B00326, #B00326, #D9042F)' }} />
   )
 
   const pendientes = justificaciones.filter(j => j.estado === 'pendiente').length
@@ -4911,8 +4911,8 @@ export default function AdminPage() {
         userRoleLabel="Administrador"
         cards={groupCards}
         onLogout={handleLogout}
-        accent="#0B2447"
-        accent2="#1E40AF"
+        accent="#1D1815"
+        accent2="#D9042F"
       />
     )
   }
@@ -4925,7 +4925,7 @@ export default function AdminPage() {
       {/* Decorative blobs — ocultos en móvil: blur(90-100px) fijo pesa al scrollear */}
       <div className="hidden sm:block fixed inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full opacity-15 translate-x-1/3 -translate-y-1/3"
-          style={{ background: 'radial-gradient(circle, #f9c8ce, #E2E8F0)', filter: 'blur(90px)' }} />
+          style={{ background: 'radial-gradient(circle, #f9c8ce, #DCDEDE)', filter: 'blur(90px)' }} />
         <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full opacity-10 -translate-x-1/4 translate-y-1/4"
           style={{ background: 'radial-gradient(circle, #fde68a, #fef3c7)', filter: 'blur(80px)' }} />
         <div className="absolute top-1/2 left-1/2 w-64 h-64 rounded-full opacity-8 -translate-x-1/2 -translate-y-1/2"
@@ -4934,14 +4934,14 @@ export default function AdminPage() {
 
       {/* Header con botón Inicio + título de sección + Salir */}
       <header className="sticky top-0 z-50"
-        style={{ background: 'white', borderBottom: '1px solid #E4E8EF', boxShadow: '0 1px 12px rgba(11,36,71,.06)', borderTop: '3px solid #0B2447' }}>
+        style={{ background: 'white', borderBottom: '1px solid #DFE0E0', boxShadow: '0 1px 12px rgba(29,24,21,.06)', borderTop: '3px solid #1D1815' }}>
         <div className="flex items-center justify-between px-4 py-3 w-full gap-3">
           <div className="flex items-center gap-3 min-w-0">
             <button onClick={irAlMenu}
               className="flex items-center gap-2 text-xs font-black px-3 py-2 rounded-xl transition-all shrink-0"
-              style={{ background: '#F1F5F9', border: '1.5px solid #fecdd3', color: '#0B2447', letterSpacing: '.04em' }}
-              onMouseEnter={e => { e.currentTarget.style.background = '#E2E8F0' }}
-              onMouseLeave={e => { e.currentTarget.style.background = '#F1F5F9' }}>
+              style={{ background: '#EDEEEE', border: '1.5px solid #fecdd3', color: '#1D1815', letterSpacing: '.04em' }}
+              onMouseEnter={e => { e.currentTarget.style.background = '#DCDEDE' }}
+              onMouseLeave={e => { e.currentTarget.style.background = '#EDEEEE' }}>
               <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
               </svg>
@@ -4956,7 +4956,7 @@ export default function AdminPage() {
                       {currentItem?.label ?? 'Panel de Administración'}
                     </p>
                     <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-0.5 truncate">
-                      {currentItem?.group ?? 'Admin'} · Hola, <span style={{ color: '#0B2447' }}>{adminNombre}</span>
+                      {currentItem?.group ?? 'Admin'} · Hola, <span style={{ color: '#1D1815' }}>{adminNombre}</span>
                     </p>
                   </>
                 )
@@ -4967,16 +4967,16 @@ export default function AdminPage() {
             <button onClick={() => switchTab('marcar-asistencia')}
               title="Marcar mi asistencia"
               className="flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-lg transition-all"
-              style={{ background: '#EFF3FA', border: '1.5px solid #b6c5e3', color: '#0B2447' }}>
+              style={{ background: '#F3F1EF', border: '1.5px solid #D2CBC5', color: '#1D1815' }}>
               <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"/>
               </svg>
               <span className="whitespace-nowrap">Marcar asistencia</span>
             </button>
-            <CambiarPassword tone="light" accent="#0B2447" />
+            <CambiarPassword tone="light" accent="#1D1815" />
             <button onClick={handleLogout}
               className="text-xs font-bold px-3 py-1.5 rounded-lg transition-all"
-              style={{ background: '#F1F5F9', border: '1.5px solid #fecdd3', color: '#0B2447' }}>
+              style={{ background: '#EDEEEE', border: '1.5px solid #fecdd3', color: '#1D1815' }}>
               Salir
             </button>
           </div>
@@ -4992,14 +4992,14 @@ export default function AdminPage() {
           if (!group) return null
           return (
             <aside className="hidden lg:flex flex-col w-60 shrink-0 sticky top-16 self-start overflow-y-auto"
-              style={{ height: 'calc(100vh - 64px)', background: 'white', borderRight: '1px solid #E4E8EF', boxShadow: '2px 0 16px rgba(11,36,71,.04)' }}>
+              style={{ height: 'calc(100vh - 64px)', background: 'white', borderRight: '1px solid #DFE0E0', boxShadow: '2px 0 16px rgba(29,24,21,.04)' }}>
               <div className="px-5 pt-5 pb-3">
                 <p className="text-[9px] font-black uppercase tracking-widest text-slate-400 mb-1">Área</p>
-                <p className="text-base font-black" style={{ color: '#0B2447' }}>{group.titulo}</p>
+                <p className="text-base font-black" style={{ color: '#1D1815' }}>{group.titulo}</p>
                 <button onClick={irAlMenu}
                   className="mt-3 flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider transition-colors"
                   style={{ color: '#a8a29e' }}
-                  onMouseEnter={e => { e.currentTarget.style.color = '#0B2447' }}
+                  onMouseEnter={e => { e.currentTarget.style.color = '#1D1815' }}
                   onMouseLeave={e => { e.currentTarget.style.color = '#a8a29e' }}>
                   <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -5018,12 +5018,12 @@ export default function AdminPage() {
                       className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm text-left transition-all"
                       style={
                         t.soon
-                          ? { color: '#cbd5e1', cursor: 'default' }
+                          ? { color: '#C9C5C1', cursor: 'default' }
                           : isActive
-                          ? { background: 'linear-gradient(135deg,#0B2447,#1E3A8A)', color: 'white', boxShadow: '0 4px 14px rgba(11,36,71,.22)' }
+                          ? { background: 'linear-gradient(135deg,#B00326,#B00326)', color: 'white', boxShadow: '0 4px 14px rgba(29,24,21,.22)' }
                           : { color: '#57534e' }
                       }
-                      onMouseEnter={e => { if (!t.soon && !isActive) e.currentTarget.style.background = '#F8FAFC' }}
+                      onMouseEnter={e => { if (!t.soon && !isActive) e.currentTarget.style.background = '#F7F7F6' }}
                       onMouseLeave={e => { if (!t.soon && !isActive) e.currentTarget.style.background = 'transparent' }}>
                       <span style={{ color: t.soon ? '#d1c7c0' : isActive ? 'rgba(255,255,255,.85)' : '#a8a29e' }}>
                         {t.icon}
@@ -5036,7 +5036,7 @@ export default function AdminPage() {
                         </span>
                       ) : t.href ? (
                         <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"
-                          style={{ color: isActive ? 'rgba(255,255,255,.7)' : '#cbd5e1' }}>
+                          style={{ color: isActive ? 'rgba(255,255,255,.7)' : '#C9C5C1' }}>
                           <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                         </svg>
                       ) : t.count != null ? (
@@ -5045,7 +5045,7 @@ export default function AdminPage() {
                           {t.count}
                         </span>
                       ) : t.badge ? (
-                        <span className="w-2 h-2 rounded-full" style={{ background: '#1E40AF' }} />
+                        <span className="w-2 h-2 rounded-full" style={{ background: '#D9042F' }} />
                       ) : null}
                     </button>
                   )
@@ -5068,8 +5068,8 @@ export default function AdminPage() {
                   <button key={t.id} onClick={() => { if (t.href) router.push(t.href); else switchTab(t.id as Tab) }}
                     className="shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-xl font-bold text-xs whitespace-nowrap transition-all"
                     style={tab === t.id && !t.href
-                      ? { background: 'linear-gradient(135deg, #0B2447, #1E3A8A)', color: 'white', boxShadow: '0 4px 14px rgba(11,36,71,.28)' }
-                      : { background: 'white', border: '1.5px solid #E4E8EF', color: '#57534e' }}>
+                      ? { background: 'linear-gradient(135deg, #B00326, #B00326)', color: 'white', boxShadow: '0 4px 14px rgba(29,24,21,.28)' }
+                      : { background: 'white', border: '1.5px solid #DFE0E0', color: '#57534e' }}>
                     <span style={{ color: tab === t.id && !t.href ? 'rgba(255,255,255,.8)' : '#a8a29e' }}>{t.icon}</span>
                     <span>{t.label}</span>
                     {t.count != null && (
@@ -5104,10 +5104,10 @@ export default function AdminPage() {
                   return (
                     <button key={u.id} onClick={() => { if (!u.super) abrirPermisos(u.id) }} disabled={u.super}
                       className="w-full text-left rounded-xl px-3 py-2.5 transition-colors"
-                      style={{ background: sel ? '#eef2ff' : u.super ? '#f8fafc' : 'white', border: `1px solid ${sel ? '#c7d2fe' : '#E4E8EF'}`, cursor: u.super ? 'default' : 'pointer', opacity: u.super ? .65 : 1 }}>
+                      style={{ background: sel ? '#F8F6F5' : u.super ? '#F7F7F6' : 'white', border: `1px solid ${sel ? '#E6E2DF' : '#DFE0E0'}`, cursor: u.super ? 'default' : 'pointer', opacity: u.super ? .65 : 1 }}>
                       <p className="text-[13px] font-bold text-slate-800 truncate">{u.nombre}</p>
                       <p className="text-[11px] text-slate-400">{u.tipo}{u.usuario ? ` · ${u.usuario}` : ''}</p>
-                      <p className="text-[11px] font-semibold mt-0.5" style={{ color: u.super ? '#7c3aed' : '#0d9488' }}>{resumen}</p>
+                      <p className="text-[11px] font-semibold mt-0.5" style={{ color: u.super ? '#7c3aed' : '#944C0D' }}>{resumen}</p>
                     </button>
                   )
                 })}
@@ -5126,8 +5126,8 @@ export default function AdminPage() {
                           <p className="text-[11px] text-slate-400">{u?.tipo}</p>
                         </div>
                         <div className="flex items-center gap-2">
-                          <button onClick={() => setPermEdit(new Set(MODULOS_PLANOS.map(m => m.id)))} className="text-[11px] font-bold px-3 py-1.5 rounded-lg" style={{ background: '#f1f5f9', color: '#334155' }}>Marcar todos</button>
-                          <button onClick={() => setPermEdit(new Set())} className="text-[11px] font-bold px-3 py-1.5 rounded-lg" style={{ background: '#f1f5f9', color: '#334155' }}>Ninguno</button>
+                          <button onClick={() => setPermEdit(new Set(MODULOS_PLANOS.map(m => m.id)))} className="text-[11px] font-bold px-3 py-1.5 rounded-lg" style={{ background: '#EDEEEE', color: '#3D3632' }}>Marcar todos</button>
+                          <button onClick={() => setPermEdit(new Set())} className="text-[11px] font-bold px-3 py-1.5 rounded-lg" style={{ background: '#EDEEEE', color: '#3D3632' }}>Ninguno</button>
                         </div>
                       </div>
                       {navGroups.map(g => (
@@ -5137,7 +5137,7 @@ export default function AdminPage() {
                             {g.items.map(it => {
                               const id = String(it.id); const on = permEdit.has(id)
                               return (
-                                <label key={id} className="flex items-center gap-2.5 rounded-xl px-3 py-2 cursor-pointer" style={{ background: on ? '#ecfdf5' : '#f8fafc', border: `1px solid ${on ? '#a7f3d0' : '#E4E8EF'}` }}>
+                                <label key={id} className="flex items-center gap-2.5 rounded-xl px-3 py-2 cursor-pointer" style={{ background: on ? '#ecfdf5' : '#F7F7F6', border: `1px solid ${on ? '#a7f3d0' : '#DFE0E0'}` }}>
                                   <input type="checkbox" checked={on} onChange={() => togglePermModulo(id)} className="accent-teal-600" />
                                   <span className="text-[12.5px] font-semibold text-slate-700">{it.label}</span>
                                 </label>
@@ -5148,7 +5148,7 @@ export default function AdminPage() {
                       ))}
                       <div className="flex items-center gap-3 pt-2">
                         <button onClick={guardarPermisos} disabled={permGuardando}
-                          className="px-5 py-2.5 rounded-xl text-[13px] font-bold text-white" style={{ background: '#0d9488', opacity: permGuardando ? .6 : 1 }}>
+                          className="px-5 py-2.5 rounded-xl text-[13px] font-bold text-white" style={{ background: '#944C0D', opacity: permGuardando ? .6 : 1 }}>
                           {permGuardando ? 'Guardando…' : 'Guardar permisos'}
                         </button>
                         {permOk && <span className="text-[12px] font-bold text-emerald-600">✓ Guardado</span>}
@@ -5177,7 +5177,7 @@ export default function AdminPage() {
                   </div>
                   <button onClick={cargarReporte} disabled={loadingReporte}
                     className="flex items-center gap-2 text-sm font-bold px-4 py-2.5 rounded-xl transition-all disabled:opacity-50"
-                    style={{ background: '#F1F5F9', border: '1.5px solid #fecdd3', color: '#0B2447' }}>
+                    style={{ background: '#EDEEEE', border: '1.5px solid #fecdd3', color: '#1D1815' }}>
                     {loadingReporte ? <Spinner cls="h-4 w-4 text-indigo-900"/> : (
                       <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
@@ -5204,7 +5204,7 @@ export default function AdminPage() {
                   </div>
                   <button onClick={descargarReporteExcel} disabled={descargandoExcel}
                     className="flex items-center gap-2 text-sm font-bold px-4 py-2.5 rounded-xl transition-all disabled:opacity-50"
-                    style={{ background: 'linear-gradient(135deg, #0B2447 0%, #1E3A8A 100%)', color: 'white', boxShadow: '0 4px 14px rgba(11,36,71,.3)' }}>
+                    style={{ background: 'linear-gradient(135deg, #B00326 0%, #B00326 100%)', color: 'white', boxShadow: '0 4px 14px rgba(29,24,21,.3)' }}>
                     {descargandoExcel ? <Spinner cls="h-4 w-4 text-white"/> : (
                       <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
@@ -5221,7 +5221,7 @@ export default function AdminPage() {
                 {/* Descarga Formato Oficial MINEDU */}
                 <div className="flex flex-col gap-3">
                   {/* Subir plantilla */}
-                  <div className="flex items-center gap-3 p-3 rounded-xl" style={{ background: '#fafafa', border: '1.5px dashed #e2e8f0' }}>
+                  <div className="flex items-center gap-3 p-3 rounded-xl" style={{ background: '#fafafa', border: '1.5px dashed #DCDEDE' }}>
                     <div className="flex-1 min-w-0">
                       <p className="text-xs font-bold text-slate-600">Plantilla Excel</p>
                       {plantillaNombre ? (
@@ -5237,7 +5237,7 @@ export default function AdminPage() {
                       onChange={e => { const f = e.target.files?.[0]; if (f) subirPlantillaFormato(f); e.target.value = '' }} />
                     <button onClick={() => plantillaRef.current?.click()} disabled={subiendoPlantilla}
                       className="flex items-center gap-1.5 text-xs font-bold px-3 py-2 rounded-lg transition-all disabled:opacity-50 shrink-0"
-                      style={{ background: '#f1f5f9', border: '1.5px solid #e2e8f0', color: '#475569' }}>
+                      style={{ background: '#EDEEEE', border: '1.5px solid #DCDEDE', color: '#5C5450' }}>
                       {subiendoPlantilla ? <Spinner cls="h-3.5 w-3.5 text-slate-500"/> : (
                         <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
@@ -5260,7 +5260,7 @@ export default function AdminPage() {
                     </div>
                     <button onClick={descargarFormatoOficial} disabled={descargandoFormatoOficial}
                       className="flex items-center gap-2 text-sm font-bold px-4 py-2.5 rounded-xl transition-all disabled:opacity-50"
-                      style={{ background: plantillaNombre ? 'linear-gradient(135deg,#0B2447,#6d28d9)' : 'linear-gradient(135deg,#dc2626,#b91c1c)', color:'white', boxShadow: plantillaNombre ? '0 4px 14px rgba(124,58,237,.35)' : '0 4px 14px rgba(220,38,38,.35)' }}>
+                      style={{ background: plantillaNombre ? 'linear-gradient(135deg,#1D1815,#6d28d9)' : 'linear-gradient(135deg,#dc2626,#b91c1c)', color:'white', boxShadow: plantillaNombre ? '0 4px 14px rgba(124,58,237,.35)' : '0 4px 14px rgba(220,38,38,.35)' }}>
                       {descargandoFormatoOficial ? <Spinner cls="h-4 w-4 text-white"/> : (
                         <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
@@ -5280,14 +5280,14 @@ export default function AdminPage() {
 
             <div className="grid grid-cols-2 gap-3">
               <div className="rounded-2xl p-5 text-center overflow-hidden relative" style={card}>
-                <div className="absolute inset-x-0 top-0 h-1" style={{ background: 'linear-gradient(90deg, #0B2447, #1E3A8A)' }} />
+                <div className="absolute inset-x-0 top-0 h-1" style={{ background: 'linear-gradient(90deg, #B00326, #B00326)' }} />
                 <p className="text-4xl font-black text-indigo-900">
                   {new Set(asistencias.map(a => a.docentes?.email ?? '')).size}
                 </p>
                 <p className="text-slate-400 text-xs mt-1 font-semibold">Docentes presentes</p>
               </div>
               <div className="rounded-2xl p-5 text-center overflow-hidden relative" style={card}>
-                <div className="absolute inset-x-0 top-0 h-1" style={{ background: 'linear-gradient(90deg, #06b6d4, #3b82f6)' }} />
+                <div className="absolute inset-x-0 top-0 h-1" style={{ background: 'linear-gradient(90deg, #CD670D, #E8173F)' }} />
                 <p className="text-slate-400 text-xs mb-1.5 font-semibold">Fecha</p>
                 <p className="text-slate-800 font-black text-sm leading-snug">{formatFechaLarga(fechaFiltro)}</p>
               </div>
@@ -5299,7 +5299,7 @@ export default function AdminPage() {
                 const totalDocentes = new Set(asistencias.map(a => a.docentes?.email ?? '')).size
                 return (
                   <div className="px-5 py-3 flex items-center justify-between bg-slate-50/60"
-                    style={{ borderBottom: '1px solid #E4E8EF' }}>
+                    style={{ borderBottom: '1px solid #DFE0E0' }}>
                     <span className="text-slate-400 text-xs font-bold uppercase tracking-widest">Registro de asistencias</span>
                     {asistencias.length > 0 && (
                       <span className="text-xs font-bold px-2.5 py-1 rounded-full"
@@ -5319,7 +5319,7 @@ export default function AdminPage() {
               ) : asistencias.length === 0 ? (
                 <div className="flex flex-col items-center justify-center py-14 gap-3">
                   <div className="w-12 h-12 rounded-2xl flex items-center justify-center"
-                    style={{ background: '#F1F5F9', border: '1.5px solid #fecdd3' }}>
+                    style={{ background: '#EDEEEE', border: '1.5px solid #fecdd3' }}>
                     <svg className="text-indigo-300 w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                     </svg>
@@ -5365,19 +5365,19 @@ export default function AdminPage() {
                         return next
                       })
                       return (
-                        <div key={g.email} style={{ borderBottom: i < lista.length - 1 ? '1px solid #f1f5f9' : 'none' }}>
+                        <div key={g.email} style={{ borderBottom: i < lista.length - 1 ? '1px solid #EDEEEE' : 'none' }}>
                           {/* Fila principal */}
                           <div className="flex items-center gap-3 px-4 py-3 hover:bg-indigo-50/30 transition-colors">
                             <span className="text-slate-300 text-xs font-mono w-5 text-right shrink-0">{i+1}</span>
                             {/* Check / Tardanza icono */}
                             <div className="w-6 h-6 rounded-full flex items-center justify-center shrink-0"
                               style={tardanzaJustificada
-                                ? { background: '#f0f9ff', border: '1.5px solid #bae6fd' }
+                                ? { background: '#FEF5EC', border: '1.5px solid #FBD3A8' }
                                 : esTardanza
                                   ? { background: '#fff7ed', border: '1.5px solid #fed7aa' }
                                   : { background: '#ecfdf5', border: '1.5px solid #a7f3d0' }}>
                               {tardanzaJustificada
-                                ? <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="#0284c7" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                ? <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="#D9731A" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
                                 : esTardanza
                                   ? <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="#ea580c" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                                   : <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="#059669" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
@@ -5390,7 +5390,7 @@ export default function AdminPage() {
                                 {minutosTarde !== null ? (
                                   tardanzaJustificada ? (
                                     <span className="inline-flex items-center gap-1 text-[10px] font-black px-2 py-0.5 rounded-full"
-                                      style={{ background: '#f0f9ff', border: '1.5px solid #bae6fd', color: '#0284c7' }}>
+                                      style={{ background: '#FEF5EC', border: '1.5px solid #FBD3A8', color: '#D9731A' }}>
                                       Tardanza justificada · {minutosTarde} min
                                     </span>
                                   ) : esTardanza ? (
@@ -5428,13 +5428,13 @@ export default function AdminPage() {
                                         value={nuevaHoraEntrada}
                                         onChange={e => setNuevaHoraEntrada(e.target.value)}
                                         className="text-[11px] rounded-md px-1.5 py-0.5 tabular-nums"
-                                        style={{ border: '1.5px solid #dbe4f0' }}
+                                        style={{ border: '1.5px solid #E9E5E2' }}
                                       />
                                       <button
                                         onClick={() => guardarHoraEntrada(g.docenteId!)}
                                         disabled={guardandoHoraEntrada}
                                         className="text-[10px] font-bold px-2 py-0.5 rounded-md disabled:opacity-50"
-                                        style={{ background: '#0B2447', color: '#fff' }}>
+                                        style={{ background: '#1D1815', color: '#fff' }}>
                                         Guardar
                                       </button>
                                       <button
@@ -5454,7 +5454,7 @@ export default function AdminPage() {
                                     <button
                                       onClick={() => { setEditHoraEntrada(g.docenteId!); setNuevaHoraEntrada('') }}
                                       className="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full"
-                                      style={{ background: '#eef2f8', border: '1.5px solid #dbe4f0', color: '#0B2447' }}>
+                                      style={{ background: '#F5F3F1', border: '1.5px solid #E9E5E2', color: '#1D1815' }}>
                                       <svg className="w-2.5 h-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
                                       hora de entrada
                                     </button>
@@ -5475,11 +5475,11 @@ export default function AdminPage() {
                             <button onClick={toggleDetalle}
                               className="shrink-0 flex items-center gap-1 text-[10px] font-bold px-2.5 py-1.5 rounded-lg transition-all"
                               style={abierto
-                                ? { background: '#F1F5F9', border: '1.5px solid #fecdd3', color: '#0B2447' }
-                                : { background: '#faf8f7', border: '1.5px solid #e2e8f0', color: '#94a3b8' }}>
+                                ? { background: '#EDEEEE', border: '1.5px solid #fecdd3', color: '#1D1815' }
+                                : { background: '#faf8f7', border: '1.5px solid #DCDEDE', color: '#8B837E' }}>
                               {g.registros.length > 1 && (
                                 <span className="px-1 py-0.5 rounded text-[9px] font-black"
-                                  style={{ background: abierto ? '#fecdd3' : '#e2e8f0', color: abierto ? '#0B2447' : '#64748b' }}>
+                                  style={{ background: abierto ? '#fecdd3' : '#DCDEDE', color: abierto ? '#1D1815' : '#6B625D' }}>
                                   {g.registros.length}
                                 </span>
                               )}
@@ -5492,15 +5492,15 @@ export default function AdminPage() {
                           {/* Detalles expandibles */}
                           {abierto && (
                             <div className="px-4 pb-3 pt-0"
-                              style={{ background: '#faf8f7', borderTop: '1px solid #f1f5f9' }}>
+                              style={{ background: '#faf8f7', borderTop: '1px solid #EDEEEE' }}>
                               <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2 pt-2">Registros del día</p>
                               <div className="space-y-1.5">
                                 {g.registros.map((r, ri) => (
                                   <div key={r.id} className="flex items-center gap-3 px-3 py-2 rounded-xl"
-                                    style={{ background: 'white', border: '1px solid #E4E8EF' }}>
+                                    style={{ background: 'white', border: '1px solid #DFE0E0' }}>
                                     <span className="text-[10px] text-slate-300 font-mono w-4 text-right shrink-0">{ri+1}</span>
                                     <div className="w-1.5 h-1.5 rounded-full shrink-0"
-                                      style={{ background: ri === 0 ? '#10b981' : ri === g.registros.length - 1 ? '#0B2447' : '#94a3b8' }}/>
+                                      style={{ background: ri === 0 ? '#10b981' : ri === g.registros.length - 1 ? '#1D1815' : '#8B837E' }}/>
                                     <span className="text-xs font-bold text-slate-700 tabular-nums">{formatHora(r.fecha_hora)}</span>
                                     <span className="text-[10px] text-slate-400 font-medium flex-1">
                                       {ri === 0 ? 'Entrada' : ri === g.registros.length - 1 && g.registros.length > 1 ? 'Salida' : 'Registro'}
@@ -5510,7 +5510,7 @@ export default function AdminPage() {
                                       onClick={() => abrirAccionRegistro('editar', r)}
                                       title="Corregir hora"
                                       className="w-6 h-6 flex items-center justify-center rounded-lg transition-all hover:scale-110"
-                                      style={{ background: '#F1F5F9', border: '1.5px solid #fecdd3', color: '#0B2447' }}>
+                                      style={{ background: '#EDEEEE', border: '1.5px solid #fecdd3', color: '#1D1815' }}>
                                       <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M15.232 5.232l3.536 3.536M9 13l6.586-6.586a2 2 0 112.828 2.828L11.828 15.828A2 2 0 0110.414 16H8v-2.414a2 2 0 01.586-1.414z"/>
                                       </svg>
@@ -5545,7 +5545,7 @@ export default function AdminPage() {
             <div className="rounded-2xl overflow-hidden" style={card}>
               {accentBar}
               <div className="px-5 py-3 flex items-center justify-between bg-slate-50/60"
-                style={{ borderBottom: '1px solid #E4E8EF' }}>
+                style={{ borderBottom: '1px solid #DFE0E0' }}>
                 <span className="text-slate-400 text-xs font-bold uppercase tracking-widest">Justificaciones de docentes</span>
                 <div className="flex items-center gap-2">
                   {pendientes > 0 && (
@@ -5556,7 +5556,7 @@ export default function AdminPage() {
                   )}
                   <button onClick={cargarJustificaciones} disabled={loadingJustif}
                     className="flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-lg transition-all disabled:opacity-50"
-                    style={{ background: '#F1F5F9', border: '1.5px solid #fecdd3', color: '#0B2447' }}>
+                    style={{ background: '#EDEEEE', border: '1.5px solid #fecdd3', color: '#1D1815' }}>
                     {loadingJustif ? <Spinner cls="h-3.5 w-3.5 text-indigo-900"/> : (
                       <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
@@ -5598,11 +5598,11 @@ export default function AdminPage() {
                     })
                     return (
                       <div key={j.id}
-                        style={{ borderBottom: i < justificaciones.length - 1 ? '1px solid #f1f5f9' : 'none' }}>
+                        style={{ borderBottom: i < justificaciones.length - 1 ? '1px solid #EDEEEE' : 'none' }}>
                         <div className="px-4 py-4 flex items-start gap-3">
                           {/* Indicador estado */}
                           <div className="mt-0.5 w-2.5 h-2.5 rounded-full shrink-0"
-                            style={{ background: esJustificado ? '#0ea5e9' : esPendiente ? '#f59e0b' : '#10b981', marginTop: '5px' }}/>
+                            style={{ background: esJustificado ? '#F08A24' : esPendiente ? '#f59e0b' : '#10b981', marginTop: '5px' }}/>
                           <Avatar name={j.docentes?.nombre ?? '?'} color="indigo" />
                           <div className="flex-1 min-w-0">
                             <div className="flex items-start justify-between gap-2 flex-wrap">
@@ -5611,7 +5611,7 @@ export default function AdminPage() {
                                 <div className="flex items-center gap-2 mt-0.5 flex-wrap">
                                   <span className="text-[10px] font-bold px-2 py-0.5 rounded-full"
                                     style={esJustificado
-                                      ? { background: '#f0f9ff', border: '1px solid #bae6fd', color: '#0284c7' }
+                                      ? { background: '#FEF5EC', border: '1px solid #FBD3A8', color: '#D9731A' }
                                       : esPendiente
                                         ? { background: '#fffbeb', border: '1px solid #fde68a', color: '#d97706' }
                                         : { background: '#ecfdf5', border: '1px solid #a7f3d0', color: '#059669' }}>
@@ -5644,7 +5644,7 @@ export default function AdminPage() {
                                   <button
                                     onClick={() => abrirJustificar(j)}
                                     className="flex items-center gap-1.5 text-[10px] font-bold px-2.5 py-1.5 rounded-lg transition-all"
-                                    style={{ background: '#f0f9ff', border: '1.5px solid #bae6fd', color: '#0284c7' }}>
+                                    style={{ background: '#FEF5EC', border: '1.5px solid #FBD3A8', color: '#D9731A' }}>
                                     <svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                                       <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                     </svg>
@@ -5655,18 +5655,18 @@ export default function AdminPage() {
                             </div>
                             {/* Motivo */}
                             <div className="mt-2 px-3 py-2 rounded-xl"
-                              style={{ background: '#faf8f7', border: '1px solid #e2e8f0' }}>
+                              style={{ background: '#faf8f7', border: '1px solid #DCDEDE' }}>
                               <p className="text-slate-600 text-xs leading-relaxed">{j.motivo}</p>
                             </div>
                             {/* Respuesta del administrador (si fue justificada) */}
                             {esJustificado && (
                               <div className="mt-1.5 px-3 py-2 rounded-xl"
-                                style={{ background: '#f0f9ff', border: '1px solid #bae6fd' }}>
-                                <p className="text-[10px] font-bold uppercase tracking-widest" style={{ color: '#0284c7' }}>
+                                style={{ background: '#FEF5EC', border: '1px solid #FBD3A8' }}>
+                                <p className="text-[10px] font-bold uppercase tracking-widest" style={{ color: '#D9731A' }}>
                                   Justificado por el administrador
                                 </p>
                                 {j.respuesta && (
-                                  <p className="text-xs leading-relaxed mt-0.5" style={{ color: '#075985' }}>{j.respuesta}</p>
+                                  <p className="text-xs leading-relaxed mt-0.5" style={{ color: '#850720' }}>{j.respuesta}</p>
                                 )}
                               </div>
                             )}
@@ -5700,7 +5700,7 @@ export default function AdminPage() {
             {/* Configuración de la zona — solo super admin */}
             {esSuper && (
               <div className="rounded-2xl overflow-hidden" style={card}>
-                <div className="h-1.5" style={{ background: 'linear-gradient(90deg,#0B2447,#143875,#0EA5E9)' }} />
+                <div className="h-1.5" style={{ background: 'linear-gradient(90deg,#1D1815,#2A2420,#F08A24)' }} />
                 <div className="p-6">
                   <div className="flex items-center justify-between gap-3 flex-wrap">
                     <div>
@@ -5713,7 +5713,7 @@ export default function AdminPage() {
                     <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-black"
                       style={geoActivo
                         ? { background: '#ecfdf5', border: '1.5px solid #6ee7b7', color: '#047857' }
-                        : { background: '#F6F8FB', border: '1.5px solid #E4E8EF', color: '#64748b' }}>
+                        : { background: '#F5F5F4', border: '1.5px solid #DFE0E0', color: '#6B625D' }}>
                       <span className={`w-1.5 h-1.5 rounded-full ${geoActivo ? 'bg-emerald-500 animate-pulse' : 'bg-slate-400'}`} />
                       {geoActivo ? 'ACTIVA' : 'DESACTIVADA'}
                     </span>
@@ -5725,24 +5725,24 @@ export default function AdminPage() {
                       <input type="text" inputMode="decimal" value={geoLat} onChange={e => setGeoLat(e.target.value)}
                         placeholder="-15.482716"
                         className="w-32 px-2.5 py-2 rounded-xl text-sm font-semibold text-slate-700 outline-none"
-                        style={{ background: '#F6F8FB', border: '1.5px solid #E4E8EF' }} />
+                        style={{ background: '#F5F5F4', border: '1.5px solid #DFE0E0' }} />
                     </div>
                     <div>
                       <label className="block text-[10px] font-bold text-slate-500 mb-1">Longitud</label>
                       <input type="text" inputMode="decimal" value={geoLng} onChange={e => setGeoLng(e.target.value)}
                         placeholder="-70.135586"
                         className="w-32 px-2.5 py-2 rounded-xl text-sm font-semibold text-slate-700 outline-none"
-                        style={{ background: '#F6F8FB', border: '1.5px solid #E4E8EF' }} />
+                        style={{ background: '#F5F5F4', border: '1.5px solid #DFE0E0' }} />
                     </div>
                     <div>
                       <label className="block text-[10px] font-bold text-slate-500 mb-1">Radio (m)</label>
                       <input type="number" min={20} max={5000} value={geoRadio} onChange={e => setGeoRadio(e.target.value)}
                         className="w-20 px-2.5 py-2 rounded-xl text-sm font-semibold text-slate-700 outline-none"
-                        style={{ background: '#F6F8FB', border: '1.5px solid #E4E8EF' }} />
+                        style={{ background: '#F5F5F4', border: '1.5px solid #DFE0E0' }} />
                     </div>
                     <button onClick={capturarUbicacionColegio} disabled={geoCapturando}
                       className="px-3.5 py-2.5 rounded-xl text-xs font-black transition-all disabled:opacity-60"
-                      style={{ background: '#EFF3FA', border: '1.5px solid #b6c5e3', color: '#143875' }}>
+                      style={{ background: '#F3F1EF', border: '1.5px solid #D2CBC5', color: '#2A2420' }}>
                       {geoCapturando ? 'Obteniendo…' : '📍 Usar mi ubicación actual'}
                     </button>
                   </div>
@@ -5765,7 +5765,7 @@ export default function AdminPage() {
                     />
                   </div>
 
-                  <div className="mt-4 pt-4 flex items-center gap-3 flex-wrap border-t" style={{ borderColor: '#f1f5f9' }}>
+                  <div className="mt-4 pt-4 flex items-center gap-3 flex-wrap border-t" style={{ borderColor: '#EDEEEE' }}>
                     <label className="inline-flex items-center gap-2 cursor-pointer select-none">
                       <input type="checkbox" checked={geoActivo} onChange={e => setGeoActivo(e.target.checked)}
                         className="w-4 h-4 accent-emerald-600" />
@@ -5773,7 +5773,7 @@ export default function AdminPage() {
                     </label>
                     <button onClick={guardarGeo} disabled={geoGuardando}
                       className="px-4 py-2.5 rounded-xl text-sm font-black text-white transition-all disabled:opacity-60"
-                      style={{ background: 'linear-gradient(135deg,#0B2447,#143875)', boxShadow: '0 4px 14px rgba(11,36,71,.3)' }}>
+                      style={{ background: 'linear-gradient(135deg,#1D1815,#2A2420)', boxShadow: '0 4px 14px rgba(29,24,21,.3)' }}>
                       {geoGuardando ? 'Guardando…' : 'Guardar configuración'}
                     </button>
                   </div>
@@ -5788,7 +5788,7 @@ export default function AdminPage() {
 
             {!esSuper && (
               <div className="rounded-2xl overflow-hidden" style={card}>
-                <div className="h-1.5" style={{ background: 'linear-gradient(90deg,#0B2447,#143875,#0EA5E9)' }} />
+                <div className="h-1.5" style={{ background: 'linear-gradient(90deg,#1D1815,#2A2420,#F08A24)' }} />
                 <div className="p-6 text-center">
                   <p className="text-3xl mb-2">📍</p>
                   <p className="text-sm font-bold text-slate-700">El personal marca su asistencia por ubicación (GPS), desde su panel.</p>
@@ -5833,12 +5833,12 @@ export default function AdminPage() {
                     <input type="time" value={scanCfgHora}
                       onChange={e => setScanCfgHora(e.target.value)}
                       className="text-sm font-black text-slate-700 px-3 py-2 rounded-xl outline-none"
-                      style={{ background: 'white', border: '1.5px solid #E4E8EF' }} />
+                      style={{ background: 'white', border: '1.5px solid #DFE0E0' }} />
                   </div>
                   <button onClick={guardarScanCfg}
                     disabled={scanCfgGuardando || !scanCfgHora || scanCfgHora === scanCfg?.hora_entrada}
                     className="text-xs font-black px-4 py-2.5 rounded-xl transition-all disabled:opacity-40"
-                    style={{ background: '#0B2447', color: 'white' }}>
+                    style={{ background: '#1D1815', color: 'white' }}>
                     {scanCfgGuardando ? 'Guardando…' : 'Guardar'}
                   </button>
                   {scanCfgOk && (
@@ -5857,7 +5857,7 @@ export default function AdminPage() {
 
               {/* Escáner */}
               <div className="rounded-2xl overflow-hidden" style={card}>
-                <div className="h-1.5" style={{ background: 'linear-gradient(90deg, #0B2447, #1E3A8A, #1E40AF)' }} />
+                <div className="h-1.5" style={{ background: 'linear-gradient(90deg, #B00326, #B00326, #D9042F)' }} />
                 <div className="p-5 relative">
                   <QrScanner rawMode continuous onScan={handleScanAdmin} disabled={scanAdminProcesando} />
 
@@ -5870,8 +5870,8 @@ export default function AdminPage() {
                         animation: 'scanpop .22s ease-out',
                         background:
                           scanAdminResult.tipo === 'ok'        ? 'rgba(22,163,74,0.97)' :
-                          scanAdminResult.tipo === 'salida_ok' ? 'rgba(29,78,216,0.97)' :
-                          scanAdminResult.tipo === 'completo'  ? 'rgba(71,85,105,0.97)' :
+                          scanAdminResult.tipo === 'salida_ok' ? 'rgba(216,29,66,0.97)' :
+                          scanAdminResult.tipo === 'completo'  ? 'rgba(100,86,76,0.97)' :
                           'rgba(220,38,38,0.97)',
                       }}>
                       <div className="w-24 h-24 rounded-full flex items-center justify-center mb-4"
@@ -5909,7 +5909,7 @@ export default function AdminPage() {
               {scanAdminList.length > 0 && (
                 <div className="rounded-2xl overflow-hidden" style={card}>
                   <div className="px-5 py-3 flex items-center justify-between bg-slate-50/60"
-                    style={{ borderBottom: '1px solid #E4E8EF' }}>
+                    style={{ borderBottom: '1px solid #DFE0E0' }}>
                     <span className="text-slate-400 text-xs font-bold uppercase tracking-widest">Escaneados esta sesión</span>
                     <span className="text-xs font-bold text-indigo-900">{scanAdminList.length} estudiantes</span>
                   </div>
@@ -5919,8 +5919,8 @@ export default function AdminPage() {
                         <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 text-xs font-black"
                           style={
                             s.tipo === 'ok'        ? { background: '#f0fdf4', color: '#16a34a', border: '1.5px solid #86efac' } :
-                            s.tipo === 'salida_ok' ? { background: '#eff6ff', color: '#1d4ed8', border: '1.5px solid #bfdbfe' } :
-                            s.tipo === 'completo'  ? { background: '#f8fafc', color: '#64748b', border: '1.5px solid #e2e8f0' } :
+                            s.tipo === 'salida_ok' ? { background: '#FEF5EC', color: '#B85E12', border: '1.5px solid #FBD3A8' } :
+                            s.tipo === 'completo'  ? { background: '#F7F7F6', color: '#6B625D', border: '1.5px solid #DCDEDE' } :
                             { background: '#fef2f2', color: '#ef4444', border: '1.5px solid #fecaca' }
                           }>
                           {s.tipo === 'ok' ? '↑' : s.tipo === 'salida_ok' || s.tipo === 'completo' ? '↕' : '!'}
@@ -5935,7 +5935,7 @@ export default function AdminPage() {
                         </div>
                         {s.grado && (
                           <span className="text-[10px] font-bold px-2 py-0.5 rounded-full shrink-0"
-                            style={{ background: '#F1F5F9', color: '#0B2447' }}>
+                            style={{ background: '#EDEEEE', color: '#1D1815' }}>
                             {s.grado} {s.grupo}
                           </span>
                         )}
@@ -5977,8 +5977,8 @@ export default function AdminPage() {
                               onClick={() => { setAsistGrado(s.grado); setAsistGrupo(s.grupo) }}
                               className="px-3 py-1.5 rounded-lg text-xs font-black transition-all"
                               style={active
-                                ? { background: '#0B2447', color: 'white' }
-                                : { background: '#f1f5f9', color: '#64748b' }}>
+                                ? { background: '#1D1815', color: 'white' }
+                                : { background: '#EDEEEE', color: '#6B625D' }}>
                               {s.nombre ? `${s.grupo} — ${s.nombre}` : `Sección ${s.grupo}`}
                             </button>
                           )
@@ -5992,7 +5992,7 @@ export default function AdminPage() {
               <div className="flex items-center justify-between gap-3 rounded-2xl px-4 py-3" style={card}>
                 <button onClick={() => setSemanaInicio(prev => { const d = new Date(prev); d.setDate(d.getDate()-7); return d })}
                   className="w-8 h-8 rounded-lg flex items-center justify-center transition-all"
-                  style={{ background: '#f1f5f9', color: '#64748b' }}>
+                  style={{ background: '#EDEEEE', color: '#6B625D' }}>
                   <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7"/>
                   </svg>
@@ -6007,7 +6007,7 @@ export default function AdminPage() {
                 </div>
                 <button onClick={() => setSemanaInicio(prev => { const d = new Date(prev); d.setDate(d.getDate()+7); return d })}
                   className="w-8 h-8 rounded-lg flex items-center justify-center transition-all"
-                  style={{ background: '#f1f5f9', color: '#64748b' }}>
+                  style={{ background: '#EDEEEE', color: '#6B625D' }}>
                   <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/>
                   </svg>
@@ -6016,13 +6016,13 @@ export default function AdminPage() {
 
               {/* Reporte mensual */}
               <div className="flex items-center gap-3 rounded-2xl px-4 py-3 flex-wrap" style={card}>
-                <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="#0B2447" strokeWidth="2">
+                <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="#1D1815" strokeWidth="2">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
                 </svg>
                 <span className="text-xs font-black text-slate-600">Reporte mensual</span>
                 <input type="month" value={mesReporte} onChange={e => setMesReporte(e.target.value)}
                   className="text-xs font-bold px-3 py-1.5 rounded-lg outline-none"
-                  style={{ background: '#F1F5F9', color: '#0B2447', border: '1.5px solid #fecdd3' }} />
+                  style={{ background: '#EDEEEE', color: '#1D1815', border: '1.5px solid #fecdd3' }} />
                 <button
                   onClick={exportarReporteAsistExcel}
                   disabled={imprimiendoAsist || !asistAlumnos.length}
@@ -6044,7 +6044,7 @@ export default function AdminPage() {
                   onClick={generarReporteAsistMensual}
                   disabled={imprimiendoAsist || !asistAlumnos.length}
                   className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-black text-white transition-all disabled:opacity-50 hover:opacity-90"
-                  style={{ background: 'linear-gradient(135deg,#0B2447,#1E3A8A)', boxShadow: '0 3px 12px rgba(11,36,71,.25)' }}>
+                  style={{ background: 'linear-gradient(135deg,#B00326,#B00326)', boxShadow: '0 3px 12px rgba(29,24,21,.25)' }}>
                   {imprimiendoAsist ? (
                     <svg className="animate-spin" width="12" height="12" viewBox="0 0 24 24" fill="none">
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="white" strokeWidth="4"/>
@@ -6064,7 +6064,7 @@ export default function AdminPage() {
                 {[
                   { k:'P', label:'Presente',    bg:'#f0fdf4', color:'#16a34a', border:'#86efac' },
                   { k:'T', label:'Tardanza',    bg:'#fffbeb', color:'#d97706', border:'#fde68a' },
-                  { k:'J', label:'Justificado', bg:'#eff6ff', color:'#2563eb', border:'#bfdbfe' },
+                  { k:'J', label:'Justificado', bg:'#FDEDF0', color:'#D9042F', border:'#F6C3CD' },
                   { k:'F', label:'Falta',       bg:'#fff1f2', color:'#ef4444', border:'#fecdd3' },
                 ].map(e => (
                   <div key={e.k} className="flex items-center gap-1.5">
@@ -6097,17 +6097,17 @@ export default function AdminPage() {
                   const ESTADO_STYLE: Record<string, { bg: string; color: string; border: string }> = {
                     P: { bg:'#f0fdf4', color:'#16a34a', border:'#86efac' },
                     T: { bg:'#fffbeb', color:'#d97706', border:'#fde68a' },
-                    J: { bg:'#eff6ff', color:'#2563eb', border:'#bfdbfe' },
+                    J: { bg:'#FDEDF0', color:'#D9042F', border:'#F6C3CD' },
                     F: { bg:'#fff1f2', color:'#ef4444', border:'#fecdd3' },
                   }
-                  const ESTADO_FUTURO = { bg:'#f8fafc', color:'#cbd5e1', border:'#e2e8f0' }
+                  const ESTADO_FUTURO = { bg:'#F7F7F6', color:'#C9C5C1', border:'#DCDEDE' }
                   const todayISO = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Lima' })
                   const fechasConRegistro = new Set<string>()
                   Object.values(asistSemanaMap).forEach(fm => Object.keys(fm).forEach(f => fechasConRegistro.add(f)))
                   return (
                     <div>
                       {/* Cabecera días */}
-                      <div className="grid px-4 py-2 bg-slate-50/60" style={{ gridTemplateColumns:'1fr repeat(5,52px)', borderBottom:'1px solid #E4E8EF' }}>
+                      <div className="grid px-4 py-2 bg-slate-50/60" style={{ gridTemplateColumns:'1fr repeat(5,52px)', borderBottom:'1px solid #DFE0E0' }}>
                         <span className="text-[10px] font-black text-slate-400 uppercase">Estudiante</span>
                         {dias.map((d, idx) => (
                           <div key={idx} className="text-center">
@@ -6126,7 +6126,7 @@ export default function AdminPage() {
                               {/* Nombre — click abre detalle */}
                               <button className="flex items-center gap-2 text-left min-w-0"
                                 onClick={() => setAsistDetalleId(isOpen ? null : al.id)}>
-                                <svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="#94a3b8" strokeWidth="2.5"
+                                <svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="#8B837E" strokeWidth="2.5"
                                   style={{ transform: isOpen ? 'rotate(90deg)' : 'rotate(0)', transition:'transform 0.15s', flexShrink:0 }}>
                                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/>
                                 </svg>
@@ -6159,7 +6159,7 @@ export default function AdminPage() {
 
                             {/* Detalle + observaciones al expandir */}
                             {isOpen && (
-                              <div className="px-5 pb-3 pt-1" style={{ background:'#fafbff', borderTop:'1px solid #f1f5f9' }}>
+                              <div className="px-5 pb-3 pt-1" style={{ background:'#FDFCFC', borderTop:'1px solid #EDEEEE' }}>
                                 <p className="text-[10px] font-black text-slate-400 uppercase mb-2">Detalle y observaciones de la semana</p>
                                 <div className="space-y-1.5">
                                   {dias.map((d, idx) => {
@@ -6175,7 +6175,7 @@ export default function AdminPage() {
                                     const sucio = draft.trim() !== (reg?.observacion ?? '')
                                     return (
                                       <div key={fISO} className="flex items-center gap-2 rounded-xl px-2.5 py-1.5"
-                                        style={{ background:'white', border:'1px solid #eef0f4' }}>
+                                        style={{ background:'white', border:'1px solid #F3F1EF' }}>
                                         <div className="w-12 shrink-0">
                                           <p className="text-[10px] font-black text-slate-600 leading-tight">{DIAS_LABEL[idx]} {d.getDate()}</p>
                                           <span className="inline-block text-[9px] font-black px-1.5 rounded mt-0.5"
@@ -6192,12 +6192,12 @@ export default function AdminPage() {
                                               onChange={e => setObsDraft(p => ({ ...p, [claveObs]: e.target.value }))}
                                               placeholder="Observación para los padres…"
                                               className="flex-1 min-w-0 px-2 py-1.5 rounded-lg text-[11px] text-slate-700 outline-none"
-                                              style={{ background:'#F6F8FB', border:'1.5px solid #E4E8EF' }} />
+                                              style={{ background:'#F5F5F4', border:'1.5px solid #DFE0E0' }} />
                                             <button
                                               onClick={() => guardarObservacion(al.id, fISO, draft)}
                                               disabled={guardandoObs === claveObs || !sucio}
                                               className="text-[10px] font-black px-2.5 py-1.5 rounded-lg shrink-0 transition-all disabled:opacity-40"
-                                              style={{ background:'#0B2447', color:'white' }}>
+                                              style={{ background:'#1D1815', color:'white' }}>
                                               {guardandoObs === claveObs ? '…' : 'Guardar'}
                                             </button>
                                           </div>
@@ -6226,7 +6226,7 @@ export default function AdminPage() {
         {/* ══ BOLETINES / REPORTES ALUMNOS ════════════════════════════════════ */}
         {tab === 'reportes-alumnos' && (() => {
           function notaColor(n: number | null) {
-            if (n === null) return '#94a3b8'
+            if (n === null) return '#8B837E'
             if (n >= 14) return '#16a34a'
             if (n >= 11) return '#d97706'
             return '#ef4444'
@@ -6250,8 +6250,8 @@ export default function AdminPage() {
                       <button key={g} onClick={() => setReporteGrado(g)}
                         className="px-2.5 py-1.5 rounded-lg text-xs font-black transition-all"
                         style={reporteGrado === g
-                          ? { background: '#0B2447', color: 'white' }
-                          : { background: '#f1f5f9', color: '#64748b' }}>
+                          ? { background: '#1D1815', color: 'white' }
+                          : { background: '#EDEEEE', color: '#6B625D' }}>
                         {g}
                       </button>
                     ))}
@@ -6264,8 +6264,8 @@ export default function AdminPage() {
                       <button key={g} onClick={() => setReporteGrupo(g)}
                         className="px-3 py-1.5 rounded-lg text-xs font-black transition-all"
                         style={reporteGrupo === g
-                          ? { background: '#0B2447', color: 'white' }
-                          : { background: '#f1f5f9', color: '#64748b' }}>
+                          ? { background: '#1D1815', color: 'white' }
+                          : { background: '#EDEEEE', color: '#6B625D' }}>
                         {g}
                       </button>
                     ))}
@@ -6276,7 +6276,7 @@ export default function AdminPage() {
               <div className="rounded-2xl overflow-hidden" style={card}>
                 {accentBar}
                 <div className="px-5 py-3 flex items-center justify-between bg-slate-50/60"
-                  style={{ borderBottom: '1px solid #E4E8EF' }}>
+                  style={{ borderBottom: '1px solid #DFE0E0' }}>
                   <span className="text-slate-400 text-xs font-bold uppercase tracking-widest">
                     Boletines — {reporteGrado} &quot;{reporteGrupo}&quot;
                     {cicloActivoInfo ? ` · Ciclo ${cicloActivoInfo.nombre}` : ''}
@@ -6292,7 +6292,7 @@ export default function AdminPage() {
                 ) : reporteAlumnos.length === 0 ? (
                   <div className="flex flex-col items-center justify-center py-14 gap-3">
                     <div className="w-12 h-12 rounded-2xl flex items-center justify-center"
-                      style={{ background: '#F1F5F9', border: '1.5px solid #fecdd3' }}>
+                      style={{ background: '#EDEEEE', border: '1.5px solid #fecdd3' }}>
                       <svg className="w-6 h-6 text-indigo-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
                       </svg>
@@ -6309,7 +6309,7 @@ export default function AdminPage() {
                       const isOpen = reporteAbiertoId === al.id
 
                       return (
-                        <div key={al.id} style={{ borderBottom: i < reporteAlumnos.length - 1 ? '1px solid #f1f5f9' : 'none' }}>
+                        <div key={al.id} style={{ borderBottom: i < reporteAlumnos.length - 1 ? '1px solid #EDEEEE' : 'none' }}>
                           <button className="w-full flex items-center gap-3 px-4 py-3.5 hover:bg-indigo-50/30 transition-colors text-left"
                             onClick={() => setReporteAbiertoId(isOpen ? null : al.id)}>
                             <Avatar name={displayAlumno(al)} color="indigo" />
@@ -6326,7 +6326,7 @@ export default function AdminPage() {
                                 {promedioGral ?? '—'}
                               </p>
                             </div>
-                            <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="#94a3b8" strokeWidth="2.5"
+                            <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="#8B837E" strokeWidth="2.5"
                               className="shrink-0 transition-transform" style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0)' }}>
                               <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7"/>
                             </svg>
@@ -6335,10 +6335,10 @@ export default function AdminPage() {
                           {/* Detalle por curso */}
                           {isOpen && al.cursos.length > 0 && (
                             <div className="px-4 pb-4 pt-1 space-y-2"
-                              style={{ background: '#fafbff', borderTop: '1px solid #f1f5f9' }}>
+                              style={{ background: '#FDFCFC', borderTop: '1px solid #EDEEEE' }}>
                               {al.cursos.map(c => (
                                 <div key={c.asigId} className="flex items-center gap-3 px-3 py-2 rounded-xl"
-                                  style={{ background: 'white', border: '1.5px solid #E4E8EF' }}>
+                                  style={{ background: 'white', border: '1.5px solid #DFE0E0' }}>
                                   <div className="w-2 h-2 rounded-full shrink-0" style={{ background: c.color }} />
                                   <span className="text-xs font-semibold text-slate-700 flex-1 truncate">{c.nombre}</span>
                                   <span className="text-xs font-black px-2 py-0.5 rounded-full shrink-0"
@@ -6365,7 +6365,7 @@ export default function AdminPage() {
             <div className="rounded-2xl overflow-hidden" style={card}>
               {accentBar}
               <div className="px-5 py-3 flex items-center justify-between bg-slate-50/60"
-                style={{ borderBottom: '1px solid #E4E8EF' }}>
+                style={{ borderBottom: '1px solid #DFE0E0' }}>
                 <span className="text-slate-400 text-xs font-bold uppercase tracking-widest">Historial de cambios en asistencia</span>
                 <span className="text-slate-300 text-xs">{auditLog.length} registros</span>
               </div>
@@ -6378,7 +6378,7 @@ export default function AdminPage() {
               ) : auditLog.length === 0 ? (
                 <div className="flex flex-col items-center justify-center py-14 gap-3">
                   <div className="w-12 h-12 rounded-2xl flex items-center justify-center"
-                    style={{ background: '#F1F5F9', border: '1.5px solid #fecdd3' }}>
+                    style={{ background: '#EDEEEE', border: '1.5px solid #fecdd3' }}>
                     <svg className="w-6 h-6 text-indigo-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
                     </svg>
@@ -6402,13 +6402,13 @@ export default function AdminPage() {
                       : null
                     return (
                       <div key={entry.id}
-                        style={{ borderBottom: i < auditLog.length - 1 ? '1px solid #f1f5f9' : 'none' }}>
+                        style={{ borderBottom: i < auditLog.length - 1 ? '1px solid #EDEEEE' : 'none' }}>
                         <div className="px-4 py-4 flex items-start gap-3">
                           {/* Ícono acción */}
                           <div className="mt-0.5 w-8 h-8 rounded-xl flex items-center justify-center shrink-0"
                             style={esBorrar
                               ? { background: '#fef2f2', border: '1.5px solid #fecaca' }
-                              : { background: '#F1F5F9', border: '1.5px solid #fecdd3' }}>
+                              : { background: '#EDEEEE', border: '1.5px solid #fecdd3' }}>
                             {esBorrar ? (
                               <svg className="w-4 h-4 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
@@ -6426,7 +6426,7 @@ export default function AdminPage() {
                               <span className="text-xs font-black px-2 py-0.5 rounded-full"
                                 style={esBorrar
                                   ? { background: '#fef2f2', color: '#ef4444' }
-                                  : { background: '#F1F5F9', color: '#0B2447' }}>
+                                  : { background: '#EDEEEE', color: '#1D1815' }}>
                                 {esBorrar ? 'Borró' : esJustificar ? 'Justificó' : 'Editó'}
                               </span>
                               <span className="text-slate-700 font-semibold text-sm">
@@ -6496,9 +6496,9 @@ export default function AdminPage() {
                 value={simularSearch}
                 onChange={e => setSimularSearch(e.target.value)}
                 className="w-full pl-10 pr-4 py-2.5 rounded-xl text-sm outline-none transition-all"
-                style={{ background: 'white', border: '1.5px solid #E4E8EF' }}
-                onFocus={e => { e.currentTarget.style.borderColor = '#1E3A8A'; e.currentTarget.style.boxShadow = '0 0 0 3px rgba(11,36,71,.08)' }}
-                onBlur={e => { e.currentTarget.style.borderColor = '#E4E8EF'; e.currentTarget.style.boxShadow = 'none' }}
+                style={{ background: 'white', border: '1.5px solid #DFE0E0' }}
+                onFocus={e => { e.currentTarget.style.borderColor = '#B00326'; e.currentTarget.style.boxShadow = '0 0 0 3px rgba(29,24,21,.08)' }}
+                onBlur={e => { e.currentTarget.style.borderColor = '#DFE0E0'; e.currentTarget.style.boxShadow = 'none' }}
               />
             </div>
 
@@ -6509,9 +6509,9 @@ export default function AdminPage() {
                 .map(d => (
                   <div key={d.id}
                     className="flex items-center gap-3 px-4 py-3 rounded-2xl"
-                    style={{ background: 'white', border: '1.5px solid #E4E8EF' }}>
+                    style={{ background: 'white', border: '1.5px solid #DFE0E0' }}>
                     <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 font-black text-sm text-white"
-                      style={{ background: 'linear-gradient(135deg,#0B2447,#1E3A8A)' }}>
+                      style={{ background: 'linear-gradient(135deg,#B00326,#B00326)' }}>
                       {d.nombre.charAt(0).toUpperCase()}
                     </div>
                     <div className="flex-1 min-w-0">
@@ -6524,7 +6524,7 @@ export default function AdminPage() {
                         window.open('/docente', '_blank')
                       }}
                       className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-black transition-all active:scale-95"
-                      style={{ background: 'linear-gradient(135deg,#0B2447,#1E3A8A)', color: 'white', boxShadow: '0 4px 12px rgba(11,36,71,.2)' }}>
+                      style={{ background: 'linear-gradient(135deg,#B00326,#B00326)', color: 'white', boxShadow: '0 4px 12px rgba(29,24,21,.2)' }}>
                       <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
@@ -6534,7 +6534,7 @@ export default function AdminPage() {
                   </div>
                 ))}
               {docentesLean.filter(d => d.nombre.toLowerCase().includes(simularSearch.toLowerCase())).length === 0 && (
-                <div className="py-12 text-center rounded-2xl" style={{ background: 'white', border: '1.5px solid #E4E8EF' }}>
+                <div className="py-12 text-center rounded-2xl" style={{ background: 'white', border: '1.5px solid #DFE0E0' }}>
                   <p className="text-slate-300 text-sm font-semibold">No se encontraron docentes</p>
                 </div>
               )}
@@ -6552,7 +6552,7 @@ export default function AdminPage() {
 
             <div className="grid gap-5 grid-cols-1 lg:[grid-template-columns:360px_1.3fr_1.8fr] lg:min-h-[74vh]">
               {/* ── Columna IZQUIERDA: buscador ────────────────────────────── */}
-              <div className="rounded-2xl p-4 space-y-3" style={{ background: 'white', border: '1.5px solid #E4E8EF' }}>
+              <div className="rounded-2xl p-4 space-y-3" style={{ background: 'white', border: '1.5px solid #DFE0E0' }}>
                 <p className="text-[10px] font-black tracking-widest text-slate-500 uppercase">Búsqueda</p>
                 <div className="relative">
                   <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400">
@@ -6568,9 +6568,9 @@ export default function AdminPage() {
                     onChange={e => setBuscarAlumnoTexto(e.target.value)}
                     onKeyDown={e => { if (e.key === 'Enter') ejecutarBusquedaAlumnos() }}
                     className="w-full pl-10 pr-9 py-2.5 rounded-xl text-sm outline-none transition-all"
-                    style={{ background: '#fafafa', border: '1.5px solid #E4E8EF' }}
-                    onFocus={e => { e.currentTarget.style.borderColor = '#1E3A8A'; e.currentTarget.style.boxShadow = '0 0 0 3px rgba(11,36,71,.08)'; e.currentTarget.style.background = 'white' }}
-                    onBlur={e => { e.currentTarget.style.borderColor = '#E4E8EF'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.background = '#fafafa' }}
+                    style={{ background: '#fafafa', border: '1.5px solid #DFE0E0' }}
+                    onFocus={e => { e.currentTarget.style.borderColor = '#B00326'; e.currentTarget.style.boxShadow = '0 0 0 3px rgba(29,24,21,.08)'; e.currentTarget.style.background = 'white' }}
+                    onBlur={e => { e.currentTarget.style.borderColor = '#DFE0E0'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.background = '#fafafa' }}
                   />
                   {buscarAlumnoTexto && (
                     <button onClick={() => { setBuscarAlumnoTexto(''); setBuscarAlumnoResultados([]); setAlumnoSeleccionado(null) }}
@@ -6586,7 +6586,7 @@ export default function AdminPage() {
                   onClick={ejecutarBusquedaAlumnos}
                   disabled={!buscarAlumnoTexto.trim() || buscarAlumnoLoading}
                   className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-black text-white transition-all active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed"
-                  style={{ background: 'linear-gradient(135deg,#0B2447,#1E3A8A)', boxShadow: '0 4px 12px rgba(11,36,71,.2)' }}>
+                  style={{ background: 'linear-gradient(135deg,#B00326,#B00326)', boxShadow: '0 4px 12px rgba(29,24,21,.2)' }}>
                   <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                     <circle cx="11" cy="11" r="8"/><path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35"/>
                   </svg>
@@ -6598,8 +6598,8 @@ export default function AdminPage() {
               </div>
 
               {/* ── Columna CENTRO: lista de resultados ────────────────────── */}
-              <div className="rounded-2xl overflow-hidden flex flex-col" style={{ background: 'white', border: '1.5px solid #E4E8EF' }}>
-                <div className="px-4 py-3 border-b" style={{ borderColor: '#E4E8EF' }}>
+              <div className="rounded-2xl overflow-hidden flex flex-col" style={{ background: 'white', border: '1.5px solid #DFE0E0' }}>
+                <div className="px-4 py-3 border-b" style={{ borderColor: '#DFE0E0' }}>
                   <p className="text-[10px] font-black tracking-widest text-slate-500 uppercase">Coincidencias</p>
                 </div>
                 <div className="flex-1 overflow-y-auto p-3 space-y-2">
@@ -6628,15 +6628,15 @@ export default function AdminPage() {
                         onClick={() => setAlumnoSeleccionado(a)}
                         className="w-full flex items-center px-4 py-3 rounded-xl text-left transition-all cursor-pointer"
                         style={{
-                          background: seleccionado ? 'linear-gradient(135deg,#0B2447,#1E3A8A)' : 'white',
+                          background: seleccionado ? 'linear-gradient(135deg,#B00326,#B00326)' : 'white',
                           border: seleccionado ? '1.5px solid transparent' : '1.5px solid #e8e2d8',
-                          boxShadow: seleccionado ? '0 4px 14px rgba(11,36,71,.25)' : '0 1px 2px rgba(0,0,0,.03)',
+                          boxShadow: seleccionado ? '0 4px 14px rgba(29,24,21,.25)' : '0 1px 2px rgba(0,0,0,.03)',
                         }}
                         onMouseEnter={e => {
                           if (seleccionado) return
                           e.currentTarget.style.background = '#fdf8f1'
-                          e.currentTarget.style.borderColor = '#1E3A8A'
-                          e.currentTarget.style.boxShadow = '0 4px 12px rgba(11,36,71,.12)'
+                          e.currentTarget.style.borderColor = '#B00326'
+                          e.currentTarget.style.boxShadow = '0 4px 12px rgba(29,24,21,.12)'
                           e.currentTarget.style.transform = 'translateX(2px)'
                         }}
                         onMouseLeave={e => {
@@ -6656,8 +6656,8 @@ export default function AdminPage() {
               </div>
 
               {/* ── Columna DERECHA: detalle del alumno seleccionado ───────── */}
-              <div className="rounded-2xl overflow-hidden flex flex-col" style={{ background: 'white', border: '1.5px solid #E4E8EF' }}>
-                <div className="px-4 py-3 border-b" style={{ borderColor: '#E4E8EF' }}>
+              <div className="rounded-2xl overflow-hidden flex flex-col" style={{ background: 'white', border: '1.5px solid #DFE0E0' }}>
+                <div className="px-4 py-3 border-b" style={{ borderColor: '#DFE0E0' }}>
                   <p className="text-[10px] font-black tracking-widest text-slate-500 uppercase">Detalle del estudiante</p>
                 </div>
                 <div className="flex-1 overflow-y-auto">
@@ -6677,7 +6677,7 @@ export default function AdminPage() {
                       {/* Header con avatar */}
                       <div className="flex items-center gap-5">
                         <div className="w-20 h-20 rounded-2xl flex items-center justify-center shrink-0 font-black text-3xl text-white"
-                          style={{ background: 'linear-gradient(135deg,#0B2447,#1E3A8A)', boxShadow: '0 8px 22px rgba(11,36,71,.28)' }}>
+                          style={{ background: 'linear-gradient(135deg,#B00326,#B00326)', boxShadow: '0 8px 22px rgba(29,24,21,.28)' }}>
                           {(alumnoSeleccionado.apellidos || alumnoSeleccionado.nombre || '?').charAt(0).toUpperCase()}
                         </div>
                         <div className="flex-1 min-w-0">
@@ -6689,7 +6689,7 @@ export default function AdminPage() {
                           </p>
                           <div className="flex items-center gap-2 mt-3 flex-wrap">
                             <span className="px-3 py-1 rounded-full text-[11px] font-black text-white"
-                              style={{ background: 'linear-gradient(135deg,#0B2447,#1E3A8A)' }}>
+                              style={{ background: 'linear-gradient(135deg,#B00326,#B00326)' }}>
                               {alumnoSeleccionado.grado && alumnoSeleccionado.grupo
                                 ? `${alumnoSeleccionado.grado} "${alumnoSeleccionado.grupo}"`
                                 : (alumnoSeleccionado.grado || 'Sin grado')}
@@ -6707,7 +6707,7 @@ export default function AdminPage() {
                             })()}
                             {alumnoSeleccionado.codigo_estudiante && (
                               <span className="px-3 py-1 rounded-full text-[11px] font-bold text-slate-600"
-                                style={{ background: '#f8f5f0', border: '1px solid #E4E8EF' }}>
+                                style={{ background: '#f8f5f0', border: '1px solid #DFE0E0' }}>
                                 Cód. {alumnoSeleccionado.codigo_estudiante}
                               </span>
                             )}
@@ -6717,7 +6717,7 @@ export default function AdminPage() {
 
                       {/* Sección: Datos del estudiante — lista limpia */}
                       <div>
-                        <p className="text-[11px] font-black tracking-widest text-slate-400 uppercase pb-2 mb-3 border-b" style={{ borderColor: '#E4E8EF' }}>
+                        <p className="text-[11px] font-black tracking-widest text-slate-400 uppercase pb-2 mb-3 border-b" style={{ borderColor: '#DFE0E0' }}>
                           Datos del estudiante
                         </p>
                         <div className="grid grid-cols-2 gap-x-8 gap-y-2.5">
@@ -6774,7 +6774,7 @@ export default function AdminPage() {
 
                       {/* Sección: Apoderado — lista limpia */}
                       <div>
-                        <p className="text-[11px] font-black tracking-widest text-slate-400 uppercase pb-2 mb-3 border-b" style={{ borderColor: '#E4E8EF' }}>
+                        <p className="text-[11px] font-black tracking-widest text-slate-400 uppercase pb-2 mb-3 border-b" style={{ borderColor: '#DFE0E0' }}>
                           Contacto de emergencia
                         </p>
                         <div className="grid grid-cols-2 gap-x-8 gap-y-2.5">
@@ -6796,7 +6796,7 @@ export default function AdminPage() {
                       </div>
 
                       {/* ── Acciones: 4 botones ──────────────────────────────── */}
-                      <div className="pt-4 border-t" style={{ borderColor: '#E4E8EF' }}>
+                      <div className="pt-4 border-t" style={{ borderColor: '#DFE0E0' }}>
                         <p className="text-[11px] font-black tracking-widest text-slate-400 uppercase mb-3">Acciones</p>
                         <div className="grid grid-cols-2 gap-3">
                           {[
@@ -6816,18 +6816,18 @@ export default function AdminPage() {
                             <button key={b.id}
                               onClick={b.onClick}
                               className="flex items-center gap-2.5 px-4 py-3 rounded-xl text-sm font-bold text-slate-700 transition-all active:scale-95"
-                              style={{ background: '#fafafa', border: '1.5px solid #E4E8EF' }}
+                              style={{ background: '#fafafa', border: '1.5px solid #DFE0E0' }}
                               onMouseEnter={e => {
-                                e.currentTarget.style.background = 'linear-gradient(135deg,#0B2447,#1E3A8A)'
+                                e.currentTarget.style.background = 'linear-gradient(135deg,#B00326,#B00326)'
                                 e.currentTarget.style.color = 'white'
                                 e.currentTarget.style.borderColor = 'transparent'
-                                e.currentTarget.style.boxShadow = '0 6px 18px rgba(11,36,71,.22)'
+                                e.currentTarget.style.boxShadow = '0 6px 18px rgba(29,24,21,.22)'
                                 e.currentTarget.style.transform = 'translateY(-1px)'
                               }}
                               onMouseLeave={e => {
                                 e.currentTarget.style.background = '#fafafa'
-                                e.currentTarget.style.color = '#334155'
-                                e.currentTarget.style.borderColor = '#E4E8EF'
+                                e.currentTarget.style.color = '#3D3632'
+                                e.currentTarget.style.borderColor = '#DFE0E0'
                                 e.currentTarget.style.boxShadow = 'none'
                                 e.currentTarget.style.transform = 'translateY(0)'
                               }}>
@@ -6853,7 +6853,7 @@ export default function AdminPage() {
                   onClick={e => e.stopPropagation()}>
 
                   {/* Header del modal */}
-                  <div className="px-6 py-5 flex items-center justify-between border-b" style={{ borderColor: '#E4E8EF', background: 'linear-gradient(135deg,#0B2447,#1E3A8A)' }}>
+                  <div className="px-6 py-5 flex items-center justify-between border-b" style={{ borderColor: '#DFE0E0', background: 'linear-gradient(135deg,#B00326,#B00326)' }}>
                     <div>
                       <p className="text-[10px] font-black tracking-widest text-white/70 uppercase">Plan académico{cicloActivoInfo ? ` · Ciclo ${cicloActivoInfo.nombre}` : ` ${new Date().getFullYear()}`}</p>
                       <p className="text-xl font-black text-white leading-tight mt-0.5">
@@ -6899,23 +6899,23 @@ export default function AdminPage() {
                         <>
                           {/* Resumen */}
                           <div className="grid grid-cols-3 gap-3">
-                            <div className="rounded-xl p-4" style={{ background: '#fafafa', border: '1.5px solid #E4E8EF' }}>
+                            <div className="rounded-xl p-4" style={{ background: '#fafafa', border: '1.5px solid #DFE0E0' }}>
                               <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Promedio general</p>
-                              <p className="text-3xl font-black mt-1" style={{ color: promedioGlobal === null ? '#94a3b8' : promedioGlobal >= 14 ? '#16a34a' : promedioGlobal >= 11 ? '#d97706' : '#ef4444' }}>
+                              <p className="text-3xl font-black mt-1" style={{ color: promedioGlobal === null ? '#8B837E' : promedioGlobal >= 14 ? '#16a34a' : promedioGlobal >= 11 ? '#d97706' : '#ef4444' }}>
                                 {promedioGlobal !== null ? promedioGlobal.toFixed(1) : '—'}
                               </p>
                               <p className="text-[10px] text-slate-400 mt-0.5">sobre 20</p>
                             </div>
-                            <div className="rounded-xl p-4" style={{ background: '#fafafa', border: '1.5px solid #E4E8EF' }}>
+                            <div className="rounded-xl p-4" style={{ background: '#fafafa', border: '1.5px solid #DFE0E0' }}>
                               <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Estado del año</p>
-                              <p className="text-base font-black mt-1" style={{ color: promedioGlobal === null ? '#94a3b8' : aprobado ? '#16a34a' : '#ef4444' }}>
+                              <p className="text-base font-black mt-1" style={{ color: promedioGlobal === null ? '#8B837E' : aprobado ? '#16a34a' : '#ef4444' }}>
                                 {promedioGlobal === null ? 'Sin datos' : aprobado ? 'Aprobado' : 'Desaprobado'}
                               </p>
                               <p className="text-[10px] text-slate-400 mt-0.5">
                                 {promedioGlobal === null ? '—' : aprobado ? 'Pasó el año' : 'Perdió el año'}
                               </p>
                             </div>
-                            <div className="rounded-xl p-4" style={{ background: '#fafafa', border: '1.5px solid #E4E8EF' }}>
+                            <div className="rounded-xl p-4" style={{ background: '#fafafa', border: '1.5px solid #DFE0E0' }}>
                               <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Cursos desaprobados</p>
                               <p className="text-3xl font-black mt-1" style={{ color: desaprobados === 0 ? '#16a34a' : '#ef4444' }}>{desaprobados}</p>
                               <p className="text-[10px] text-slate-400 mt-0.5">de {planCursos.length} cursos</p>
@@ -6927,7 +6927,7 @@ export default function AdminPage() {
                             <p className="text-[10px] font-black tracking-widest text-slate-400 uppercase mb-3">Notas por curso</p>
                             <div className="space-y-2">
                               {planCursos.map((c, idx) => (
-                                <div key={idx} className="flex items-center gap-3 px-4 py-3 rounded-xl" style={{ background: 'white', border: '1.5px solid #E4E8EF' }}>
+                                <div key={idx} className="flex items-center gap-3 px-4 py-3 rounded-xl" style={{ background: 'white', border: '1.5px solid #DFE0E0' }}>
                                   <div className="w-10 h-10 rounded-xl shrink-0" style={{ background: c.color }} />
                                   <div className="flex-1 min-w-0">
                                     <p className="text-sm font-black text-slate-800 truncate">{c.nombre}</p>
@@ -6936,7 +6936,7 @@ export default function AdminPage() {
                                     </p>
                                   </div>
                                   <div className="text-right">
-                                    <p className="text-2xl font-black" style={{ color: c.promedio === null ? '#94a3b8' : c.promedio >= 14 ? '#16a34a' : c.promedio >= 11 ? '#d97706' : '#ef4444' }}>
+                                    <p className="text-2xl font-black" style={{ color: c.promedio === null ? '#8B837E' : c.promedio >= 14 ? '#16a34a' : c.promedio >= 11 ? '#d97706' : '#ef4444' }}>
                                       {c.promedio !== null ? c.promedio.toFixed(1) : '—'}
                                     </p>
                                     {c.promedio !== null && (
@@ -6964,7 +6964,7 @@ export default function AdminPage() {
         {tab === 'buscar-alumnos' && portalAbierto && alumnoSeleccionado && (
           <div className="space-y-4">
             {/* Barra superior con botón volver + datos del alumno */}
-            <div className="rounded-2xl overflow-hidden" style={{ background: 'linear-gradient(135deg,#0B2447,#1E3A8A)' }}>
+            <div className="rounded-2xl overflow-hidden" style={{ background: 'linear-gradient(135deg,#B00326,#B00326)' }}>
               <div className="px-6 py-4 flex items-center justify-between gap-4">
                 <button onClick={() => setPortalAbierto(false)}
                   className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all active:scale-95"
@@ -6987,9 +6987,9 @@ export default function AdminPage() {
             </div>
 
             {/* 2 columnas: cursos numerados + horario graficado */}
-            <div className="grid gap-4 rounded-2xl overflow-hidden" style={{ gridTemplateColumns: '380px 1fr', background: 'white', border: '1.5px solid #E4E8EF', minHeight: '70vh' }}>
+            <div className="grid gap-4 rounded-2xl overflow-hidden" style={{ gridTemplateColumns: '380px 1fr', background: 'white', border: '1.5px solid #DFE0E0', minHeight: '70vh' }}>
               {/* IZQUIERDA: cursos numerados con docente */}
-              <div className="overflow-y-auto p-5 border-r" style={{ borderColor: '#E4E8EF', background: '#fafafa' }}>
+              <div className="overflow-y-auto p-5 border-r" style={{ borderColor: '#DFE0E0', background: '#fafafa' }}>
                 <p className="text-[10px] font-black tracking-widest text-slate-400 uppercase mb-3">Cursos ({portalCursos.length})</p>
                 {portalLoading && <p className="text-slate-400 text-sm text-center py-8">Cargando…</p>}
                 {!portalLoading && portalCursos.length === 0 && (
@@ -6997,7 +6997,7 @@ export default function AdminPage() {
                 )}
                 <div className="space-y-2">
                   {portalCursos.map((c, idx) => (
-                    <div key={c.id} className="flex items-center gap-3 px-3 py-2.5 rounded-xl" style={{ background: 'white', border: '1.5px solid #E4E8EF' }}>
+                    <div key={c.id} className="flex items-center gap-3 px-3 py-2.5 rounded-xl" style={{ background: 'white', border: '1.5px solid #DFE0E0' }}>
                       <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 font-black text-sm text-white"
                         style={{ background: c.color }}>
                         {idx + 1}
@@ -7021,7 +7021,7 @@ export default function AdminPage() {
                 {!portalLoading && portalHorario.length > 0 && (() => {
                   const DIAS = ['Lunes','Martes','Miércoles','Jueves','Viernes']
                   const colorDeCurso = (materia: string | null) =>
-                    materia ? (portalCursos.find(c => c.nombre === materia)?.color ?? '#94a3b8') : '#94a3b8'
+                    materia ? (portalCursos.find(c => c.nombre === materia)?.color ?? '#8B837E') : '#8B837E'
                   const hi = (s: string) => s.slice(0, 5)
 
                   // Filas: TODAS las horas del día (del config), más cualquier hora
@@ -7075,7 +7075,7 @@ export default function AdminPage() {
                   })
 
                   return (
-                    <div className="rounded-xl overflow-hidden" style={{ border: '1.5px solid #E4E8EF' }}>
+                    <div className="rounded-xl overflow-hidden" style={{ border: '1.5px solid #DFE0E0' }}>
                       <table className="w-full border-collapse" style={{ tableLayout: 'fixed' }}>
                         <colgroup>
                           <col style={{ width: '92px' }} />
@@ -7083,12 +7083,12 @@ export default function AdminPage() {
                         </colgroup>
                         <thead>
                           <tr style={{ background: '#fafafa' }}>
-                            <th className="px-2 py-2.5 text-left" style={{ borderBottom: '1.5px solid #E4E8EF' }}>
+                            <th className="px-2 py-2.5 text-left" style={{ borderBottom: '1.5px solid #DFE0E0' }}>
                               <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Hora</span>
                             </th>
                             {DIAS.map(d => (
                               <th key={d} className="px-1.5 py-2.5 text-center"
-                                style={{ borderBottom: '1.5px solid #E4E8EF', borderLeft: '1px solid #E4E8EF' }}>
+                                style={{ borderBottom: '1.5px solid #DFE0E0', borderLeft: '1px solid #DFE0E0' }}>
                                 <span className="text-[11px] font-black text-slate-700">{d.slice(0, 3)}</span>
                               </th>
                             ))}
@@ -7113,7 +7113,7 @@ export default function AdminPage() {
                                       <td key={dia} className="text-center"
                                         style={{
                                           background: esRecreo ? '#fffbeb' : '#f0fdf4',
-                                          borderLeft: '1px solid #E4E8EF',
+                                          borderLeft: '1px solid #DFE0E0',
                                           borderTop:  '1px solid #f5f0ea',
                                           padding: 0,
                                         }}>
@@ -7131,7 +7131,7 @@ export default function AdminPage() {
                                       <td key={dia}
                                         style={{
                                           background: 'white',
-                                          borderLeft: '1px solid #E4E8EF',
+                                          borderLeft: '1px solid #DFE0E0',
                                           borderTop:  '1px solid #f5f0ea',
                                           padding: 0,
                                         }} />
@@ -7144,7 +7144,7 @@ export default function AdminPage() {
                                     <td key={dia} rowSpan={span}
                                       style={{
                                         background: 'white',
-                                        borderLeft: '1px solid #E4E8EF',
+                                        borderLeft: '1px solid #DFE0E0',
                                         borderTop:  '1px solid #f5f0ea',
                                         padding: '3px',
                                         height: `${ROW_HEIGHT * span}px`,
@@ -7202,7 +7202,7 @@ export default function AdminPage() {
               </div>
               <button onClick={() => { setAnuncioAbierto(v => !v); setAnuncioError('') }}
                 className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-black text-white"
-                style={{ background: 'linear-gradient(135deg,#0d9488,#06b6d4)' }}>
+                style={{ background: 'linear-gradient(135deg,#944C0D,#CD670D)' }}>
                 <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth="2.5">
                   <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
                 </svg>
@@ -7212,21 +7212,21 @@ export default function AdminPage() {
 
             {anuncioAbierto && (
               <form onSubmit={publicarAnuncio} className="rounded-2xl p-5 space-y-4"
-                style={{ background: 'white', border: '1.5px solid #99f6e4', boxShadow: '0 4px 24px rgba(13,148,136,.08)' }}>
+                style={{ background: 'white', border: '1.5px solid #F6C499', boxShadow: '0 4px 24px rgba(148,76,13,.08)' }}>
                 <p className="text-sm font-black text-slate-700">Nuevo comunicado general</p>
                 <div>
                   <label className="block text-xs font-bold text-slate-500 mb-1.5">Título</label>
                   <input value={anuncioTitulo} onChange={e => setAnuncioTitulo(e.target.value)}
                     placeholder="Ej: Suspensión de clases el viernes"
                     className="w-full px-4 py-2.5 rounded-xl text-sm outline-none"
-                    style={{ background: '#f0fdfa', border: '1.5px solid #99f6e4' }} />
+                    style={{ background: '#FDF6F0', border: '1.5px solid #F6C499' }} />
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-slate-500 mb-1.5">Contenido</label>
                   <textarea value={anuncioContenido} onChange={e => setAnuncioContenido(e.target.value)}
                     rows={4} placeholder="Escribe el comunicado…"
                     className="w-full px-4 py-2.5 rounded-xl text-sm outline-none resize-none"
-                    style={{ background: '#f0fdfa', border: '1.5px solid #99f6e4' }} />
+                    style={{ background: '#FDF6F0', border: '1.5px solid #F6C499' }} />
                 </div>
                 {anuncioError && <p className="text-xs text-red-500 font-semibold">{anuncioError}</p>}
                 <div className="flex justify-end gap-2">
@@ -7236,7 +7236,7 @@ export default function AdminPage() {
                   </button>
                   <button type="submit" disabled={anuncioGuardando}
                     className="px-5 py-2 rounded-xl text-xs font-black text-white"
-                    style={{ background: 'linear-gradient(135deg,#0d9488,#06b6d4)' }}>
+                    style={{ background: 'linear-gradient(135deg,#944C0D,#CD670D)' }}>
                     {anuncioGuardando ? 'Publicando…' : 'Publicar'}
                   </button>
                 </div>
@@ -7252,7 +7252,7 @@ export default function AdminPage() {
               </div>
             ) : anuncios.length === 0 ? (
               <div className="rounded-2xl flex flex-col items-center justify-center py-20 gap-4"
-                style={{ background: 'white', border: '1.5px solid #ccfbf1' }}>
+                style={{ background: 'white', border: '1.5px solid #FBE2CC' }}>
                 <svg className="w-10 h-10 text-teal-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/>
                 </svg>
@@ -7264,13 +7264,13 @@ export default function AdminPage() {
                   const timeAgoStr = timeAgo(a.created_at)
                   return (
                     <div key={a.id} className="rounded-2xl overflow-hidden"
-                      style={{ background: 'white', border: '1.5px solid #ccfbf1' }}>
-                      <div className="h-1" style={{ background: 'linear-gradient(90deg,#0d9488,#06b6d4)' }} />
+                      style={{ background: 'white', border: '1.5px solid #FBE2CC' }}>
+                      <div className="h-1" style={{ background: 'linear-gradient(90deg,#944C0D,#CD670D)' }} />
                       <div className="p-4 flex items-start justify-between gap-3">
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2 mb-1 flex-wrap">
                             <span className="text-[10px] font-black px-2 py-0.5 rounded-full"
-                              style={{ background: '#f0fdfa', color: '#0d9488' }}>
+                              style={{ background: '#FDF6F0', color: '#944C0D' }}>
                               Comunicado general
                             </span>
                             <span className="text-[10px] text-slate-400">{timeAgoStr}</span>
@@ -7281,9 +7281,9 @@ export default function AdminPage() {
                         </div>
                         <button onClick={() => eliminarAnuncio(a.id)}
                           className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-all hover:bg-red-50"
-                          style={{ color: '#94a3b8' }}
+                          style={{ color: '#8B837E' }}
                           onMouseEnter={e => (e.currentTarget.style.color = '#ef4444')}
-                          onMouseLeave={e => (e.currentTarget.style.color = '#94a3b8')}>
+                          onMouseLeave={e => (e.currentTarget.style.color = '#8B837E')}>
                           <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                             <polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6m4-6v6"/>
                           </svg>
@@ -7305,7 +7305,7 @@ export default function AdminPage() {
             listo:     { txt: 'Listo',          style: { background: '#ecfdf5', border: '1.5px solid #a7f3d0', color: '#059669' } },
             pendiente: { txt: 'Pendiente',      style: { background: '#fffbeb', border: '1.5px solid #fde68a', color: '#d97706' } },
             atencion:  { txt: 'Revisar',        style: { background: '#fff7ed', border: '1.5px solid #fed7aa', color: '#ea580c' } },
-            na:        { txt: 'Falta el ciclo', style: { background: '#F6F8FB', border: '1.5px solid #E4E8EF', color: '#94a3b8' } },
+            na:        { txt: 'Falta el ciclo', style: { background: '#F5F5F4', border: '1.5px solid #DFE0E0', color: '#8B837E' } },
           }
           const sinFechas = !!g?.nuevo && (!g.nuevo.fecha_inicio || !g.nuevo.fecha_fin)
           const pasos: { titulo: string; desc: string; detalle?: string; estado: EstadoPaso; tab: Tab }[] = !g ? [] : [
@@ -7375,7 +7375,7 @@ export default function AdminPage() {
                     </div>
                     <button onClick={cargarGuiaAnio} disabled={loadingGuiaAnio}
                       className="flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-lg transition-all disabled:opacity-50"
-                      style={{ background: '#F1F5F9', border: '1.5px solid #E4E8EF', color: '#0B2447' }}>
+                      style={{ background: '#EDEEEE', border: '1.5px solid #DFE0E0', color: '#1D1815' }}>
                       {loadingGuiaAnio ? <Spinner cls="h-3.5 w-3.5 text-indigo-900"/> : (
                         <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
@@ -7387,7 +7387,7 @@ export default function AdminPage() {
                   {g && (
                     <div className="flex items-center gap-2 mt-3 flex-wrap">
                       <span className="text-[11px] font-bold px-2.5 py-1 rounded-full"
-                        style={{ background: '#0B2447', color: '#fff' }}>
+                        style={{ background: '#1D1815', color: '#fff' }}>
                         Ciclo activo: {g.activo?.nombre ?? 'ninguno'}
                       </span>
                       {g.nuevo ? (
@@ -7397,7 +7397,7 @@ export default function AdminPage() {
                         </span>
                       ) : (
                         <span className="text-[11px] font-bold px-2.5 py-1 rounded-full"
-                          style={{ background: '#F6F8FB', border: '1.5px solid #E4E8EF', color: '#64748b' }}>
+                          style={{ background: '#F5F5F4', border: '1.5px solid #DFE0E0', color: '#6B625D' }}>
                           Aún no hay ciclo nuevo en preparación
                         </span>
                       )}
@@ -7423,12 +7423,12 @@ export default function AdminPage() {
                     const chip = CHIP[p.estado]
                     return (
                       <div key={i} className="px-4 py-4 flex items-start gap-3"
-                        style={{ borderBottom: i < pasos.length - 1 ? '1px solid #f1f5f9' : 'none' }}>
+                        style={{ borderBottom: i < pasos.length - 1 ? '1px solid #EDEEEE' : 'none' }}>
                         {/* Número del paso */}
                         <div className="w-7 h-7 rounded-full flex items-center justify-center shrink-0 mt-0.5"
                           style={p.estado === 'listo'
                             ? { background: '#059669', color: '#fff' }
-                            : { background: '#F1F5F9', border: '1.5px solid #E4E8EF', color: '#0B2447' }}>
+                            : { background: '#EDEEEE', border: '1.5px solid #DFE0E0', color: '#1D1815' }}>
                           {p.estado === 'listo'
                             ? <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"/></svg>
                             : <span className="text-xs font-black">{i + 1}</span>}
@@ -7441,14 +7441,14 @@ export default function AdminPage() {
                           <p className="text-slate-400 text-xs mt-0.5 leading-relaxed">{p.desc}</p>
                           {p.detalle && (
                             <p className="text-[11px] font-semibold mt-1"
-                              style={{ color: p.estado === 'atencion' ? '#ea580c' : '#475569' }}>
+                              style={{ color: p.estado === 'atencion' ? '#ea580c' : '#5C5450' }}>
                               {p.detalle}
                             </p>
                           )}
                         </div>
                         <button onClick={() => switchTab(p.tab)}
                           className="shrink-0 flex items-center gap-1 text-[11px] font-bold px-3 py-1.5 rounded-lg transition-all mt-0.5"
-                          style={{ background: '#0B2447', color: '#fff' }}>
+                          style={{ background: '#1D1815', color: '#fff' }}>
                           Abrir
                           <svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/>
@@ -7462,7 +7462,7 @@ export default function AdminPage() {
 
               {/* Nota */}
               <div className="flex items-start gap-2 rounded-xl px-4 py-3 text-xs"
-                style={{ background: '#f0f9ff', border: '1.5px solid #bae6fd', color: '#075985' }}>
+                style={{ background: '#FEF5EC', border: '1.5px solid #FBD3A8', color: '#850720' }}>
                 <svg className="shrink-0 mt-0.5 w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
@@ -7483,8 +7483,8 @@ export default function AdminPage() {
           const total_secciones = combosActivos.length
           const total_grados    = new Set(combosActivos.map(c => c.grado)).size
           const total_con_nombre = combosActivos.filter(c => (salones[`${c.grado}-${c.grupo}`] ?? '').trim()).length
-          const NAVY_RED = '#0B2447'
-          const GOLD     = '#1E40AF'
+          const NAVY_RED = '#1D1815'
+          const GOLD     = '#D9042F'
 
           return (
             <div className="space-y-6 max-w-4xl mx-auto">
@@ -7509,8 +7509,8 @@ export default function AdminPage() {
               {/* ── Hero del ciclo activo ── */}
               {ciclo_activo && (
                 <div className="rounded-3xl overflow-hidden relative"
-                  style={{ background: `linear-gradient(135deg,${NAVY_RED} 0%,#1E3A8A 55%,#a01b2e 100%)`,
-                    boxShadow: '0 16px 48px rgba(11,36,71,.25)' }}>
+                  style={{ background: `linear-gradient(135deg,${NAVY_RED} 0%,#B00326 55%,#a01b2e 100%)`,
+                    boxShadow: '0 16px 48px rgba(29,24,21,.25)' }}>
                   {/* Patrón sutil */}
                   <div className="absolute inset-0 opacity-20 pointer-events-none"
                     style={{ backgroundImage: 'radial-gradient(circle, rgba(201,152,42,.5) 1px, transparent 1.5px)', backgroundSize: '28px 28px' }} />
@@ -7659,7 +7659,7 @@ export default function AdminPage() {
                           )}
                           <button onClick={crearCiclo} disabled={creandoCiclo || !!dup}
                             className="mt-4 w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-black text-white disabled:opacity-50 transition-all active:scale-[.98]"
-                            style={{ background: `linear-gradient(135deg,${NAVY_RED},#1E3A8A)`, boxShadow: '0 6px 20px rgba(11,36,71,.28)' }}>
+                            style={{ background: `linear-gradient(135deg,${NAVY_RED},#B00326)`, boxShadow: '0 6px 20px rgba(29,24,21,.28)' }}>
                             {creandoCiclo
                               ? <Spinner cls="h-4 w-4 text-white"/>
                               : <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4"/></svg>}
@@ -7685,7 +7685,7 @@ export default function AdminPage() {
                 {/* Historial / otros ciclos */}
                 <div className="rounded-2xl overflow-hidden flex flex-col" style={card}>
                   {accentBar}
-                  <div className="px-5 py-4" style={{ borderBottom: '1px solid #E4E8EF' }}>
+                  <div className="px-5 py-4" style={{ borderBottom: '1px solid #DFE0E0' }}>
                     <div className="flex items-center justify-between gap-3">
                       <div className="flex items-center gap-2.5">
                         <div className="w-9 h-9 rounded-xl flex items-center justify-center"
@@ -7747,7 +7747,7 @@ export default function AdminPage() {
               {/* ── Grados + sobrenombres del ciclo activo ── */}
               <div className="rounded-2xl overflow-hidden" style={card}>
                 {accentBar}
-                <div className="px-5 py-4 flex items-center justify-between flex-wrap gap-3" style={{ borderBottom: '1px solid #E4E8EF' }}>
+                <div className="px-5 py-4 flex items-center justify-between flex-wrap gap-3" style={{ borderBottom: '1px solid #DFE0E0' }}>
                   <div className="flex items-center gap-2.5">
                     <div className="w-9 h-9 rounded-xl flex items-center justify-center"
                       style={{ background: '#fef2f2', color: NAVY_RED, border: '1px solid #fecaca' }}>
@@ -7827,7 +7827,7 @@ export default function AdminPage() {
                                       <div>
                                         <p className="text-[9px] font-black text-slate-400 uppercase tracking-[.18em]">Sección</p>
                                         {tieneNombre ? (
-                                          <p className="text-xs font-black truncate max-w-[140px]" style={{ color: '#1E3A8A' }}>{nombre}</p>
+                                          <p className="text-xs font-black truncate max-w-[140px]" style={{ color: '#B00326' }}>{nombre}</p>
                                         ) : (
                                           <p className="text-[11px] font-semibold text-slate-400 italic">Sin nombre</p>
                                         )}
@@ -7880,7 +7880,7 @@ export default function AdminPage() {
                                       style={{
                                         border: `1px ${tieneNombre ? 'solid' : 'dashed'} ${tieneNombre ? '#fde68a' : '#d6d3d1'}`,
                                         background: tieneNombre ? 'white' : '#fafaf9',
-                                        color: tieneNombre ? '#1E3A8A' : '#78716c',
+                                        color: tieneNombre ? '#B00326' : '#78716c',
                                       }}>
                                       <span>{tieneNombre ? 'Editar nombre' : 'Añadir sobrenombre'}</span>
                                       <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.2">
@@ -7906,13 +7906,13 @@ export default function AdminPage() {
         {/* ══ MATRÍCULA (Wizard 4 pasos) ═══════════════════════════════════════ */}
         {tab === 'matricula' && (() => {
           const TIPOS: { id: WizTipo; label: string; desc: string; color: string; icon: React.ReactNode }[] = [
-            { id: 'nuevo', label: 'Estudiante nuevo', color: '#0d9488', desc: 'Primera vez en la escuela. Se creará su ficha de estudiante.',
+            { id: 'nuevo', label: 'Estudiante nuevo', color: '#944C0D', desc: 'Primera vez en la escuela. Se creará su ficha de estudiante.',
               icon: <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg> },
-            { id: 'continuidad', label: 'Continuidad', color: '#0B2447', desc: 'Estudiante del año anterior que pasa al siguiente grado.',
+            { id: 'continuidad', label: 'Continuidad', color: '#1D1815', desc: 'Estudiante del año anterior que pasa al siguiente grado.',
               icon: <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg> },
             { id: 'reincorporacion', label: 'Reincorporación', color: '#d97706', desc: 'Estudiante existente que estuvo fuera 1 o más ciclos.',
               icon: <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg> },
-            { id: 'traslado', label: 'Traslado externo', color: '#0B2447', desc: 'Viene de otra institución. Requiere certificado de estudios.',
+            { id: 'traslado', label: 'Traslado externo', color: '#1D1815', desc: 'Viene de otra institución. Requiere certificado de estudios.',
               icon: <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> },
           ]
           const tipoElegido = TIPOS.find(t => t.id === wizTipo)
@@ -7930,10 +7930,10 @@ export default function AdminPage() {
           const ESTADO_BADGE: Record<string, { label: string; bg: string; color: string }> = {
             matriculada:    { label: 'Matriculado',   bg: '#DCFCE7', color: '#166534' },
             pendiente_docs: { label: 'Pend. docs',    bg: '#FEF9C3', color: '#854D0E' },
-            borrador:       { label: 'Borrador',      bg: '#F1F5F9', color: '#64748B' },
-            anulada:        { label: 'Anulada',       bg: '#F1F5F9', color: '#94A3B8' },
+            borrador:       { label: 'Borrador',      bg: '#EDEEEE', color: '#6B625D' },
+            anulada:        { label: 'Anulada',       bg: '#EDEEEE', color: '#8B837E' },
             retirado:       { label: 'Retirado',      bg: '#FEE2E2', color: '#991B1B' },
-            trasladado:     { label: 'Trasladado',    bg: '#E0E7FF', color: '#3730A3' },
+            trasladado:     { label: 'Trasladado',    bg: '#F2EFED', color: '#78675B' },
           }
           const cicloActivoNombre = ciclos.find(c => c.activo)?.nombre ?? '—'
           const matriculadosFiltrados = matriculados.filter(m => {
@@ -7958,13 +7958,13 @@ export default function AdminPage() {
                       : 'Estudiantes retirados o trasladados — su información se conserva'}
                   </p>
                 </div>
-                <div className="flex rounded-xl overflow-hidden border" style={{ borderColor: '#E4E8EF' }}>
+                <div className="flex rounded-xl overflow-hidden border" style={{ borderColor: '#DFE0E0' }}>
                   {([['wizard', 'Nueva matrícula'], ['lista', 'Matriculados'], ['historial', 'Historial de bajas']] as const).map(([id, label]) => (
                     <button key={id} onClick={() => setMatriculaVista(id)}
                       className="px-3.5 py-2 text-xs font-black transition-colors"
                       style={matriculaVista === id
-                        ? { background: '#0B2447', color: 'white' }
-                        : { background: 'white', color: '#64748B' }}>
+                        ? { background: '#1D1815', color: 'white' }
+                        : { background: 'white', color: '#6B625D' }}>
                       {label}
                     </button>
                   ))}
@@ -7975,11 +7975,11 @@ export default function AdminPage() {
               {matriculaVista === 'lista' && (
                 <div className="rounded-2xl overflow-hidden" style={card}>
                   {accentBar}
-                  <div className="p-4 flex items-center gap-3 flex-wrap" style={{ borderBottom: '1px solid #E4E8EF' }}>
+                  <div className="p-4 flex items-center gap-3 flex-wrap" style={{ borderBottom: '1px solid #DFE0E0' }}>
                     <input value={matriculadosBusq} onChange={e => setMatriculadosBusq(e.target.value)}
                       placeholder="Buscar por nombre, DNI o salón…"
                       className="flex-1 min-w-[220px] px-3.5 py-2.5 rounded-xl border text-sm font-medium outline-none"
-                      style={{ borderColor: '#E4E8EF' }} />
+                      style={{ borderColor: '#DFE0E0' }} />
                     <span className="text-[11px] font-black px-2.5 py-1 rounded-full bg-slate-100 text-slate-500">
                       {matriculadosFiltrados.length} de {matriculados.length}
                     </span>
@@ -7994,7 +7994,7 @@ export default function AdminPage() {
                   ) : matriculadosFiltrados.length === 0 ? (
                     <p className="p-10 text-center text-sm font-bold text-slate-400">Sin matrículas en este ciclo</p>
                   ) : (
-                    <div className="divide-y" style={{ borderColor: '#F1F5F9' }}>
+                    <div className="divide-y" style={{ borderColor: '#EDEEEE' }}>
                       {matriculadosFiltrados.map(m => {
                         const badge = ESTADO_BADGE[m.estado] ?? ESTADO_BADGE.borrador
                         const deBaja = m.estado === 'retirado' || m.estado === 'trasladado'
@@ -8018,7 +8018,7 @@ export default function AdminPage() {
                               <div className="flex gap-1.5">
                                 <button onClick={() => darBajaAlumno(m, 'trasladado')}
                                   className="px-2.5 py-1.5 rounded-lg text-[11px] font-bold border bg-white hover:bg-indigo-50 transition-colors"
-                                  style={{ borderColor: '#C7D2FE', color: '#3730A3' }}>
+                                  style={{ borderColor: '#E6E2DF', color: '#78675B' }}>
                                   Traslado
                                 </button>
                                 <button onClick={() => darBajaAlumno(m, 'retirado')}
@@ -8047,7 +8047,7 @@ export default function AdminPage() {
                       No hay estudiantes dados de baja — el historial está vacío
                     </p>
                   ) : (
-                    <div className="divide-y" style={{ borderColor: '#F1F5F9' }}>
+                    <div className="divide-y" style={{ borderColor: '#EDEEEE' }}>
                       {bajas.map(b => {
                         const badge = b.estado ? ESTADO_BADGE[b.estado] : null
                         return (
@@ -8095,17 +8095,17 @@ export default function AdminPage() {
                     <div key={num} className="flex items-center flex-1">
                       <div className="w-9 h-9 rounded-full flex items-center justify-center font-black text-sm shrink-0 transition-all"
                         style={{
-                          background: completado || activo ? 'linear-gradient(135deg,#0B2447,#1E3A8A)' : '#f1f5f9',
-                          color: completado || activo ? 'white' : '#94a3b8',
-                          boxShadow: activo ? '0 4px 14px rgba(11,36,71,.3)' : 'none',
+                          background: completado || activo ? 'linear-gradient(135deg,#B00326,#B00326)' : '#EDEEEE',
+                          color: completado || activo ? 'white' : '#8B837E',
+                          boxShadow: activo ? '0 4px 14px rgba(29,24,21,.3)' : 'none',
                         }}>
                         {completado ? '✓' : num}
                       </div>
                       <div className="ml-2 hidden sm:block">
                         <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest leading-none">Paso {num}</p>
-                        <p className="text-xs font-bold leading-tight mt-0.5" style={{ color: activo || completado ? '#0B2447' : '#94a3b8' }}>{label}</p>
+                        <p className="text-xs font-bold leading-tight mt-0.5" style={{ color: activo || completado ? '#1D1815' : '#8B837E' }}>{label}</p>
                       </div>
-                      {i < 3 && <div className="h-0.5 flex-1 ml-3" style={{ background: completado ? '#0B2447' : '#e2e8f0' }} />}
+                      {i < 3 && <div className="h-0.5 flex-1 ml-3" style={{ background: completado ? '#1D1815' : '#DCDEDE' }} />}
                     </div>
                   )
                 })}
@@ -8128,7 +8128,7 @@ export default function AdminPage() {
                               className="text-left rounded-xl p-4 transition-all"
                               style={{
                                 background: sel ? `${t.color}0d` : 'white',
-                                border: sel ? `2px solid ${t.color}` : '2px solid #E4E8EF',
+                                border: sel ? `2px solid ${t.color}` : '2px solid #DFE0E0',
                                 boxShadow: sel ? `0 6px 20px ${t.color}22` : '0 1px 2px rgba(0,0,0,.03)',
                               }}>
                               <div className="flex items-start gap-3">
@@ -8221,11 +8221,11 @@ export default function AdminPage() {
                             onChange={e => setWizSearchTexto(e.target.value)}
                             onKeyDown={e => { if (e.key === 'Enter') wizardBuscarAlumno() }}
                             className="w-full pl-10 pr-4 py-2.5 rounded-xl text-sm outline-none transition-all"
-                            style={{ background: 'white', border: '1.5px solid #E4E8EF' }}/>
+                            style={{ background: 'white', border: '1.5px solid #DFE0E0' }}/>
                         </div>
                         <button onClick={wizardBuscarAlumno} disabled={!wizSearchTexto.trim() || wizSearchLoading}
                           className="px-4 py-2.5 rounded-xl text-sm font-black text-white transition-all active:scale-95 disabled:opacity-40"
-                          style={{ background: 'linear-gradient(135deg,#0B2447,#1E3A8A)' }}>
+                          style={{ background: 'linear-gradient(135deg,#B00326,#B00326)' }}>
                           {wizSearchLoading ? 'Buscando…' : 'Buscar'}
                         </button>
                       </div>
@@ -8239,12 +8239,12 @@ export default function AdminPage() {
                             <button key={a.id} onClick={() => setWizAlumno(a)}
                               className="w-full flex items-center gap-3 px-3 py-3 rounded-xl text-left transition-all"
                               style={{
-                                background: sel ? 'linear-gradient(135deg,#0B2447,#1E3A8A)' : 'white',
+                                background: sel ? 'linear-gradient(135deg,#B00326,#B00326)' : 'white',
                                 border: sel ? '1.5px solid transparent' : '1.5px solid #e8e2d8',
-                                boxShadow: sel ? '0 4px 14px rgba(11,36,71,.25)' : 'none',
+                                boxShadow: sel ? '0 4px 14px rgba(29,24,21,.25)' : 'none',
                               }}>
                               <div className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 font-black text-sm"
-                                style={{ background: sel ? 'rgba(255,255,255,.2)' : 'linear-gradient(135deg,#0B2447,#1E3A8A)', color: 'white' }}>
+                                style={{ background: sel ? 'rgba(255,255,255,.2)' : 'linear-gradient(135deg,#B00326,#B00326)', color: 'white' }}>
                                 {(a.apellidos || a.nombre || '?').charAt(0).toUpperCase()}
                               </div>
                               <div className="flex-1 min-w-0">
@@ -8309,7 +8309,7 @@ export default function AdminPage() {
                         <p className="text-sm font-bold text-slate-700">Revisa los datos antes de confirmar</p>
                         <p className="text-[11px] text-slate-400 mt-0.5">Al confirmar se creará la matrícula con estado <span className="font-black text-amber-600">Pendiente de documentos</span></p>
                       </div>
-                      <div className="rounded-xl p-5 space-y-3" style={{ background: '#fafafa', border: '1.5px solid #E4E8EF' }}>
+                      <div className="rounded-xl p-5 space-y-3" style={{ background: '#fafafa', border: '1.5px solid #DFE0E0' }}>
                         <div className="grid grid-cols-2 gap-x-8 gap-y-2 text-sm">
                           <p><span className="font-black text-slate-800">Tipo:</span> <span className="text-slate-700">{tipoElegido?.label}</span></p>
                           <p><span className="font-black text-slate-800">Ciclo:</span> <span className="text-slate-700">{cicloElegido?.nombre || '—'}</span></p>
@@ -8356,7 +8356,7 @@ export default function AdminPage() {
                 <button onClick={() => { setWizPaso((p) => Math.max(1, p - 1) as 1|2|3|4); setWizError('') }}
                   disabled={wizPaso === 1 || !!wizOkMsg}
                   className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-black transition-all disabled:opacity-40 disabled:cursor-not-allowed"
-                  style={{ background: 'white', border: '1.5px solid #e2e8f0', color: '#475569' }}>
+                  style={{ background: 'white', border: '1.5px solid #DCDEDE', color: '#5C5450' }}>
                   <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7"/>
                   </svg>
@@ -8366,7 +8366,7 @@ export default function AdminPage() {
                   <button onClick={() => setWizPaso((p) => Math.min(4, p + 1) as 1|2|3|4)}
                     disabled={!puedeAvanzar}
                     className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-black text-white transition-all active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed"
-                    style={{ background: 'linear-gradient(135deg,#0B2447,#1E3A8A)', boxShadow: '0 4px 14px rgba(11,36,71,.25)' }}>
+                    style={{ background: 'linear-gradient(135deg,#B00326,#B00326)', boxShadow: '0 4px 14px rgba(29,24,21,.25)' }}>
                     Siguiente
                     <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/>
@@ -8444,9 +8444,9 @@ export default function AdminPage() {
             {/* Tarjetas resumen */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
               {[
-                { label: 'Docentes', value: filasFiltradas.length, icon: '👤', color: '#0B2447' },
+                { label: 'Docentes', value: filasFiltradas.length, icon: '👤', color: '#1D1815' },
                 { label: 'Total horas', value: totalHorasSuma.toFixed(1) + 'h', icon: '⏱', color: '#f59e0b' },
-                { label: 'Promedio/docente', value: promedio + 'h', icon: '📊', color: '#06b6d4' },
+                { label: 'Promedio/docente', value: promedio + 'h', icon: '📊', color: '#CD670D' },
                 { label: 'Sin horas', value: filasFiltradas.filter(f => f.totalHoras === 0).length, icon: '⚠', color: '#f43f5e' },
               ].map(s => (
                 <div key={s.label} className="rounded-2xl p-4" style={card}>
@@ -8494,7 +8494,7 @@ export default function AdminPage() {
                 <button
                   onClick={() => { setBusquedaHoras(''); setCursoHoras('') }}
                   className="px-3 py-2 rounded-xl text-xs font-bold transition-all"
-                  style={{ background: '#f1f5f9', color: '#64748b', border: '1.5px solid #e2e8f0' }}>
+                  style={{ background: '#EDEEEE', color: '#6B625D', border: '1.5px solid #DCDEDE' }}>
                   Limpiar
                 </button>
               )}
@@ -8513,7 +8513,7 @@ export default function AdminPage() {
                 <div className="overflow-x-auto">
                   <table className="w-full border-collapse" style={{ minWidth: '720px' }}>
                     <thead>
-                      <tr style={{ borderBottom: '1.5px solid #E4E8EF', background: '#F8FAFC' }}>
+                      <tr style={{ borderBottom: '1.5px solid #DFE0E0', background: '#F7F7F6' }}>
                         <th className="px-4 py-3 text-left text-[11px] font-black text-slate-500 uppercase tracking-wide">Docente</th>
                         <th className="px-3 py-3 text-left text-[11px] font-black text-slate-500 uppercase tracking-wide">Cursos</th>
                         {DIAS.map(d => (
@@ -8525,12 +8525,12 @@ export default function AdminPage() {
                     <tbody>
                       {filasFiltradas.map((f, idx) => (
                         <tr key={f.id}
-                          style={{ borderBottom: idx < filasFiltradas.length - 1 ? '1px solid #f1f5f9' : 'none', background: idx % 2 === 0 ? 'white' : '#fafbff' }}>
+                          style={{ borderBottom: idx < filasFiltradas.length - 1 ? '1px solid #EDEEEE' : 'none', background: idx % 2 === 0 ? 'white' : '#FDFCFC' }}>
                           {/* Docente */}
                           <td className="px-4 py-3">
                             <div className="flex items-center gap-2.5">
                               <div className="w-8 h-8 rounded-xl flex items-center justify-center shrink-0 text-[10px] font-black text-white"
-                                style={{ background: 'linear-gradient(135deg,#0B2447,#1E3A8A)' }}>
+                                style={{ background: 'linear-gradient(135deg,#B00326,#B00326)' }}>
                                 {f.nombre.split(' ').slice(0,2).map(w => w[0]).join('').toUpperCase()}
                               </div>
                               <div>
@@ -8546,11 +8546,11 @@ export default function AdminPage() {
                                 ? <span className="text-[10px] text-slate-300 italic">Sin cursos</span>
                                 : f.cursos.slice(0, 3).map(c => (
                                     <span key={c} className="text-[9px] font-bold px-1.5 py-0.5 rounded-md"
-                                      style={{ background: '#F1F5F9', color: '#0B2447' }}>{c}</span>
+                                      style={{ background: '#EDEEEE', color: '#1D1815' }}>{c}</span>
                                   ))
                               }
                               {f.cursos.length > 3 && (
-                                <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-md" style={{ background: '#f1f5f9', color: '#94a3b8' }}>
+                                <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-md" style={{ background: '#EDEEEE', color: '#8B837E' }}>
                                   +{f.cursos.length - 3}
                                 </span>
                               )}
@@ -8563,7 +8563,7 @@ export default function AdminPage() {
                               <td key={dia} className="px-2 py-3 text-center">
                                 {h > 0 ? (
                                   <div className="inline-flex flex-col items-center gap-0.5">
-                                    <span className="text-sm font-black" style={{ color: h >= 4 ? '#0B2447' : h >= 2 ? '#06b6d4' : '#94a3b8' }}>{h}</span>
+                                    <span className="text-sm font-black" style={{ color: h >= 4 ? '#1D1815' : h >= 2 ? '#CD670D' : '#8B837E' }}>{h}</span>
                                     <span className="text-[8px] text-slate-300 font-semibold">hrs</span>
                                   </div>
                                 ) : (
@@ -8576,15 +8576,15 @@ export default function AdminPage() {
                           <td className="px-4 py-3 text-center">
                             <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-xl"
                               style={{
-                                background: f.totalHoras === 0 ? '#f1f5f9' : f.totalHoras >= 20 ? '#F1F5F9' : '#f0fdf9',
-                                border: f.totalHoras === 0 ? '1px solid #e2e8f0' : f.totalHoras >= 20 ? '1px solid #fecdd3' : '1px solid #bbf7d0',
+                                background: f.totalHoras === 0 ? '#EDEEEE' : f.totalHoras >= 20 ? '#EDEEEE' : '#f0fdf9',
+                                border: f.totalHoras === 0 ? '1px solid #DCDEDE' : f.totalHoras >= 20 ? '1px solid #fecdd3' : '1px solid #bbf7d0',
                               }}>
                               <span className="text-sm font-black"
-                                style={{ color: f.totalHoras === 0 ? '#cbd5e1' : f.totalHoras >= 20 ? '#0B2447' : '#16a34a' }}>
+                                style={{ color: f.totalHoras === 0 ? '#C9C5C1' : f.totalHoras >= 20 ? '#1D1815' : '#16a34a' }}>
                                 {f.totalHoras}
                               </span>
                               <span className="text-[9px] font-bold"
-                                style={{ color: f.totalHoras === 0 ? '#cbd5e1' : f.totalHoras >= 20 ? '#1E40AF' : '#4ade80' }}>
+                                style={{ color: f.totalHoras === 0 ? '#C9C5C1' : f.totalHoras >= 20 ? '#D9042F' : '#4ade80' }}>
                                 h
                               </span>
                             </div>
@@ -8596,7 +8596,7 @@ export default function AdminPage() {
                 </div>
 
                 {/* Footer total */}
-                <div className="px-4 py-3 flex items-center justify-between" style={{ borderTop: '1.5px solid #E4E8EF', background: '#F8FAFC' }}>
+                <div className="px-4 py-3 flex items-center justify-between" style={{ borderTop: '1.5px solid #DFE0E0', background: '#F7F7F6' }}>
                   <p className="text-xs font-bold text-slate-500">
                     {filasFiltradas.length} docente{filasFiltradas.length !== 1 ? 's' : ''}
                     {(busquedaHoras || cursoHoras) ? ' (filtrado)' : ''}
@@ -8631,11 +8631,11 @@ export default function AdminPage() {
                   <h2 className="text-slate-900 font-black text-xl">Cursos</h2>
                   <p className="text-slate-400 text-xs mt-0.5">{cursos.length} curso{cursos.length !== 1 ? 's' : ''} en el catálogo · selecciona un nivel</p>
                 </div>
-                <button onClick={() => { setMostrarCursoForm(!mostrarCursoForm); setCursoForm({ nombre: '', color: '#143875' }) }}
+                <button onClick={() => { setMostrarCursoForm(!mostrarCursoForm); setCursoForm({ nombre: '', color: '#2A2420' }) }}
                   className="text-sm font-black px-4 py-2 rounded-xl transition-all active:scale-95"
                   style={mostrarCursoForm
-                    ? { background: '#f1f5f9', border: '1.5px solid #e2e8f0', color: '#64748b' }
-                    : { background: 'linear-gradient(135deg,#0B2447,#1E3A8A)', color: 'white', boxShadow: '0 4px 16px rgba(11,36,71,.25)' }}>
+                    ? { background: '#EDEEEE', border: '1.5px solid #DCDEDE', color: '#6B625D' }
+                    : { background: 'linear-gradient(135deg,#B00326,#B00326)', color: 'white', boxShadow: '0 4px 16px rgba(29,24,21,.25)' }}>
                   {mostrarCursoForm ? 'Cancelar' : '+ Nuevo curso'}
                 </button>
               </div>
@@ -8651,7 +8651,7 @@ export default function AdminPage() {
                     boxShadow: nivelCursoTab === 'Cocina'
                       ? '0 8px 32px rgba(16,185,129,.3)'
                       : '0 2px 12px rgba(0,0,0,.06)',
-                    border: nivelCursoTab === 'Cocina' ? '2.5px solid #10b981' : '2px solid #E4E8EF',
+                    border: nivelCursoTab === 'Cocina' ? '2.5px solid #10b981' : '2px solid #DFE0E0',
                     transform: nivelCursoTab === 'Cocina' ? 'translateY(-2px)' : 'none',
                   }}>
                   {/* Cabecera ilustrada */}
@@ -8693,8 +8693,8 @@ export default function AdminPage() {
                   </div>
                   {/* Cuerpo */}
                   <div className="p-4" style={{ background: nivelCursoTab === 'Cocina' ? '#f0fdf9' : 'white' }}>
-                    <p className="font-black text-base" style={{ color: nivelCursoTab === 'Cocina' ? '#059669' : '#1e293b' }}>Cocina</p>
-                    <p className="text-xs font-semibold mt-0.5" style={{ color: nivelCursoTab === 'Cocina' ? '#34d399' : '#94a3b8' }}>
+                    <p className="font-black text-base" style={{ color: nivelCursoTab === 'Cocina' ? '#059669' : '#2A2420' }}>Cocina</p>
+                    <p className="text-xs font-semibold mt-0.5" style={{ color: nivelCursoTab === 'Cocina' ? '#34d399' : '#8B837E' }}>
                       Ciclos 1° — 4° · {contPrimaria} asignación{contPrimaria !== 1 ? 'es' : ''}
                     </p>
                   </div>
@@ -8706,13 +8706,13 @@ export default function AdminPage() {
                   className="relative rounded-2xl overflow-hidden text-left transition-all active:scale-[.98]"
                   style={{
                     boxShadow: nivelCursoTab === 'Pastelería'
-                      ? '0 8px 32px rgba(11,36,71,.25)'
+                      ? '0 8px 32px rgba(29,24,21,.25)'
                       : '0 2px 12px rgba(0,0,0,.06)',
-                    border: nivelCursoTab === 'Pastelería' ? '2.5px solid #0B2447' : '2px solid #E4E8EF',
+                    border: nivelCursoTab === 'Pastelería' ? '2.5px solid #1D1815' : '2px solid #DFE0E0',
                     transform: nivelCursoTab === 'Pastelería' ? 'translateY(-2px)' : 'none',
                   }}>
                   {/* Cabecera ilustrada */}
-                  <div className="relative overflow-hidden" style={{ height: '140px', background: 'linear-gradient(135deg,#0B2447,#1E3A8A)' }}>
+                  <div className="relative overflow-hidden" style={{ height: '140px', background: 'linear-gradient(135deg,#B00326,#B00326)' }}>
                     <div className="absolute -top-8 -right-8 w-32 h-32 rounded-full" style={{ background: 'white', opacity: .1 }}/>
                     <div className="absolute -bottom-6 -left-6 w-24 h-24 rounded-full" style={{ background: 'white', opacity: .07 }}/>
                     <div className="absolute top-6 left-8 w-12 h-12 rounded-full" style={{ background: 'white', opacity: .08 }}/>
@@ -8737,16 +8737,16 @@ export default function AdminPage() {
                     {nivelCursoTab === 'Pastelería' && (
                       <div className="absolute top-3 right-3 w-6 h-6 rounded-full flex items-center justify-center"
                         style={{ background: 'white' }}>
-                        <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="#0B2447" strokeWidth="3">
+                        <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="#1D1815" strokeWidth="3">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"/>
                         </svg>
                       </div>
                     )}
                   </div>
                   {/* Cuerpo */}
-                  <div className="p-4" style={{ background: nivelCursoTab === 'Pastelería' ? '#F1F5F9' : 'white' }}>
-                    <p className="font-black text-base" style={{ color: nivelCursoTab === 'Pastelería' ? '#0B2447' : '#1e293b' }}>Panadería y Pastelería</p>
-                    <p className="text-xs font-semibold mt-0.5" style={{ color: nivelCursoTab === 'Pastelería' ? '#1E3A8A' : '#94a3b8' }}>
+                  <div className="p-4" style={{ background: nivelCursoTab === 'Pastelería' ? '#EDEEEE' : 'white' }}>
+                    <p className="font-black text-base" style={{ color: nivelCursoTab === 'Pastelería' ? '#1D1815' : '#2A2420' }}>Panadería y Pastelería</p>
+                    <p className="text-xs font-semibold mt-0.5" style={{ color: nivelCursoTab === 'Pastelería' ? '#B00326' : '#8B837E' }}>
                       Ciclos 1° — 2° · {contSecundaria} asignación{contSecundaria !== 1 ? 'es' : ''}
                     </p>
                   </div>
@@ -8761,7 +8761,7 @@ export default function AdminPage() {
                   {mostrarCursoForm && (
                     <form onSubmit={handleCrearCurso}
                       className="p-4 rounded-2xl space-y-3"
-                      style={{ background: '#F8FAFC', border: '1.5px solid #E4E8EF' }}>
+                      style={{ background: '#F7F7F6', border: '1.5px solid #DFE0E0' }}>
                       <div>
                         <label className={labelCls}>Nombre del curso</label>
                         <input type="text" required autoFocus value={cursoForm.nombre}
@@ -8780,7 +8780,7 @@ export default function AdminPage() {
                       </div>
                       <button type="submit" disabled={cursoLoading}
                         className="w-full py-2 rounded-xl text-xs font-black text-white disabled:opacity-60 transition-all"
-                        style={{ background: 'linear-gradient(135deg,#0B2447,#1E3A8A)' }}>
+                        style={{ background: 'linear-gradient(135deg,#B00326,#B00326)' }}>
                         <span className="flex items-center justify-center gap-2">
                           {cursoLoading && <Spinner cls="h-3.5 w-3.5 text-white"/>}
                           {cursoLoading ? 'Guardando...' : 'Agregar curso'}
@@ -8839,8 +8839,8 @@ export default function AdminPage() {
                     <button key={v} onClick={() => { setVistaCursosTab(v); setDocenteAsigAbierto(null); setSeccionAddOpen(null); setSwapAsigId(null); setCursoAddOpen(null) }}
                       className="px-3.5 py-2 text-xs font-black transition-all"
                       style={vistaCursosTab === v
-                        ? { background: 'linear-gradient(135deg,#0B2447,#1E3A8A)', color: 'white' }
-                        : { background: 'white', color: '#94a3b8' }}>
+                        ? { background: 'linear-gradient(135deg,#B00326,#B00326)', color: 'white' }
+                        : { background: 'white', color: '#8B837E' }}>
                       {v === 'curso' ? 'Por curso' : v === 'seccion' ? 'Por sección' : 'Por docente'}
                     </button>
                   ))}
@@ -8894,19 +8894,19 @@ export default function AdminPage() {
                   return (
                     <div className="space-y-3">
                       {/* Sub-toggle: Cursos generales / Cursos */}
-                      <div className="rounded-2xl p-1 flex gap-1" style={{ background: '#f1f5f9' }}>
+                      <div className="rounded-2xl p-1 flex gap-1" style={{ background: '#EDEEEE' }}>
                         <button onClick={() => { setSubVistaCurso('generales'); setCursoAddOpen(null); setSwapAsigId(null) }}
                           className="flex-1 px-3 py-2 rounded-xl text-xs font-black transition-all"
                           style={subVistaCurso === 'generales'
-                            ? { background: 'white', color: '#0B2447', boxShadow: '0 2px 8px rgba(0,0,0,.06)' }
-                            : { background: 'transparent', color: '#94a3b8' }}>
+                            ? { background: 'white', color: '#1D1815', boxShadow: '0 2px 8px rgba(0,0,0,.06)' }
+                            : { background: 'transparent', color: '#8B837E' }}>
                           Cursos generales <span className="opacity-60 font-bold">({generalesCount})</span>
                         </button>
                         <button onClick={() => { setSubVistaCurso('mixtos'); setCursoAddOpen(null); setSwapAsigId(null) }}
                           className="flex-1 px-3 py-2 rounded-xl text-xs font-black transition-all"
                           style={subVistaCurso === 'mixtos'
-                            ? { background: 'white', color: '#0B2447', boxShadow: '0 2px 8px rgba(0,0,0,.06)' }
-                            : { background: 'transparent', color: '#94a3b8' }}>
+                            ? { background: 'white', color: '#1D1815', boxShadow: '0 2px 8px rgba(0,0,0,.06)' }
+                            : { background: 'transparent', color: '#8B837E' }}>
                           Cursos <span className="opacity-60 font-bold">({mixtosCount})</span>
                         </button>
                       </div>
@@ -8957,7 +8957,7 @@ export default function AdminPage() {
                                     : <>{asignadas}/{totalSecciones} secciones · {docsUnicos.size} docente{docsUnicos.size !== 1 ? 's' : ''}</>}
                                 </p>
                               </div>
-                              <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="#94a3b8" strokeWidth="2.5"
+                              <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="#8B837E" strokeWidth="2.5"
                                 style={{ transform: colapsado ? 'rotate(-90deg)' : 'rotate(0)', transition: 'transform .2s' }}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7"/>
                               </svg>
@@ -8967,7 +8967,7 @@ export default function AdminPage() {
                               <div className="border-t border-slate-100">
                                 {/* Acción rápida: aplicar a todas */}
                                 {asignadas > 0 && (
-                                  <div className="px-4 py-3 flex flex-wrap items-end gap-2" style={{ background: '#F8FAFC' }}>
+                                  <div className="px-4 py-3 flex flex-wrap items-end gap-2" style={{ background: '#F7F7F6' }}>
                                     <div className="flex-1 min-w-[180px]">
                                       <label className={labelCls}>Cambiar docente en todas las secciones asignadas</label>
                                       <select
@@ -8982,7 +8982,7 @@ export default function AdminPage() {
                                       disabled={!principal || bulkLoadingCurso === curso.id}
                                       onClick={() => handleAplicarDocenteACurso(curso.id, principal, nivelCursoTab)}
                                       className="px-4 py-2.5 rounded-xl text-xs font-black text-white disabled:opacity-50 transition-all"
-                                      style={{ background: 'linear-gradient(135deg,#0B2447,#1E3A8A)' }}>
+                                      style={{ background: 'linear-gradient(135deg,#B00326,#B00326)' }}>
                                       <span className="flex items-center gap-2">
                                         {bulkLoadingCurso === curso.id && <Spinner cls="h-3.5 w-3.5 text-white"/>}
                                         {bulkLoadingCurso === curso.id ? 'Aplicando...' : `Aplicar a las ${asignadas}`}
@@ -9044,7 +9044,7 @@ export default function AdminPage() {
                                               disabled={!cursoAddDocente || asigLoading}
                                               onClick={() => handleCrearAsignacionCurso(curso.id, grado, grupo, cursoAddDocente)}
                                               className="px-2 h-6 rounded-md text-[10px] font-black text-white disabled:opacity-50 transition-all shrink-0"
-                                              style={{ background: 'linear-gradient(135deg,#0B2447,#1E3A8A)' }}>
+                                              style={{ background: 'linear-gradient(135deg,#B00326,#B00326)' }}>
                                               OK
                                             </button>
                                             <button onClick={() => { setCursoAddOpen(null); setCursoAddDocente('') }}
@@ -9061,7 +9061,7 @@ export default function AdminPage() {
                                             <button
                                               onClick={() => { setCursoAddOpen(`${curso.id}__${k}`); setCursoAddDocente(principal || '') }}
                                               className="px-2 h-6 rounded-md text-[10px] font-black transition-all shrink-0"
-                                              style={{ background: 'white', border: '1.5px dashed #d4a5a8', color: '#0B2447' }}>
+                                              style={{ background: 'white', border: '1.5px dashed #d4a5a8', color: '#1D1815' }}>
                                               + Asignar
                                             </button>
                                           </>
@@ -9088,7 +9088,7 @@ export default function AdminPage() {
                     return (
                       <div key={doc.id} className="rounded-2xl overflow-hidden" style={card}>
                         <div className="px-4 py-3 flex items-center gap-3"
-                          style={{ borderBottom: (asigDocNivel.length > 0 || abierto) ? '1px solid #f1f5f9' : 'none' }}>
+                          style={{ borderBottom: (asigDocNivel.length > 0 || abierto) ? '1px solid #EDEEEE' : 'none' }}>
                           <Avatar name={displayDocente(doc)} color="indigo"/>
                           <div className="flex-1 min-w-0">
                             <p className="text-slate-800 font-bold text-sm truncate">{displayDocente(doc)}</p>
@@ -9102,18 +9102,18 @@ export default function AdminPage() {
                             onClick={() => { setDocenteAsigAbierto(abierto ? null : doc.id); setAsigForm({ curso_id: '', grado: '', grupo: 'A' }) }}
                             className="flex items-center gap-1 text-xs font-black px-2.5 py-1.5 rounded-lg transition-all active:scale-95"
                             style={abierto
-                              ? { background: '#f1f5f9', color: '#64748b', border: '1.5px solid #e2e8f0' }
-                              : { background: 'linear-gradient(135deg,#0B2447,#1E3A8A)', color: 'white', boxShadow: '0 3px 10px rgba(11,36,71,.25)' }}>
+                              ? { background: '#EDEEEE', color: '#6B625D', border: '1.5px solid #DCDEDE' }
+                              : { background: 'linear-gradient(135deg,#B00326,#B00326)', color: 'white', boxShadow: '0 3px 10px rgba(29,24,21,.25)' }}>
                             {abierto ? 'Cancelar' : '+ Asignar'}
                           </button>
                         </div>
 
                         {asigDocNivel.length > 0 && (
                           <div className="px-4 py-3 flex flex-wrap gap-1.5"
-                            style={{ borderBottom: abierto ? '1px solid #f1f5f9' : 'none' }}>
+                            style={{ borderBottom: abierto ? '1px solid #EDEEEE' : 'none' }}>
                             {asigDocNivel.map(a => {
                               const curso = a.cursos as unknown as { nombre: string; color: string } | null
-                              const color = curso?.color ?? '#143875'
+                              const color = curso?.color ?? '#2A2420'
                               return (
                                 <div key={a.id} className="flex items-center gap-1.5 pl-2.5 pr-1 py-1 rounded-xl"
                                   style={{ background: color + '18', border: `1.5px solid ${color}44` }}>
@@ -9135,7 +9135,7 @@ export default function AdminPage() {
                         )}
 
                         {abierto && (
-                          <div className="px-4 py-3 space-y-3" style={{ background: '#F8FAFC' }}>
+                          <div className="px-4 py-3 space-y-3" style={{ background: '#F7F7F6' }}>
                             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                               <div>
                                 <label className={labelCls}>Curso</label>
@@ -9169,7 +9169,7 @@ export default function AdminPage() {
                               onClick={() => handleCrearAsignacion(doc.id)}
                               disabled={asigLoading || !asigForm.curso_id || !asigForm.grado}
                               className="w-full py-2 rounded-xl text-xs font-black text-white disabled:opacity-50 transition-all"
-                              style={{ background: 'linear-gradient(135deg,#0B2447,#1E3A8A)' }}>
+                              style={{ background: 'linear-gradient(135deg,#B00326,#B00326)' }}>
                               <span className="flex items-center justify-center gap-2">
                                 {asigLoading && <Spinner cls="h-3.5 w-3.5 text-white"/>}
                                 {asigLoading ? 'Guardando...' : 'Guardar asignación'}
@@ -9218,7 +9218,7 @@ export default function AdminPage() {
                       </div>
                     )
                   }
-                  const acentoBg = nivelCursoTab === 'Cocina' ? 'linear-gradient(135deg,#10b981,#34d399)' : 'linear-gradient(135deg,#0B2447,#1E3A8A)'
+                  const acentoBg = nivelCursoTab === 'Cocina' ? 'linear-gradient(135deg,#10b981,#34d399)' : 'linear-gradient(135deg,#B00326,#B00326)'
                   return (
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
                       {secciones.map(({ grado, grupo }) => {
@@ -9254,7 +9254,7 @@ export default function AdminPage() {
                                     : `${asigsSec.length} curso${asigsSec.length !== 1 ? 's' : ''} · ${new Set(asigsSec.map(a => a.docente_id)).size} docente${new Set(asigsSec.map(a => a.docente_id)).size !== 1 ? 's' : ''}`}
                                 </p>
                               </div>
-                              <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="#94a3b8" strokeWidth="2.5"
+                              <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="#8B837E" strokeWidth="2.5"
                                 style={{ transform: colapsada ? 'rotate(-90deg)' : 'rotate(0)', transition: 'transform .2s' }}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7"/>
                               </svg>
@@ -9269,7 +9269,7 @@ export default function AdminPage() {
                                   <ul className="divide-y divide-slate-100">
                                     {asigsSec.map(a => {
                                       const curso = a.cursos as unknown as { nombre: string; color: string } | null
-                                      const color = curso?.color ?? '#143875'
+                                      const color = curso?.color ?? '#2A2420'
                                       const docente = docentes.find(d => d.id === a.docente_id)
                                       const editando = swapAsigId === a.id
                                       return (
@@ -9295,7 +9295,7 @@ export default function AdminPage() {
                                               <button onClick={() => setSwapAsigId(a.id)}
                                                 className="w-full text-left px-2 py-1 rounded-lg text-[11px] font-semibold text-slate-700 hover:bg-slate-50 transition-colors flex items-center gap-1.5">
                                                 <span className="truncate">{docente ? displayDocente(docente) : <span className="text-amber-600">⚠ Sin docente</span>}</span>
-                                                <svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="#cbd5e1" strokeWidth="2.5" className="shrink-0">
+                                                <svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="#C9C5C1" strokeWidth="2.5" className="shrink-0">
                                                   <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7"/>
                                                 </svg>
                                               </button>
@@ -9315,15 +9315,15 @@ export default function AdminPage() {
                                   </ul>
                                 )}
                                 {/* Agregar curso */}
-                                <div className="px-3 py-2.5 border-t border-slate-100" style={{ background: '#F8FAFC' }}>
+                                <div className="px-3 py-2.5 border-t border-slate-100" style={{ background: '#F7F7F6' }}>
                                   {!addOpen ? (
                                     <button
                                       disabled={cursosDisponibles.length === 0}
                                       onClick={() => { setSeccionAddOpen(key); setSeccionAddCurso(''); setSeccionAddDocente('') }}
                                       className="w-full py-1.5 rounded-lg text-[11px] font-black transition-all disabled:opacity-50"
                                       style={cursosDisponibles.length === 0
-                                        ? { background: '#f1f5f9', color: '#94a3b8' }
-                                        : { background: 'white', border: '1.5px dashed #d4a5a8', color: '#0B2447' }}>
+                                        ? { background: '#EDEEEE', color: '#8B837E' }
+                                        : { background: 'white', border: '1.5px dashed #d4a5a8', color: '#1D1815' }}>
                                       {cursosDisponibles.length === 0 ? 'Todos los cursos asignados' : '+ Agregar curso'}
                                     </button>
                                   ) : (
@@ -9348,14 +9348,14 @@ export default function AdminPage() {
                                         <button
                                           onClick={() => { setSeccionAddOpen(null); setSeccionAddCurso(''); setSeccionAddDocente('') }}
                                           className="flex-1 py-1.5 rounded-lg text-[11px] font-black transition-all"
-                                          style={{ background: '#f1f5f9', color: '#64748b', border: '1.5px solid #e2e8f0' }}>
+                                          style={{ background: '#EDEEEE', color: '#6B625D', border: '1.5px solid #DCDEDE' }}>
                                           Cancelar
                                         </button>
                                         <button
                                           disabled={asigLoading || !seccionAddCurso || !seccionAddDocente}
                                           onClick={() => handleCrearAsignacionSeccion(grado, grupo, seccionAddDocente, seccionAddCurso)}
                                           className="flex-1 py-1.5 rounded-lg text-[11px] font-black text-white disabled:opacity-50 transition-all"
-                                          style={{ background: 'linear-gradient(135deg,#0B2447,#1E3A8A)' }}>
+                                          style={{ background: 'linear-gradient(135deg,#B00326,#B00326)' }}>
                                           <span className="flex items-center justify-center gap-2">
                                             {asigLoading && <Spinner cls="h-3 w-3 text-white"/>}
                                             {asigLoading ? 'Guardando...' : 'Guardar'}
@@ -9408,8 +9408,8 @@ export default function AdminPage() {
                         <button key={v} onClick={() => setVistaHorario(v)}
                           className="px-4 py-2 text-xs font-black transition-all"
                           style={vistaHorario === v
-                            ? { background: 'linear-gradient(135deg,#0B2447,#1E3A8A)', color: 'white' }
-                            : { background: 'white', color: '#94a3b8' }}>
+                            ? { background: 'linear-gradient(135deg,#B00326,#B00326)', color: 'white' }
+                            : { background: 'white', color: '#8B837E' }}>
                           {v === 'grado' ? 'Por Grado/Grupo' : 'Por Docente'}
                         </button>
                       ))}
@@ -9427,7 +9427,7 @@ export default function AdminPage() {
                       onClick={() => { setPdfOpcionH(null); setPdfMenuH(true) }}
                       disabled={generandoPdfH}
                       className="ml-auto flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-black transition-all select-none"
-                      style={{ background: '#F1F5F9', border: '1.5px solid #fecdd3', color: '#0B2447', opacity: generandoPdfH ? 0.6 : 1 }}>
+                      style={{ background: '#EDEEEE', border: '1.5px solid #fecdd3', color: '#1D1815', opacity: generandoPdfH ? 0.6 : 1 }}>
                       <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.2">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3M3 17V7a2 2 0 012-2h6l2 2h4a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
                       </svg>
@@ -9446,8 +9446,8 @@ export default function AdminPage() {
                           }}
                             className="px-3 py-1.5 text-xs font-black transition-all"
                             style={nivelFiltroH === n
-                              ? { background: 'linear-gradient(135deg,#0B2447,#1E3A8A)', color: 'white' }
-                              : { background: 'white', color: '#94a3b8' }}>
+                              ? { background: 'linear-gradient(135deg,#B00326,#B00326)', color: 'white' }
+                              : { background: 'white', color: '#8B837E' }}>
                             {n}
                           </button>
                         ))}
@@ -9457,8 +9457,8 @@ export default function AdminPage() {
                           <button key={g} onClick={() => setGradoFiltroH(g)}
                             className="px-3 py-1.5 rounded-xl text-[11px] font-bold transition-all"
                             style={gradoFiltroH === g
-                              ? { background: '#F1F5F9', border: '1.5px solid #1E3A8A', color: '#0B2447' }
-                              : { background: 'white', border: '1.5px solid #E4E8EF', color: '#94a3b8' }}>
+                              ? { background: '#EDEEEE', border: '1.5px solid #B00326', color: '#1D1815' }
+                              : { background: 'white', border: '1.5px solid #DFE0E0', color: '#8B837E' }}>
                             {g.split('°')[0]}°
                           </button>
                         ))}
@@ -9468,8 +9468,8 @@ export default function AdminPage() {
                           <button key={g} onClick={() => setGrupoFiltroH(g)}
                             className="w-8 h-8 rounded-lg text-xs font-black transition-all"
                             style={grupoFiltroH === g
-                              ? { background: 'linear-gradient(135deg,#0B2447,#1E3A8A)', color: 'white' }
-                              : { background: 'white', border: '1.5px solid #E4E8EF', color: '#94a3b8' }}>
+                              ? { background: 'linear-gradient(135deg,#B00326,#B00326)', color: 'white' }
+                              : { background: 'white', border: '1.5px solid #DFE0E0', color: '#8B837E' }}>
                             {g}
                           </button>
                         ))}
@@ -9536,7 +9536,7 @@ export default function AdminPage() {
                 !docenteFiltroH ? (
                   <div className="flex flex-col items-center justify-center py-16 gap-3">
                     <div className="w-12 h-12 rounded-2xl flex items-center justify-center"
-                      style={{ background: '#F1F5F9', border: '1.5px solid #fecdd3' }}>
+                      style={{ background: '#EDEEEE', border: '1.5px solid #fecdd3' }}>
                       <svg className="w-6 h-6 text-indigo-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                       </svg>
@@ -9549,7 +9549,7 @@ export default function AdminPage() {
                     <div className="flex-1 min-w-0 rounded-2xl overflow-hidden" style={card}>
                       {accentBar}
                       <div className="px-4 py-2.5 flex items-center justify-between bg-slate-50/60"
-                        style={{ borderBottom: '1px solid #E4E8EF' }}>
+                        style={{ borderBottom: '1px solid #DFE0E0' }}>
                         <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">
                           Horario de {docenteSelec?.nombre}
                         </span>
@@ -9557,12 +9557,12 @@ export default function AdminPage() {
                       <div className="overflow-x-auto">
                         <table className="w-full border-collapse" style={{ minWidth: '540px' }}>
                           <thead>
-                            <tr style={{ borderBottom: '1px solid #E4E8EF' }}>
+                            <tr style={{ borderBottom: '1px solid #DFE0E0' }}>
                               <th className="w-28 px-3 py-2.5 text-left" style={{ background: '#faf8f7' }}>
                                 <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Período</span>
                               </th>
                               {DIAS_SEMANA.map(d => (
-                                <th key={d} className="px-2 py-2.5 text-center" style={{ background: '#faf8f7', borderLeft: '1px solid #E4E8EF' }}>
+                                <th key={d} className="px-2 py-2.5 text-center" style={{ background: '#faf8f7', borderLeft: '1px solid #DFE0E0' }}>
                                   <span className="text-[11px] font-black text-slate-600">{d}</span>
                                 </th>
                               ))}
@@ -9576,14 +9576,14 @@ export default function AdminPage() {
                                 almuerzo: { bg: '#f0fdf4', text: '#16a34a' },
                               }
                               return (
-                                <tr key={periodo.id} style={{ borderBottom: '1px solid #f1f5f9' }}>
+                                <tr key={periodo.id} style={{ borderBottom: '1px solid #EDEEEE' }}>
                                   <td className="px-3 py-2" style={{ background: '#faf8f7', verticalAlign: 'middle' }}>
                                     <p className="text-[11px] font-black text-slate-700 leading-tight">{periodo.nombre}</p>
                                     <p className="text-[9px] text-slate-400 font-mono mt-0.5">{periodo.inicio} – {periodo.fin}</p>
                                   </td>
                                   {isBreak ? (
                                     <td colSpan={5} className="px-3 py-2"
-                                      style={{ borderLeft: '1px solid #E4E8EF', background: breakColors[periodo.tipo as 'recreo'|'almuerzo'].bg }}>
+                                      style={{ borderLeft: '1px solid #DFE0E0', background: breakColors[periodo.tipo as 'recreo'|'almuerzo'].bg }}>
                                       <div className="flex items-center justify-center gap-2 py-0.5">
                                         <div className="h-px flex-1 opacity-30" style={{ background: breakColors[periodo.tipo as 'recreo'|'almuerzo'].text }}/>
                                         <span className="text-[11px] font-black" style={{ color: breakColors[periodo.tipo as 'recreo'|'almuerzo'].text }}>
@@ -9604,7 +9604,7 @@ export default function AdminPage() {
 
                                       // Color del curso
                                       const asigClase   = clase ? asigsDocente.find(a => a.cursos?.nombre === clase.materia && a.grado === clase.grado && a.grupo === clase.grupo) : null
-                                      const cursoColor  = asigClase?.cursos?.color ?? '#143875'
+                                      const cursoColor  = asigClase?.cursos?.color ?? '#2A2420'
                                       const colorBg     = cursoColor + '22'
                                       const colorBorder = cursoColor + '66'
 
@@ -9620,7 +9620,7 @@ export default function AdminPage() {
 
                                       return (
                                         <td key={dia} rowSpan={span}
-                                          style={{ borderLeft: '1px solid #E4E8EF', verticalAlign: 'middle', padding: '4px' }}
+                                          style={{ borderLeft: '1px solid #DFE0E0', verticalAlign: 'middle', padding: '4px' }}
                                           onDragOver={e => { e.preventDefault(); setDragOver(cellKey) }}
                                           onDragLeave={() => setDragOver(null)}
                                           onDrop={() => handleDropCelda(periodo, dia)}>
@@ -9677,8 +9677,8 @@ export default function AdminPage() {
                                               style={{
                                                 minHeight: '54px',
                                                 ...(isOver
-                                                  ? { background: '#F1F5F9', border: '2px dashed #1E3A8A' }
-                                                  : { background: dragItem ? '#F6F8FB' : 'transparent', border: dragItem ? '1.5px dashed #fecdd3' : '1.5px dashed transparent' })
+                                                  ? { background: '#EDEEEE', border: '2px dashed #B00326' }
+                                                  : { background: dragItem ? '#F5F5F4' : 'transparent', border: dragItem ? '1.5px dashed #fecdd3' : '1.5px dashed transparent' })
                                               }}>
                                               {isOver && <svg className="w-4 h-4 text-indigo-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4"/></svg>}
                                             </div>
@@ -9696,7 +9696,7 @@ export default function AdminPage() {
                       {/* Estado guardado */}
                       {(gridGuardando || gridSavedOk || horarioError) && (
                         <div className="px-4 py-2.5 flex items-center gap-2"
-                          style={{ borderTop: '1px solid #E4E8EF', background: gridSavedOk ? '#f0fdf4' : horarioError ? '#fef2f2' : '#faf8f7' }}>
+                          style={{ borderTop: '1px solid #DFE0E0', background: gridSavedOk ? '#f0fdf4' : horarioError ? '#fef2f2' : '#faf8f7' }}>
                           {gridGuardando && <><Spinner cls="h-3.5 w-3.5 text-indigo-800"/><span className="text-[11px] text-indigo-900 font-semibold">Guardando...</span></>}
                           {gridSavedOk && !gridGuardando && <><svg className="w-3.5 h-3.5 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"/></svg><span className="text-[11px] text-emerald-600 font-bold">Guardado</span></>}
                           {horarioError && !gridGuardando && !gridSavedOk && <span className="text-[11px] text-indigo-600 font-semibold">{horarioError}</span>}
@@ -9708,7 +9708,7 @@ export default function AdminPage() {
                     <div className="w-52 shrink-0 space-y-3">
                       <div className="rounded-2xl overflow-hidden" style={card}>
                         {accentBar}
-                        <div className="px-3 py-2.5 bg-slate-50/60" style={{ borderBottom: '1px solid #E4E8EF' }}>
+                        <div className="px-3 py-2.5 bg-slate-50/60" style={{ borderBottom: '1px solid #DFE0E0' }}>
                           <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Cursos asignados</p>
                           <p className="text-[10px] text-slate-400 mt-0.5">Arrastra al horario</p>
                         </div>
@@ -9748,7 +9748,7 @@ export default function AdminPage() {
                       </div>
                       {dragItem && (
                         <div className="rounded-xl px-3 py-2 text-center"
-                          style={{ background: '#F1F5F9', border: '1.5px dashed #1E3A8A' }}>
+                          style={{ background: '#EDEEEE', border: '1.5px dashed #B00326' }}>
                           <p className="text-[10px] font-bold text-indigo-900">Suelta en una celda del horario</p>
                         </div>
                       )}
@@ -9768,14 +9768,14 @@ export default function AdminPage() {
 
                   {/* Cabecera acciones periodos */}
                   <div className="px-4 py-2.5 flex items-center justify-between bg-slate-50/60"
-                    style={{ borderBottom: '1px solid #E4E8EF' }}>
+                    style={{ borderBottom: '1px solid #DFE0E0' }}>
                     <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Horario semanal</span>
                     <div className="flex items-center gap-2">
                       {editandoPeriodos && (
                         <>
                           <button onClick={() => agregarPeriodo('hora')}
                             className="text-[10px] font-bold px-2 py-1 rounded-lg transition-all"
-                            style={{ background: '#F1F5F9', border: '1px solid #fecdd3', color: '#0B2447' }}>
+                            style={{ background: '#EDEEEE', border: '1px solid #fecdd3', color: '#1D1815' }}>
                             + Hora
                           </button>
                           <button onClick={() => agregarPeriodo('recreo')}
@@ -9793,8 +9793,8 @@ export default function AdminPage() {
                       <button onClick={() => { if (!editandoPeriodos) setPeriodosOriginal(periodos.map(p => ({ ...p }))); setEditandoPeriodos(!editandoPeriodos); setHorarioError('') }}
                         className="text-[10px] font-black px-2.5 py-1.5 rounded-lg transition-all"
                         style={editandoPeriodos
-                          ? { background: '#f1f5f9', border: '1px solid #e2e8f0', color: '#64748b' }
-                          : { background: '#faf8f7', border: '1px solid #e2e8f0', color: '#64748b' }}>
+                          ? { background: '#EDEEEE', border: '1px solid #DCDEDE', color: '#6B625D' }
+                          : { background: '#faf8f7', border: '1px solid #DCDEDE', color: '#6B625D' }}>
                         {editandoPeriodos ? 'Cancelar' : 'Editar horas'}
                       </button>
                     </div>
@@ -9804,14 +9804,14 @@ export default function AdminPage() {
                   <div className="overflow-x-auto">
                     <table className="w-full border-collapse" style={{ minWidth: '540px' }}>
                       <thead>
-                        <tr style={{ borderBottom: '1px solid #E4E8EF' }}>
+                        <tr style={{ borderBottom: '1px solid #DFE0E0' }}>
                           <th className="w-28 px-3 py-2.5 text-left"
                             style={{ background: '#faf8f7' }}>
                             <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Período</span>
                           </th>
                           {DIAS_SEMANA.map(d => (
                             <th key={d} className="px-2 py-2.5 text-center"
-                              style={{ background: '#faf8f7', borderLeft: '1px solid #E4E8EF' }}>
+                              style={{ background: '#faf8f7', borderLeft: '1px solid #DFE0E0' }}>
                               <span className="text-[11px] font-black text-slate-600">{d}</span>
                             </th>
                           ))}
@@ -9825,7 +9825,7 @@ export default function AdminPage() {
                             almuerzo: { bg: '#f0fdf4', border: '#bbf7d0', text: '#16a34a' },
                           }
                           return (
-                            <tr key={periodo.id} style={{ borderBottom: '1px solid #f1f5f9' }}>
+                            <tr key={periodo.id} style={{ borderBottom: '1px solid #EDEEEE' }}>
                               {/* Columna período */}
                               <td className="px-3 py-2" style={{ background: '#faf8f7', verticalAlign: 'middle' }}>
                                 {editandoPeriodos ? (
@@ -9863,7 +9863,7 @@ export default function AdminPage() {
                               {isBreak ? (
                                 <td colSpan={5} className="px-3 py-2"
                                   style={{
-                                    borderLeft: '1px solid #E4E8EF',
+                                    borderLeft: '1px solid #DFE0E0',
                                     background: breakColors[periodo.tipo as 'recreo'|'almuerzo'].bg,
                                   }}>
                                   <div className="flex items-center justify-center gap-2 py-0.5">
@@ -9900,7 +9900,7 @@ export default function AdminPage() {
 
                                   // Color del curso desde asignaciones
                                   const asigClase   = clase ? asigsFiltradas.find(a => a.docente_id === clase.docente_id && a.cursos?.nombre === clase.materia) : null
-                                  const cursoColor  = asigClase?.cursos?.color ?? '#143875'
+                                  const cursoColor  = asigClase?.cursos?.color ?? '#2A2420'
                                   const colorBg     = cursoColor + '22'
                                   const colorBorder = cursoColor + '66'
                                   const colorBadge  = cursoColor + '33'
@@ -9908,7 +9908,7 @@ export default function AdminPage() {
                                   return (
                                     <td key={dia}
                                       rowSpan={span}
-                                      style={{ borderLeft: '1px solid #E4E8EF', verticalAlign: 'middle', padding: '4px' }}
+                                      style={{ borderLeft: '1px solid #DFE0E0', verticalAlign: 'middle', padding: '4px' }}
                                       onDragOver={e => { e.preventDefault(); setDragOver(cellKey) }}
                                       onDragLeave={() => setDragOver(null)}
                                       onDrop={() => handleDropCelda(periodo, dia)}>
@@ -9976,8 +9976,8 @@ export default function AdminPage() {
                                           style={{
                                             minHeight: '54px',
                                             ...(isOver
-                                              ? { background: '#F1F5F9', border: '2px dashed #1E3A8A' }
-                                              : { background: dragItem ? '#F6F8FB' : 'transparent', border: dragItem ? '1.5px dashed #fecdd3' : '1.5px dashed transparent' })
+                                              ? { background: '#EDEEEE', border: '2px dashed #B00326' }
+                                              : { background: dragItem ? '#F5F5F4' : 'transparent', border: dragItem ? '1.5px dashed #fecdd3' : '1.5px dashed transparent' })
                                           }}>
                                           {isOver && (
                                             <svg className="w-4 h-4 text-indigo-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -10000,7 +10000,7 @@ export default function AdminPage() {
                   {/* ── Barra de estado del grid (drag/extender) ── */}
                   {(gridGuardando || gridSavedOk || (horarioError && !editandoPeriodos)) && (
                     <div className="px-4 py-2.5 flex items-center gap-2"
-                      style={{ borderTop: '1px solid #E4E8EF', background: gridSavedOk ? '#f0fdf4' : horarioError ? '#fef2f2' : '#faf8f7' }}>
+                      style={{ borderTop: '1px solid #DFE0E0', background: gridSavedOk ? '#f0fdf4' : horarioError ? '#fef2f2' : '#faf8f7' }}>
                       {gridGuardando && <><Spinner cls="h-3.5 w-3.5 text-indigo-800"/><span className="text-[11px] text-indigo-900 font-semibold">Guardando...</span></>}
                       {gridSavedOk && !gridGuardando && (
                         <>
@@ -10019,7 +10019,7 @@ export default function AdminPage() {
                   {/* ── Barra de guardado de períodos ── */}
                   {editandoPeriodos && (
                     <div className="px-4 py-3 flex items-center justify-between gap-3"
-                      style={{ borderTop: '1px solid #E4E8EF', background: '#faf8f7' }}>
+                      style={{ borderTop: '1px solid #DFE0E0', background: '#faf8f7' }}>
                       <p className="text-[10px] text-slate-400 font-semibold">
                         Los cambios en horas y períodos se guardan al presionar el botón.
                       </p>
@@ -10027,7 +10027,7 @@ export default function AdminPage() {
                         onClick={guardarPeriodos}
                         disabled={guardandoPeriodos}
                         className="flex items-center gap-2 text-sm font-black px-4 py-2 rounded-xl transition-all active:scale-95 disabled:opacity-60 shrink-0"
-                        style={{ background: periodosSavedOk ? 'linear-gradient(135deg,#10b981,#059669)' : 'linear-gradient(135deg,#0B2447,#1E3A8A)', color: 'white', boxShadow: '0 4px 14px rgba(11,36,71,.25)' }}>
+                        style={{ background: periodosSavedOk ? 'linear-gradient(135deg,#10b981,#059669)' : 'linear-gradient(135deg,#B00326,#B00326)', color: 'white', boxShadow: '0 4px 14px rgba(29,24,21,.25)' }}>
                         {guardandoPeriodos
                           ? <><Spinner cls="h-4 w-4 text-white"/> Guardando...</>
                           : periodosSavedOk
@@ -10054,7 +10054,7 @@ export default function AdminPage() {
                 <div className="w-52 shrink-0 space-y-3">
                   <div className="rounded-2xl overflow-hidden" style={card}>
                     {accentBar}
-                    <div className="px-3 py-2.5 bg-slate-50/60" style={{ borderBottom: '1px solid #E4E8EF' }}>
+                    <div className="px-3 py-2.5 bg-slate-50/60" style={{ borderBottom: '1px solid #DFE0E0' }}>
                       <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Docentes</p>
                       <p className="text-[10px] text-slate-400 mt-0.5">{gradoFiltroH} · {grupoFiltroH} · Arrastra al horario</p>
                       <input
@@ -10063,7 +10063,7 @@ export default function AdminPage() {
                         value={busquedaPanelH}
                         onChange={e => setBusquedaPanelH(e.target.value)}
                         className="mt-2 w-full rounded-lg px-2 py-1 text-[10px] font-semibold text-slate-600 placeholder-slate-300 outline-none"
-                        style={{ background: 'white', border: '1.5px solid #E4E8EF' }}
+                        style={{ background: 'white', border: '1.5px solid #DFE0E0' }}
                       />
                     </div>
                     <div className="p-2 space-y-1.5 max-h-[600px] overflow-y-auto">
@@ -10120,7 +10120,7 @@ export default function AdminPage() {
                   {/* Instrucción */}
                   {dragItem && (
                     <div className="rounded-xl px-3 py-2 text-center"
-                      style={{ background: '#F1F5F9', border: '1.5px dashed #1E3A8A' }}>
+                      style={{ background: '#EDEEEE', border: '1.5px dashed #B00326' }}>
                       <p className="text-[10px] font-bold text-indigo-900">Suelta en una celda del horario</p>
                     </div>
                   )}
@@ -10150,7 +10150,7 @@ export default function AdminPage() {
                   <>
                     <button onClick={descargarPlantillaAlumnos}
                       className="flex items-center gap-1.5 text-xs font-bold px-3 py-2 rounded-xl transition-all"
-                      style={{ background: '#faf8f7', border: '1.5px solid #e2e8f0', color: '#64748b' }}>
+                      style={{ background: '#faf8f7', border: '1.5px solid #DCDEDE', color: '#6B625D' }}>
                       <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                       </svg>
@@ -10159,8 +10159,8 @@ export default function AdminPage() {
                     <button onClick={() => { setMostrarImportAlumnos(!mostrarImportAlumnos); setMostrarForm(false); setImportAlumnosResult(null) }}
                       className="flex items-center gap-1.5 text-xs font-bold px-3 py-2 rounded-xl transition-all"
                       style={mostrarImportAlumnos
-                        ? { background: '#F1F5F9', border: '1.5px solid #1E3A8A', color: '#0B2447' }
-                        : { background: '#faf8f7', border: '1.5px solid #e2e8f0', color: '#64748b' }}>
+                        ? { background: '#EDEEEE', border: '1.5px solid #B00326', color: '#1D1815' }
+                        : { background: '#faf8f7', border: '1.5px solid #DCDEDE', color: '#6B625D' }}>
                       <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
                       </svg>
@@ -10172,7 +10172,7 @@ export default function AdminPage() {
                   <>
                     <button onClick={descargarPlantilla}
                       className="flex items-center gap-1.5 text-xs font-bold px-3 py-2 rounded-xl transition-all"
-                      style={{ background: '#faf8f7', border: '1.5px solid #e2e8f0', color: '#64748b' }}>
+                      style={{ background: '#faf8f7', border: '1.5px solid #DCDEDE', color: '#6B625D' }}>
                       <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                       </svg>
@@ -10181,8 +10181,8 @@ export default function AdminPage() {
                     <button onClick={() => { setMostrarImport(!mostrarImport); setMostrarForm(false); setImportResult(null) }}
                       className="flex items-center gap-1.5 text-xs font-bold px-3 py-2 rounded-xl transition-all"
                       style={mostrarImport
-                        ? { background: '#F1F5F9', border: '1.5px solid #1E3A8A', color: '#0B2447' }
-                        : { background: '#faf8f7', border: '1.5px solid #e2e8f0', color: '#64748b' }}>
+                        ? { background: '#EDEEEE', border: '1.5px solid #B00326', color: '#1D1815' }
+                        : { background: '#faf8f7', border: '1.5px solid #DCDEDE', color: '#6B625D' }}>
                       <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
                       </svg>
@@ -10192,7 +10192,7 @@ export default function AdminPage() {
                       onClick={() => setModalDescarga('imagen')}
                       disabled={descargandoImagenDoc}
                       className="flex items-center gap-1.5 text-xs font-black px-3 py-2 rounded-xl text-white transition-all hover:opacity-90 disabled:opacity-60"
-                      style={{ background: 'linear-gradient(135deg,#0B2447,#1E3A8A)', boxShadow: '0 3px 12px rgba(11,36,71,.3)' }}>
+                      style={{ background: 'linear-gradient(135deg,#B00326,#B00326)', boxShadow: '0 3px 12px rgba(29,24,21,.3)' }}>
                       <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth="2.5">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
                       </svg>
@@ -10202,7 +10202,7 @@ export default function AdminPage() {
                       onClick={() => setModalDescarga('excel')}
                       disabled={descargandoDocentes}
                       className="flex items-center gap-1.5 text-xs font-black px-3 py-2 rounded-xl text-white transition-all hover:opacity-90 disabled:opacity-60"
-                      style={{ background: 'linear-gradient(135deg,#0d9488,#06b6d4)', boxShadow: '0 3px 12px rgba(13,148,136,.3)' }}>
+                      style={{ background: 'linear-gradient(135deg,#944C0D,#CD670D)', boxShadow: '0 3px 12px rgba(148,76,13,.3)' }}>
                       <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth="2.5">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
                       </svg>
@@ -10214,8 +10214,8 @@ export default function AdminPage() {
                   onClick={() => { setMostrarForm(!mostrarForm); setMostrarImport(false); setMostrarImportAlumnos(false); setFormError(''); setFormOk('') }}
                   className="text-sm font-black px-4 py-2 rounded-xl transition-all active:scale-95"
                   style={mostrarForm
-                    ? { background: '#f1f5f9', border: '1.5px solid #e2e8f0', color: '#64748b' }
-                    : { background: 'linear-gradient(135deg, #0B2447, #1E3A8A)', color: 'white', boxShadow: '0 4px 16px rgba(11,36,71,.25)' }}>
+                    ? { background: '#EDEEEE', border: '1.5px solid #DCDEDE', color: '#6B625D' }
+                    : { background: 'linear-gradient(135deg, #B00326, #B00326)', color: 'white', boxShadow: '0 4px 16px rgba(29,24,21,.25)' }}>
                   {mostrarForm ? 'Cancelar' : `+ Nuevo ${tab === 'admins' ? 'administrador' : tab === 'alumnos' ? 'alumno' : (filtroTipo === 'administrativo' ? 'administrativo' : filtroTipo === 'admin' ? 'administrador' : 'docente')}`}
                 </button>
               </div>
@@ -10244,7 +10244,7 @@ export default function AdminPage() {
                     </div>
                     <button onClick={descargarPlantilla}
                       className="flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-lg transition-all shrink-0"
-                      style={{ background: '#faf8f7', border: '1.5px solid #e2e8f0', color: '#64748b' }}>
+                      style={{ background: '#faf8f7', border: '1.5px solid #DCDEDE', color: '#6B625D' }}>
                       <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                       </svg>
@@ -10253,9 +10253,9 @@ export default function AdminPage() {
                   </div>
 
                   <label className="flex flex-col items-center justify-center gap-3 w-full py-8 rounded-2xl cursor-pointer transition-all hover:border-indigo-300 hover:bg-indigo-50/30 group"
-                    style={{ border: '2px dashed #fecdd3', background: '#F8FAFC' }}>
+                    style={{ border: '2px dashed #fecdd3', background: '#F7F7F6' }}>
                     <div className="w-10 h-10 rounded-xl flex items-center justify-center"
-                      style={{ background: '#F1F5F9', border: '1.5px solid #fecdd3' }}>
+                      style={{ background: '#EDEEEE', border: '1.5px solid #fecdd3' }}>
                       <svg className="text-indigo-800 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                       </svg>
@@ -10285,7 +10285,7 @@ export default function AdminPage() {
 
                   <button onClick={handleImportar} disabled={importLoading || !archivoNombre}
                     className="w-full py-2.5 rounded-xl font-black text-sm text-white transition-all active:scale-[0.98] disabled:opacity-50"
-                    style={{ background: 'linear-gradient(135deg, #0B2447, #1E3A8A)', boxShadow: '0 4px 16px rgba(11,36,71,.2)' }}>
+                    style={{ background: 'linear-gradient(135deg, #B00326, #B00326)', boxShadow: '0 4px 16px rgba(29,24,21,.2)' }}>
                     <span className="flex items-center justify-center gap-2">
                       {importLoading && <Spinner cls="h-4 w-4 text-white"/>}
                       {importLoading ? 'Importando...' : 'Importar docentes'}
@@ -10310,7 +10310,7 @@ export default function AdminPage() {
                     </div>
                     <button onClick={descargarPlantillaAlumnos}
                       className="flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-lg transition-all shrink-0"
-                      style={{ background: '#faf8f7', border: '1.5px solid #e2e8f0', color: '#64748b' }}>
+                      style={{ background: '#faf8f7', border: '1.5px solid #DCDEDE', color: '#6B625D' }}>
                       <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                       </svg>
@@ -10320,7 +10320,7 @@ export default function AdminPage() {
 
                   {/* Info auto-generación */}
                   <div className="flex items-start gap-2.5 rounded-xl px-4 py-3"
-                    style={{ background: '#F1F5F9', border: '1.5px solid #fecdd3' }}>
+                    style={{ background: '#EDEEEE', border: '1.5px solid #fecdd3' }}>
                     <svg className="text-indigo-800 shrink-0 mt-0.5" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
@@ -10331,9 +10331,9 @@ export default function AdminPage() {
                   </div>
 
                   <label className="flex flex-col items-center justify-center gap-3 w-full py-8 rounded-2xl cursor-pointer transition-all hover:border-indigo-300 hover:bg-indigo-50/30"
-                    style={{ border: '2px dashed #fecdd3', background: '#F8FAFC' }}>
+                    style={{ border: '2px dashed #fecdd3', background: '#F7F7F6' }}>
                     <div className="w-10 h-10 rounded-xl flex items-center justify-center"
-                      style={{ background: '#F1F5F9', border: '1.5px solid #fecdd3' }}>
+                      style={{ background: '#EDEEEE', border: '1.5px solid #fecdd3' }}>
                       <svg className="text-indigo-800 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                       </svg>
@@ -10374,7 +10374,7 @@ export default function AdminPage() {
 
                   <button onClick={handleImportarAlumnos} disabled={importAlumnosLoading}
                     className="w-full py-2.5 rounded-xl font-black text-sm text-white transition-all active:scale-[0.98] disabled:opacity-50"
-                    style={{ background: 'linear-gradient(135deg, #0B2447, #1E3A8A)', boxShadow: '0 4px 16px rgba(11,36,71,.2)' }}>
+                    style={{ background: 'linear-gradient(135deg, #B00326, #B00326)', boxShadow: '0 4px 16px rgba(29,24,21,.2)' }}>
                     <span className="flex items-center justify-center gap-2">
                       {importAlumnosLoading && <Spinner cls="h-4 w-4 text-white"/>}
                       {importAlumnosLoading ? 'Importando...' : 'Importar estudiantes'}
@@ -10509,7 +10509,7 @@ export default function AdminPage() {
 
                     <button type="submit" disabled={formLoading}
                       className="w-full py-2.5 rounded-xl font-black text-sm text-white transition-all active:scale-[0.98] disabled:opacity-60"
-                      style={{ background: 'linear-gradient(135deg, #0B2447, #1E3A8A)', boxShadow: '0 4px 16px rgba(11,36,71,.2)' }}>
+                      style={{ background: 'linear-gradient(135deg, #B00326, #B00326)', boxShadow: '0 4px 16px rgba(29,24,21,.2)' }}>
                       <span className="flex items-center justify-center gap-2">
                         {formLoading && <Spinner cls="h-4 w-4 text-white"/>}
                         {formLoading ? 'Creando...' : `Crear ${tab === 'admins' ? 'administrador' : tab === 'alumnos' ? 'alumno' : (filtroTipo === 'administrativo' ? 'administrativo' : 'docente')}`}
@@ -10526,23 +10526,23 @@ export default function AdminPage() {
               {/* Chips de filtro por tipo (solo en tab docentes) */}
               {tab === 'docentes' && (
                 <div className="px-5 pt-3 pb-2 flex items-center gap-2 bg-slate-50/60 flex-wrap"
-                  style={{ borderBottom: '1px solid #E4E8EF' }}>
+                  style={{ borderBottom: '1px solid #DFE0E0' }}>
                   {([
-                    { key: 'docente',        label: 'Docentes',        count: totalDocentes,           bg: '#F1F5F9', border: '#fecdd3', color: '#0B2447' },
+                    { key: 'docente',        label: 'Docentes',        count: totalDocentes,           bg: '#EDEEEE', border: '#fecdd3', color: '#1D1815' },
                     { key: 'administrativo', label: 'Administrativos',  count: administrativos.length,  bg: '#f0fdf4', border: '#bbf7d0', color: '#15803d' },
-                    { key: 'admin',          label: 'Administradores',  count: admins.length,           bg: '#f5f3ff', border: '#ddd6fe', color: '#0B2447' },
+                    { key: 'admin',          label: 'Administradores',  count: admins.length,           bg: '#FAF9F8', border: '#EDEAE7', color: '#1D1815' },
                   ] as const).map(({ key, label, count, bg, border, color }) => (
                     <button key={key}
                       onClick={() => setFiltroTipo(key)}
                       className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition-all"
                       style={filtroTipo === key
                         ? { background: bg, border: `1.5px solid ${border}`, color }
-                        : { background: 'white', border: '1.5px solid #e2e8f0', color: '#94a3b8' }}>
+                        : { background: 'white', border: '1.5px solid #DCDEDE', color: '#8B837E' }}>
                       {label}
                       <span className="px-1.5 py-0.5 rounded-full text-[10px] font-black"
                         style={filtroTipo === key
                           ? { background: border, color }
-                          : { background: '#f1f5f9', color: '#94a3b8' }}>
+                          : { background: '#EDEEEE', color: '#8B837E' }}>
                         {count}
                       </span>
                     </button>
@@ -10550,7 +10550,7 @@ export default function AdminPage() {
                 </div>
               )}
               <div className="px-5 py-3 flex items-center justify-between gap-3 bg-slate-50/60"
-                style={{ borderBottom: '1px solid #E4E8EF' }}>
+                style={{ borderBottom: '1px solid #DFE0E0' }}>
                 <span className="text-slate-400 text-xs font-bold uppercase tracking-widest shrink-0">
                   {tab === 'admins' ? `${admins.length} administrador(es)` : tab === 'alumnos' ? `${totalAlumnos} alumno(s)` : filtroTipo === 'administrativo' ? `${administrativos.length} administrativo(s)` : filtroTipo === 'admin' ? `${admins.length} administrador(es)` : `${totalDocentes} docente(s)`}
                 </span>
@@ -10573,7 +10573,7 @@ export default function AdminPage() {
                 {tab === 'alumnos' && !searchAlumnos.trim() ? (
                   <div className="flex flex-col items-center justify-center py-16 gap-4">
                     <div className="w-16 h-16 rounded-3xl flex items-center justify-center"
-                      style={{ background: 'linear-gradient(135deg, #F1F5F9, #E2E8F0)', border: '2px solid #fecdd3' }}>
+                      style={{ background: 'linear-gradient(135deg, #EDEEEE, #DCDEDE)', border: '2px solid #fecdd3' }}>
                       <svg className="w-8 h-8 text-indigo-800" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35M17 11A6 6 0 111 11a6 6 0 0116 0z"/>
                       </svg>
@@ -10586,7 +10586,7 @@ export default function AdminPage() {
                 ) : (tab === 'admins' ? admins : tab === 'alumnos' ? alumnos : tab === 'docentes' && filtroTipo === 'administrativo' ? administrativos : tab === 'docentes' && filtroTipo === 'admin' ? admins : docentes).length === 0 ? (
                   <div className="flex flex-col items-center justify-center py-14 gap-3">
                     <div className="w-12 h-12 rounded-2xl flex items-center justify-center"
-                      style={{ background: '#F1F5F9', border: '1.5px solid #fecdd3' }}>
+                      style={{ background: '#EDEEEE', border: '1.5px solid #fecdd3' }}>
                       <svg className="text-indigo-300 w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
                       </svg>
@@ -10595,14 +10595,14 @@ export default function AdminPage() {
                   </div>
 
                 ) : tab === 'alumnos' ? alumnos.map((a, i) => (
-                  <div key={a.id} style={{ borderBottom: i < alumnos.length - 1 ? '1px solid #f1f5f9' : 'none' }}>
+                  <div key={a.id} style={{ borderBottom: i < alumnos.length - 1 ? '1px solid #EDEEEE' : 'none' }}>
                     <div className="flex items-center gap-3 px-4 py-3.5 hover:bg-indigo-50/30 transition-colors">
                       <Avatar name={displayAlumno(a)} color="indigo" />
                       <div className="flex-1 min-w-0">
                         <p className="text-slate-800 font-semibold text-sm truncate">{displayAlumno(a)}</p>
                         <p className="text-slate-400 text-xs flex items-center gap-2 flex-wrap">
                           {a.usuario && <span className="font-mono text-indigo-900 font-semibold">@{a.usuario}</span>}
-                          {a.grado && <span className="px-1.5 py-0.5 rounded text-[10px] font-bold" style={{ background: '#F1F5F9', color: '#0B2447' }}>{a.grado} {a.grupo}</span>}
+                          {a.grado && <span className="px-1.5 py-0.5 rounded text-[10px] font-bold" style={{ background: '#EDEEEE', color: '#1D1815' }}>{a.grado} {a.grupo}</span>}
                           {a.dni && <span className="text-[10px] text-slate-300">DNI: {a.dni}</span>}
                           {a.codigo_estudiante && <span className="text-[10px] text-slate-300">Cód: {a.codigo_estudiante}</span>}
                         </p>
@@ -10637,7 +10637,7 @@ export default function AdminPage() {
                         {/* Editar → abre modal completo */}
                         <button onClick={() => abrirEditar(a, 'alumno')} title="Editar estudiante"
                           className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all"
-                          style={{ background: '#F1F5F9', color: '#0B2447', border: '1.5px solid #fecdd3' }}>
+                          style={{ background: '#EDEEEE', color: '#1D1815', border: '1.5px solid #fecdd3' }}>
                           <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                           </svg>
@@ -10648,7 +10648,7 @@ export default function AdminPage() {
                           className="w-7 h-7 flex items-center justify-center rounded-lg transition-all"
                           style={resetandoId === a.id
                             ? { background: '#fffbeb', color: '#d97706', border: '1.5px solid #fde68a' }
-                            : { color: '#cbd5e1' }}>
+                            : { color: '#C9C5C1' }}>
                           <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                             <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path strokeLinecap="round" strokeLinejoin="round" d="M7 11V7a5 5 0 0110 0v4"/>
                           </svg>
@@ -10695,7 +10695,7 @@ export default function AdminPage() {
                               </button>
                               <button onClick={() => setResetandoId(null)}
                                 className="flex-1 py-2 rounded-xl text-xs font-bold text-slate-500 transition-all"
-                                style={{ background: 'white', border: '1.5px solid #e2e8f0' }}>
+                                style={{ background: 'white', border: '1.5px solid #DCDEDE' }}>
                                 Cancelar
                               </button>
                             </div>
@@ -10705,7 +10705,7 @@ export default function AdminPage() {
                     )}
                   </div>
                 )) : tab === 'docentes' && filtroTipo === 'administrativo' ? administrativos.map((u, i) => (
-                  <div key={u.id} style={{ borderBottom: i < administrativos.length - 1 ? '1px solid #f1f5f9' : 'none' }}>
+                  <div key={u.id} style={{ borderBottom: i < administrativos.length - 1 ? '1px solid #EDEEEE' : 'none' }}>
                     <div className="flex items-center gap-3 px-4 py-3.5 hover:bg-emerald-50/40 transition-colors">
                       <Avatar name={u.nombre} color="emerald" />
                       <div className="flex-1 min-w-0">
@@ -10725,7 +10725,7 @@ export default function AdminPage() {
                           className="w-7 h-7 flex items-center justify-center rounded-lg transition-all"
                           style={editandoId === u.id
                             ? { background: '#dcfce7', color: '#15803d', border: '1.5px solid #bbf7d0' }
-                            : { color: '#cbd5e1', background: 'transparent' }}>
+                            : { color: '#C9C5C1', background: 'transparent' }}>
                           <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                           </svg>
@@ -10734,7 +10734,7 @@ export default function AdminPage() {
                           className="w-7 h-7 flex items-center justify-center rounded-lg transition-all"
                           style={resetandoId === u.id
                             ? { background: '#fffbeb', color: '#d97706', border: '1.5px solid #fde68a' }
-                            : { color: '#cbd5e1', background: 'transparent' }}>
+                            : { color: '#C9C5C1', background: 'transparent' }}>
                           <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                             <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path strokeLinecap="round" strokeLinejoin="round" d="M7 11V7a5 5 0 0110 0v4"/>
                           </svg>
@@ -10743,8 +10743,8 @@ export default function AdminPage() {
                           title="Promover a Administrador"
                           className="w-7 h-7 flex items-center justify-center rounded-lg transition-all"
                           style={cambiarTipoId === u.id
-                            ? { background: '#F1F5F9', color: '#0B2447', border: '1.5px solid #fecdd3' }
-                            : { color: '#cbd5e1', background: 'transparent' }}>
+                            ? { background: '#EDEEEE', color: '#1D1815', border: '1.5px solid #fecdd3' }
+                            : { color: '#C9C5C1', background: 'transparent' }}>
                           <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
                           </svg>
@@ -10821,7 +10821,7 @@ export default function AdminPage() {
                           </button>
                           <button onClick={() => setEditandoId(null)}
                             className="flex-1 py-2 rounded-xl text-xs font-bold text-slate-500 transition-all"
-                            style={{ background: 'white', border: '1.5px solid #e2e8f0' }}>
+                            style={{ background: 'white', border: '1.5px solid #DCDEDE' }}>
                             Cancelar
                           </button>
                         </div>
@@ -10857,7 +10857,7 @@ export default function AdminPage() {
                               </button>
                               <button onClick={() => setResetandoId(null)}
                                 className="flex-1 py-2 rounded-xl text-xs font-bold text-slate-500 transition-all"
-                                style={{ background: 'white', border: '1.5px solid #e2e8f0' }}>
+                                style={{ background: 'white', border: '1.5px solid #DCDEDE' }}>
                                 Cancelar
                               </button>
                             </div>
@@ -10867,7 +10867,7 @@ export default function AdminPage() {
                     )}
                     {cambiarTipoId === u.id && (
                       <div className="mx-4 mb-3 rounded-2xl px-4 py-4"
-                        style={{ background: '#F1F5F9', border: '1.5px solid #fecdd3' }}>
+                        style={{ background: '#EDEEEE', border: '1.5px solid #fecdd3' }}>
                         <p className="text-slate-500 text-xs font-bold uppercase tracking-widest mb-3">
                           Promover a Administrador — <span className="text-indigo-900 normal-case font-semibold">{u.nombre}</span>
                         </p>
@@ -10882,7 +10882,7 @@ export default function AdminPage() {
                             <button onClick={() => handleCambiarTipo(u, 'administrativos')}
                               disabled={cambiarTipoLoading}
                               className="flex-1 py-2 rounded-xl text-xs font-black text-white transition-all active:scale-[0.98] disabled:opacity-50"
-                              style={{ background: 'linear-gradient(135deg, #0B2447, #4a0910)' }}>
+                              style={{ background: 'linear-gradient(135deg, #1D1815, #4a0910)' }}>
                               <span className="flex items-center justify-center gap-1.5">
                                 {cambiarTipoLoading && <Spinner cls="h-3.5 w-3.5 text-white"/>}
                                 {cambiarTipoLoading ? 'Cambiando...' : 'Confirmar — Hacer Administrador'}
@@ -10890,7 +10890,7 @@ export default function AdminPage() {
                             </button>
                             <button onClick={() => setCambiarTipoId(null)}
                               className="flex-1 py-2 rounded-xl text-xs font-bold text-slate-500 transition-all"
-                              style={{ background: 'white', border: '1.5px solid #e2e8f0' }}>
+                              style={{ background: 'white', border: '1.5px solid #DCDEDE' }}>
                               Cancelar
                             </button>
                           </div>
@@ -10899,7 +10899,7 @@ export default function AdminPage() {
                     )}
                   </div>
                 )) : (tab === 'docentes' && filtroTipo === 'admin') || tab === 'admins' ? admins.map((u, i) => (
-                  <div key={u.id} style={{ borderBottom: i < admins.length - 1 ? '1px solid #f1f5f9' : 'none' }}>
+                  <div key={u.id} style={{ borderBottom: i < admins.length - 1 ? '1px solid #EDEEEE' : 'none' }}>
                     <div className="flex items-center gap-3 px-4 py-3.5 hover:bg-violet-50/40 transition-colors">
                       <Avatar name={u.nombre} color="violet" />
                       <div className="flex-1 min-w-0">
@@ -10916,8 +10916,8 @@ export default function AdminPage() {
                           title="Ver detalles"
                           className="w-7 h-7 flex items-center justify-center rounded-lg transition-all"
                           style={detalleAdminId === u.id
-                            ? { background: '#f5f3ff', color: '#0B2447', border: '1.5px solid #ddd6fe' }
-                            : { color: '#cbd5e1', background: 'transparent' }}>
+                            ? { background: '#FAF9F8', color: '#1D1815', border: '1.5px solid #EDEAE7' }
+                            : { color: '#C9C5C1', background: 'transparent' }}>
                           <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                             <circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>
                           </svg>
@@ -10926,8 +10926,8 @@ export default function AdminPage() {
                         <button onClick={() => abrirEditar(u, 'admin')} title="Editar"
                           className="w-7 h-7 flex items-center justify-center rounded-lg transition-all"
                           style={editandoId === u.id
-                            ? { background: '#f5f3ff', color: '#0B2447', border: '1.5px solid #ddd6fe' }
-                            : { color: '#cbd5e1', background: 'transparent' }}>
+                            ? { background: '#FAF9F8', color: '#1D1815', border: '1.5px solid #EDEAE7' }
+                            : { color: '#C9C5C1', background: 'transparent' }}>
                           <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                           </svg>
@@ -10937,7 +10937,7 @@ export default function AdminPage() {
                           className="w-7 h-7 flex items-center justify-center rounded-lg transition-all"
                           style={resetandoId === u.id
                             ? { background: '#fffbeb', color: '#d97706', border: '1.5px solid #fde68a' }
-                            : { color: '#cbd5e1', background: 'transparent' }}>
+                            : { color: '#C9C5C1', background: 'transparent' }}>
                           <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                             <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path strokeLinecap="round" strokeLinejoin="round" d="M7 11V7a5 5 0 0110 0v4"/>
                           </svg>
@@ -10958,7 +10958,7 @@ export default function AdminPage() {
                     {/* Panel detalles admin */}
                     {detalleAdminId === u.id && (
                       <div className="mx-4 mb-3 rounded-2xl px-4 py-3"
-                        style={{ background: '#faf5ff', border: '1.5px solid #ddd6fe' }}>
+                        style={{ background: '#faf5ff', border: '1.5px solid #EDEAE7' }}>
                         <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Información del administrador</p>
                         <div className="grid grid-cols-2 gap-1.5">
                           {u.apellido && <div><p className="text-[10px] text-slate-400 font-semibold">Apellidos</p><p className="text-xs text-slate-700 font-medium">{u.apellido}</p></div>}
@@ -10969,7 +10969,7 @@ export default function AdminPage() {
                           <div className="col-span-2">
                             <p className="text-[10px] text-slate-400 font-semibold">Rol</p>
                             <span className="inline-block text-xs font-bold px-2 py-0.5 rounded-full mt-0.5"
-                              style={{ background: '#f5f3ff', border: '1.5px solid #ddd6fe', color: '#0B2447' }}>Administrador</span>
+                              style={{ background: '#FAF9F8', border: '1.5px solid #EDEAE7', color: '#1D1815' }}>Administrador</span>
                           </div>
                         </div>
                       </div>
@@ -10978,7 +10978,7 @@ export default function AdminPage() {
                     {/* Panel editar admin */}
                     {editandoId === u.id && (
                       <div className="mx-4 mb-3 rounded-2xl px-4 py-4"
-                        style={{ background: '#faf5ff', border: '1.5px solid #ddd6fe' }}>
+                        style={{ background: '#faf5ff', border: '1.5px solid #EDEAE7' }}>
                         <p className="text-slate-400 text-xs font-bold uppercase tracking-widest mb-3">
                           Editar — <span className="text-violet-600 normal-case font-semibold">{u.nombre}</span>
                         </p>
@@ -11029,7 +11029,7 @@ export default function AdminPage() {
                         <div className="flex gap-2">
                           <button onClick={() => handleGuardarAdmin(u.id)} disabled={editLoading}
                             className="flex-1 py-2 rounded-xl text-xs font-black text-white transition-all active:scale-[0.98] disabled:opacity-60"
-                            style={{ background: 'linear-gradient(135deg, #0B2447, #1E3A8A)' }}>
+                            style={{ background: 'linear-gradient(135deg, #B00326, #B00326)' }}>
                             <span className="flex items-center justify-center gap-1.5">
                               {editLoading && <Spinner cls="h-3.5 w-3.5 text-white"/>}
                               {editLoading ? 'Guardando...' : 'Guardar'}
@@ -11037,7 +11037,7 @@ export default function AdminPage() {
                           </button>
                           <button onClick={() => setEditandoId(null)}
                             className="flex-1 py-2 rounded-xl text-xs font-bold text-slate-500 transition-all"
-                            style={{ background: 'white', border: '1.5px solid #e2e8f0' }}>
+                            style={{ background: 'white', border: '1.5px solid #DCDEDE' }}>
                             Cancelar
                           </button>
                         </div>
@@ -11076,7 +11076,7 @@ export default function AdminPage() {
                               </button>
                               <button onClick={() => setResetandoId(null)}
                                 className="flex-1 py-2 rounded-xl text-xs font-bold text-slate-500 transition-all"
-                                style={{ background: 'white', border: '1.5px solid #e2e8f0' }}>
+                                style={{ background: 'white', border: '1.5px solid #DCDEDE' }}>
                                 Cancelar
                               </button>
                             </div>
@@ -11087,7 +11087,7 @@ export default function AdminPage() {
                   </div>
 
                 )) : docentes.map((d, i) => (
-                  <div key={d.id} style={{ borderBottom: i < docentes.length - 1 ? '1px solid #f1f5f9' : 'none' }}>
+                  <div key={d.id} style={{ borderBottom: i < docentes.length - 1 ? '1px solid #EDEEEE' : 'none' }}>
                     <div className="flex items-center gap-3 px-4 py-3.5 hover:bg-indigo-50/30 transition-colors">
                       <Avatar name={displayDocente(d)} color="indigo" />
                       <div className="flex-1 min-w-0">
@@ -11105,8 +11105,8 @@ export default function AdminPage() {
                           title="Ver detalles"
                           className="w-7 h-7 flex items-center justify-center rounded-lg transition-all"
                           style={detalleDocenteId === d.id
-                            ? { background: '#F1F5F9', color: '#0B2447', border: '1.5px solid #fecdd3' }
-                            : { color: '#cbd5e1', background: 'transparent' }}>
+                            ? { background: '#EDEEEE', color: '#1D1815', border: '1.5px solid #fecdd3' }
+                            : { color: '#C9C5C1', background: 'transparent' }}>
                           <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                             <circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>
                           </svg>
@@ -11116,8 +11116,8 @@ export default function AdminPage() {
                           title="Editar"
                           className="w-7 h-7 flex items-center justify-center rounded-lg transition-all"
                           style={editandoId === d.id
-                            ? { background: '#F1F5F9', color: '#0B2447', border: '1.5px solid #fecdd3' }
-                            : { color: '#cbd5e1', background: 'transparent' }}>
+                            ? { background: '#EDEEEE', color: '#1D1815', border: '1.5px solid #fecdd3' }
+                            : { color: '#C9C5C1', background: 'transparent' }}>
                           <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                           </svg>
@@ -11127,7 +11127,7 @@ export default function AdminPage() {
                           className="w-7 h-7 flex items-center justify-center rounded-lg transition-all"
                           style={resetandoId === d.id
                             ? { background: '#fffbeb', color: '#d97706', border: '1.5px solid #fde68a' }
-                            : { color: '#cbd5e1', background: 'transparent' }}>
+                            : { color: '#C9C5C1', background: 'transparent' }}>
                           <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                             <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path strokeLinecap="round" strokeLinejoin="round" d="M7 11V7a5 5 0 0110 0v4"/>
                           </svg>
@@ -11137,7 +11137,7 @@ export default function AdminPage() {
                           className="w-7 h-7 flex items-center justify-center rounded-lg transition-all"
                           style={cambiarTipoId === d.id
                             ? { background: '#f0fdf4', color: '#16a34a', border: '1.5px solid #bbf7d0' }
-                            : { color: '#cbd5e1', background: 'transparent' }}>
+                            : { color: '#C9C5C1', background: 'transparent' }}>
                           <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/>
                           </svg>
@@ -11159,7 +11159,7 @@ export default function AdminPage() {
                     {/* Panel detalles */}
                     {detalleDocenteId === d.id && (
                       <div className="mx-4 mb-3 rounded-2xl px-4 py-3"
-                        style={{ background: '#faf8f7', border: '1.5px solid #E4E8EF' }}>
+                        style={{ background: '#faf8f7', border: '1.5px solid #DFE0E0' }}>
                         <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Información del docente</p>
                         <div className="grid grid-cols-2 gap-x-4 gap-y-1.5">
                           <div>
@@ -11218,15 +11218,15 @@ export default function AdminPage() {
                                 className="flex-1 py-2.5 rounded-xl text-xs font-bold transition-all border-2 disabled:opacity-50 disabled:cursor-not-allowed"
                                 style={cambiarTipoTarget === 'administrativo'
                                   ? { background: '#dcfce7', borderColor: '#4ade80', color: '#15803d' }
-                                  : { background: 'white', borderColor: '#e2e8f0', color: '#64748b' }}>
+                                  : { background: 'white', borderColor: '#DCDEDE', color: '#6B625D' }}>
                                 Administrativo
                               </button>
                               <button
                                 onClick={() => setCambiarTipoTarget('admin')}
                                 className="flex-1 py-2.5 rounded-xl text-xs font-bold transition-all border-2"
                                 style={cambiarTipoTarget === 'admin'
-                                  ? { background: '#F1F5F9', borderColor: '#fca5a5', color: '#0B2447' }
-                                  : { background: 'white', borderColor: '#e2e8f0', color: '#64748b' }}>
+                                  ? { background: '#EDEEEE', borderColor: '#fca5a5', color: '#1D1815' }
+                                  : { background: 'white', borderColor: '#DCDEDE', color: '#6B625D' }}>
                                 Administrador
                               </button>
                             </div>
@@ -11252,7 +11252,7 @@ export default function AdminPage() {
                               </button>
                               <button onClick={() => setCambiarTipoId(null)}
                                 className="flex-1 py-2 rounded-xl text-xs font-bold text-slate-500 transition-all"
-                                style={{ background: 'white', border: '1.5px solid #e2e8f0' }}>
+                                style={{ background: 'white', border: '1.5px solid #DCDEDE' }}>
                                 Cancelar
                               </button>
                             </div>
@@ -11296,7 +11296,7 @@ export default function AdminPage() {
                               </button>
                               <button onClick={() => setResetandoId(null)}
                                 className="flex-1 py-2 rounded-xl text-xs font-bold text-slate-500 transition-all"
-                                style={{ background: 'white', border: '1.5px solid #e2e8f0' }}>
+                                style={{ background: 'white', border: '1.5px solid #DCDEDE' }}>
                                 Cancelar
                               </button>
                             </div>
@@ -11307,7 +11307,7 @@ export default function AdminPage() {
 
                     {editandoId === d.id && (
                       <div className="mx-4 mb-3 rounded-2xl px-4 py-4"
-                        style={{ background: '#F8FAFC', border: '1.5px solid #fecdd3' }}>
+                        style={{ background: '#F7F7F6', border: '1.5px solid #fecdd3' }}>
                         <p className="text-slate-400 text-xs font-bold uppercase tracking-widest mb-3">
                           Editar — <span className="text-indigo-900 normal-case font-semibold">{displayDocente(d)}</span>
                         </p>
@@ -11358,7 +11358,7 @@ export default function AdminPage() {
                         <div className="flex gap-2">
                           <button onClick={() => handleGuardarDocente(d.id)} disabled={editLoading}
                             className="flex-1 py-2 rounded-xl text-xs font-black text-white transition-all active:scale-[0.98] disabled:opacity-60"
-                            style={{ background: 'linear-gradient(135deg, #0B2447, #1E3A8A)' }}>
+                            style={{ background: 'linear-gradient(135deg, #B00326, #B00326)' }}>
                             <span className="flex items-center justify-center gap-1.5">
                               {editLoading && <Spinner cls="h-3.5 w-3.5 text-white"/>}
                               {editLoading ? 'Guardando...' : 'Guardar'}
@@ -11366,7 +11366,7 @@ export default function AdminPage() {
                           </button>
                           <button onClick={() => setEditandoId(null)}
                             className="flex-1 py-2 rounded-xl text-xs font-bold text-slate-500 transition-all"
-                            style={{ background: 'white', border: '1.5px solid #e2e8f0' }}>
+                            style={{ background: 'white', border: '1.5px solid #DCDEDE' }}>
                             Cancelar
                           </button>
                         </div>
@@ -11378,27 +11378,27 @@ export default function AdminPage() {
               {/* Paginación alumnos */}
               {tab === 'alumnos' && totalAlumnos > PAGE_DOCENTES && (
                 <div className="px-5 py-3 flex items-center justify-between bg-slate-50/60"
-                  style={{ borderTop: '1px solid #E4E8EF' }}>
+                  style={{ borderTop: '1px solid #DFE0E0' }}>
                   <button disabled={pageAlumnos === 0} onClick={() => setPageAlumnos(p => p - 1)}
                     className="text-xs font-bold px-3 py-1.5 rounded-lg disabled:opacity-30 transition-all"
-                    style={{ background: '#F1F5F9', color: '#0B2447' }}>← Anterior</button>
+                    style={{ background: '#EDEEEE', color: '#1D1815' }}>← Anterior</button>
                   <span className="text-xs text-slate-400 font-semibold">
                     {pageAlumnos * PAGE_DOCENTES + 1}–{Math.min((pageAlumnos + 1) * PAGE_DOCENTES, totalAlumnos)} de {totalAlumnos}
                   </span>
                   <button disabled={(pageAlumnos + 1) * PAGE_DOCENTES >= totalAlumnos} onClick={() => setPageAlumnos(p => p + 1)}
                     className="text-xs font-bold px-3 py-1.5 rounded-lg disabled:opacity-30 transition-all"
-                    style={{ background: '#F1F5F9', color: '#0B2447' }}>Siguiente →</button>
+                    style={{ background: '#EDEEEE', color: '#1D1815' }}>Siguiente →</button>
                 </div>
               )}
               {/* Paginación docentes */}
               {tab === 'docentes' && totalDocentes > PAGE_DOCENTES && (
                 <div className="px-5 py-3 flex items-center justify-between bg-slate-50/60"
-                  style={{ borderTop: '1px solid #E4E8EF' }}>
+                  style={{ borderTop: '1px solid #DFE0E0' }}>
                   <button
                     disabled={pageDocentes === 0}
                     onClick={() => setPageDocentes(p => p - 1)}
                     className="text-xs font-bold px-3 py-1.5 rounded-lg disabled:opacity-30 transition-all"
-                    style={{ background: '#F1F5F9', color: '#0B2447' }}>
+                    style={{ background: '#EDEEEE', color: '#1D1815' }}>
                     ← Anterior
                   </button>
                   <span className="text-xs text-slate-400 font-semibold">
@@ -11408,7 +11408,7 @@ export default function AdminPage() {
                     disabled={(pageDocentes + 1) * PAGE_DOCENTES >= totalDocentes}
                     onClick={() => setPageDocentes(p => p + 1)}
                     className="text-xs font-bold px-3 py-1.5 rounded-lg disabled:opacity-30 transition-all"
-                    style={{ background: '#F1F5F9', color: '#0B2447' }}>
+                    style={{ background: '#EDEEEE', color: '#1D1815' }}>
                     Siguiente →
                   </button>
                 </div>
@@ -11466,14 +11466,14 @@ export default function AdminPage() {
       {/* ── Modal descargar PDF horario ──────────────────────────────────────── */}
       {pdfMenuH && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4"
-          style={{ background: 'rgba(15,23,42,.5)', backdropFilter: 'blur(7px)' }}
+          style={{ background: 'rgba(35,30,27,.5)', backdropFilter: 'blur(7px)' }}
           onClick={() => !generandoPdfH && setPdfMenuH(false)}>
           <div className="w-full max-w-md rounded-3xl overflow-hidden"
-            style={{ background: 'white', boxShadow: '0 28px 70px rgba(15,23,42,.22)', border: '1.5px solid #fecdd3' }}
+            style={{ background: 'white', boxShadow: '0 28px 70px rgba(35,30,27,.22)', border: '1.5px solid #fecdd3' }}
             onClick={e => e.stopPropagation()}>
 
             {/* Header vino */}
-            <div className="px-6 pt-5 pb-4" style={{ background: 'linear-gradient(135deg,#0B2447,#1E3A8A)' }}>
+            <div className="px-6 pt-5 pb-4" style={{ background: 'linear-gradient(135deg,#B00326,#B00326)' }}>
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-2xl flex items-center justify-center shrink-0"
                   style={{ background: 'rgba(255,255,255,.15)', border: '1px solid rgba(255,255,255,.2)' }}>
@@ -11503,17 +11503,17 @@ export default function AdminPage() {
             <div className="p-5 space-y-3">
 
               {/* Bloque Docentes */}
-              <div className="rounded-2xl overflow-hidden" style={{ border: '1.5px solid #E4E8EF' }}>
+              <div className="rounded-2xl overflow-hidden" style={{ border: '1.5px solid #DFE0E0' }}>
                 <div className="px-4 py-3 flex items-center gap-2.5" style={{ background: '#faf8f7' }}>
                   <div className="w-7 h-7 rounded-lg flex items-center justify-center"
-                    style={{ background: 'linear-gradient(135deg,#0B2447,#1E3A8A)' }}>
+                    style={{ background: 'linear-gradient(135deg,#B00326,#B00326)' }}>
                     <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth="2">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                     </svg>
                   </div>
                   <span className="text-xs font-black text-slate-700 uppercase tracking-wider">Por Docentes</span>
                 </div>
-                <div className="divide-y" style={{ borderTop: '1px solid #E4E8EF' }}>
+                <div className="divide-y" style={{ borderTop: '1px solid #DFE0E0' }}>
                   {[
                     { key: 'docente-actual' as const, label: 'Docente seleccionado actualmente', desc: vistaHorario === 'docente' && docenteFiltroH ? docentesLean.find(d => d.id === docenteFiltroH)?.nombre ?? '' : 'Primero selecciona un docente', enabled: vistaHorario === 'docente' && !!docenteFiltroH },
                     { key: 'todos-docentes' as const, label: 'Todos los docentes', desc: 'Una página por cada docente registrado', enabled: true },
@@ -11524,15 +11524,15 @@ export default function AdminPage() {
                         onClick={() => opt.enabled && setPdfOpcionH(opt.key)}
                         disabled={!opt.enabled}
                         className="w-full flex items-center gap-3 px-4 py-3.5 transition-all text-left"
-                        style={{ background: sel ? '#F1F5F9' : 'white', cursor: opt.enabled ? 'pointer' : 'not-allowed' }}>
+                        style={{ background: sel ? '#EDEEEE' : 'white', cursor: opt.enabled ? 'pointer' : 'not-allowed' }}>
                         {/* Radio */}
                         <div className="w-4 h-4 rounded-full shrink-0 flex items-center justify-center"
-                          style={{ border: `2px solid ${sel ? '#0B2447' : opt.enabled ? '#cbd5e1' : '#e2e8f0'}`, background: sel ? '#0B2447' : 'white' }}>
+                          style={{ border: `2px solid ${sel ? '#1D1815' : opt.enabled ? '#C9C5C1' : '#DCDEDE'}`, background: sel ? '#1D1815' : 'white' }}>
                           {sel && <div className="w-1.5 h-1.5 rounded-full bg-white"/>}
                         </div>
                         <div className="min-w-0">
-                          <p className="text-xs font-bold leading-tight" style={{ color: opt.enabled ? '#1e293b' : '#cbd5e1' }}>{opt.label}</p>
-                          <p className="text-[10px] mt-0.5 truncate" style={{ color: opt.enabled ? '#94a3b8' : '#e2e8f0' }}>{opt.desc}</p>
+                          <p className="text-xs font-bold leading-tight" style={{ color: opt.enabled ? '#2A2420' : '#C9C5C1' }}>{opt.label}</p>
+                          <p className="text-[10px] mt-0.5 truncate" style={{ color: opt.enabled ? '#8B837E' : '#DCDEDE' }}>{opt.desc}</p>
                         </div>
                       </button>
                     )
@@ -11541,17 +11541,17 @@ export default function AdminPage() {
               </div>
 
               {/* Bloque Secciones */}
-              <div className="rounded-2xl overflow-hidden" style={{ border: '1.5px solid #E4E8EF' }}>
+              <div className="rounded-2xl overflow-hidden" style={{ border: '1.5px solid #DFE0E0' }}>
                 <div className="px-4 py-3 flex items-center gap-2.5" style={{ background: '#faf8f7' }}>
                   <div className="w-7 h-7 rounded-lg flex items-center justify-center"
-                    style={{ background: 'linear-gradient(135deg,#0B2447,#1E3A8A)' }}>
+                    style={{ background: 'linear-gradient(135deg,#B00326,#B00326)' }}>
                     <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth="2">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-2 8h2"/>
                     </svg>
                   </div>
                   <span className="text-xs font-black text-slate-700 uppercase tracking-wider">Por Secciones</span>
                 </div>
-                <div className="divide-y" style={{ borderTop: '1px solid #E4E8EF' }}>
+                <div className="divide-y" style={{ borderTop: '1px solid #DFE0E0' }}>
                   {[
                     { key: 'salon-actual' as const, label: 'Sección seleccionada actualmente', desc: vistaHorario === 'grado' ? `${gradoFiltroH} — Sección ${grupoFiltroH}` : 'Cambia a vista Por Grado/Grupo', enabled: vistaHorario === 'grado' },
                     { key: 'todas-salones' as const, label: 'Todas las secciones', desc: 'Una página por cada grado y grupo con horario', enabled: true },
@@ -11562,14 +11562,14 @@ export default function AdminPage() {
                         onClick={() => opt.enabled && setPdfOpcionH(opt.key)}
                         disabled={!opt.enabled}
                         className="w-full flex items-center gap-3 px-4 py-3.5 transition-all text-left"
-                        style={{ background: sel ? '#F1F5F9' : 'white', cursor: opt.enabled ? 'pointer' : 'not-allowed' }}>
+                        style={{ background: sel ? '#EDEEEE' : 'white', cursor: opt.enabled ? 'pointer' : 'not-allowed' }}>
                         <div className="w-4 h-4 rounded-full shrink-0 flex items-center justify-center"
-                          style={{ border: `2px solid ${sel ? '#0B2447' : opt.enabled ? '#cbd5e1' : '#e2e8f0'}`, background: sel ? '#0B2447' : 'white' }}>
+                          style={{ border: `2px solid ${sel ? '#1D1815' : opt.enabled ? '#C9C5C1' : '#DCDEDE'}`, background: sel ? '#1D1815' : 'white' }}>
                           {sel && <div className="w-1.5 h-1.5 rounded-full bg-white"/>}
                         </div>
                         <div className="min-w-0">
-                          <p className="text-xs font-bold leading-tight" style={{ color: opt.enabled ? '#1e293b' : '#cbd5e1' }}>{opt.label}</p>
-                          <p className="text-[10px] mt-0.5 truncate" style={{ color: opt.enabled ? '#94a3b8' : '#e2e8f0' }}>{opt.desc}</p>
+                          <p className="text-xs font-bold leading-tight" style={{ color: opt.enabled ? '#2A2420' : '#C9C5C1' }}>{opt.label}</p>
+                          <p className="text-[10px] mt-0.5 truncate" style={{ color: opt.enabled ? '#8B837E' : '#DCDEDE' }}>{opt.desc}</p>
                         </div>
                       </button>
                     )
@@ -11582,14 +11582,14 @@ export default function AdminPage() {
             <div className="px-5 pb-5 flex gap-3">
               <button onClick={() => setPdfMenuH(false)} disabled={generandoPdfH}
                 className="flex-1 py-2.5 rounded-xl text-sm font-bold transition-all"
-                style={{ background: '#faf8f7', border: '1.5px solid #e2e8f0', color: '#64748b' }}>
+                style={{ background: '#faf8f7', border: '1.5px solid #DCDEDE', color: '#6B625D' }}>
                 Cancelar
               </button>
               <button
                 disabled={!pdfOpcionH || generandoPdfH}
                 onClick={async () => { if (pdfOpcionH) { await generarPdfHorario(pdfOpcionH); setPdfMenuH(false) } }}
                 className="flex-1 py-2.5 rounded-xl text-sm font-black text-white transition-all active:scale-[0.98] disabled:opacity-50"
-                style={{ background: 'linear-gradient(135deg,#0B2447,#1E3A8A)', boxShadow: pdfOpcionH ? '0 4px 16px rgba(11,36,71,.35)' : 'none' }}>
+                style={{ background: 'linear-gradient(135deg,#B00326,#B00326)', boxShadow: pdfOpcionH ? '0 4px 16px rgba(29,24,21,.35)' : 'none' }}>
                 <span className="flex items-center justify-center gap-2">
                   {generandoPdfH
                     ? <><Spinner cls="h-4 w-4 text-white"/> Generando…</>
@@ -11610,10 +11610,10 @@ export default function AdminPage() {
       {/* ── Modal confirmar eliminar ─────────────────────────────────────────── */}
       {confirmarEliminar && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4"
-          style={{ background: 'rgba(15,23,42,.45)', backdropFilter: 'blur(6px)' }}
+          style={{ background: 'rgba(35,30,27,.45)', backdropFilter: 'blur(6px)' }}
           onClick={() => !eliminandoLoading && setConfirmarEliminar(null)}>
           <div className="w-full max-w-sm rounded-3xl overflow-hidden"
-            style={{ background: 'white', boxShadow: '0 24px 64px rgba(15,23,42,.18)', border: '1.5px solid #fee2e2' }}
+            style={{ background: 'white', boxShadow: '0 24px 64px rgba(35,30,27,.18)', border: '1.5px solid #fee2e2' }}
             onClick={e => e.stopPropagation()}>
             {/* Barra roja superior */}
             <div className="h-1.5" style={{ background: 'linear-gradient(90deg, #f43f5e, #ef4444)' }} />
@@ -11639,7 +11639,7 @@ export default function AdminPage() {
               <div className="flex gap-3 mt-6">
                 <button onClick={() => setConfirmarEliminar(null)} disabled={eliminandoLoading}
                   className="flex-1 py-2.5 rounded-xl text-sm font-bold transition-all disabled:opacity-50"
-                  style={{ background: '#faf8f7', border: '1.5px solid #e2e8f0', color: '#64748b' }}>
+                  style={{ background: '#faf8f7', border: '1.5px solid #DCDEDE', color: '#6B625D' }}>
                   Cancelar
                 </button>
                 <button onClick={handleConfirmarEliminar} disabled={eliminandoLoading}
@@ -11659,16 +11659,16 @@ export default function AdminPage() {
       {/* ── Modal editar alumno completo ─────────────────────────────────────── */}
       {modalEditAlumno && (
         <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4"
-          style={{ background: 'rgba(15,23,42,.55)', backdropFilter: 'blur(8px)' }}
+          style={{ background: 'rgba(35,30,27,.55)', backdropFilter: 'blur(8px)' }}
           onClick={() => !editLoading && setModalEditAlumno(null)}>
           <div className="w-full sm:max-w-2xl rounded-t-3xl sm:rounded-3xl overflow-hidden flex flex-col"
-            style={{ background: 'white', boxShadow: '0 32px 80px rgba(15,23,42,.22)', border: '1.5px solid #fecdd3', maxHeight: '90vh' }}
+            style={{ background: 'white', boxShadow: '0 32px 80px rgba(35,30,27,.22)', border: '1.5px solid #fecdd3', maxHeight: '90vh' }}
             onClick={e => e.stopPropagation()}>
             {/* Barra superior */}
-            <div className="h-1.5 shrink-0" style={{ background: 'linear-gradient(90deg, #0B2447, #1E3A8A)' }} />
+            <div className="h-1.5 shrink-0" style={{ background: 'linear-gradient(90deg, #B00326, #B00326)' }} />
             {/* Header */}
             <div className="px-6 pt-5 pb-4 flex items-center gap-4 shrink-0"
-              style={{ borderBottom: '1px solid #f1f5f9' }}>
+              style={{ borderBottom: '1px solid #EDEEEE' }}>
               <Avatar name={displayAlumno(modalEditAlumno)} color="indigo" />
               <div className="flex-1 min-w-0">
                 <p className="font-black text-slate-800 text-lg truncate">{displayAlumno(modalEditAlumno)}</p>
@@ -11679,7 +11679,7 @@ export default function AdminPage() {
               </div>
               <button onClick={() => setModalEditAlumno(null)} disabled={editLoading}
                 className="w-8 h-8 rounded-xl flex items-center justify-center shrink-0 transition-all hover:bg-slate-100"
-                style={{ color: '#94a3b8' }}>
+                style={{ color: '#8B837E' }}>
                 <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12"/>
                 </svg>
@@ -11693,7 +11693,7 @@ export default function AdminPage() {
               <div>
                 <p className="text-[10px] font-black uppercase tracking-widest text-indigo-900 mb-3 flex items-center gap-2">
                   <span className="w-4 h-4 rounded bg-indigo-100 flex items-center justify-center">
-                    <svg width="9" height="9" fill="none" viewBox="0 0 24 24" stroke="#0B2447" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                    <svg width="9" height="9" fill="none" viewBox="0 0 24 24" stroke="#1D1815" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
                   </span>
                   Datos del estudiante
                 </p>
@@ -11737,7 +11737,7 @@ export default function AdminPage() {
               <div>
                 <p className="text-[10px] font-black uppercase tracking-widest text-indigo-900 mb-3 flex items-center gap-2">
                   <span className="w-4 h-4 rounded bg-indigo-100 flex items-center justify-center">
-                    <svg width="9" height="9" fill="none" viewBox="0 0 24 24" stroke="#0B2447" strokeWidth="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path strokeLinecap="round" strokeLinejoin="round" d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                    <svg width="9" height="9" fill="none" viewBox="0 0 24 24" stroke="#1D1815" strokeWidth="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path strokeLinecap="round" strokeLinejoin="round" d="M7 11V7a5 5 0 0110 0v4"/></svg>
                   </span>
                   Acceso y matrícula
                 </p>
@@ -11767,7 +11767,7 @@ export default function AdminPage() {
               <div>
                 <p className="text-[10px] font-black uppercase tracking-widest text-violet-500 mb-3 flex items-center gap-2">
                   <span className="w-4 h-4 rounded bg-violet-100 flex items-center justify-center">
-                    <svg width="9" height="9" fill="none" viewBox="0 0 24 24" stroke="#0B2447" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    <svg width="9" height="9" fill="none" viewBox="0 0 24 24" stroke="#1D1815" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                   </span>
                   Datos del contacto de emergencia
                 </p>
@@ -11784,8 +11784,8 @@ export default function AdminPage() {
                             onClick={() => setEditForm({ ...editForm, parentesco_apoderado: op })}
                             className="flex-1 py-2 rounded-xl text-sm font-black transition-all"
                             style={activo
-                              ? { background: 'linear-gradient(135deg,#1E3A8A,#0B2447)', color: 'white', boxShadow: '0 4px 12px rgba(139,92,246,.35)' }
-                              : { background: 'white', color: '#64748b', border: '1.5px solid #e2e8f0' }}>
+                              ? { background: 'linear-gradient(135deg,#B00326,#1D1815)', color: 'white', boxShadow: '0 4px 12px rgba(181,167,157,.35)' }
+                              : { background: 'white', color: '#6B625D', border: '1.5px solid #DCDEDE' }}>
                             {op}
                           </button>
                         )
@@ -11794,8 +11794,8 @@ export default function AdminPage() {
                         onClick={() => setEditForm({ ...editForm, parentesco_apoderado: editForm.parentesco_apoderado === 'Padre' || editForm.parentesco_apoderado === 'Madre' ? '' : editForm.parentesco_apoderado })}
                         className="flex-1 py-2 rounded-xl text-sm font-black transition-all"
                         style={editForm.parentesco_apoderado !== 'Padre' && editForm.parentesco_apoderado !== 'Madre' && editForm.parentesco_apoderado !== ''
-                          ? { background: 'linear-gradient(135deg,#1E3A8A,#0B2447)', color: 'white', boxShadow: '0 4px 12px rgba(139,92,246,.35)' }
-                          : { background: 'white', color: '#64748b', border: '1.5px solid #e2e8f0' }}>
+                          ? { background: 'linear-gradient(135deg,#B00326,#1D1815)', color: 'white', boxShadow: '0 4px 12px rgba(181,167,157,.35)' }
+                          : { background: 'white', color: '#6B625D', border: '1.5px solid #DCDEDE' }}>
                         Otros
                       </button>
                     </div>
@@ -11836,15 +11836,15 @@ export default function AdminPage() {
 
             {/* Footer */}
             <div className="px-6 py-4 shrink-0 flex gap-3"
-              style={{ borderTop: '1px solid #f1f5f9', background: '#fafbff' }}>
+              style={{ borderTop: '1px solid #EDEEEE', background: '#FDFCFC' }}>
               <button onClick={() => setModalEditAlumno(null)} disabled={editLoading}
                 className="flex-1 py-2.5 rounded-xl text-sm font-bold transition-all disabled:opacity-50"
-                style={{ background: 'white', border: '1.5px solid #e2e8f0', color: '#64748b' }}>
+                style={{ background: 'white', border: '1.5px solid #DCDEDE', color: '#6B625D' }}>
                 Cancelar
               </button>
               <button onClick={() => handleGuardarAlumno(modalEditAlumno.id)} disabled={editLoading}
                 className="flex-1 py-2.5 rounded-xl text-sm font-black text-white transition-all active:scale-[0.98] disabled:opacity-60"
-                style={{ background: 'linear-gradient(135deg, #0B2447, #1E3A8A)', boxShadow: '0 4px 16px rgba(11,36,71,.25)' }}>
+                style={{ background: 'linear-gradient(135deg, #B00326, #B00326)', boxShadow: '0 4px 16px rgba(29,24,21,.25)' }}>
                 <span className="flex items-center justify-center gap-2">
                   {editLoading && <Spinner cls="h-4 w-4 text-white"/>}
                   {editLoading ? 'Guardando...' : 'Guardar cambios'}
@@ -11858,12 +11858,12 @@ export default function AdminPage() {
       {/* ── Modal acción sobre registro ─────────────────────────────────────── */}
       {accionModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center px-4"
-          style={{ background: 'rgba(15,23,42,0.55)', backdropFilter: 'blur(6px)' }}
+          style={{ background: 'rgba(35,30,27,0.55)', backdropFilter: 'blur(6px)' }}
           onClick={() => { if (!accionLoading) { setAccionModal(null); setJustificacion(''); setNuevaHora('') } }}>
           <div className="w-full max-w-sm rounded-3xl overflow-hidden"
             style={{
               background: 'white',
-              boxShadow: '0 24px 64px rgba(15,23,42,.18)',
+              boxShadow: '0 24px 64px rgba(35,30,27,.18)',
               border: accionModal.tipo === 'borrar' ? '1.5px solid #fee2e2' : '1.5px solid #fecdd3',
             }}
             onClick={e => e.stopPropagation()}>
@@ -11871,14 +11871,14 @@ export default function AdminPage() {
             <div className="h-1.5"
               style={{ background: accionModal.tipo === 'borrar'
                 ? 'linear-gradient(90deg, #f43f5e, #ef4444)'
-                : 'linear-gradient(90deg, #0B2447, #1E3A8A)' }} />
+                : 'linear-gradient(90deg, #B00326, #B00326)' }} />
             <div className="p-6 space-y-4">
               {/* Ícono */}
               <div className="flex justify-center">
                 <div className="w-14 h-14 rounded-2xl flex items-center justify-center"
                   style={accionModal.tipo === 'borrar'
                     ? { background: '#fef2f2', border: '2px solid #fecaca' }
-                    : { background: '#F1F5F9', border: '2px solid #fecdd3' }}>
+                    : { background: '#EDEEEE', border: '2px solid #fecdd3' }}>
                   {accionModal.tipo === 'borrar' ? (
                     <svg className="w-7 h-7 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
@@ -11950,7 +11950,7 @@ export default function AdminPage() {
                   onClick={() => { setAccionModal(null); setJustificacion(''); setNuevaHora('') }}
                   disabled={accionLoading}
                   className="flex-1 py-2.5 rounded-xl text-sm font-bold transition-all disabled:opacity-50"
-                  style={{ background: '#faf8f7', border: '1.5px solid #e2e8f0', color: '#64748b' }}>
+                  style={{ background: '#faf8f7', border: '1.5px solid #DCDEDE', color: '#6B625D' }}>
                   Cancelar
                 </button>
                 <button
@@ -11959,7 +11959,7 @@ export default function AdminPage() {
                   className="flex-1 py-2.5 rounded-xl text-sm font-black text-white transition-all active:scale-[0.98] disabled:opacity-50"
                   style={accionModal.tipo === 'borrar'
                     ? { background: 'linear-gradient(135deg, #f43f5e, #ef4444)', boxShadow: '0 4px 16px rgba(239,68,68,.3)' }
-                    : { background: 'linear-gradient(135deg, #0B2447, #1E3A8A)', boxShadow: '0 4px 16px rgba(11,36,71,.25)' }}>
+                    : { background: 'linear-gradient(135deg, #B00326, #B00326)', boxShadow: '0 4px 16px rgba(29,24,21,.25)' }}>
                   <span className="flex items-center justify-center gap-2">
                     {accionLoading && <Spinner cls="h-4 w-4 text-white"/>}
                     {accionLoading ? 'Guardando...' : accionModal.tipo === 'borrar' ? 'Sí, borrar' : 'Guardar cambio'}
@@ -11974,17 +11974,17 @@ export default function AdminPage() {
       {/* ── Modal justificar asistencia ─────────────────────────────────────── */}
       {justifModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center px-4"
-          style={{ background: 'rgba(15,23,42,0.55)', backdropFilter: 'blur(6px)' }}
+          style={{ background: 'rgba(35,30,27,0.55)', backdropFilter: 'blur(6px)' }}
           onClick={() => { if (!justificando) { setJustifModal(null); setJustifRespuesta('') } }}>
           <div className="w-full max-w-sm rounded-3xl overflow-hidden"
-            style={{ background: 'white', boxShadow: '0 24px 64px rgba(15,23,42,.18)', border: '1.5px solid #bae6fd' }}
+            style={{ background: 'white', boxShadow: '0 24px 64px rgba(35,30,27,.18)', border: '1.5px solid #FBD3A8' }}
             onClick={e => e.stopPropagation()}>
-            <div className="h-1.5" style={{ background: 'linear-gradient(90deg, #0B2447, #0EA5E9)' }} />
+            <div className="h-1.5" style={{ background: 'linear-gradient(90deg, #1D1815, #F08A24)' }} />
             <div className="p-6 space-y-4">
               <div className="flex justify-center">
                 <div className="w-14 h-14 rounded-2xl flex items-center justify-center"
-                  style={{ background: '#f0f9ff', border: '2px solid #bae6fd' }}>
-                  <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="#0284c7" strokeWidth="1.8">
+                  style={{ background: '#FEF5EC', border: '2px solid #FBD3A8' }}>
+                  <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="#D9731A" strokeWidth="1.8">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                   </svg>
                 </div>
@@ -11997,7 +11997,7 @@ export default function AdminPage() {
                 </p>
               </div>
               {/* Motivo enviado por el docente */}
-              <div className="px-3 py-2 rounded-xl" style={{ background: '#faf8f7', border: '1px solid #e2e8f0' }}>
+              <div className="px-3 py-2 rounded-xl" style={{ background: '#faf8f7', border: '1px solid #DCDEDE' }}>
                 <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Motivo del docente</p>
                 <p className="text-slate-600 text-xs leading-relaxed mt-0.5">{justifModal.motivo}</p>
               </div>
@@ -12013,7 +12013,7 @@ export default function AdminPage() {
                 />
               </div>
               <div className="flex items-start gap-2 rounded-xl px-3 py-2.5 text-xs"
-                style={{ background: '#f0f9ff', border: '1.5px solid #bae6fd', color: '#075985' }}>
+                style={{ background: '#FEF5EC', border: '1.5px solid #FBD3A8', color: '#850720' }}>
                 <svg className="shrink-0 mt-0.5 w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
@@ -12033,14 +12033,14 @@ export default function AdminPage() {
                   onClick={() => { setJustifModal(null); setJustifRespuesta('') }}
                   disabled={justificando}
                   className="flex-1 py-2.5 rounded-xl text-sm font-bold transition-all disabled:opacity-50"
-                  style={{ background: '#faf8f7', border: '1.5px solid #e2e8f0', color: '#64748b' }}>
+                  style={{ background: '#faf8f7', border: '1.5px solid #DCDEDE', color: '#6B625D' }}>
                   Cancelar
                 </button>
                 <button
                   onClick={justificarAsistencia}
                   disabled={justificando}
                   className="flex-1 py-2.5 rounded-xl text-sm font-black text-white transition-all active:scale-[0.98] disabled:opacity-50"
-                  style={{ background: 'linear-gradient(135deg, #0B2447, #0369A1)', boxShadow: '0 4px 16px rgba(11,36,71,.25)' }}>
+                  style={{ background: 'linear-gradient(135deg, #1D1815, #B85E12)', boxShadow: '0 4px 16px rgba(29,24,21,.25)' }}>
                   <span className="flex items-center justify-center gap-2">
                     {justificando && <Spinner cls="h-4 w-4 text-white"/>}
                     {justificando ? 'Guardando...' : 'Justificar'}
@@ -12059,7 +12059,7 @@ export default function AdminPage() {
           onClick={e => { if (e.target === e.currentTarget) setModalDescarga(null) }}>
           <div className="w-full max-w-sm rounded-2xl overflow-hidden shadow-2xl" style={{ background: '#fff' }}>
             {/* Header */}
-            <div className="px-5 py-4" style={{ background: 'linear-gradient(135deg,#0B2447,#1E3A8A)' }}>
+            <div className="px-5 py-4" style={{ background: 'linear-gradient(135deg,#B00326,#B00326)' }}>
               <p className="text-white font-black text-sm">Opciones de descarga</p>
               <p className="text-white/60 text-xs mt-0.5">
                 {modalDescarga === 'imagen' ? 'Imagen PNG' : 'Archivo Excel'}
@@ -12074,8 +12074,8 @@ export default function AdminPage() {
                   {([['todo', 'Todo el personal (docentes + administrativos)'], ['docentes', 'Solo docentes']] as const).map(([val, label]) => (
                     <label key={val} className="flex items-center gap-3 cursor-pointer rounded-xl px-3 py-2.5 transition-all"
                       style={descargaFiltroPersonal === val
-                        ? { background: '#F1F5F9', border: '1.5px solid #fecdd3' }
-                        : { background: '#f8fafc', border: '1.5px solid #e2e8f0' }}>
+                        ? { background: '#EDEEEE', border: '1.5px solid #fecdd3' }
+                        : { background: '#F7F7F6', border: '1.5px solid #DCDEDE' }}>
                       <input type="radio" name="filtroPersonal" value={val} checked={descargaFiltroPersonal === val}
                         onChange={() => setDescargaFiltroPersonal(val)} className="accent-indigo-900"/>
                       <span className="text-xs font-semibold text-slate-700">{label}</span>
@@ -12102,10 +12102,10 @@ export default function AdminPage() {
                     return (
                       <label key={key} className="flex items-center gap-2 cursor-pointer rounded-lg px-2.5 py-2 transition-all"
                         style={disabled
-                          ? { opacity: 0.35, background: '#f8fafc', border: '1px solid #e2e8f0' }
+                          ? { opacity: 0.35, background: '#F7F7F6', border: '1px solid #DCDEDE' }
                           : checked
-                            ? { background: '#F1F5F9', border: '1px solid #fecdd3' }
-                            : { background: '#f8fafc', border: '1px solid #e2e8f0' }}>
+                            ? { background: '#EDEEEE', border: '1px solid #fecdd3' }
+                            : { background: '#F7F7F6', border: '1px solid #DCDEDE' }}>
                         <input type="checkbox" checked={checked && !disabled} disabled={disabled}
                           onChange={() => {
                             const next = new Set(descargaCampos)
@@ -12125,7 +12125,7 @@ export default function AdminPage() {
             <div className="flex gap-2 px-5 pb-5">
               <button onClick={() => setModalDescarga(null)}
                 className="flex-1 py-2.5 rounded-xl text-xs font-bold text-slate-500 transition-all"
-                style={{ background: '#f1f5f9', border: '1.5px solid #e2e8f0' }}>
+                style={{ background: '#EDEEEE', border: '1.5px solid #DCDEDE' }}>
                 Cancelar
               </button>
               <button
@@ -12139,8 +12139,8 @@ export default function AdminPage() {
                 }}
                 className="flex-1 py-2.5 rounded-xl text-xs font-black text-white transition-all hover:opacity-90 disabled:opacity-50"
                 style={{ background: modalDescarga === 'imagen'
-                  ? 'linear-gradient(135deg,#0B2447,#1E3A8A)'
-                  : 'linear-gradient(135deg,#0d9488,#06b6d4)' }}>
+                  ? 'linear-gradient(135deg,#B00326,#B00326)'
+                  : 'linear-gradient(135deg,#944C0D,#CD670D)' }}>
                 {descargaCampos.size === 0 ? 'Selecciona campos' : `Descargar ${modalDescarga === 'imagen' ? 'PNG' : 'Excel'}`}
               </button>
             </div>

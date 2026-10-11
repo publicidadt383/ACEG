@@ -1005,7 +1005,7 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
       )}
       <select value={cicloId} onChange={e => cambiarCiclo(e.target.value)}
         className="text-xs font-bold px-3 py-1.5 rounded-lg outline-none"
-        style={{ background: '#F1F5F9', color: '#0B2447', border: '1.5px solid #E4E8EF' }}>
+        style={{ background: '#EDEEEE', color: '#1D1815', border: '1.5px solid #DFE0E0' }}>
         {ciclos.map(c => (
           <option key={c.id} value={c.id}>{c.nombre}{c.activo ? ' ★' : ''}</option>
         ))}
@@ -1019,7 +1019,7 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
       {/* Header (oculto en embedded) */}
       {!embedded && (
       <header className="sticky top-0 z-50 px-4 py-3 flex items-center gap-3"
-        style={{ background: 'white', borderBottom: '1px solid #E4E8EF', boxShadow: '0 1px 12px rgba(107,15,26,.06)', borderTop: '3px solid #0B2447' }}>
+        style={{ background: 'white', borderBottom: '1px solid #DFE0E0', boxShadow: '0 1px 12px rgba(107,15,26,.06)', borderTop: '3px solid #1D1815' }}>
         <Link href="/admin" className="flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-indigo-900 transition-colors">
           <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
             <polyline points="15 18 9 12 15 6"/>
@@ -1029,7 +1029,7 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
         <span className="text-slate-300">/</span>
         <div className="flex items-center gap-2">
           <div className="w-6 h-6 rounded-lg flex items-center justify-center"
-            style={{ background: 'linear-gradient(135deg,#0B2447,#1E3A8A)' }}>
+            style={{ background: 'linear-gradient(135deg,#B00326,#B00326)' }}>
             <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth="2.5">
               <circle cx="12" cy="9" r="6"/><path strokeLinecap="round" strokeLinejoin="round" d="m9 15-2 7 5-3 5 3-2-7"/>
             </svg>
@@ -1048,11 +1048,11 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
 
         {/* Instrucción */}
         <div className="rounded-2xl p-4 flex items-start gap-3"
-          style={{ background: '#eff6ff', border: '1.5px solid #bfdbfe' }}>
-          <svg className="shrink-0 mt-0.5" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="#1d4ed8" strokeWidth="2">
+          style={{ background: '#FDEDF0', border: '1.5px solid #F6C3CD' }}>
+          <svg className="shrink-0 mt-0.5" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="#C20329" strokeWidth="2">
             <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
           </svg>
-          <p className="text-xs font-semibold leading-relaxed" style={{ color: '#1e40af' }}>
+          <p className="text-xs font-semibold leading-relaxed" style={{ color: '#D9042F' }}>
             Crea un periodo (p. ej. «Bimestre I»), elige un salón y define las columnas que necesites:
             cursos, exámenes, concursos, etc. Puedes digitar las notas aquí o <b>descargar una plantilla</b> para
             llenarla en Excel e importarla: de notas directas (puntos por evaluación) o de <b>examen por preguntas</b> (marcas
@@ -1064,7 +1064,7 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
 
         {/* ── Periodos ── */}
         <div className="rounded-2xl p-4 space-y-3"
-          style={{ background: 'white', border: '1.5px solid #E4E8EF', boxShadow: '0 2px 12px rgba(107,15,26,.05)' }}>
+          style={{ background: 'white', border: '1.5px solid #DFE0E0', boxShadow: '0 2px 12px rgba(107,15,26,.05)' }}>
           <p className="text-xs font-black text-slate-500 uppercase tracking-wider">Periodos de notas · {cicloActual?.nombre ?? '—'}</p>
 
           {periodos.length === 0 && (
@@ -1079,15 +1079,15 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
               return (
                 <div key={p.id} className="flex items-center gap-1.5 rounded-xl pl-3 pr-1.5 py-1.5 transition-all"
                   style={{
-                    background: activo ? 'linear-gradient(135deg,#0B2447,#1E3A8A)' : '#F8FAFC',
-                    border: activo ? '1.5px solid transparent' : '1.5px solid #E4E8EF',
+                    background: activo ? 'linear-gradient(135deg,#B00326,#B00326)' : '#F7F7F6',
+                    border: activo ? '1.5px solid transparent' : '1.5px solid #DFE0E0',
                   }}>
                   <button onClick={() => seleccionarPeriodo(p)} className="flex items-center gap-2">
-                    <span className="text-xs font-black" style={{ color: activo ? 'white' : '#1e293b' }}>{p.nombre}</span>
+                    <span className="text-xs font-black" style={{ color: activo ? 'white' : '#2A2420' }}>{p.nombre}</span>
                     <span className="text-[9px] font-black px-1.5 py-0.5 rounded-full"
                       style={p.publicado
                         ? { background: '#dcfce7', color: '#16a34a' }
-                        : { background: activo ? 'rgba(255,255,255,.15)' : '#f1f5f9', color: activo ? 'rgba(255,255,255,.8)' : '#94a3b8' }}>
+                        : { background: activo ? 'rgba(255,255,255,.15)' : '#EDEEEE', color: activo ? 'rgba(255,255,255,.8)' : '#8B837E' }}>
                       {p.publicado ? 'PUBLICADO' : 'BORRADOR'}
                     </span>
                   </button>
@@ -1124,10 +1124,10 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
               onKeyDown={e => e.key === 'Enter' && crearPeriodo()}
               placeholder="Nombre del periodo (p. ej. Bimestre I)"
               className="flex-1 text-xs font-bold px-3 py-2 rounded-xl outline-none"
-              style={{ background: '#F8FAFC', border: '1.5px solid #E4E8EF', color: '#0B2447' }} />
+              style={{ background: '#F7F7F6', border: '1.5px solid #DFE0E0', color: '#1D1815' }} />
             <button onClick={crearPeriodo} disabled={creando || !nuevoNombre.trim()}
               className="px-4 py-2 rounded-xl text-xs font-black text-white transition-all hover:opacity-90 disabled:opacity-50"
-              style={{ background: 'linear-gradient(135deg,#0B2447,#1E3A8A)' }}>
+              style={{ background: 'linear-gradient(135deg,#B00326,#B00326)' }}>
               {creando ? 'Creando…' : '+ Crear periodo'}
             </button>
           </div>
@@ -1140,13 +1140,13 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
         {periodoSel && (cargando ? (
           <div className="flex justify-center py-12">
             <svg className="animate-spin" width="28" height="28" viewBox="0 0 24 24" fill="none">
-              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="#0B2447" strokeWidth="4"/>
-              <path className="opacity-75" fill="#0B2447" d="M4 12a8 8 0 018-8v8z"/>
+              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="#1D1815" strokeWidth="4"/>
+              <path className="opacity-75" fill="#1D1815" d="M4 12a8 8 0 018-8v8z"/>
             </svg>
           </div>
         ) : alumnos.length === 0 ? (
           <div className="rounded-2xl py-12 text-center"
-            style={{ background: 'white', border: '1.5px solid #E4E8EF' }}>
+            style={{ background: 'white', border: '1.5px solid #DFE0E0' }}>
             <p className="text-slate-400 text-sm font-bold">No hay estudiantes matriculados en este ciclo</p>
           </div>
         ) : (
@@ -1159,25 +1159,25 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
                     onClick={() => { if (!isActive) cargarGrid(s, periodoSel); else setSalonSel(null) }}
                     className="rounded-2xl p-4 text-left transition-all hover:-translate-y-0.5"
                     style={{
-                      background: isActive ? 'linear-gradient(135deg,#0B2447,#1E3A8A)' : 'white',
-                      border: isActive ? 'none' : '1.5px solid #E4E8EF',
+                      background: isActive ? 'linear-gradient(135deg,#B00326,#B00326)' : 'white',
+                      border: isActive ? 'none' : '1.5px solid #DFE0E0',
                       boxShadow: isActive ? '0 6px 20px rgba(107,15,26,.28)' : '0 2px 12px rgba(107,15,26,.05)',
                     }}>
                     <div className="flex items-start justify-between gap-2 mb-2">
                       <div className="w-8 h-8 rounded-xl flex items-center justify-center text-sm font-black"
-                        style={{ background: isActive ? 'rgba(255,255,255,.2)' : '#F1F5F9', color: isActive ? 'white' : '#0B2447' }}>
+                        style={{ background: isActive ? 'rgba(255,255,255,.2)' : '#EDEEEE', color: isActive ? 'white' : '#1D1815' }}>
                         {s.grupo}
                       </div>
-                      <span className="text-lg font-black" style={{ color: isActive ? 'rgba(255,255,255,.85)' : '#64748b' }}>
+                      <span className="text-lg font-black" style={{ color: isActive ? 'rgba(255,255,255,.85)' : '#6B625D' }}>
                         {s.count}
                       </span>
                     </div>
-                    <p className="text-xs font-black leading-tight" style={{ color: isActive ? 'white' : '#1e293b' }}>
+                    <p className="text-xs font-black leading-tight" style={{ color: isActive ? 'white' : '#2A2420' }}>
                       {s.grado}
                     </p>
                     {s.salon_nombre && (
                       <p className="text-[10px] font-semibold mt-0.5 truncate"
-                        style={{ color: isActive ? 'rgba(255,255,255,.7)' : '#94a3b8' }}>
+                        style={{ color: isActive ? 'rgba(255,255,255,.7)' : '#8B837E' }}>
                         {s.salon_nombre}
                       </p>
                     )}
@@ -1189,8 +1189,8 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
             {/* ── Grid de notas ── */}
             {salonSel && (
               <div className="rounded-2xl overflow-hidden"
-                style={{ background: 'white', border: '1.5px solid #E4E8EF', boxShadow: '0 4px 20px rgba(107,15,26,.06)' }}>
-                <div className="h-1" style={{ background: 'linear-gradient(90deg,#0B2447,#1E3A8A,#1E40AF)' }} />
+                style={{ background: 'white', border: '1.5px solid #DFE0E0', boxShadow: '0 4px 20px rgba(107,15,26,.06)' }}>
+                <div className="h-1" style={{ background: 'linear-gradient(90deg,#B00326,#B00326,#D9042F)' }} />
 
                 <div className="p-4 flex items-center justify-between gap-3 flex-wrap border-b border-slate-100">
                   <div>
@@ -1207,7 +1207,7 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
                     <button onClick={() => { setPlantillaErr(''); setModalPlantilla(true) }}
                       disabled={cargandoGrid || alumnosSalon.length === 0}
                       className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-black transition-all hover:opacity-80 disabled:opacity-50"
-                      style={{ background: '#F1F5F9', color: '#0B2447', border: '1.5px solid #E4E8EF' }}>
+                      style={{ background: '#EDEEEE', color: '#1D1815', border: '1.5px solid #DFE0E0' }}>
                       <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
                       </svg>
@@ -1216,7 +1216,7 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
                     <button onClick={() => fileRef.current?.click()}
                       disabled={cargandoGrid}
                       className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-black transition-all hover:opacity-80 disabled:opacity-50"
-                      style={{ background: '#F1F5F9', color: '#0B2447', border: '1.5px solid #E4E8EF' }}>
+                      style={{ background: '#EDEEEE', color: '#1D1815', border: '1.5px solid #DFE0E0' }}>
                       <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
                       </svg>
@@ -1229,7 +1229,7 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
                     )}
                     <button onClick={guardar} disabled={guardando || !hayCambios}
                       className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-black text-white transition-all hover:opacity-90 disabled:opacity-50"
-                      style={{ background: 'linear-gradient(135deg,#0B2447,#1E3A8A)', boxShadow: '0 3px 12px rgba(107,15,26,.25)' }}>
+                      style={{ background: 'linear-gradient(135deg,#B00326,#B00326)', boxShadow: '0 3px 12px rgba(107,15,26,.25)' }}>
                       {guardando ? 'Guardando…' : 'Guardar cambios'}
                     </button>
                   </div>
@@ -1237,26 +1237,26 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
 
                 {/* Barra de columnas */}
                 <div className="px-4 py-3 flex items-center gap-2 flex-wrap border-b border-slate-100"
-                  style={{ background: '#FBFCFE' }}>
+                  style={{ background: '#FDFCFC' }}>
                   <input value={nuevaCol} onChange={e => setNuevaCol(e.target.value)}
                     onKeyDown={e => e.key === 'Enter' && agregarColumna()}
                     placeholder="Nueva columna (p. ej. Examen Bimestral, Concurso de Matemática)"
                     className="flex-1 min-w-48 text-xs font-bold px-3 py-2 rounded-xl outline-none"
-                    style={{ background: 'white', border: '1.5px solid #E4E8EF', color: '#0B2447' }} />
+                    style={{ background: 'white', border: '1.5px solid #DFE0E0', color: '#1D1815' }} />
                   <button onClick={() => agregarColumna()} disabled={!nuevaCol.trim() || cargandoGrid}
                     className="px-3 py-2 rounded-xl text-xs font-black text-white transition-all hover:opacity-90 disabled:opacity-50"
-                    style={{ background: 'linear-gradient(135deg,#0B2447,#1E3A8A)' }}>
+                    style={{ background: 'linear-gradient(135deg,#B00326,#B00326)' }}>
                     + Columna
                   </button>
                   <button onClick={usarCursosDelSalon} disabled={cargandoGrid}
                     className="px-3 py-2 rounded-xl text-xs font-black transition-all hover:opacity-80 disabled:opacity-50"
-                    style={{ background: '#eff6ff', color: '#1d4ed8', border: '1.5px solid #bfdbfe' }}>
+                    style={{ background: '#FDEDF0', color: '#C20329', border: '1.5px solid #F6C3CD' }}>
                     Usar cursos del salón
                   </button>
                   {examenes.length > 0 && (
                     <button onClick={usarAreasDelExamen} disabled={cargandoGrid}
                       className="px-3 py-2 rounded-xl text-xs font-black transition-all hover:opacity-80 disabled:opacity-50"
-                      style={{ background: '#f0fdfa', color: '#0d9488', border: '1.5px solid #99f6e4' }}>
+                      style={{ background: '#FDF6F0', color: '#944C0D', border: '1.5px solid #F6C499' }}>
                       Usar áreas del examen
                     </button>
                   )}
@@ -1264,17 +1264,17 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
                   {/* Plantillas de cursos: aplicables en cualquier grado/sección */}
                   {(plantillas.length > 0 || evaluaciones.length > 0) && (
                     <div className="w-full flex items-center gap-2 flex-wrap pt-2 mt-1"
-                      style={{ borderTop: '1px dashed #E4E8EF' }}>
+                      style={{ borderTop: '1px dashed #DFE0E0' }}>
                       <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">
                         Plantillas de cursos
                       </span>
                       {plantillas.map(p => (
                         <span key={p.id} className="inline-flex items-center rounded-xl overflow-hidden"
-                          style={{ border: '1.5px solid #cfd6fb' }}>
+                          style={{ border: '1.5px solid #E9E4E1' }}>
                           <button onClick={() => aplicarPlantilla(p)} disabled={cargandoGrid}
                             title={`Aplicar en este salón: ${p.cursos.join(', ')}${p.preguntas?.length ? ` · incluye examen «${p.examen_titulo}» de ${p.preguntas.length} preguntas` : ''}`}
                             className="px-3 py-1.5 text-xs font-black transition-all hover:opacity-80 disabled:opacity-50"
-                            style={{ background: '#eef1fe', color: '#1d4ed8' }}>
+                            style={{ background: '#F7F6F5', color: '#C20329' }}>
                             {p.nombre}
                           </button>
                           <button onClick={() => eliminarPlantilla(p)} title={`Eliminar plantilla ${p.nombre}`}
@@ -1291,15 +1291,15 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
                             onKeyDown={e => { if (e.key === 'Enter') guardarPlantilla(); if (e.key === 'Escape') setNombrePlantilla(null) }}
                             placeholder="Nombre (p. ej. Cursos de Cocina)"
                             className="text-xs font-bold px-3 py-1.5 rounded-xl outline-none min-w-48"
-                            style={{ background: 'white', border: '1.5px solid #1d4ed8', color: '#0B2447' }} />
+                            style={{ background: 'white', border: '1.5px solid #C20329', color: '#1D1815' }} />
                           <button onClick={guardarPlantilla} disabled={!(nombrePlantilla ?? '').trim()}
                             className="px-3 py-1.5 rounded-xl text-xs font-black text-white transition-all hover:opacity-90 disabled:opacity-50"
-                            style={{ background: 'linear-gradient(135deg,#0B2447,#1E3A8A)' }}>
+                            style={{ background: 'linear-gradient(135deg,#B00326,#B00326)' }}>
                             Guardar
                           </button>
                           <button onClick={() => setNombrePlantilla(null)}
                             className="px-3 py-1.5 rounded-xl text-xs font-black transition-all hover:opacity-80"
-                            style={{ background: '#F1F5F9', color: '#64748b' }}>
+                            style={{ background: '#EDEEEE', color: '#6B625D' }}>
                             Cancelar
                           </button>
                         </>
@@ -1308,7 +1308,7 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
                           <button onClick={() => setNombrePlantilla('')} disabled={cargandoGrid}
                             title="Guarda las columnas actuales como plantilla para usarlas en otros grados y secciones"
                             className="px-3 py-1.5 rounded-xl text-xs font-black transition-all hover:opacity-80 disabled:opacity-50"
-                            style={{ background: 'white', color: '#1d4ed8', border: '1.5px dashed #93c5fd' }}>
+                            style={{ background: 'white', color: '#C20329', border: '1.5px dashed #EF9AAB' }}>
                             + Guardar columnas como plantilla
                           </button>
                         )
@@ -1321,7 +1321,7 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
                 </div>
 
                 {(errorMsg || importMsg) && (
-                  <p className="px-4 pt-3 text-xs font-bold" style={{ color: errorMsg ? '#dc2626' : '#1d4ed8' }}>
+                  <p className="px-4 pt-3 text-xs font-bold" style={{ color: errorMsg ? '#dc2626' : '#C20329' }}>
                     {errorMsg || importMsg}
                   </p>
                 )}
@@ -1329,8 +1329,8 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
                 {cargandoGrid ? (
                   <div className="flex justify-center py-12">
                     <svg className="animate-spin" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="#0B2447" strokeWidth="4"/>
-                      <path className="opacity-75" fill="#0B2447" d="M4 12a8 8 0 018-8v8z"/>
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="#1D1815" strokeWidth="4"/>
+                      <path className="opacity-75" fill="#1D1815" d="M4 12a8 8 0 018-8v8z"/>
                     </svg>
                   </div>
                 ) : evaluaciones.length === 0 ? (
@@ -1347,9 +1347,9 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
                   <div className="overflow-x-auto">
                     <table className="w-full text-xs" style={{ minWidth: 480 }}>
                       <thead>
-                        <tr style={{ background: '#F1F5F9' }}>
+                        <tr style={{ background: '#EDEEEE' }}>
                           <th className="text-left px-3 py-2 font-black text-slate-500 uppercase tracking-wider sticky left-0"
-                            style={{ background: '#F1F5F9', minWidth: 180 }}>Estudiante</th>
+                            style={{ background: '#EDEEEE', minWidth: 180 }}>Estudiante</th>
                           {evaluaciones.map(ev => (
                             <th key={ev.id} className="text-center px-2 py-2 font-black text-slate-500" style={{ minWidth: 84 }}>
                               <div className="flex flex-col items-center gap-1">
@@ -1367,7 +1367,7 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
                               </div>
                             </th>
                           ))}
-                          <th className="text-center px-2 py-2 font-black" style={{ minWidth: 72, color: '#0B2447' }}>Total</th>
+                          <th className="text-center px-2 py-2 font-black" style={{ minWidth: 72, color: '#1D1815' }}>Total</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -1381,9 +1381,9 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
                           const tieneNotas = evaluaciones.some(ev =>
                             (notas[keyDe(al.id, ev.id)] ?? '') !== '' || puntosExamenDe(al.id, ev.titulo) !== undefined)
                           return (
-                          <tr key={al.id} style={{ background: i % 2 ? '#F8FAFC' : 'white', borderTop: '1px solid #f1f5f9' }}>
+                          <tr key={al.id} style={{ background: i % 2 ? '#F7F7F6' : 'white', borderTop: '1px solid #EDEEEE' }}>
                             <td className="px-3 py-2 font-bold text-slate-700 sticky left-0"
-                              style={{ background: i % 2 ? '#F8FAFC' : 'white' }}>
+                              style={{ background: i % 2 ? '#F7F7F6' : 'white' }}>
                               {`${al.apellidos ?? ''} ${al.nombre}`.trim()}
                             </td>
                             {evaluaciones.map(ev => {
@@ -1399,7 +1399,7 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
                                     <span
                                       title={`Puntos del examen (${delExamen}${maxCol !== undefined ? ` de ${maxCol}` : ''}): calculado de las respuestas importadas`}
                                       className="inline-flex items-center justify-center w-14 py-1.5 rounded-lg font-black"
-                                      style={{ background: '#f0fdfa', border: '1.5px solid #99f6e4', color: '#0d9488' }}>
+                                      style={{ background: '#FDF6F0', border: '1.5px solid #F6C499', color: '#944C0D' }}>
                                       {delExamen}
                                     </span>
                                   </td>
@@ -1415,9 +1415,9 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
                                     placeholder="—"
                                     className="w-14 text-center font-black py-1.5 rounded-lg outline-none transition-all"
                                     style={{
-                                      background: excede ? '#fef2f2' : cambiado ? '#fffbeb' : '#F8FAFC',
-                                      border: excede ? '1.5px solid #fca5a5' : cambiado ? '1.5px solid #fbbf24' : '1.5px solid #E4E8EF',
-                                      color: excede ? '#dc2626' : v === '' ? '#94a3b8' : '#0B2447',
+                                      background: excede ? '#fef2f2' : cambiado ? '#fffbeb' : '#F7F7F6',
+                                      border: excede ? '1.5px solid #fca5a5' : cambiado ? '1.5px solid #fbbf24' : '1.5px solid #DFE0E0',
+                                      color: excede ? '#dc2626' : v === '' ? '#8B837E' : '#1D1815',
                                     }} />
                                 </td>
                               )
@@ -1429,7 +1429,7 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
                                     ? `La suma supera el total de preguntas del examen (${maxTotalGrid})` : undefined}
                                   style={maxTotalGrid !== null && sumaFila > maxTotalGrid
                                     ? { background: '#fef2f2', color: '#dc2626', border: '1.5px solid #fca5a5' }
-                                    : { background: '#F1F5F9', color: '#0B2447', border: '1.5px solid #E4E8EF' }}>
+                                    : { background: '#EDEEEE', color: '#1D1815', border: '1.5px solid #DFE0E0' }}>
                                   {Math.round(sumaFila * 10) / 10}
                                   {maxTotalGrid !== null && <span className="font-bold" style={{ opacity: .55 }}> / {maxTotalGrid}</span>}
                                 </span>
@@ -1448,8 +1448,8 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
             {/* ── Exámenes por preguntas ── */}
             {salonSel && examenes.length > 0 && (
               <div className="rounded-2xl overflow-hidden"
-                style={{ background: 'white', border: '1.5px solid #E4E8EF', boxShadow: '0 4px 20px rgba(107,15,26,.06)' }}>
-                <div className="h-1" style={{ background: 'linear-gradient(90deg,#0d9488,#14b8a6,#2dd4bf)' }} />
+                style={{ background: 'white', border: '1.5px solid #DFE0E0', boxShadow: '0 4px 20px rgba(107,15,26,.06)' }}>
+                <div className="h-1" style={{ background: 'linear-gradient(90deg,#944C0D,#B86114,#D47B2D)' }} />
                 <div className="p-4 border-b border-slate-100">
                   <p className="font-black text-slate-800 text-sm">Exámenes por preguntas</p>
                   <p className="text-xs text-slate-400 mt-0.5">
@@ -1480,17 +1480,17 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
                           <div className="flex items-center gap-2 flex-wrap">
                             <button onClick={() => descargarPlantillaExamen(ex)}
                               className="px-3 py-1.5 rounded-lg text-[11px] font-black transition-all hover:opacity-80"
-                              style={{ background: '#F1F5F9', color: '#0B2447', border: '1.5px solid #E4E8EF' }}>
+                              style={{ background: '#EDEEEE', color: '#1D1815', border: '1.5px solid #DFE0E0' }}>
                               Plantilla
                             </button>
                             <button onClick={() => { setExamenImportando(ex); examenFileRef.current?.click() }}
                               className="px-3 py-1.5 rounded-lg text-[11px] font-black transition-all hover:opacity-80"
-                              style={{ background: '#eff6ff', color: '#1d4ed8', border: '1.5px solid #bfdbfe' }}>
+                              style={{ background: '#FDEDF0', color: '#C20329', border: '1.5px solid #F6C3CD' }}>
                               Importar respuestas
                             </button>
                             <button onClick={() => verExamen(ex)}
                               className="px-3 py-1.5 rounded-lg text-[11px] font-black text-white transition-all hover:opacity-90"
-                              style={{ background: 'linear-gradient(135deg,#0B2447,#1E3A8A)' }}>
+                              style={{ background: 'linear-gradient(135deg,#B00326,#B00326)' }}>
                               {abiertoEx ? 'Ocultar resultados' : 'Ver resultados'}
                             </button>
                             <button onClick={() => eliminarExamen(ex)} title="Eliminar examen"
@@ -1507,17 +1507,17 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
                         {abiertoEx && (cargandoExamen ? (
                           <div className="flex justify-center py-8">
                             <svg className="animate-spin" width="22" height="22" viewBox="0 0 24 24" fill="none">
-                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="#0B2447" strokeWidth="4"/>
-                              <path className="opacity-75" fill="#0B2447" d="M4 12a8 8 0 018-8v8z"/>
+                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="#1D1815" strokeWidth="4"/>
+                              <path className="opacity-75" fill="#1D1815" d="M4 12a8 8 0 018-8v8z"/>
                             </svg>
                           </div>
                         ) : (
-                          <div className="overflow-x-auto" style={{ background: '#F8FAFC' }}>
+                          <div className="overflow-x-auto" style={{ background: '#F7F7F6' }}>
                             <table className="w-full text-xs" style={{ minWidth: 480 }}>
                               <thead>
-                                <tr style={{ background: '#F1F5F9' }}>
+                                <tr style={{ background: '#EDEEEE' }}>
                                   <th className="text-left px-3 py-2 font-black text-slate-500 uppercase tracking-wider sticky left-0"
-                                    style={{ background: '#F1F5F9', minWidth: 180 }}>Estudiante</th>
+                                    style={{ background: '#EDEEEE', minWidth: 180 }}>Estudiante</th>
                                   {areasEx.map(a => (
                                     <th key={a} className="text-center px-2 py-2 font-black text-slate-500" style={{ minWidth: 80 }}>{a}</th>
                                   ))}
@@ -1530,14 +1530,14 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
                                   const resp = respuestas[al.id]
                                   const r = resp ? resumenExamen(ex.preguntas, resp) : null
                                   return (
-                                    <tr key={al.id} style={{ background: i % 2 ? '#F8FAFC' : 'white', borderTop: '1px solid #f1f5f9' }}>
+                                    <tr key={al.id} style={{ background: i % 2 ? '#F7F7F6' : 'white', borderTop: '1px solid #EDEEEE' }}>
                                       <td className="px-3 py-2 font-bold text-slate-700 sticky left-0"
-                                        style={{ background: i % 2 ? '#F8FAFC' : 'white' }}>
+                                        style={{ background: i % 2 ? '#F7F7F6' : 'white' }}>
                                         {`${al.apellidos ?? ''} ${al.nombre}`.trim()}
                                       </td>
                                       {r ? r.areas.map(a => (
                                         <td key={a.area} className="px-2 py-2 text-center font-black whitespace-nowrap"
-                                          style={{ color: a.puntos >= a.total * 0.5 ? '#0d9488' : '#dc2626' }}>
+                                          style={{ color: a.puntos >= a.total * 0.5 ? '#944C0D' : '#dc2626' }}>
                                           {a.puntos} <span className="text-slate-300 font-bold">/ {a.total}</span>
                                         </td>
                                       )) : areasEx.map(a => (
@@ -1547,8 +1547,8 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
                                         {r ? (
                                           <span className="font-black px-2 py-0.5 rounded-full whitespace-nowrap"
                                             style={{
-                                              background: r.puntos >= r.total * 0.5 ? '#ccfbf1' : '#fee2e2',
-                                              color:      r.puntos >= r.total * 0.5 ? '#0d9488' : '#dc2626',
+                                              background: r.puntos >= r.total * 0.5 ? '#FBE2CC' : '#fee2e2',
+                                              color:      r.puntos >= r.total * 0.5 ? '#944C0D' : '#dc2626',
                                             }}>
                                             {r.puntos} / {r.total}
                                           </span>
@@ -1558,7 +1558,7 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
                                         {r && (
                                           <button onClick={() => setDetalleDe({ alumno: al, examen: ex })}
                                             className="px-2.5 py-1 rounded-lg text-[10px] font-black transition-all hover:opacity-80"
-                                            style={{ background: '#eff6ff', color: '#1d4ed8', border: '1px solid #bfdbfe' }}>
+                                            style={{ background: '#FDEDF0', color: '#C20329', border: '1px solid #F6C3CD' }}>
                                             Detalle
                                           </button>
                                         )}
@@ -1585,12 +1585,12 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
         const r = resumenExamen(detalleDe.examen.preguntas, respuestas[detalleDe.alumno.id])
         return (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4"
-            style={{ background: 'rgba(15,23,42,.5)', backdropFilter: 'blur(6px)' }}
+            style={{ background: 'rgba(35,30,27,.5)', backdropFilter: 'blur(6px)' }}
             onClick={() => setDetalleDe(null)}>
             <div className="w-full max-w-lg rounded-3xl overflow-hidden max-h-[90vh] overflow-y-auto"
-              style={{ background: 'white', boxShadow: '0 28px 70px rgba(15,23,42,.22)' }}
+              style={{ background: 'white', boxShadow: '0 28px 70px rgba(35,30,27,.22)' }}
               onClick={e => e.stopPropagation()}>
-              <div className="px-6 pt-5 pb-4" style={{ background: 'linear-gradient(135deg,#0B2447,#1E3A8A)' }}>
+              <div className="px-6 pt-5 pb-4" style={{ background: 'linear-gradient(135deg,#B00326,#B00326)' }}>
                 <p className="font-black text-white text-sm">{detalleDe.examen.titulo}</p>
                 <p className="text-xs mt-0.5" style={{ color: 'rgba(255,255,255,.7)' }}>
                   {`${detalleDe.alumno.apellidos ?? ''} ${detalleDe.alumno.nombre}`.trim()}
@@ -1601,14 +1601,14 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
                 <div className="flex flex-wrap gap-2">
                   {r.areas.map(a => (
                     <span key={a.area} className="text-xs font-black px-3 py-1.5 rounded-full"
-                      style={{ background: '#F1F5F9', color: '#0B2447', border: '1.5px solid #E4E8EF' }}>
+                      style={{ background: '#EDEEEE', color: '#1D1815', border: '1.5px solid #DFE0E0' }}>
                       {a.area}: {a.puntos} {a.puntos === 1 ? 'punto' : 'puntos'} de {a.total}
                     </span>
                   ))}
                   <span className="text-xs font-black px-3 py-1.5 rounded-full"
                     style={{
-                      background: r.puntos >= r.total * 0.5 ? '#ccfbf1' : '#fee2e2',
-                      color:      r.puntos >= r.total * 0.5 ? '#0d9488' : '#dc2626',
+                      background: r.puntos >= r.total * 0.5 ? '#FBE2CC' : '#fee2e2',
+                      color:      r.puntos >= r.total * 0.5 ? '#944C0D' : '#dc2626',
                     }}>
                     Nota final: {r.puntos} / {r.total}
                   </span>
@@ -1637,7 +1637,7 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
                 <div className="flex justify-end pt-1">
                   <button onClick={() => setDetalleDe(null)}
                     className="px-4 py-2 rounded-xl text-xs font-black transition-all hover:opacity-80"
-                    style={{ background: '#F1F5F9', color: '#64748b' }}>
+                    style={{ background: '#EDEEEE', color: '#6B625D' }}>
                     Cerrar
                   </button>
                 </div>
@@ -1650,13 +1650,13 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
       {/* ── Modal: configurar plantilla ─────────────────────────────────────── */}
       {modalPlantilla && salonSel && periodoSel && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4"
-          style={{ background: 'rgba(15,23,42,.5)', backdropFilter: 'blur(6px)' }}
+          style={{ background: 'rgba(35,30,27,.5)', backdropFilter: 'blur(6px)' }}
           onClick={() => setModalPlantilla(false)}>
           <div className="w-full max-w-lg rounded-3xl overflow-hidden max-h-[90vh] overflow-y-auto"
-            style={{ background: 'white', boxShadow: '0 28px 70px rgba(15,23,42,.22)' }}
+            style={{ background: 'white', boxShadow: '0 28px 70px rgba(35,30,27,.22)' }}
             onClick={e => e.stopPropagation()}>
 
-            <div className="px-6 pt-5 pb-4" style={{ background: 'linear-gradient(135deg,#0B2447,#1E3A8A)' }}>
+            <div className="px-6 pt-5 pb-4" style={{ background: 'linear-gradient(135deg,#B00326,#B00326)' }}>
               <p className="font-black text-white text-sm">Generar plantilla</p>
               <p className="text-xs mt-0.5" style={{ color: 'rgba(255,255,255,.7)' }}>
                 {periodoSel.nombre} · {salonSel.grado} — Sección {salonSel.grupo} · {alumnosSalon.length} estudiantes
@@ -1669,10 +1669,10 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
                 <button onClick={() => setPlantillaTipo('directa')}
                   className="w-full text-left rounded-2xl p-3.5 transition-all"
                   style={{
-                    background: plantillaTipo === 'directa' ? '#eff6ff' : '#F8FAFC',
-                    border: plantillaTipo === 'directa' ? '1.5px solid #1d4ed8' : '1.5px solid #E4E8EF',
+                    background: plantillaTipo === 'directa' ? '#FDEDF0' : '#F7F7F6',
+                    border: plantillaTipo === 'directa' ? '1.5px solid #C20329' : '1.5px solid #DFE0E0',
                   }}>
-                  <p className="text-xs font-black" style={{ color: '#0B2447' }}>Notas directas (puntos por evaluación)</p>
+                  <p className="text-xs font-black" style={{ color: '#1D1815' }}>Notas directas (puntos por evaluación)</p>
                   <p className="text-[11px] text-slate-400 font-semibold mt-0.5 leading-relaxed">
                     Una columna por evaluación ({evaluaciones.length ? evaluaciones.map(e => e.titulo).join(', ') : 'aún sin columnas: puedes agregarlas en Excel'}).
                     Escribes los puntos que obtuvo cada estudiante; el total es la suma.
@@ -1680,11 +1680,11 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
                 </button>
                 {plantillaTipo === 'directa' && plantillas.length > 0 && (
                   <div className="flex items-center gap-2 flex-wrap rounded-2xl p-3"
-                    style={{ background: '#F8FAFC', border: '1.5px solid #E4E8EF' }}>
+                    style={{ background: '#F7F7F6', border: '1.5px solid #DFE0E0' }}>
                     <label className="text-xs font-black text-slate-500">Columnas del Excel:</label>
                     <select value={plantillaCsvId} onChange={e => setPlantillaCsvId(e.target.value)}
                       className="text-xs font-bold px-3 py-1.5 rounded-lg outline-none"
-                      style={{ background: 'white', border: '1.5px solid #E4E8EF', color: '#0B2447' }}>
+                      style={{ background: 'white', border: '1.5px solid #DFE0E0', color: '#1D1815' }}>
                       <option value="">Las del salón ({evaluaciones.length} columnas)</option>
                       {plantillas.map(p => (
                         <option key={p.id} value={p.id}>
@@ -1704,10 +1704,10 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
                 <button onClick={() => setPlantillaTipo('preguntas')}
                   className="w-full text-left rounded-2xl p-3.5 transition-all"
                   style={{
-                    background: plantillaTipo === 'preguntas' ? '#eff6ff' : '#F8FAFC',
-                    border: plantillaTipo === 'preguntas' ? '1.5px solid #1d4ed8' : '1.5px solid #E4E8EF',
+                    background: plantillaTipo === 'preguntas' ? '#FDEDF0' : '#F7F7F6',
+                    border: plantillaTipo === 'preguntas' ? '1.5px solid #C20329' : '1.5px solid #DFE0E0',
                   }}>
-                  <p className="text-xs font-black" style={{ color: '#0B2447' }}>Examen por preguntas (1 = correcta · 0 = incorrecta)</p>
+                  <p className="text-xs font-black" style={{ color: '#1D1815' }}>Examen por preguntas (1 = correcta · 0 = incorrecta)</p>
                   <p className="text-[11px] text-slate-400 font-semibold mt-0.5 leading-relaxed">
                     Una columna por pregunta; cada correcta vale 1 punto. Se muestra el puntaje por área,
                     la nota final y el detalle ✓/✗ de cada pregunta.
@@ -1717,17 +1717,17 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
 
               {/* Config de examen por preguntas */}
               {plantillaTipo === 'preguntas' && (
-                <div className="space-y-3 rounded-2xl p-4" style={{ background: '#F8FAFC', border: '1.5px solid #E4E8EF' }}>
+                <div className="space-y-3 rounded-2xl p-4" style={{ background: '#F7F7F6', border: '1.5px solid #DFE0E0' }}>
                   <input value={tituloExamen} onChange={e => setTituloExamen(e.target.value)}
                     placeholder="Nombre del examen (p. ej. Examen Bimestral I)"
                     className="w-full text-xs font-bold px-3 py-2 rounded-xl outline-none"
-                    style={{ background: 'white', border: '1.5px solid #E4E8EF', color: '#0B2447' }} />
+                    style={{ background: 'white', border: '1.5px solid #DFE0E0', color: '#1D1815' }} />
                   <div className="flex items-center gap-2">
                     <label className="text-xs font-black text-slate-500">Número de preguntas:</label>
                     <input value={numPreguntas} inputMode="numeric"
                       onChange={e => { const v = e.target.value.replace(/\D/g, ''); if (v.length <= 3) setNumPreguntas(v) }}
                       className="w-16 text-center text-xs font-black px-2 py-1.5 rounded-lg outline-none"
-                      style={{ background: 'white', border: '1.5px solid #E4E8EF', color: '#0B2447' }} />
+                      style={{ background: 'white', border: '1.5px solid #DFE0E0', color: '#1D1815' }} />
                   </div>
 
                   <p className="text-[11px] font-black text-slate-500 uppercase tracking-wider">Rangos por área</p>
@@ -1737,16 +1737,16 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
                       <input value={r.desde} inputMode="numeric"
                         onChange={e => { const v = e.target.value.replace(/\D/g, ''); setRangos(rs => rs.map((x, j) => j === i ? { ...x, desde: v } : x)) }}
                         className="w-12 text-center text-xs font-black px-1 py-1.5 rounded-lg outline-none"
-                        style={{ background: 'white', border: '1.5px solid #E4E8EF', color: '#0B2447' }} />
+                        style={{ background: 'white', border: '1.5px solid #DFE0E0', color: '#1D1815' }} />
                       <span className="text-[11px] font-bold text-slate-400">a</span>
                       <input value={r.hasta} inputMode="numeric"
                         onChange={e => { const v = e.target.value.replace(/\D/g, ''); setRangos(rs => rs.map((x, j) => j === i ? { ...x, hasta: v } : x)) }}
                         className="w-12 text-center text-xs font-black px-1 py-1.5 rounded-lg outline-none"
-                        style={{ background: 'white', border: '1.5px solid #E4E8EF', color: '#0B2447' }} />
+                        style={{ background: 'white', border: '1.5px solid #DFE0E0', color: '#1D1815' }} />
                       <input value={r.area} placeholder="Área (p. ej. Matemática)"
                         onChange={e => setRangos(rs => rs.map((x, j) => j === i ? { ...x, area: e.target.value } : x))}
                         className="flex-1 min-w-32 text-xs font-bold px-3 py-1.5 rounded-lg outline-none"
-                        style={{ background: 'white', border: '1.5px solid #E4E8EF', color: '#0B2447' }} />
+                        style={{ background: 'white', border: '1.5px solid #DFE0E0', color: '#1D1815' }} />
                       {rangos.length > 1 && (
                         <button onClick={() => setRangos(rs => rs.filter((_, j) => j !== i))}
                           className="w-6 h-6 rounded-lg flex items-center justify-center hover:opacity-75"
@@ -1764,7 +1764,7 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
                       setRangos(rs => [...rs, { desde: Number.isFinite(sig) && sig > 1 ? String(sig) : '', hasta: '', area: '' }])
                     }}
                     className="text-xs font-black px-3 py-1.5 rounded-lg transition-all hover:opacity-80"
-                    style={{ background: '#eff6ff', color: '#1d4ed8', border: '1.5px solid #bfdbfe' }}>
+                    style={{ background: '#FDEDF0', color: '#C20329', border: '1.5px solid #F6C3CD' }}>
                     + Agregar rango
                   </button>
                   <p className="text-[11px] text-slate-400 font-semibold leading-relaxed">
@@ -1784,12 +1784,12 @@ export function NotasContent({ embedded = false }: NotasProps = {}) {
               <div className="flex justify-end gap-2 pt-1">
                 <button onClick={() => setModalPlantilla(false)}
                   className="px-4 py-2 rounded-xl text-xs font-black transition-all hover:opacity-80"
-                  style={{ background: '#F1F5F9', color: '#64748b' }}>
+                  style={{ background: '#EDEEEE', color: '#6B625D' }}>
                   Cancelar
                 </button>
                 <button onClick={generarPlantilla}
                   className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-black text-white transition-all hover:opacity-90"
-                  style={{ background: 'linear-gradient(135deg,#0B2447,#1E3A8A)', boxShadow: '0 3px 12px rgba(107,15,26,.25)' }}>
+                  style={{ background: 'linear-gradient(135deg,#B00326,#B00326)', boxShadow: '0 3px 12px rgba(107,15,26,.25)' }}>
                   <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth="2.5">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
                   </svg>

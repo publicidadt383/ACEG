@@ -202,7 +202,7 @@ export default function DocenteAsistenciaPage() {
   if (loading) return null
 
   const asig      = asigs.find(a => a.id === asigId)
-  const color     = asig?.cursos?.color ?? '#143875'
+  const color     = asig?.cursos?.color ?? '#2A2420'
   const totalP    = presentes.size
   const totalA    = alumnos.length - totalP
   const pct       = alumnos.length ? Math.round(totalP / alumnos.length * 100) : 0
@@ -218,20 +218,20 @@ export default function DocenteAsistenciaPage() {
 
       {asigs.length === 0 ? (
         <div className="rounded-2xl flex flex-col items-center justify-center py-20"
-          style={{ background: 'white', border: '1.5px solid #E4E8EF' }}>
+          style={{ background: 'white', border: '1.5px solid #DFE0E0' }}>
           <p className="text-sm text-slate-400">Sin cursos asignados</p>
         </div>
       ) : (
         <>
           {/* Controles */}
           <div className="rounded-2xl p-5 space-y-4"
-            style={{ background: 'white', border: '1.5px solid #E4E8EF', boxShadow: '0 4px 24px rgba(11,36,71,.06)' }}>
+            style={{ background: 'white', border: '1.5px solid #DFE0E0', boxShadow: '0 4px 24px rgba(29,24,21,.06)' }}>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="block text-xs font-bold text-slate-500 mb-1.5">Curso</label>
                 <select value={asigId} onChange={e => { setAsigId(e.target.value); setTabActiva('pase') }}
                   className="w-full px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-700 outline-none"
-                  style={{ background: '#F6F8FB', border: '1.5px solid #E4E8EF' }}>
+                  style={{ background: '#F5F5F4', border: '1.5px solid #DFE0E0' }}>
                   {asigs.map(a => (
                     <option key={a.id} value={a.id}>
                       {a.cursos?.nombre ?? 'Curso'} — {a.grado} {a.grupo}
@@ -244,18 +244,18 @@ export default function DocenteAsistenciaPage() {
                 <input type="date" value={fecha} onChange={e => setFecha(e.target.value)}
                   max={isoToday()}
                   className="w-full px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-700 outline-none"
-                  style={{ background: '#F6F8FB', border: '1.5px solid #E4E8EF' }} />
+                  style={{ background: '#F5F5F4', border: '1.5px solid #DFE0E0' }} />
               </div>
             </div>
 
             {/* Tabs */}
-            <div className="flex gap-1 rounded-xl p-1" style={{ background: '#F6F8FB', border: '1.5px solid #E4E8EF' }}>
+            <div className="flex gap-1 rounded-xl p-1" style={{ background: '#F5F5F4', border: '1.5px solid #DFE0E0' }}>
               {([['pase', 'Pase de lista'], ['escaner', '📷 Escáner QR'], ['resumen', 'Resumen']] as const).map(([val, label]) => (
                 <button key={val} onClick={() => { setTabActiva(val); if (val !== 'escaner') { setScaneados([]); setScanResultado(null) } }}
                   className="flex-1 py-2 rounded-lg text-xs font-black transition-all"
                   style={tabActiva === val
                     ? { background: 'white', color: color, boxShadow: '0 1px 4px rgba(0,0,0,.08)' }
-                    : { color: '#94a3b8' }}>
+                    : { color: '#8B837E' }}>
                   {label}
                 </button>
               ))}
@@ -265,7 +265,7 @@ export default function DocenteAsistenciaPage() {
           {/* ── Tab: Pase de lista ── */}
           {tabActiva === 'pase' && (
             <div className="rounded-2xl overflow-hidden"
-              style={{ background: 'white', border: '1.5px solid #E4E8EF', boxShadow: '0 4px 24px rgba(11,36,71,.06)' }}>
+              style={{ background: 'white', border: '1.5px solid #DFE0E0', boxShadow: '0 4px 24px rgba(29,24,21,.06)' }}>
 
               {/* Banner */}
               <div className="px-5 py-4 flex items-center justify-between gap-3"
@@ -303,7 +303,7 @@ export default function DocenteAsistenciaPage() {
               ) : (
                 <>
                   {/* Acciones rápidas */}
-                  <div className="flex items-center gap-2 px-5 py-3" style={{ borderBottom: '1px solid #f1f5f9' }}>
+                  <div className="flex items-center gap-2 px-5 py-3" style={{ borderBottom: '1px solid #EDEEEE' }}>
                     <button onClick={() => setPresentes(new Set(alumnos.map(a => a.id)))}
                       className="px-3 py-1.5 rounded-lg text-[11px] font-black transition-all"
                       style={{ background: '#f0fdf4', color: '#16a34a', border: '1.5px solid #bbf7d0' }}>
@@ -358,7 +358,7 @@ export default function DocenteAsistenciaPage() {
 
                   {/* Guardar */}
                   <div className="flex items-center justify-between gap-3 px-5 py-4"
-                    style={{ borderTop: '1.5px solid #f1f5f9', background: '#fafbff' }}>
+                    style={{ borderTop: '1.5px solid #EDEEEE', background: '#FDFCFC' }}>
                     {guardado ? (
                       <span className="text-xs font-black" style={{ color: '#16a34a' }}>✓ Guardado correctamente</span>
                     ) : (
@@ -393,7 +393,7 @@ export default function DocenteAsistenciaPage() {
 
               {/* Escáner */}
               <div className="rounded-2xl overflow-hidden"
-                style={{ background: 'white', border: '1.5px solid #E4E8EF', boxShadow: '0 4px 24px rgba(11,36,71,.06)' }}>
+                style={{ background: 'white', border: '1.5px solid #DFE0E0', boxShadow: '0 4px 24px rgba(29,24,21,.06)' }}>
                 <div className="h-1" style={{ background: `linear-gradient(90deg,${color},${color}88)` }} />
                 <div className="p-5 relative">
                   <QrScanner
@@ -439,9 +439,9 @@ export default function DocenteAsistenciaPage() {
               {/* Lista de scaneados en esta sesión */}
               {scaneados.length > 0 && (
                 <div className="rounded-2xl overflow-hidden"
-                  style={{ background: 'white', border: '1.5px solid #E4E8EF' }}>
+                  style={{ background: 'white', border: '1.5px solid #DFE0E0' }}>
                   <div className="px-5 py-3 flex items-center justify-between"
-                    style={{ borderBottom: '1px solid #f1f5f9', background: '#fafbff' }}>
+                    style={{ borderBottom: '1px solid #EDEEEE', background: '#FDFCFC' }}>
                     <span className="text-xs font-black text-slate-400 uppercase tracking-widest">
                       Escaneados esta sesión
                     </span>
@@ -469,9 +469,9 @@ export default function DocenteAsistenciaPage() {
           {/* ── Tab: Resumen ── */}
           {tabActiva === 'resumen' && (
             <div className="rounded-2xl overflow-hidden"
-              style={{ background: 'white', border: '1.5px solid #E4E8EF', boxShadow: '0 4px 24px rgba(11,36,71,.06)' }}>
+              style={{ background: 'white', border: '1.5px solid #DFE0E0', boxShadow: '0 4px 24px rgba(29,24,21,.06)' }}>
 
-              <div className="px-5 py-4" style={{ borderBottom: '1.5px solid #f1f5f9', background: `${color}08` }}>
+              <div className="px-5 py-4" style={{ borderBottom: '1.5px solid #EDEEEE', background: `${color}08` }}>
                 <p className="text-sm font-black text-slate-700">
                   {asig?.cursos?.nombre ?? 'Curso'} — {asig?.grado} {asig?.grupo}
                 </p>
@@ -501,7 +501,7 @@ export default function DocenteAsistenciaPage() {
                             {alumno.apellidos}, {alumno.nombre}
                           </p>
                           <div className="flex items-center gap-2 mt-1">
-                            <div className="flex-1 h-1.5 rounded-full" style={{ background: '#f1f5f9', maxWidth: 120 }}>
+                            <div className="flex-1 h-1.5 rounded-full" style={{ background: '#EDEEEE', maxWidth: 120 }}>
                               <div className="h-full rounded-full transition-all"
                                 style={{ width: `${pct2}%`, background: pctColor }} />
                             </div>

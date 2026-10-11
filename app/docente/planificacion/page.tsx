@@ -42,8 +42,8 @@ interface PlantillaSesion {
 interface PlanAnual { id: string; curso_id: string; grado: string; anio: number }
 interface PlanObjetivo { id: string; plan_id: string; orden: number; texto: string }
 
-const NAVY  = '#0B2447'
-const NAVY2 = '#1E3A8A'
+const NAVY  = '#1D1815'
+const NAVY2 = '#B00326'
 
 export default function DocentePlanificacionPage() {
   const router = useRouter()
@@ -275,7 +275,7 @@ export default function DocentePlanificacionPage() {
         <h1 style={{ fontSize: 30, fontWeight: 900, color: '#1a0305', letterSpacing: '-.02em', lineHeight: 1.1 }}>
           Planificación
         </h1>
-        <p style={{ fontSize: 14, color: '#6b7280', marginTop: 6, fontWeight: 500 }}>
+        <p style={{ fontSize: 14, color: '#80746B', marginTop: 6, fontWeight: 500 }}>
           Redacta la plantilla de semanas de tus cursos por bimestre y envíala a revisión.
           El administrador la publica y siembra las sesiones.
         </p>
@@ -296,13 +296,13 @@ export default function DocentePlanificacionPage() {
       {!sel ? (
         // ── Lista: curso×grado con tiles por bimestre ─────────────────────
         bimestres.length === 0 ? (
-          <div className="rounded-2xl border bg-white p-10 text-center" style={{ borderColor: '#E4E8EF' }}>
+          <div className="rounded-2xl border bg-white p-10 text-center" style={{ borderColor: '#DFE0E0' }}>
             <p className="text-sm text-slate-500">
               Aún no hay bimestres definidos para {anio}. Pide al administrador que cree el calendario en Planificación.
             </p>
           </div>
         ) : cursoGrados.length === 0 ? (
-          <div className="rounded-2xl border bg-white p-10 text-center" style={{ borderColor: '#E4E8EF' }}>
+          <div className="rounded-2xl border bg-white p-10 text-center" style={{ borderColor: '#DFE0E0' }}>
             <p className="text-sm text-slate-500">No tienes cursos asignados este ciclo.</p>
           </div>
         ) : (
@@ -310,13 +310,13 @@ export default function DocentePlanificacionPage() {
             {cursoGrados.map(cg => (
               <div key={`${cg.cursoId}|${cg.grado}`}
                 className="rounded-2xl overflow-hidden flex"
-                style={{ background: 'white', border: '1px solid #E4E8EF', boxShadow: '0 4px 20px rgba(11,36,71,.05)' }}>
+                style={{ background: 'white', border: '1px solid #DFE0E0', boxShadow: '0 4px 20px rgba(29,24,21,.05)' }}>
                 <div className="w-1.5 shrink-0" style={{ background: cg.color }} />
                 <div className="flex-1 min-w-0 p-5">
                   <div className="flex items-center gap-2 mb-3 flex-wrap">
                     <h3 className="text-base font-black" style={{ color: NAVY }}>{cg.curso}</h3>
                     <span className="px-2 py-0.5 rounded-md text-[10px] font-black uppercase tracking-widest"
-                      style={{ background: '#F1F5F9', color: '#475569' }}>{cg.grado}</span>
+                      style={{ background: '#EDEEEE', color: '#5C5450' }}>{cg.grado}</span>
                   </div>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5">
                     {bimestres.map(b => {
@@ -327,7 +327,7 @@ export default function DocentePlanificacionPage() {
                       return (
                         <button key={b.id} onClick={() => abrirEditor(cg, b)}
                           className="text-left rounded-xl p-3.5 transition-all hover:-translate-y-0.5 bg-white"
-                          style={{ border: '1px solid #E4E8EF', boxShadow: '0 1px 3px rgba(15,23,42,.04)' }}>
+                          style={{ border: '1px solid #DFE0E0', boxShadow: '0 1px 3px rgba(35,30,27,.04)' }}>
                           <div className="flex items-center justify-between mb-1.5 gap-1">
                             <span className="font-black text-[13px]" style={{ color: NAVY }}>{b.nombre}</span>
                             {flujo ? (
@@ -335,7 +335,7 @@ export default function DocentePlanificacionPage() {
                                 style={{ background: flujo.bg, color: flujo.color }}>{flujo.t}</span>
                             ) : (
                               <span className="text-[9px] font-black uppercase tracking-widest px-1.5 py-0.5 rounded-md"
-                                style={{ background: '#F1F5F9', color: '#64748B' }}>CREAR</span>
+                                style={{ background: '#EDEEEE', color: '#6B625D' }}>CREAR</span>
                             )}
                           </div>
                           <p className="text-[11px] font-bold text-slate-500">
@@ -356,26 +356,26 @@ export default function DocentePlanificacionPage() {
           <div className="flex items-center gap-3 flex-wrap">
             <button onClick={() => setSel(null)}
               className="px-3 py-2 rounded-xl text-xs font-bold border bg-white hover:bg-slate-50"
-              style={{ borderColor: '#E4E8EF', color: NAVY }}>
+              style={{ borderColor: '#DFE0E0', color: NAVY }}>
               ← Mis plantillas
             </button>
             {plantillaSel && editable && (
               <div className="ml-auto flex items-center gap-2">
                 <button onClick={() => agregarSemana(plantillaSel)}
                   className="px-3 py-2 rounded-xl text-xs font-bold border bg-white hover:bg-slate-50"
-                  style={{ borderColor: '#E4E8EF', color: NAVY }}>
+                  style={{ borderColor: '#DFE0E0', color: NAVY }}>
                   + Añadir semana
                 </button>
                 {plantillaSel.estado === 'borrador' ? (
                   <button onClick={() => enviarARevision(plantillaSel)} disabled={trabajando}
                     className="px-4 py-2 rounded-xl text-xs font-black text-white transition-all disabled:opacity-50"
-                    style={{ background: `linear-gradient(135deg,${NAVY},${NAVY2})`, boxShadow: '0 4px 14px rgba(11,36,71,.22)' }}>
+                    style={{ background: `linear-gradient(135deg,${NAVY},${NAVY2})`, boxShadow: '0 4px 14px rgba(29,24,21,.22)' }}>
                     Enviar a revisión
                   </button>
                 ) : (
                   <button onClick={() => volverABorrador(plantillaSel)} disabled={trabajando}
                     className="px-3 py-2 rounded-xl text-xs font-bold border bg-white hover:bg-slate-50 disabled:opacity-50"
-                    style={{ borderColor: '#E4E8EF', color: NAVY }}>
+                    style={{ borderColor: '#DFE0E0', color: NAVY }}>
                     Volver a borrador
                   </button>
                 )}
@@ -384,15 +384,15 @@ export default function DocentePlanificacionPage() {
           </div>
 
           <div className="rounded-2xl overflow-hidden flex"
-            style={{ background: 'white', border: '1px solid #E4E8EF', boxShadow: '0 4px 20px rgba(11,36,71,.05)' }}>
+            style={{ background: 'white', border: '1px solid #DFE0E0', boxShadow: '0 4px 20px rgba(29,24,21,.05)' }}>
             <div className="w-1.5 shrink-0" style={{ background: sel.cg.color }} />
             <div className="flex-1 min-w-0 p-5">
               <div className="flex items-center gap-2 mb-2 flex-wrap">
                 <h2 className="text-lg font-black" style={{ color: NAVY }}>{sel.cg.curso}</h2>
                 <span className="px-2 py-0.5 rounded-md text-[10px] font-black uppercase tracking-widest"
-                  style={{ background: '#F1F5F9', color: '#475569' }}>{sel.cg.grado}</span>
+                  style={{ background: '#EDEEEE', color: '#5C5450' }}>{sel.cg.grado}</span>
                 <span className="px-2 py-0.5 rounded-md text-[10px] font-black uppercase tracking-widest"
-                  style={{ background: '#EFF6FF', color: NAVY, border: '1px solid #DBEAFE' }}>{sel.bimestre.nombre}</span>
+                  style={{ background: '#FDEDF0', color: NAVY, border: '1px solid #FBDCE2' }}>{sel.bimestre.nombre}</span>
                 {plantillaSel && (
                   <span className="px-2 py-0.5 rounded-md text-[10px] font-black uppercase tracking-widest"
                     style={{ background: FLUJO_CFG[plantillaSel.estado].bg, color: FLUJO_CFG[plantillaSel.estado].color }}>
@@ -401,7 +401,7 @@ export default function DocentePlanificacionPage() {
                 )}
               </div>
               {plantillaSel?.estado === 'publicada' ? (
-                <p className="text-xs leading-relaxed font-bold" style={{ color: '#075985' }}>
+                <p className="text-xs leading-relaxed font-bold" style={{ color: '#850720' }}>
                   Esta plantilla ya fue publicada por el administrador: las sesiones están sembradas en tus cursos
                   y aquí ya no se edita. Si necesitas cambios, pide al administrador que la reabra.
                 </p>
@@ -428,7 +428,7 @@ export default function DocentePlanificacionPage() {
                 }}
                 rows={2}
                 className="w-full px-3 py-2.5 rounded-xl border text-sm bg-white resize-y disabled:bg-slate-50 disabled:text-slate-400"
-                style={{ borderColor: '#E4E8EF', lineHeight: 1.5 }}
+                style={{ borderColor: '#DFE0E0', lineHeight: 1.5 }}
                 placeholder="Contexto o experiencia que da sentido a la unidad y conecta el aprendizaje con la realidad del estudiante…" />
             </div>
           </div>
@@ -438,7 +438,7 @@ export default function DocentePlanificacionPage() {
               const rango = rangoSemana(sel.bimestre.fecha_inicio, s.semana)
               return (
                 <div key={s.id} className="rounded-2xl border bg-white p-5"
-                  style={{ borderColor: '#E4E8EF', boxShadow: '0 4px 20px rgba(11,36,71,.05)' }}>
+                  style={{ borderColor: '#DFE0E0', boxShadow: '0 4px 20px rgba(29,24,21,.05)' }}>
                   <div className="flex items-start justify-between gap-3 mb-3 flex-wrap">
                     <div className="flex items-center gap-3 flex-wrap">
                       <span className="inline-flex items-center justify-center px-2.5 py-1 rounded-lg text-[10px] font-black tracking-widest uppercase"
@@ -455,7 +455,7 @@ export default function DocentePlanificacionPage() {
                               className="px-2 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest transition-all disabled:cursor-not-allowed"
                               style={activo
                                 ? { background: t.bg, color: t.color, border: `1px solid ${t.borde}` }
-                                : { background: 'white', color: '#94A3B8', border: '1px solid #F1F5F9' }}>
+                                : { background: 'white', color: '#8B837E', border: '1px solid #EDEEEE' }}>
                               {t.t}
                             </button>
                           )
@@ -477,7 +477,7 @@ export default function DocentePlanificacionPage() {
                   <input defaultValue={s.titulo} disabled={!editable}
                     onBlur={e => { const v = e.target.value.trim(); if (v && v !== s.titulo) actualizarSesion(s.id, { titulo: v }) }}
                     className="w-full px-3 py-2.5 rounded-xl border bg-white font-bold mb-4 disabled:bg-slate-50 disabled:text-slate-400"
-                    style={{ borderColor: '#E4E8EF', color: NAVY, fontSize: 15 }}
+                    style={{ borderColor: '#DFE0E0', color: NAVY, fontSize: 15 }}
                     placeholder="Ej: Introducción a las fracciones" />
 
                   <label className="block text-[10px] font-black uppercase tracking-widest text-slate-500 mb-1.5">
@@ -487,7 +487,7 @@ export default function DocentePlanificacionPage() {
                     onBlur={e => { const v = e.target.value; if (v !== (s.descripcion ?? '')) actualizarSesion(s.id, { descripcion: v }) }}
                     rows={3}
                     className="w-full px-3 py-2.5 rounded-xl border text-sm bg-white resize-y disabled:bg-slate-50 disabled:text-slate-400"
-                    style={{ borderColor: '#E4E8EF', lineHeight: 1.5 }}
+                    style={{ borderColor: '#DFE0E0', lineHeight: 1.5 }}
                     placeholder="¿De qué trata la clase? Tema, actividades, materiales…" />
 
                   {objetivosCG.length > 0 && (
@@ -498,7 +498,7 @@ export default function DocentePlanificacionPage() {
                       <select value={s.objetivo_id ?? ''} disabled={!editable}
                         onChange={e => actualizarSesion(s.id, { objetivo_id: e.target.value || null })}
                         className="w-full px-3 py-2.5 rounded-xl border text-sm bg-white font-semibold disabled:bg-slate-50 disabled:text-slate-400"
-                        style={{ borderColor: '#E4E8EF', color: s.objetivo_id ? NAVY : '#94a3b8' }}>
+                        style={{ borderColor: '#DFE0E0', color: s.objetivo_id ? NAVY : '#8B837E' }}>
                         <option value="">— Sin vincular —</option>
                         {objetivosCG.map(o => (
                           <option key={o.id} value={o.id}>{o.orden}. {o.texto || '(objetivo sin texto)'}</option>

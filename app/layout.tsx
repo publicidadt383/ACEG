@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Playfair_Display, DM_Sans, Fraunces, Manrope, IBM_Plex_Mono } from 'next/font/google'
+import { Playfair_Display, DM_Sans, Fraunces, Manrope, IBM_Plex_Mono, Barlow, Barlow_Condensed } from 'next/font/google'
 import "./globals.css";
 import AuthGuard from "@/components/AuthGuard";
 
@@ -40,9 +40,25 @@ const plexMono = IBM_Plex_Mono({
   display: 'swap',
 })
 
+// Tipografía de la página de inicio (cocina): condensada para titulares + humanista para texto
+const barlow = Barlow({
+  subsets: ['latin'],
+  variable: '--font-barlow',
+  weight: ['400', '500', '600', '700', '800'],
+  display: 'swap',
+})
+
+const barlowCond = Barlow_Condensed({
+  subsets: ['latin'],
+  variable: '--font-barlow-cond',
+  weight: ['600', '700', '800'],
+  style: ['normal', 'italic'],
+  display: 'swap',
+})
+
 export const metadata: Metadata = {
   title: "ACEG · Escuela Gastronómica",
-  description: "Sistema de asistencia mediante código QR",
+  description: "Escuela Gastronómica ACEG en Juliaca: carreras de Cocina y Panadería y Pastelería.",
 };
 
 export default function RootLayout({
@@ -51,7 +67,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`${playfair.variable} ${dmSans.variable} ${fraunces.variable} ${manrope.variable} ${plexMono.variable} h-full`}>
+    <html lang="es" className={`${playfair.variable} ${dmSans.variable} ${fraunces.variable} ${manrope.variable} ${plexMono.variable} ${barlow.variable} ${barlowCond.variable} h-full`}>
       <body className="min-h-full">
         <AuthGuard />
         {children}

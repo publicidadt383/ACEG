@@ -18,7 +18,7 @@ type Resultado = { tipo: 'exito' | 'error'; subtipo?: Subtipo; texto: string; ho
 const ESTILO_MARCA: Record<Subtipo, { fondo: string; borde: string; color: string; icono: string; titulo: string }> = {
   entrada:  { fondo: '#ecfdf5', borde: '#6ee7b7', color: '#047857', icono: '✅', titulo: 'Entrada' },
   tardanza: { fondo: '#fffbeb', borde: '#fde68a', color: '#b45309', icono: '⏰', titulo: 'Tardanza' },
-  salida:   { fondo: '#eef2ff', borde: '#c7d2fe', color: '#4338ca', icono: '🚪', titulo: 'Salida' },
+  salida:   { fondo: '#F8F6F5', borde: '#E6E2DF', color: '#CA3855', icono: '🚪', titulo: 'Salida' },
 }
 
 /**
@@ -107,16 +107,16 @@ export default function MarcarAsistencia() {
           </div>
         ) : (
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold"
-            style={{ background: '#EFF3FA', border: '1.5px solid #b6c5e3', color: '#0B2447' }}>
-            <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: '#143875' }} /> Marcado por ubicación
+            style={{ background: '#F3F1EF', border: '1.5px solid #D2CBC5', color: '#1D1815' }}>
+            <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: '#2A2420' }} /> Marcado por ubicación
           </div>
         )}
       </div>
 
       {/* Marcado por ubicación */}
       <div className="rounded-3xl overflow-hidden"
-        style={{ background: 'white', boxShadow: '0 16px 48px rgba(11,36,71,.10)', border: '1.5px solid #E4E8EF' }}>
-        <div className="h-1.5" style={{ background: 'linear-gradient(90deg, #0B2447, #1E40AF, #0EA5E9)' }} />
+        style={{ background: 'white', boxShadow: '0 16px 48px rgba(29,24,21,.10)', border: '1.5px solid #DFE0E0' }}>
+        <div className="h-1.5" style={{ background: 'linear-gradient(90deg, #B00326, #D9042F, #F08A24)' }} />
         <div className="p-5">
           <MarcarPorBoton
             disabled={procesando || marcasHoy === 2 || !!pendingSalida}
@@ -127,12 +127,12 @@ export default function MarcarAsistencia() {
 
         {procesando && !resultado && (
           <div className="mx-5 mb-5 flex items-center gap-3 px-4 py-3 rounded-2xl"
-            style={{ background: '#EFF3FA', border: '1.5px solid #b6c5e3' }}>
-            <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24" fill="none" style={{ color: '#143875' }}>
+            style={{ background: '#F3F1EF', border: '1.5px solid #D2CBC5' }}>
+            <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24" fill="none" style={{ color: '#2A2420' }}>
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
             </svg>
-            <span className="text-sm font-semibold" style={{ color: '#0B2447' }}>Registrando asistencia…</span>
+            <span className="text-sm font-semibold" style={{ color: '#1D1815' }}>Registrando asistencia…</span>
           </div>
         )}
 
@@ -153,7 +153,7 @@ export default function MarcarAsistencia() {
                 </p>
               )}
               <p className="text-sm font-bold"
-                style={{ color: resultado.tipo === 'exito' ? '#0B2447' : '#b91c1c' }}>
+                style={{ color: resultado.tipo === 'exito' ? '#1D1815' : '#b91c1c' }}>
                 {resultado.texto}
               </p>
             </div>
@@ -164,8 +164,8 @@ export default function MarcarAsistencia() {
       {/* Confirmar SALIDA */}
       {pendingSalida && (
         <div className="fixed inset-0 z-50 flex items-center justify-center px-4"
-          style={{ background: 'rgba(15,23,42,0.6)', backdropFilter: 'blur(6px)' }}>
-          <div className="w-full max-w-sm rounded-3xl overflow-hidden" style={{ background: 'white', boxShadow: '0 24px 64px rgba(11,36,71,.3)' }}>
+          style={{ background: 'rgba(35,30,27,0.6)', backdropFilter: 'blur(6px)' }}>
+          <div className="w-full max-w-sm rounded-3xl overflow-hidden" style={{ background: 'white', boxShadow: '0 24px 64px rgba(29,24,21,.3)' }}>
             <div className="h-1.5" style={{ background: 'linear-gradient(90deg, #F59E0B, #EF4444, #B91C1C)' }} />
             <div className="p-6 text-center">
               <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
@@ -179,7 +179,7 @@ export default function MarcarAsistencia() {
               <div className="flex gap-3">
                 <button onClick={() => setPendingSalida(null)}
                   className="flex-1 py-3 rounded-xl font-bold text-sm transition-all"
-                  style={{ background: '#f1f5f9', border: '1.5px solid #e2e8f0', color: '#475569' }}>
+                  style={{ background: '#EDEEEE', border: '1.5px solid #DCDEDE', color: '#5C5450' }}>
                   Cancelar
                 </button>
                 <button onClick={confirmarSalida}

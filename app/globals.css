@@ -1,9 +1,94 @@
 @import "tailwindcss";
 
+/* ── Paleta de cocina aplicada a las clases de Tailwind ─────────
+   slate/gray → acero y tinta cálida · indigo/blue → rojo ACEG · teal/cyan → brasa.
+   Así las clases existentes (text-slate-500, bg-indigo-50…) siguen la misma paleta
+   de la página de inicio sin tocar cada componente. */
+@theme {
+  --color-slate-50: #F7F7F6;
+  --color-slate-100: #EDEEEE;
+  --color-slate-200: #DCDEDE;
+  --color-slate-300: #C9C5C1;
+  --color-slate-400: #9A928D;
+  --color-slate-500: #6B625D;
+  --color-slate-600: #5C5450;
+  --color-slate-700: #3D3632;
+  --color-slate-800: #2A2420;
+  --color-slate-900: #231E1B;
+  --color-slate-950: #1D1815;
+  --color-gray-50: #F7F7F6;
+  --color-gray-100: #EDEEEE;
+  --color-gray-200: #DCDEDE;
+  --color-gray-300: #C9C5C1;
+  --color-gray-400: #9A928D;
+  --color-gray-500: #6B625D;
+  --color-gray-600: #5C5450;
+  --color-gray-700: #3D3632;
+  --color-gray-800: #2A2420;
+  --color-gray-900: #231E1B;
+  --color-gray-950: #1D1815;
+  --color-indigo-50: #FDEDF0;
+  --color-indigo-100: #FBDCE2;
+  --color-indigo-200: #F6C3CD;
+  --color-indigo-300: #EF9AAB;
+  --color-indigo-400: #EC6A84;
+  --color-indigo-500: #E8173F;
+  --color-indigo-600: #D9042F;
+  --color-indigo-700: #B00326;
+  --color-indigo-800: #8C031F;
+  --color-indigo-900: #6B0218;
+  --color-indigo-950: #44010F;
+  --color-blue-50: #FDEDF0;
+  --color-blue-100: #FBDCE2;
+  --color-blue-200: #F6C3CD;
+  --color-blue-300: #EF9AAB;
+  --color-blue-400: #EC6A84;
+  --color-blue-500: #E8173F;
+  --color-blue-600: #D9042F;
+  --color-blue-700: #B00326;
+  --color-blue-800: #8C031F;
+  --color-blue-900: #6B0218;
+  --color-blue-950: #44010F;
+  --color-teal-50: #FEF5EC;
+  --color-teal-100: #FDEBD7;
+  --color-teal-200: #FBD3A8;
+  --color-teal-300: #F8B977;
+  --color-teal-400: #F5A04A;
+  --color-teal-500: #F08A24;
+  --color-teal-600: #D9731A;
+  --color-teal-700: #B85E12;
+  --color-teal-800: #8F4A0E;
+  --color-teal-900: #6E390B;
+  --color-teal-950: #3F2006;
+  --color-cyan-50: #FEF5EC;
+  --color-cyan-100: #FDEBD7;
+  --color-cyan-200: #FBD3A8;
+  --color-cyan-300: #F8B977;
+  --color-cyan-400: #F5A04A;
+  --color-cyan-500: #F08A24;
+  --color-cyan-600: #D9731A;
+  --color-cyan-700: #B85E12;
+  --color-cyan-800: #8F4A0E;
+  --color-cyan-900: #6E390B;
+  --color-cyan-950: #3F2006;
+  --color-sky-50: #FEF5EC;
+  --color-sky-100: #FDEBD7;
+  --color-sky-200: #FBD3A8;
+  --color-sky-300: #F8B977;
+  --color-sky-400: #F5A04A;
+  --color-sky-500: #F08A24;
+  --color-sky-600: #D9731A;
+  --color-sky-700: #B85E12;
+  --color-sky-800: #8F4A0E;
+  --color-sky-900: #6E390B;
+  --color-sky-950: #3F2006;
+}
+
+
 /* ── Design tokens compartidos por todo el sistema ─────────── */
 :root {
-  --pf: var(--font-playfair, 'Playfair Display', Georgia, serif);
-  --dm: var(--font-dm, 'DM Sans', system-ui, sans-serif);
+  --pf: var(--font-barlow-cond, 'Barlow Condensed', 'Arial Narrow', sans-serif);
+  --dm: var(--font-barlow, 'DM Sans', system-ui, sans-serif);
 
   /* Brand: rojo institucional (insignia del colegio) */
   --brand-950: #3d0808;
@@ -73,45 +158,45 @@
      Usar var(--ui-*) en login, admin, docente, alumno y padre.
      ════════════════════════════════════════════════════════════ */
 
-  /* Primary — Navy institucional (decisión del login). Confiable, escuela/banca. */
-  --ui-primary-50:  #eff3fa;
-  --ui-primary-100: #d9e2f1;
-  --ui-primary-200: #b6c5e3;
-  --ui-primary-300: #7a93c2;
-  --ui-primary-400: #3f5d97;
-  --ui-primary-500: #1E40AF;
-  --ui-primary-600: #143875;
-  --ui-primary-700: #0B2447;  /* navy institucional principal */
-  --ui-primary-800: #081832;
-  --ui-primary-900: #050e1f;
+  /* Primary — Carbón (hierro fundido), misma paleta que la página de inicio. */
+  --ui-primary-50:  #F3F1EF;
+  --ui-primary-100: #E6E2DE;
+  --ui-primary-200: #D2CBC5;
+  --ui-primary-300: #9A908A;
+  --ui-primary-400: #5C5450;
+  --ui-primary-500: #D9042F;  /* rojo ACEG para acciones */
+  --ui-primary-600: #2A2420;
+  --ui-primary-700: #1D1815;  /* carbón principal */
+  --ui-primary-800: #151110;
+  --ui-primary-900: #0F0C0B;
 
-  /* Accent — Sky/teal para acciones secundarias y highlights */
-  --ui-accent-50:  #f0f9ff;
-  --ui-accent-100: #e0f2fe;
-  --ui-accent-200: #bae6fd;
-  --ui-accent-400: #38bdf8;
-  --ui-accent-500: #0ea5e9;
-  --ui-accent-600: #0284c7;
-  --ui-accent-700: #0369a1;
+  /* Accent — Brasa (llama del fogón) para highlights */
+  --ui-accent-50:  #FEF5EC;
+  --ui-accent-100: #FDEBD7;
+  --ui-accent-200: #FBD3A8;
+  --ui-accent-400: #F5A04A;
+  --ui-accent-500: #F08A24;
+  --ui-accent-600: #D9731A;
+  --ui-accent-700: #B85E12;
 
-  /* Surfaces — slate frío, limpio */
+  /* Surfaces — acero inoxidable */
   --ui-surface-0:   #ffffff;
-  --ui-surface-50:  #f8fafc;
-  --ui-surface-100: #f1f5f9;
-  --ui-surface-200: #e2e8f0;
-  --ui-surface-300: #cbd5e1;
+  --ui-surface-50:  #F7F7F6;
+  --ui-surface-100: #EDEEEE;
+  --ui-surface-200: #DCDEDE;
+  --ui-surface-300: #C9C5C1;
 
   /* Ink — texto */
-  --ui-ink-900: #0f172a;
-  --ui-ink-700: #334155;
-  --ui-ink-500: #64748b;
-  --ui-ink-400: #94a3b8;
-  --ui-ink-300: #cbd5e1;
+  --ui-ink-900: #231E1B;
+  --ui-ink-700: #3D3632;
+  --ui-ink-500: #6B625D;
+  --ui-ink-400: #8B837E;
+  --ui-ink-300: #C9C5C1;
 
   /* Border tokens semánticos */
-  --ui-border-subtle: #e2e8f0;
-  --ui-border-strong: #cbd5e1;
-  --ui-border-focus:  #143875;
+  --ui-border-subtle: #DCDEDE;
+  --ui-border-strong: #C9C5C1;
+  --ui-border-focus:  #2A2420;
 
   /* Estados semánticos */
   --ui-success-50:  #ecfdf5;
@@ -125,13 +210,13 @@
   --ui-danger-700:  #b91c1c;
 
   /* Sombras frías y suaves (slate) */
-  --ui-el-1: 0 1px 2px rgba(15,23,42,.04), 0 2px 6px rgba(15,23,42,.04);
-  --ui-el-2: 0 4px 8px rgba(15,23,42,.04), 0 8px 24px rgba(15,23,42,.06);
-  --ui-el-3: 0 10px 24px rgba(15,23,42,.08), 0 24px 48px rgba(15,23,42,.08);
-  --ui-el-4: 0 24px 48px rgba(15,23,42,.12), 0 48px 96px rgba(15,23,42,.14);
+  --ui-el-1: 0 1px 2px rgba(35,30,27,.04), 0 2px 6px rgba(35,30,27,.04);
+  --ui-el-2: 0 4px 8px rgba(35,30,27,.04), 0 8px 24px rgba(35,30,27,.06);
+  --ui-el-3: 0 10px 24px rgba(35,30,27,.08), 0 24px 48px rgba(35,30,27,.08);
+  --ui-el-4: 0 24px 48px rgba(35,30,27,.12), 0 48px 96px rgba(35,30,27,.14);
 
-  /* Focus ring estándar (navy con opacidad) */
-  --ui-ring: 0 0 0 4px rgba(11,36,71,.14);
+  /* Focus ring estándar (carbón con opacidad) */
+  --ui-ring: 0 0 0 4px rgba(29,24,21,.14);
 
   /* Radius */
   --ui-radius-sm: 8px;
@@ -139,9 +224,9 @@
   --ui-radius-lg: 16px;
   --ui-radius-xl: 20px;
 
-  /* Font sans del sistema interno (Manrope cargado en layout.tsx) */
-  --ui-font-sans: var(--font-manrope, system-ui, -apple-system, 'Segoe UI', sans-serif);
-  --ui-font-serif: var(--font-fraunces, Georgia, serif);
+  /* Tipografía de cocina (Barlow + Barlow Condensed, cargadas en layout.tsx) */
+  --ui-font-sans: var(--font-barlow, system-ui, -apple-system, 'Segoe UI', sans-serif);
+  --ui-font-serif: var(--font-barlow-cond, 'Arial Narrow', sans-serif);
   --ui-font-mono:  var(--font-plex-mono, ui-monospace, 'Cascadia Mono', Menlo, monospace);
 }
 
@@ -194,13 +279,13 @@
   padding: 11px 18px;
   cursor: pointer;
   transition: background .15s ease, box-shadow .15s ease, transform .1s ease;
-  box-shadow: 0 1px 2px rgba(15,23,42,.06), 0 4px 12px rgba(11,36,71,.18);
+  box-shadow: 0 1px 2px rgba(35,30,27,.06), 0 4px 12px rgba(29,24,21,.18);
   letter-spacing: -.005em;
 }
-.ui-btn-primary:hover:not(:disabled) { background: var(--ui-primary-600); box-shadow: 0 2px 4px rgba(15,23,42,.08), 0 8px 20px rgba(11,36,71,.28); }
+.ui-btn-primary:hover:not(:disabled) { background: #B00326; box-shadow: 0 2px 4px rgba(35,30,27,.08), 0 8px 20px rgba(29,24,21,.28); }
 .ui-btn-primary:active:not(:disabled) { transform: translateY(1px); }
 .ui-btn-primary:disabled { opacity: .55; cursor: not-allowed; }
-.ui-btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 4px rgba(11,36,71,.3); }
+.ui-btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 4px rgba(240,138,36,.45); }
 .ui-btn-ghost {
   font-family: var(--ui-font-sans);
   font-size: 14px;
@@ -218,7 +303,7 @@
 * { box-sizing: border-box; }
 
 body {
-  font-family: var(--font-dm), system-ui, -apple-system, sans-serif;
+  font-family: var(--font-barlow), system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: var(--ink-900);

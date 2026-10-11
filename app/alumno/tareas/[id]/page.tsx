@@ -144,15 +144,15 @@ export default function TareaDetallePage({ params }: { params: Promise<{ id: str
   if (loading || !tarea) {
     return (
       <div className="flex items-center justify-center py-32">
-        <Spinner size={28} color="#0d9488" />
+        <Spinner size={28} color="#944C0D" />
       </div>
     )
   }
 
-  const color     = curso?.color ?? '#143875'
+  const color     = curso?.color ?? '#2A2420'
   const vencida   = tarea.fecha_limite && new Date(tarea.fecha_limite) < new Date()
   const cal       = entrega?.calificaciones?.[0] ?? null
-  const notaColor = cal == null ? '#94a3b8' : cal.nota >= 14 ? '#16a34a' : cal.nota >= 11 ? '#d97706' : '#dc2626'
+  const notaColor = cal == null ? '#8B837E' : cal.nota >= 14 ? '#16a34a' : cal.nota >= 11 ? '#d97706' : '#dc2626'
 
   return (
     <div className="space-y-4 max-w-5xl">
@@ -195,15 +195,15 @@ export default function TareaDetallePage({ params }: { params: Promise<{ id: str
         <div className="flex-1 min-w-0 space-y-4">
 
           {/* Metadatos */}
-          <div className="rounded-2xl bg-white p-5 space-y-4" style={{ border: '1.5px solid #ccfbf1' }}>
+          <div className="rounded-2xl bg-white p-5 space-y-4" style={{ border: '1.5px solid #FBE2CC' }}>
             <h2 className="text-sm font-black text-slate-700 uppercase tracking-widest">Detalles</h2>
 
             <div className="grid grid-cols-2 gap-3">
               {/* Fecha límite */}
-              <div className="rounded-xl p-3" style={{ background: vencida ? '#fef2f2' : '#f8fafc', border: `1px solid ${vencida ? '#fecaca' : '#e2e8f0'}` }}>
-                <p className="text-[10px] font-black uppercase tracking-widest mb-1" style={{ color: vencida ? '#ef4444' : '#94a3b8' }}>Fecha límite</p>
+              <div className="rounded-xl p-3" style={{ background: vencida ? '#fef2f2' : '#F7F7F6', border: `1px solid ${vencida ? '#fecaca' : '#DCDEDE'}` }}>
+                <p className="text-[10px] font-black uppercase tracking-widest mb-1" style={{ color: vencida ? '#ef4444' : '#8B837E' }}>Fecha límite</p>
                 {tarea.fecha_limite ? (
-                  <p className="text-xs font-bold" style={{ color: vencida ? '#ef4444' : '#334155' }}>
+                  <p className="text-xs font-bold" style={{ color: vencida ? '#ef4444' : '#3D3632' }}>
                     {formatFecha(tarea.fecha_limite)}
                     {vencida && <span className="ml-2 text-[9px] font-black bg-red-100 text-red-500 px-1.5 py-0.5 rounded-full">VENCIDA</span>}
                   </p>
@@ -213,7 +213,7 @@ export default function TareaDetallePage({ params }: { params: Promise<{ id: str
               </div>
 
               {/* Puntos */}
-              <div className="rounded-xl p-3" style={{ background: '#f8fafc', border: '1px solid #e2e8f0' }}>
+              <div className="rounded-xl p-3" style={{ background: '#F7F7F6', border: '1px solid #DCDEDE' }}>
                 <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Puntuación</p>
                 <p className="text-xs font-bold text-slate-700">{tarea.max_puntos} puntos</p>
               </div>
@@ -229,7 +229,7 @@ export default function TareaDetallePage({ params }: { params: Promise<{ id: str
 
             {/* Contexto sesión / unidad */}
             {(sesion || unidad) && (
-              <div className="pt-3 space-y-1.5" style={{ borderTop: '1px solid #f1f5f9' }}>
+              <div className="pt-3 space-y-1.5" style={{ borderTop: '1px solid #EDEEEE' }}>
                 <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Contexto</p>
                 {unidad && (
                   <div className="flex items-center gap-2">
@@ -262,17 +262,17 @@ export default function TareaDetallePage({ params }: { params: Promise<{ id: str
 
         {/* ── DERECHA: entrega ── */}
         <div className="w-full lg:w-80 shrink-0 space-y-3" style={{ position: 'sticky', top: '24px' }}>
-          <div className="rounded-2xl bg-white overflow-hidden" style={{ border: '1.5px solid #b6c5e3', boxShadow: '0 4px 16px rgba(11,36,71,.06)' }}>
+          <div className="rounded-2xl bg-white overflow-hidden" style={{ border: '1.5px solid #D2CBC5', boxShadow: '0 4px 16px rgba(29,24,21,.06)' }}>
 
             {/* Header */}
-            <div className="h-1" style={{ background: 'linear-gradient(90deg,#143875,#818cf8)' }} />
-            <div className="px-5 py-4 flex items-center gap-2" style={{ borderBottom: '1px solid #EFF3FA' }}>
-              <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="#143875" strokeWidth="2">
+            <div className="h-1" style={{ background: 'linear-gradient(90deg,#2A2420,#F88199)' }} />
+            <div className="px-5 py-4 flex items-center gap-2" style={{ borderBottom: '1px solid #F3F1EF' }}>
+              <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="#2A2420" strokeWidth="2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
               </svg>
               <h2 className="text-sm font-black text-slate-700">Mi entrega</h2>
               {entrega && !cal && (
-                <span className="ml-auto text-[9px] font-black px-2 py-0.5 rounded-full text-white" style={{ background: '#143875' }}>
+                <span className="ml-auto text-[9px] font-black px-2 py-0.5 rounded-full text-white" style={{ background: '#2A2420' }}>
                   Entregado
                 </span>
               )}
@@ -289,15 +289,15 @@ export default function TareaDetallePage({ params }: { params: Promise<{ id: str
               {!entrega && !modoForm && (
                 <div className="text-center py-4 space-y-3">
                   <div className="w-12 h-12 rounded-2xl mx-auto flex items-center justify-center"
-                    style={{ background: '#EFF3FA', border: '1.5px dashed #b6c5e3' }}>
-                    <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#143875" strokeWidth="1.5">
+                    style={{ background: '#F3F1EF', border: '1.5px dashed #D2CBC5' }}>
+                    <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#2A2420" strokeWidth="1.5">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
                     </svg>
                   </div>
                   <p className="text-xs text-slate-400 font-semibold">Aún no has entregado esta tarea</p>
                   <button onClick={() => setModoForm(true)}
                     className="w-full py-2.5 rounded-xl text-xs font-black text-white transition-all hover:opacity-90"
-                    style={{ background: 'linear-gradient(135deg,#143875,#818cf8)' }}>
+                    style={{ background: 'linear-gradient(135deg,#2A2420,#F88199)' }}>
                     Entregar tarea
                   </button>
                 </div>
@@ -308,21 +308,21 @@ export default function TareaDetallePage({ params }: { params: Promise<{ id: str
                 <div className="space-y-3">
                   <a href={(entrega.tipo === 'archivo' ? entregaUrl : entrega.url) || undefined} target="_blank" rel="noopener noreferrer"
                     className="flex items-center gap-2.5 px-3 py-3 rounded-xl transition-colors hover:opacity-90"
-                    style={{ background: cal ? '#f0fdf4' : '#EFF3FA', border: `1px solid ${cal ? '#bbf7d0' : '#b6c5e3'}` }}>
+                    style={{ background: cal ? '#f0fdf4' : '#F3F1EF', border: `1px solid ${cal ? '#bbf7d0' : '#D2CBC5'}` }}>
                     <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
-                      style={{ background: cal ? '#dcfce7' : '#E4E8EF' }}>
+                      style={{ background: cal ? '#dcfce7' : '#DFE0E0' }}>
                       {entrega.tipo === 'link' ? (
-                        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke={cal ? '#16a34a' : '#143875'} strokeWidth="2">
+                        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke={cal ? '#16a34a' : '#2A2420'} strokeWidth="2">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
                         </svg>
                       ) : (
-                        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke={cal ? '#16a34a' : '#143875'} strokeWidth="2">
+                        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke={cal ? '#16a34a' : '#2A2420'} strokeWidth="2">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
                         </svg>
                       )}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-xs font-black truncate" style={{ color: cal ? '#16a34a' : '#143875' }}>
+                      <p className="text-xs font-black truncate" style={{ color: cal ? '#16a34a' : '#2A2420' }}>
                         {entrega.nombre_archivo ?? 'Ver entrega →'}
                       </p>
                       <p className="text-[10px] text-slate-400 mt-0.5">
@@ -356,7 +356,7 @@ export default function TareaDetallePage({ params }: { params: Promise<{ id: str
                   {!cal && (
                     <button onClick={() => { setModoForm(true); setTipoEnt('archivo'); setLinkEnt(''); setComentEnt(''); setArchivo(null); setErrorEnt('') }}
                       className="w-full py-2 rounded-xl text-xs font-black transition-colors"
-                      style={{ background: 'white', color: '#143875', border: '1.5px dashed #b6c5e3' }}>
+                      style={{ background: 'white', color: '#2A2420', border: '1.5px dashed #D2CBC5' }}>
                       Reemplazar entrega
                     </button>
                   )}
@@ -372,8 +372,8 @@ export default function TareaDetallePage({ params }: { params: Promise<{ id: str
                       <button key={tp} onClick={() => setTipoEnt(tp)}
                         className="flex-1 py-1.5 rounded-xl text-xs font-black transition-all"
                         style={tipoEnt === tp
-                          ? { background: '#143875', color: 'white' }
-                          : { background: '#f5f7ff', color: '#94a3b8', border: '1px solid #E4E8EF' }}>
+                          ? { background: '#2A2420', color: 'white' }
+                          : { background: '#FBFAF9', color: '#8B837E', border: '1px solid #DFE0E0' }}>
                         {tp === 'archivo' ? 'Subir archivo' : 'Pegar enlace'}
                       </button>
                     ))}
@@ -386,7 +386,7 @@ export default function TareaDetallePage({ params }: { params: Promise<{ id: str
                         onChange={e => setArchivo(e.target.files?.[0] ?? null)} />
                       <button onClick={() => fileRef.current?.click()}
                         className="w-full py-6 rounded-xl text-xs font-bold flex flex-col items-center justify-center gap-2 transition-colors"
-                        style={{ background: '#f5f7ff', border: '2px dashed #b6c5e3', color: '#143875' }}>
+                        style={{ background: '#FBFAF9', border: '2px dashed #D2CBC5', color: '#2A2420' }}>
                         <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
                         </svg>
@@ -400,7 +400,7 @@ export default function TareaDetallePage({ params }: { params: Promise<{ id: str
                   ) : (
                     <input
                       className="w-full px-3 py-2.5 rounded-xl text-xs text-slate-800 placeholder-slate-300 outline-none border focus:border-indigo-400"
-                      style={{ borderColor: '#E4E8EF', background: '#f5f7ff' }}
+                      style={{ borderColor: '#DFE0E0', background: '#FBFAF9' }}
                       placeholder="https://…"
                       value={linkEnt}
                       onChange={e => setLinkEnt(e.target.value)}
@@ -410,7 +410,7 @@ export default function TareaDetallePage({ params }: { params: Promise<{ id: str
                   {/* Comentario */}
                   <input
                     className="w-full px-3 py-2.5 rounded-xl text-xs text-slate-800 placeholder-slate-300 outline-none border focus:border-indigo-400"
-                    style={{ borderColor: '#E4E8EF', background: '#f5f7ff' }}
+                    style={{ borderColor: '#DFE0E0', background: '#FBFAF9' }}
                     placeholder="Comentario (opcional)"
                     value={comentEnt}
                     onChange={e => setComentEnt(e.target.value)}
@@ -420,7 +420,7 @@ export default function TareaDetallePage({ params }: { params: Promise<{ id: str
                   {progreso > 0 && progreso < 100 && (
                     <div className="h-1.5 rounded-full bg-slate-100 overflow-hidden">
                       <div className="h-full rounded-full transition-all"
-                        style={{ width: `${progreso}%`, background: 'linear-gradient(90deg,#143875,#818cf8)' }} />
+                        style={{ width: `${progreso}%`, background: 'linear-gradient(90deg,#2A2420,#F88199)' }} />
                     </div>
                   )}
 
@@ -441,7 +441,7 @@ export default function TareaDetallePage({ params }: { params: Promise<{ id: str
                     </button>
                     <button onClick={handleEntregar} disabled={subiendo}
                       className="flex-1 py-2.5 rounded-xl text-xs font-black text-white flex items-center justify-center gap-1.5 transition-opacity hover:opacity-90 disabled:opacity-60"
-                      style={{ background: 'linear-gradient(135deg,#143875,#818cf8)' }}>
+                      style={{ background: 'linear-gradient(135deg,#2A2420,#F88199)' }}>
                       {subiendo && <Spinner size={12} color="white" />}
                       {subiendo ? 'Enviando…' : 'Entregar'}
                     </button>

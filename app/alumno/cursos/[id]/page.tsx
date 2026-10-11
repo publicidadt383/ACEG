@@ -77,7 +77,7 @@ async function fetchProgresoCurso(alumnoId: string, asigId: string): Promise<Pro
 const TIPO_META: Record<TipoRecurso, { label: string; bg: string; color: string; border: string; icon: React.ReactNode }> = {
   pdf:    { label: 'PDF',    bg: '#fef2f2', color: '#dc2626', border: '#fecaca', icon: <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg> },
   imagen: { label: 'Imagen', bg: '#f0fdf4', color: '#16a34a', border: '#bbf7d0', icon: <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path strokeLinecap="round" strokeLinejoin="round" d="M21 15l-5-5L5 21"/></svg> },
-  link:   { label: 'Enlace', bg: '#eff6ff', color: '#2563eb', border: '#bfdbfe', icon: <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg> },
+  link:   { label: 'Enlace', bg: '#FDEDF0', color: '#D9042F', border: '#F6C3CD', icon: <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg> },
   video:  { label: 'Video',  bg: '#fdf4ff', color: '#9333ea', border: '#e9d5ff', icon: <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg> },
 }
 
@@ -300,9 +300,9 @@ export default function AlumnoCursoDetallePage({ params }: { params: Promise<{ i
 
   if (loading || !asignacion) return null
 
-  const color  = asignacion.cursos?.color ?? '#0d9488'
+  const color  = asignacion.cursos?.color ?? '#944C0D'
   const nombre = asignacion.cursos?.nombre ?? 'Curso'
-  const notaColor = stats?.promedio == null ? '#94a3b8'
+  const notaColor = stats?.promedio == null ? '#8B837E'
     : stats.promedio >= 14 ? '#16a34a'
     : stats.promedio >= 11 ? '#d97706'
     : '#dc2626'
@@ -352,7 +352,7 @@ export default function AlumnoCursoDetallePage({ params }: { params: Promise<{ i
             className="flex-1 py-2 rounded-xl text-xs font-black transition-all"
             style={mobTab === t
               ? { background: gradientFromColor(color), color: 'white' }
-              : { background: 'white', color: '#64748b', border: '1.5px solid #ccfbf1' }}>
+              : { background: 'white', color: '#6B625D', border: '1.5px solid #FBE2CC' }}>
             {t === 'nav' ? 'Sesiones' : 'Contenido'}
           </button>
         ))}
@@ -365,11 +365,11 @@ export default function AlumnoCursoDetallePage({ params }: { params: Promise<{ i
         <aside className={`w-60 shrink-0 ${mobTab === 'nav' ? 'block' : 'hidden'} lg:block`}
           style={{ position: 'sticky', top: '24px' }}>
           <div className="rounded-2xl border bg-white overflow-hidden flex flex-col"
-            style={{ borderColor: '#ccfbf1', maxHeight: 'calc(100vh - 160px)' }}>
+            style={{ borderColor: '#FBE2CC', maxHeight: 'calc(100vh - 160px)' }}>
 
             {/* Header sidebar */}
             <div className="px-3 py-2.5 shrink-0 flex items-center gap-2"
-              style={{ borderBottom: '1px solid #ccfbf1', background: `${color}08` }}>
+              style={{ borderBottom: '1px solid #FBE2CC', background: `${color}08` }}>
               <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke={color} strokeWidth="2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
               </svg>
@@ -400,7 +400,7 @@ export default function AlumnoCursoDetallePage({ params }: { params: Promise<{ i
                         {u.orden}
                       </span>
                       <span className="flex-1 text-[11px] font-black text-slate-700 truncate min-w-0">{u.nombre}</span>
-                      <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke={expanded ? color : '#cbd5e1'} strokeWidth="2.5"
+                      <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke={expanded ? color : '#C9C5C1'} strokeWidth="2.5"
                         className="shrink-0 transition-transform" style={{ transform: expanded ? 'rotate(90deg)' : 'none' }}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/>
                       </svg>
@@ -420,11 +420,11 @@ export default function AlumnoCursoDetallePage({ params }: { params: Promise<{ i
                               ? { background: `${color}12`, border: `1px solid ${color}25` }
                               : {}}>
                             <span className="text-[9px] font-black w-4 text-center shrink-0"
-                              style={{ color: sesionSel?.id === s.id ? color : '#cbd5e1' }}>
+                              style={{ color: sesionSel?.id === s.id ? color : '#C9C5C1' }}>
                               {s.orden}
                             </span>
                             <span className="flex-1 text-[11px] font-semibold leading-snug truncate"
-                              style={{ color: sesionSel?.id === s.id ? color : '#475569' }}>
+                              style={{ color: sesionSel?.id === s.id ? color : '#5C5450' }}>
                               {s.titulo}
                             </span>
                           </button>
@@ -442,7 +442,7 @@ export default function AlumnoCursoDetallePage({ params }: { params: Promise<{ i
         <div className={`flex-1 min-w-0 ${mobTab === 'content' ? 'block' : 'hidden'} lg:block`}>
           {!sesionSel ? (
             <div className="rounded-2xl border bg-white py-24 flex flex-col items-center justify-center gap-4"
-              style={{ borderColor: '#ccfbf1' }}>
+              style={{ borderColor: '#FBE2CC' }}>
               <div className="w-14 h-14 rounded-2xl flex items-center justify-center"
                 style={{ background: `${color}12`, border: `2px dashed ${color}30` }}>
                 <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke={color} strokeWidth="1.5" strokeOpacity=".6">
@@ -474,7 +474,7 @@ export default function AlumnoCursoDetallePage({ params }: { params: Promise<{ i
               </div>
 
               {/* ── Recursos ── */}
-              <div className="px-5 py-5" style={{ borderBottom: '1px solid #f1f5f9' }}>
+              <div className="px-5 py-5" style={{ borderBottom: '1px solid #EDEEEE' }}>
                 <div className="flex items-center gap-2 mb-3">
                   <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke={color} strokeWidth="2">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
@@ -484,7 +484,7 @@ export default function AlumnoCursoDetallePage({ params }: { params: Promise<{ i
 
                 {cargandoRec ? (
                   <div className="flex items-center gap-2 py-3 text-slate-300 text-xs">
-                    <Spinner size={12} color="#cbd5e1"/><span>Cargando…</span>
+                    <Spinner size={12} color="#C9C5C1"/><span>Cargando…</span>
                   </div>
                 ) : (recursos[sesionSel.id] ?? []).length === 0 ? (
                   <p className="text-xs text-slate-300 font-semibold py-1">Sin recursos en esta sesión</p>
@@ -514,7 +514,7 @@ export default function AlumnoCursoDetallePage({ params }: { params: Promise<{ i
               {/* ── Tareas ── */}
               <div className="px-5 py-5">
                 <div className="flex items-center gap-2 mb-3">
-                  <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="#143875" strokeWidth="2">
+                  <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="#2A2420" strokeWidth="2">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
                   </svg>
                   <h3 className="text-sm font-black text-slate-700">Tareas</h3>
@@ -522,7 +522,7 @@ export default function AlumnoCursoDetallePage({ params }: { params: Promise<{ i
 
                 {cargandoTar ? (
                   <div className="flex items-center gap-2 py-3 text-slate-300 text-xs">
-                    <Spinner size={12} color="#a5b4fc"/><span>Cargando…</span>
+                    <Spinner size={12} color="#FCA5B6"/><span>Cargando…</span>
                   </div>
                 ) : (tareas[sesionSel.id] ?? []).length === 0 ? (
                   <p className="text-xs text-slate-300 font-semibold py-1">Sin tareas en esta sesión</p>
@@ -536,13 +536,13 @@ export default function AlumnoCursoDetallePage({ params }: { params: Promise<{ i
 
                       return (
                         <div key={t.id} className="rounded-xl border bg-white p-4 space-y-2.5"
-                          style={{ borderColor: miEntrega ? (cal ? '#bbf7d0' : '#b6c5e3') : '#e2e8f0' }}>
+                          style={{ borderColor: miEntrega ? (cal ? '#bbf7d0' : '#D2CBC5') : '#DCDEDE' }}>
 
                           {/* Info tarea */}
                           <div className="flex items-start gap-3">
                             <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 mt-0.5"
-                              style={{ background: '#EFF3FA', border: '1.5px solid #b6c5e3' }}>
-                              <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="#143875" strokeWidth="2">
+                              style={{ background: '#F3F1EF', border: '1.5px solid #D2CBC5' }}>
+                              <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="#2A2420" strokeWidth="2">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
                               </svg>
                             </div>
@@ -551,7 +551,7 @@ export default function AlumnoCursoDetallePage({ params }: { params: Promise<{ i
                               {t.descripcion && <p className="text-xs text-slate-400 mt-0.5">{t.descripcion}</p>}
                               <div className="flex items-center gap-3 mt-1.5 flex-wrap">
                                 {t.fecha_limite && (
-                                  <span className="text-[11px] font-semibold" style={{ color: vencida ? '#ef4444' : '#94a3b8' }}>
+                                  <span className="text-[11px] font-semibold" style={{ color: vencida ? '#ef4444' : '#8B837E' }}>
                                     Límite: {formatFecha(t.fecha_limite)}
                                     {vencida && <span className="ml-1 text-[9px] font-black text-red-400">VENCIDA</span>}
                                   </span>
@@ -569,7 +569,7 @@ export default function AlumnoCursoDetallePage({ params }: { params: Promise<{ i
                               </div>
                             ) : !cal && miEntrega ? (
                               <span className="shrink-0 text-[9px] font-black px-2 py-0.5 rounded-full"
-                                style={{ background: '#EFF3FA', color: '#143875' }}>
+                                style={{ background: '#F3F1EF', color: '#2A2420' }}>
                                 Entregado
                               </span>
                             ) : null}
@@ -578,13 +578,13 @@ export default function AlumnoCursoDetallePage({ params }: { params: Promise<{ i
                           {/* Entrega existente */}
                           {miEntrega && (
                             <div className="flex items-center gap-1.5 px-3 py-2 rounded-lg"
-                              style={{ background: cal ? '#f0fdf4' : '#EFF3FA' }}>
-                              <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke={cal ? '#16a34a' : '#143875'} strokeWidth="2">
+                              style={{ background: cal ? '#f0fdf4' : '#F3F1EF' }}>
+                              <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke={cal ? '#16a34a' : '#2A2420'} strokeWidth="2">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                               </svg>
                               <a href={(miEntrega.tipo === 'archivo' ? entFirmadas[miEntrega.url] : miEntrega.url) || undefined} target="_blank" rel="noopener noreferrer"
                                 className="text-xs font-bold hover:underline truncate flex-1"
-                                style={{ color: cal ? '#16a34a' : '#143875' }}>
+                                style={{ color: cal ? '#16a34a' : '#2A2420' }}>
                                 {miEntrega.nombre_archivo ?? 'Ver entrega'}
                               </a>
                             </div>
@@ -597,20 +597,20 @@ export default function AlumnoCursoDetallePage({ params }: { params: Promise<{ i
                           {!cal && !esForm && (
                             <button onClick={() => { setEntregandoId(t.id); setTipoEnt('archivo'); setLinkEnt(''); setComentEnt(''); setArchivoEnt(null); setErrorEnt('') }}
                               className="w-full py-2 rounded-xl text-xs font-black transition-colors"
-                              style={{ background: '#EFF3FA', color: '#143875', border: '1.5px dashed #b6c5e3' }}>
+                              style={{ background: '#F3F1EF', color: '#2A2420', border: '1.5px dashed #D2CBC5' }}>
                               {miEntrega ? 'Reemplazar entrega' : 'Entregar tarea'}
                             </button>
                           )}
 
                           {esForm && (
-                            <div className="rounded-xl border p-3 space-y-2" style={{ borderColor: '#b6c5e3', background: '#f5f7ff' }}>
+                            <div className="rounded-xl border p-3 space-y-2" style={{ borderColor: '#D2CBC5', background: '#FBFAF9' }}>
                               <div className="flex gap-2">
                                 {(['archivo', 'link'] as const).map(tp => (
                                   <button key={tp} onClick={() => setTipoEnt(tp)}
                                     className="flex-1 py-1.5 rounded-lg text-xs font-black transition-all"
                                     style={tipoEnt === tp
-                                      ? { background: '#143875', color: 'white' }
-                                      : { background: 'white', color: '#94a3b8', border: '1px solid #E4E8EF' }}>
+                                      ? { background: '#2A2420', color: 'white' }
+                                      : { background: 'white', color: '#8B837E', border: '1px solid #DFE0E0' }}>
                                     {tp === 'archivo' ? 'Subir archivo' : 'Pegar enlace'}
                                   </button>
                                 ))}
@@ -621,7 +621,7 @@ export default function AlumnoCursoDetallePage({ params }: { params: Promise<{ i
                                     onChange={e => setArchivoEnt(e.target.files?.[0] ?? null)}/>
                                   <button onClick={() => fileRef.current?.click()}
                                     className="w-full py-2 rounded-lg text-xs font-bold flex items-center justify-center gap-2"
-                                    style={{ background: 'white', border: '1.5px dashed #b6c5e3', color: '#143875' }}>
+                                    style={{ background: 'white', border: '1.5px dashed #D2CBC5', color: '#2A2420' }}>
                                     <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                                       <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
                                     </svg>
@@ -637,7 +637,7 @@ export default function AlumnoCursoDetallePage({ params }: { params: Promise<{ i
                               {progreso > 0 && progreso < 100 && (
                                 <div className="h-1 rounded-full bg-slate-100 overflow-hidden">
                                   <div className="h-full rounded-full transition-all"
-                                    style={{ width: `${progreso}%`, background: 'linear-gradient(90deg,#143875,#818cf8)' }}/>
+                                    style={{ width: `${progreso}%`, background: 'linear-gradient(90deg,#2A2420,#F88199)' }}/>
                                 </div>
                               )}
                               {errorEnt && <p className="text-xs font-bold text-red-500">{errorEnt}</p>}
@@ -648,7 +648,7 @@ export default function AlumnoCursoDetallePage({ params }: { params: Promise<{ i
                                 </button>
                                 <button onClick={() => handleEntregar(t.id)} disabled={subiendo}
                                   className="flex-1 py-1.5 rounded-lg text-xs font-black text-white flex items-center justify-center gap-1.5"
-                                  style={{ background: 'linear-gradient(135deg,#143875,#818cf8)' }}>
+                                  style={{ background: 'linear-gradient(135deg,#2A2420,#F88199)' }}>
                                   {subiendo && <Spinner size={10} color="white"/>}
                                   {subiendo ? 'Enviando…' : 'Enviar'}
                                 </button>
@@ -664,9 +664,9 @@ export default function AlumnoCursoDetallePage({ params }: { params: Promise<{ i
 
               {/* ── Exámenes de la sesión ── */}
               {(examenesSesion[sesionSel.id] ?? []).length > 0 && (
-                <div className="px-5 py-5" style={{ borderTop: '1px solid #f1f5f9' }}>
+                <div className="px-5 py-5" style={{ borderTop: '1px solid #EDEEEE' }}>
                   <div className="flex items-center gap-2 mb-3">
-                    <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="#0d9488" strokeWidth="2">
+                    <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="#944C0D" strokeWidth="2">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
                     </svg>
                     <h3 className="text-sm font-black text-slate-700">Exámenes</h3>
@@ -676,17 +676,17 @@ export default function AlumnoCursoDetallePage({ params }: { params: Promise<{ i
                       const intento  = intentosSesion[ex.id]
                       const terminado = !!intento?.finalizado_at
                       const vencido  = ex.fecha_limite ? new Date(ex.fecha_limite) < new Date() : false
-                      const nc = intento?.nota == null ? '#94a3b8'
+                      const nc = intento?.nota == null ? '#8B837E'
                         : intento.nota >= 14 ? '#16a34a'
                         : intento.nota >= 11 ? '#d97706'
                         : '#dc2626'
                       return (
                         <div key={ex.id} className="rounded-xl border p-4"
-                          style={{ borderColor: terminado ? '#99f6e4' : '#e2e8f0', background: 'white' }}>
+                          style={{ borderColor: terminado ? '#F6C499' : '#DCDEDE', background: 'white' }}>
                           <div className="flex items-start gap-3">
                             <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 mt-0.5"
-                              style={{ background: '#f0fdfa', border: '1.5px solid #99f6e4' }}>
-                              <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="#0d9488" strokeWidth="2">
+                              style={{ background: '#FDF6F0', border: '1.5px solid #F6C499' }}>
+                              <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="#944C0D" strokeWidth="2">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
                               </svg>
                             </div>
@@ -695,7 +695,7 @@ export default function AlumnoCursoDetallePage({ params }: { params: Promise<{ i
                               {ex.descripcion && <p className="text-xs text-slate-400 mt-0.5">{ex.descripcion}</p>}
                               <div className="flex items-center gap-3 mt-1.5 flex-wrap">
                                 {ex.fecha_limite && (
-                                  <span className="text-[11px] font-semibold" style={{ color: vencido && !terminado ? '#ef4444' : '#94a3b8' }}>
+                                  <span className="text-[11px] font-semibold" style={{ color: vencido && !terminado ? '#ef4444' : '#8B837E' }}>
                                     Límite: {formatFecha(ex.fecha_limite)}
                                     {vencido && !terminado && <span className="ml-1 text-[9px] font-black text-red-400">VENCIDO</span>}
                                   </span>
@@ -712,7 +712,7 @@ export default function AlumnoCursoDetallePage({ params }: { params: Promise<{ i
                               </div>
                             ) : (
                               <span className="shrink-0 text-[9px] font-black px-2 py-0.5 rounded-full"
-                                style={vencido ? { background: '#fee2e2', color: '#dc2626' } : { background: '#f0fdfa', color: '#0d9488' }}>
+                                style={vencido ? { background: '#fee2e2', color: '#dc2626' } : { background: '#FDF6F0', color: '#944C0D' }}>
                                 {vencido ? 'VENCIDO' : 'PENDIENTE'}
                               </span>
                             )}
@@ -720,7 +720,7 @@ export default function AlumnoCursoDetallePage({ params }: { params: Promise<{ i
                           {!terminado && !vencido && (
                             <button onClick={() => router.push('/alumno/examenes')}
                               className="w-full mt-3 py-2 rounded-xl text-xs font-black text-white"
-                              style={{ background: 'linear-gradient(135deg,#0F766E,#14B8A6)' }}>
+                              style={{ background: 'linear-gradient(135deg,#763F0F,#B86114)' }}>
                               Ir a realizar examen →
                             </button>
                           )}

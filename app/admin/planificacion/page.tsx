@@ -57,8 +57,8 @@ interface PlanObjetivo {
   texto: string
 }
 
-const NAVY  = '#0B2447'
-const NAVY2 = '#1E3A8A'
+const NAVY  = '#1D1815'
+const NAVY2 = '#B00326'
 const STONE = '#f7f5f1'
 
 const GRADOS_PRIMARIA   = ['1° Ciclo Cocina','2° Ciclo Cocina','3° Ciclo Cocina','4° Ciclo Cocina']
@@ -617,7 +617,7 @@ export function PlanificacionContent({ embedded = false }: PlanificacionProps = 
           <select value={anio}
             onChange={e => { const n = parseInt(e.target.value, 10); setAnio(n); recargar(n) }}
             className="px-3 py-2 rounded-xl text-sm font-bold border bg-white"
-            style={{ borderColor: '#E4E8EF', color: NAVY }}>
+            style={{ borderColor: '#DFE0E0', color: NAVY }}>
             {[anio - 1, anio, anio + 1].map(y => (
               <option key={y} value={y}>{y}</option>
             ))}
@@ -728,7 +728,7 @@ export function PlanificacionContent({ embedded = false }: PlanificacionProps = 
           <aside className="hidden lg:flex flex-col w-56 shrink-0 sticky self-start"
             style={{ top: 84, maxHeight: 'calc(100vh - 100px)' }}>
             <div className="rounded-2xl border bg-white overflow-hidden flex flex-col"
-              style={{ borderColor: '#E4E8EF', boxShadow: '0 4px 20px rgba(11,36,71,.05)' }}>
+              style={{ borderColor: '#DFE0E0', boxShadow: '0 4px 20px rgba(29,24,21,.05)' }}>
               <div className="px-4 pt-4 pb-3 flex items-start justify-between gap-2">
                 <div>
                   <p className="text-[9px] font-black uppercase tracking-widest text-slate-400 mb-0.5">Área</p>
@@ -749,10 +749,10 @@ export function PlanificacionContent({ embedded = false }: PlanificacionProps = 
                     return (
                       <div key={it.id}
                         className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-sm"
-                        style={{ color: '#cbd5e1', cursor: 'default' }}>
+                        style={{ color: '#C9C5C1', cursor: 'default' }}>
                         <span className="font-semibold">{it.label}</span>
                         <span className="text-[8px] font-black px-1.5 py-0.5 rounded-full"
-                          style={{ background: '#f1f5f9', color: '#94a3b8' }}>
+                          style={{ background: '#EDEEEE', color: '#8B837E' }}>
                           PRONTO
                         </span>
                       </div>
@@ -762,7 +762,7 @@ export function PlanificacionContent({ embedded = false }: PlanificacionProps = 
                     return (
                       <div key={it.id}
                         className="w-full flex items-center px-3 py-2 rounded-xl text-sm font-semibold"
-                        style={{ background: `linear-gradient(135deg,${NAVY},${NAVY2})`, color: 'white', boxShadow: '0 4px 14px rgba(11,36,71,.22)' }}>
+                        style={{ background: `linear-gradient(135deg,${NAVY},${NAVY2})`, color: 'white', boxShadow: '0 4px 14px rgba(29,24,21,.22)' }}>
                         {it.label}
                       </div>
                     )
@@ -771,7 +771,7 @@ export function PlanificacionContent({ embedded = false }: PlanificacionProps = 
                     <Link key={it.id} href={it.href}
                       className="w-full flex items-center px-3 py-2 rounded-xl text-sm font-semibold transition-colors"
                       style={{ color: '#57534e' }}
-                      onMouseEnter={e => { e.currentTarget.style.background = '#F8FAFC' }}
+                      onMouseEnter={e => { e.currentTarget.style.background = '#F7F7F6' }}
                       onMouseLeave={e => { e.currentTarget.style.background = 'transparent' }}>
                       {it.label}
                     </Link>
@@ -785,7 +785,7 @@ export function PlanificacionContent({ embedded = false }: PlanificacionProps = 
         {!sidebarOpen && (
           <button onClick={() => setSidebarOpen(true)}
             className="hidden lg:flex shrink-0 w-9 self-start sticky items-center justify-center rounded-xl border bg-white hover:bg-slate-50 transition-colors"
-            style={{ top: 84, height: 36, borderColor: '#E4E8EF', boxShadow: '0 2px 10px rgba(11,36,71,.06)', color: NAVY }}
+            style={{ top: 84, height: 36, borderColor: '#DFE0E0', boxShadow: '0 2px 10px rgba(29,24,21,.06)', color: NAVY }}
             title="Mostrar barra lateral">
             <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.4">
               <path strokeLinecap="round" strokeLinejoin="round" d="M13 5l7 7-7 7M5 5l7 7-7 7"/>
@@ -846,9 +846,9 @@ function VistaPlantillas({
   if (bimestres.length === 0) {
     return (
       <div className="rounded-2xl border bg-white p-10 text-center"
-        style={{ borderColor: '#E4E8EF', boxShadow: '0 4px 20px rgba(11,36,71,.05)' }}>
+        style={{ borderColor: '#DFE0E0', boxShadow: '0 4px 20px rgba(29,24,21,.05)' }}>
         <div className="w-12 h-12 mx-auto rounded-2xl flex items-center justify-center"
-          style={{ background: '#F1F5F9', border: '1.5px solid #E4E8EF' }}>
+          style={{ background: '#EDEEEE', border: '1.5px solid #DFE0E0' }}>
           <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke={NAVY} strokeWidth="2">
             <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
           </svg>
@@ -860,7 +860,7 @@ function VistaPlantillas({
         </p>
         <button onClick={() => onCrearBimestres()} disabled={trabajando}
           className="mt-4 inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-black text-white transition-all active:scale-[.98] disabled:opacity-50"
-          style={{ background: `linear-gradient(135deg, ${NAVY}, #1E3A8A)`, boxShadow: '0 4px 16px rgba(11,36,71,.25)' }}>
+          style={{ background: `linear-gradient(135deg, ${NAVY}, #B00326)`, boxShadow: '0 4px 16px rgba(29,24,21,.25)' }}>
           <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4"/>
           </svg>
@@ -880,8 +880,8 @@ function VistaPlantillas({
     <div className="space-y-5">
       {/* ── Barra de filtros: Nivel → Grado → Curso ───────────────────────── */}
       <div className="rounded-2xl overflow-hidden"
-        style={{ background: 'white', border: '1px solid #E4E8EF', boxShadow: '0 4px 20px rgba(11,36,71,.05)' }}>
-        <div className="px-5 pt-4 pb-3 flex items-center gap-2 border-b" style={{ borderColor: '#F1F5F9' }}>
+        style={{ background: 'white', border: '1px solid #DFE0E0', boxShadow: '0 4px 20px rgba(29,24,21,.05)' }}>
+        <div className="px-5 pt-4 pb-3 flex items-center gap-2 border-b" style={{ borderColor: '#EDEEEE' }}>
           <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke={NAVY} strokeWidth="2.2">
             <path strokeLinecap="round" strokeLinejoin="round" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/>
           </svg>
@@ -889,8 +889,8 @@ function VistaPlantillas({
           {(!filtroVacio || bimSel) && (
             <button onClick={() => { setNivelSel(''); setGradoSel(''); setCursoSel(''); setBimSel('') }}
               className="ml-auto text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-lg transition-colors"
-              style={{ color: '#64748B' }}
-              onMouseEnter={e => { e.currentTarget.style.background = '#F1F5F9' }}
+              style={{ color: '#6B625D' }}
+              onMouseEnter={e => { e.currentTarget.style.background = '#EDEEEE' }}
               onMouseLeave={e => { e.currentTarget.style.background = 'transparent' }}>
               Limpiar
             </button>
@@ -918,22 +918,22 @@ function VistaPlantillas({
           {/* 4 · Bimestre: chips para trabajar un bimestre a la vez */}
           <div className="flex flex-col">
             <label className="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-1.5">4 · Bimestre</label>
-            <div className="flex rounded-xl overflow-hidden border" style={{ borderColor: '#E4E8EF' }}>
+            <div className="flex rounded-xl overflow-hidden border" style={{ borderColor: '#DFE0E0' }}>
               <button onClick={() => setBimSel('')}
                 className="px-3.5 py-2.5 text-sm font-black transition-colors"
                 style={bimSel === ''
                   ? { background: NAVY, color: '#fff' }
-                  : { background: '#fff', color: '#64748B' }}>
+                  : { background: '#fff', color: '#6B625D' }}>
                 Todos
               </button>
               {bimestres.map(b => (
                 <button key={b.id} onClick={() => setBimSel(bimSel === b.id ? '' : b.id)}
                   className="px-3.5 py-2.5 text-sm font-black transition-colors"
                   style={{
-                    borderLeft: '1px solid #E4E8EF',
+                    borderLeft: '1px solid #DFE0E0',
                     ...(bimSel === b.id
                       ? { background: NAVY, color: '#fff' }
-                      : { background: '#fff', color: '#64748B' }),
+                      : { background: '#fff', color: '#6B625D' }),
                   }}>
                   B{b.periodo}
                 </button>
@@ -1016,10 +1016,10 @@ function FiltroSelect({
       <div className="relative" style={{ minWidth }}>
         <select value={value} onChange={e => onChange(e.target.value)} disabled={disabled}
           className="appearance-none w-full px-3.5 pr-9 py-2.5 rounded-xl text-sm font-bold border bg-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-          style={{ borderColor: '#E4E8EF', color: value ? NAVY : '#94a3b8' }}>
+          style={{ borderColor: '#DFE0E0', color: value ? NAVY : '#8B837E' }}>
           {options.map(o => <option key={o.v} value={o.v}>{o.t}</option>)}
         </select>
-        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="#94a3b8" strokeWidth="2.4"
+        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="#8B837E" strokeWidth="2.4"
           className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
           <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7"/>
         </svg>
@@ -1032,7 +1032,7 @@ function ChipFiltro({ label }: { label: string }) {
   if (!label) return null
   return (
     <span className="inline-flex items-center px-2.5 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest"
-      style={{ background: '#EFF6FF', color: NAVY, border: '1px solid #DBEAFE' }}>
+      style={{ background: '#FDEDF0', color: NAVY, border: '1px solid #FBDCE2' }}>
       {label}
     </span>
   )
@@ -1041,9 +1041,9 @@ function ChipFiltro({ label }: { label: string }) {
 function EmptyState({ icon, titulo, texto }: { icon: React.ReactNode; titulo: string; texto: string }) {
   return (
     <div className="rounded-2xl border bg-white px-6 py-14 text-center"
-      style={{ borderColor: '#E4E8EF', boxShadow: '0 4px 20px rgba(11,36,71,.05)' }}>
+      style={{ borderColor: '#DFE0E0', boxShadow: '0 4px 20px rgba(29,24,21,.05)' }}>
       <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl mb-4"
-        style={{ background: '#EFF6FF', color: NAVY }}>
+        style={{ background: '#FDEDF0', color: NAVY }}>
         {icon}
       </div>
       <h3 className="text-base font-black mb-1.5" style={{ color: NAVY }}>{titulo}</h3>
@@ -1075,9 +1075,9 @@ function CardCurso({
   return (
     <button onClick={() => onAbrirPlanAnual(curso, grado)}
       className="w-full text-left rounded-2xl overflow-hidden flex transition-all hover:-translate-y-0.5"
-      style={{ background: 'white', border: '1px solid #E4E8EF', boxShadow: '0 4px 20px rgba(11,36,71,.05)' }}
-      onMouseEnter={e => { e.currentTarget.style.boxShadow = '0 12px 32px rgba(11,36,71,.10)' }}
-      onMouseLeave={e => { e.currentTarget.style.boxShadow = '0 4px 20px rgba(11,36,71,.05)' }}>
+      style={{ background: 'white', border: '1px solid #DFE0E0', boxShadow: '0 4px 20px rgba(29,24,21,.05)' }}
+      onMouseEnter={e => { e.currentTarget.style.boxShadow = '0 12px 32px rgba(29,24,21,.10)' }}
+      onMouseLeave={e => { e.currentTarget.style.boxShadow = '0 4px 20px rgba(29,24,21,.05)' }}>
       {/* Stripe vertical color curso */}
       <div className="w-1.5 shrink-0" style={{ background: curso.color }} />
 
@@ -1086,11 +1086,11 @@ function CardCurso({
           <div className="flex items-center gap-2 flex-wrap">
             <h3 className="text-base font-black" style={{ color: NAVY }}>{curso.nombre}</h3>
             <span className="px-2 py-0.5 rounded-md text-[10px] font-black uppercase tracking-widest"
-              style={{ background: '#F1F5F9', color: '#475569' }}>
+              style={{ background: '#EDEEEE', color: '#5C5450' }}>
               {grado}
             </span>
             <span className="px-2 py-0.5 rounded-md text-[10px] font-black uppercase tracking-widest"
-              style={{ background: '#EFF6FF', color: NAVY, border: '1px solid #DBEAFE' }}>
+              style={{ background: '#FDEDF0', color: NAVY, border: '1px solid #FBDCE2' }}>
               Plan {anio}
             </span>
           </div>
@@ -1172,9 +1172,9 @@ function TileBimestre({
         : 'parcial'
 
   const cfg = {
-    empty:      { bg: 'white',                                    border: '1px dashed #CBD5E1', color: '#64748B', tag: 'CREAR',       tagBg: '#F1F5F9', tagColor: '#64748B' },
-    borrador:   { bg: 'linear-gradient(135deg,#FAFAF9,#F5F5F4)',  border: '1px solid #E4E8EF', color: NAVY,      tag: 'BORRADOR',    tagBg: '#FEF3C7', tagColor: '#92400E' },
-    parcial:    { bg: 'linear-gradient(135deg,#EFF6FF,#DBEAFE)',  border: '1px solid #BFDBFE', color: NAVY,      tag: 'EN PROGRESO', tagBg: '#DBEAFE', tagColor: NAVY },
+    empty:      { bg: 'white',                                    border: '1px dashed #C9C5C1', color: '#6B625D', tag: 'CREAR',       tagBg: '#EDEEEE', tagColor: '#6B625D' },
+    borrador:   { bg: 'linear-gradient(135deg,#FAFAF9,#F5F5F4)',  border: '1px solid #DFE0E0', color: NAVY,      tag: 'BORRADOR',    tagBg: '#FEF3C7', tagColor: '#92400E' },
+    parcial:    { bg: 'linear-gradient(135deg,#FDEDF0,#FBDCE2)',  border: '1px solid #F6C3CD', color: NAVY,      tag: 'EN PROGRESO', tagBg: '#FBDCE2', tagColor: NAVY },
     'sin-eval': { bg: 'linear-gradient(135deg,#FFFBEB,#FEF3C7)',  border: '1px solid #FDE68A', color: '#92400E', tag: 'FALTA EVAL.', tagBg: '#FDE68A', tagColor: '#92400E' },
     lista:      { bg: 'linear-gradient(135deg,#ECFDF5,#D1FAE5)',  border: '1px solid #A7F3D0', color: '#065F46', tag: 'LISTA',       tagBg: '#A7F3D0', tagColor: '#065F46' },
   }[estado]
@@ -1188,13 +1188,13 @@ function TileBimestre({
         <span className="flex items-center gap-1">
           {flujo === 'revision' && (
             <span className="text-[9px] font-black uppercase tracking-widest px-1.5 py-0.5 rounded-md"
-              style={{ background: '#EDE9FE', color: '#5B21B6' }} title="Un docente la envió a revisión">
+              style={{ background: '#F5F3F2', color: '#5B21B6' }} title="Un docente la envió a revisión">
               REV.
             </span>
           )}
           {flujo === 'publicada' && (
             <span className="text-[9px] font-black uppercase tracking-widest px-1.5 py-0.5 rounded-md"
-              style={{ background: '#E0F2FE', color: '#075985' }} title="Sesiones ya sembradas a los docentes">
+              style={{ background: '#FDEBD7', color: '#850720' }} title="Sesiones ya sembradas a los docentes">
               PUBL.
             </span>
           )}
@@ -1210,7 +1210,7 @@ function TileBimestre({
           <p className="text-[11px] font-bold opacity-80 mb-2">
             {cant} {cant === 1 ? 'sesión' : 'sesiones'} · {personalizadas}/{objetivo} con título · {evaluaciones} eval
           </p>
-          <div className="h-1.5 w-full rounded-full overflow-hidden" style={{ background: 'rgba(15,23,42,.08)' }}>
+          <div className="h-1.5 w-full rounded-full overflow-hidden" style={{ background: 'rgba(35,30,27,.08)' }}>
             <div className="h-full rounded-full transition-all"
               style={{ width: `${progreso * 100}%`, background: estado === 'lista' ? '#10B981' : NAVY }} />
           </div>
@@ -1230,9 +1230,9 @@ function TileBimestre({
     return (
       <button onClick={onClick}
         className="text-left rounded-xl p-3.5 transition-all hover:-translate-y-0.5"
-        style={{ background: cfg.bg, border: cfg.border, color: cfg.color, boxShadow: '0 1px 3px rgba(15,23,42,.04)' }}
-        onMouseEnter={e => { e.currentTarget.style.boxShadow = '0 8px 24px rgba(11,36,71,.10)' }}
-        onMouseLeave={e => { e.currentTarget.style.boxShadow = '0 1px 3px rgba(15,23,42,.04)' }}>
+        style={{ background: cfg.bg, border: cfg.border, color: cfg.color, boxShadow: '0 1px 3px rgba(35,30,27,.04)' }}
+        onMouseEnter={e => { e.currentTarget.style.boxShadow = '0 8px 24px rgba(29,24,21,.10)' }}
+        onMouseLeave={e => { e.currentTarget.style.boxShadow = '0 1px 3px rgba(35,30,27,.04)' }}>
         {inner}
       </button>
     )
@@ -1298,13 +1298,13 @@ function VistaPlanAnual({
       <div className="flex items-center gap-3 flex-wrap">
         <button onClick={onVolver}
           className="px-3 py-2 rounded-xl text-xs font-bold border bg-white hover:bg-slate-50"
-          style={{ borderColor: '#E4E8EF', color: NAVY }}>
+          style={{ borderColor: '#DFE0E0', color: NAVY }}>
           ← Volver a plantillas
         </button>
         <div className="ml-auto flex items-center gap-2 flex-wrap">
           <button onClick={onCopiarAnterior} disabled={trabajando}
             className="px-3 py-2 rounded-xl text-xs font-bold border bg-white hover:bg-slate-50 disabled:opacity-50 inline-flex items-center gap-1.5"
-            style={{ borderColor: '#E4E8EF', color: NAVY }}
+            style={{ borderColor: '#DFE0E0', color: NAVY }}
             title={`Copia bimestres, plantillas y objetivos de ${anio - 1} sin pisar lo ya escrito`}>
             <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.2">
               <path strokeLinecap="round" strokeLinejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
@@ -1313,7 +1313,7 @@ function VistaPlanAnual({
           </button>
           <button onClick={() => window.print()}
             className="px-3 py-2 rounded-xl text-xs font-bold border bg-white hover:bg-slate-50 inline-flex items-center gap-1.5"
-            style={{ borderColor: '#E4E8EF', color: NAVY }}
+            style={{ borderColor: '#DFE0E0', color: NAVY }}
             title="Imprime o guarda como PDF la programación anual completa">
             <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.2">
               <path strokeLinecap="round" strokeLinejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/>
@@ -1330,20 +1330,20 @@ function VistaPlanAnual({
 
       {/* Cabecera curso */}
       <div className="rounded-2xl overflow-hidden flex"
-        style={{ background: 'white', border: '1px solid #E4E8EF', boxShadow: '0 4px 20px rgba(11,36,71,.05)' }}>
+        style={{ background: 'white', border: '1px solid #DFE0E0', boxShadow: '0 4px 20px rgba(29,24,21,.05)' }}>
         <div className="w-1.5 shrink-0" style={{ background: curso.color }} />
         <div className="flex-1 min-w-0 p-5">
           <div className="flex items-center gap-2 mb-2 flex-wrap">
             <p className="text-[10px] font-black uppercase tracking-widest text-slate-500">Plan anual</p>
             <span className="px-2 py-0.5 rounded-md text-[10px] font-black uppercase tracking-widest"
-              style={{ background: '#EFF6FF', color: NAVY, border: '1px solid #DBEAFE' }}>
+              style={{ background: '#FDEDF0', color: NAVY, border: '1px solid #FBDCE2' }}>
               {anio}
             </span>
           </div>
           <div className="flex items-center gap-2 flex-wrap">
             <h2 className="text-xl font-black" style={{ color: NAVY }}>{curso.nombre}</h2>
             <span className="px-2 py-0.5 rounded-md text-[10px] font-black uppercase tracking-widest"
-              style={{ background: '#F1F5F9', color: '#475569' }}>{grado}</span>
+              style={{ background: '#EDEEEE', color: '#5C5450' }}>{grado}</span>
           </div>
         </div>
       </div>
@@ -1367,13 +1367,13 @@ function VistaPlanAnual({
             return (
               <div key={o.id} className="flex items-center gap-2">
                 <span className="inline-flex items-center justify-center w-7 h-7 rounded-lg text-[11px] font-black shrink-0"
-                  style={{ background: '#EFF6FF', color: NAVY, border: '1px solid #DBEAFE' }}>
+                  style={{ background: '#FDEDF0', color: NAVY, border: '1px solid #FBDCE2' }}>
                   {o.orden}
                 </span>
                 <input defaultValue={o.texto}
                   onBlur={e => { const v = e.target.value.trim(); if (v !== o.texto) onActualizarObjetivo(o.id, v) }}
                   className="flex-1 min-w-0 px-3 py-2 rounded-xl border text-sm bg-white"
-                  style={{ borderColor: '#E4E8EF', color: '#0F172A' }}
+                  style={{ borderColor: '#DFE0E0', color: '#231E1B' }}
                   placeholder="Ej: Resolver problemas con fracciones y decimales en situaciones reales" />
                 {/* Mapa de alineación: en qué bimestres se trabaja este objetivo */}
                 <div className="hidden sm:flex items-center gap-1 shrink-0">
@@ -1402,8 +1402,8 @@ function VistaPlanAnual({
 
           <button onClick={() => onAgregarObjetivo(plan.id)} disabled={trabajando}
             className="w-full rounded-xl border-dashed border-2 py-2.5 text-xs font-bold transition-colors disabled:opacity-50"
-            style={{ borderColor: '#CBD5E1', color: NAVY, background: 'transparent' }}
-            onMouseEnter={e => { e.currentTarget.style.background = '#F8FAFC' }}
+            style={{ borderColor: '#C9C5C1', color: NAVY, background: 'transparent' }}
+            onMouseEnter={e => { e.currentTarget.style.background = '#F7F7F6' }}
             onMouseLeave={e => { e.currentTarget.style.background = 'transparent' }}>
             + Añadir objetivo
           </button>
@@ -1434,7 +1434,7 @@ function VistaPlanAnual({
           onBlur={e => { const v = e.target.value; if (v !== (plan.modo_evaluacion ?? '')) onCambio({ modo_evaluacion: v }) }}
           rows={5}
           className="w-full px-3.5 py-3 rounded-xl border text-sm bg-white resize-y leading-relaxed"
-          style={{ borderColor: '#E4E8EF', color: '#0F172A' }}
+          style={{ borderColor: '#DFE0E0', color: '#231E1B' }}
           placeholder="Ej:&#10;• Examen bimestral — 40%&#10;• Prácticas calificadas — 30%&#10;• Trabajos y participación — 20%&#10;• Proyecto integrador — 10%" />
       </SeccionPlan>
 
@@ -1510,13 +1510,13 @@ function CalendarioBimestres({
     <div className="space-y-2">
       {bimestres.map(b => (
         <div key={b.id} className="rounded-xl border bg-white p-3 flex flex-wrap items-end gap-3"
-          style={{ borderColor: '#E4E8EF' }}>
+          style={{ borderColor: '#DFE0E0' }}>
           <div className="flex flex-col">
             <label className="text-[9px] font-black uppercase tracking-widest text-slate-500 mb-1">Nombre</label>
             <input defaultValue={b.nombre}
               onBlur={e => { const v = e.target.value.trim(); if (v && v !== b.nombre) onActualizar(b.id, { nombre: v }) }}
               className="px-2.5 py-1.5 rounded-lg border text-sm font-bold bg-white w-28"
-              style={{ borderColor: '#E4E8EF', color: NAVY }} />
+              style={{ borderColor: '#DFE0E0', color: NAVY }} />
           </div>
           <div className="flex flex-col">
             <label className="text-[9px] font-black uppercase tracking-widest text-slate-500 mb-1">Inicio</label>
@@ -1529,14 +1529,14 @@ function CalendarioBimestres({
                 onActualizar(b.id, patch)
               }}
               className="px-2.5 py-1.5 rounded-lg border text-xs bg-white"
-              style={{ borderColor: '#E4E8EF' }} />
+              style={{ borderColor: '#DFE0E0' }} />
           </div>
           <div className="flex flex-col">
             <label className="text-[9px] font-black uppercase tracking-widest text-slate-500 mb-1">Fin</label>
             <input type="date" defaultValue={b.fecha_fin ?? ''}
               onBlur={e => { const v = e.target.value || null; if (v !== (b.fecha_fin ?? null)) onActualizar(b.id, { fecha_fin: v }) }}
               className="px-2.5 py-1.5 rounded-lg border text-xs bg-white"
-              style={{ borderColor: '#E4E8EF' }} />
+              style={{ borderColor: '#DFE0E0' }} />
           </div>
           <div className="flex flex-col">
             <label className="text-[9px] font-black uppercase tracking-widest text-slate-500 mb-1">Semanas</label>
@@ -1549,7 +1549,7 @@ function CalendarioBimestres({
                 onActualizar(b.id, patch)
               }}
               className="w-16 px-2.5 py-1.5 rounded-lg border text-xs bg-white"
-              style={{ borderColor: '#E4E8EF' }} />
+              style={{ borderColor: '#DFE0E0' }} />
           </div>
           <div className="flex flex-col">
             <label className="text-[9px] font-black uppercase tracking-widest text-slate-500 mb-1">Estado</label>
@@ -1558,7 +1558,7 @@ function CalendarioBimestres({
                 style={{ background: '#DCFCE7', color: '#166534' }}>EN CURSO</span>
             ) : (
               <span className="px-2 py-1.5 rounded-lg text-[10px] font-bold"
-                style={{ background: '#F1F5F9', color: '#64748B' }}>
+                style={{ background: '#EDEEEE', color: '#6B625D' }}>
                 {b.fecha_fin && b.fecha_fin < hoy ? 'Cerrado' : 'Por fechas'}
               </span>
             )}
@@ -1573,8 +1573,8 @@ function CalendarioBimestres({
 
       <button onClick={onNuevo} disabled={trabajando}
         className="w-full rounded-xl border-dashed border-2 py-3 text-sm font-bold transition-colors disabled:opacity-50"
-        style={{ borderColor: '#CBD5E1', color: NAVY, background: 'transparent' }}
-        onMouseEnter={e => { e.currentTarget.style.background = '#F8FAFC' }}
+        style={{ borderColor: '#C9C5C1', color: NAVY, background: 'transparent' }}
+        onMouseEnter={e => { e.currentTarget.style.background = '#F7F7F6' }}
         onMouseLeave={e => { e.currentTarget.style.background = 'transparent' }}>
         + Añadir bimestre
       </button>
@@ -1593,10 +1593,10 @@ function SeccionPlan({
 }) {
   return (
     <div className="rounded-2xl bg-white p-5"
-      style={{ border: '1px solid #E4E8EF', boxShadow: '0 4px 20px rgba(11,36,71,.05)' }}>
+      style={{ border: '1px solid #DFE0E0', boxShadow: '0 4px 20px rgba(29,24,21,.05)' }}>
       <div className="flex items-start gap-3 mb-4">
         <div className="inline-flex items-center justify-center w-10 h-10 rounded-xl shrink-0"
-          style={{ background: '#EFF6FF', color: NAVY }}>
+          style={{ background: '#FDEDF0', color: NAVY }}>
           {icon}
         </div>
         <div className="flex-1 min-w-0">
@@ -1632,26 +1632,26 @@ function VistaEditor({
       <div className="flex items-center gap-3 flex-wrap">
         <button onClick={onVolver}
           className="px-3 py-2 rounded-xl text-xs font-bold border bg-white hover:bg-slate-50"
-          style={{ borderColor: '#E4E8EF', color: NAVY }}>
+          style={{ borderColor: '#DFE0E0', color: NAVY }}>
           ← Volver
         </button>
         <div className="ml-auto flex items-center gap-2 flex-wrap">
           <button onClick={onAgregarSemana}
             className="px-3 py-2 rounded-xl text-xs font-bold border bg-white hover:bg-slate-50"
-            style={{ borderColor: '#E4E8EF', color: NAVY }}>
+            style={{ borderColor: '#DFE0E0', color: NAVY }}>
             + Añadir semana
           </button>
           {plantilla?.estado === 'publicada' && (
             <button onClick={() => onCambioPlantilla(plantilla.id, { estado: 'borrador' })} disabled={trabajando}
               className="px-3 py-2 rounded-xl text-xs font-bold border bg-white hover:bg-slate-50 disabled:opacity-50"
-              style={{ borderColor: '#E4E8EF', color: NAVY }}
+              style={{ borderColor: '#DFE0E0', color: NAVY }}
               title="Vuelve la plantilla a borrador para que los docentes puedan editarla otra vez">
               Reabrir para edición
             </button>
           )}
           <button onClick={onGenerar} disabled={trabajando}
             className="px-4 py-2 rounded-xl text-xs font-black text-white transition-all disabled:opacity-50"
-            style={{ background: `linear-gradient(135deg,${NAVY},${NAVY2})`, boxShadow: '0 4px 14px rgba(11,36,71,.22)' }}>
+            style={{ background: `linear-gradient(135deg,${NAVY},${NAVY2})`, boxShadow: '0 4px 14px rgba(29,24,21,.22)' }}>
             {trabajando
               ? 'Generando…'
               : plantilla?.estado === 'publicada'
@@ -1662,15 +1662,15 @@ function VistaEditor({
       </div>
 
       <div className="rounded-2xl overflow-hidden flex"
-        style={{ background: 'white', border: '1px solid #E4E8EF', boxShadow: '0 4px 20px rgba(11,36,71,.05)' }}>
+        style={{ background: 'white', border: '1px solid #DFE0E0', boxShadow: '0 4px 20px rgba(29,24,21,.05)' }}>
         <div className="w-1.5 shrink-0" style={{ background: ctx.curso.color }} />
         <div className="flex-1 min-w-0 p-5">
           <div className="flex items-center gap-2 mb-2 flex-wrap">
             <h2 className="text-lg font-black" style={{ color: NAVY }}>{ctx.curso.nombre}</h2>
             <span className="px-2 py-0.5 rounded-md text-[10px] font-black uppercase tracking-widest"
-              style={{ background: '#F1F5F9', color: '#475569' }}>{ctx.grado}</span>
+              style={{ background: '#EDEEEE', color: '#5C5450' }}>{ctx.grado}</span>
             <span className="px-2 py-0.5 rounded-md text-[10px] font-black uppercase tracking-widest"
-              style={{ background: '#EFF6FF', color: NAVY, border: '1px solid #DBEAFE' }}>{ctx.bimestre.nombre}</span>
+              style={{ background: '#FDEDF0', color: NAVY, border: '1px solid #FBDCE2' }}>{ctx.bimestre.nombre}</span>
             <span className="px-2 py-0.5 rounded-md text-[10px] font-black uppercase tracking-widest"
               style={{ background: flujo.bg, color: flujo.color }}>{flujo.t}</span>
           </div>
@@ -1694,14 +1694,14 @@ function VistaEditor({
             }}
             rows={2}
             className="w-full px-3 py-2.5 rounded-xl border text-sm bg-white resize-y"
-            style={{ borderColor: '#E4E8EF', lineHeight: 1.5 }}
+            style={{ borderColor: '#DFE0E0', lineHeight: 1.5 }}
             placeholder="Contexto o experiencia que da sentido a la unidad y conecta el aprendizaje con la realidad del estudiante (formato MINEDU)…" />
         </div>
       </div>
 
       {sesiones.length === 0 ? (
         <div className="rounded-2xl border bg-white p-10 text-center"
-          style={{ borderColor: '#E4E8EF', boxShadow: '0 4px 20px rgba(11,36,71,.05)' }}>
+          style={{ borderColor: '#DFE0E0', boxShadow: '0 4px 20px rgba(29,24,21,.05)' }}>
           <p className="text-sm text-slate-500">Esta plantilla no tiene semanas todavía. Añade una para empezar.</p>
         </div>
       ) : (
@@ -1710,7 +1710,7 @@ function VistaEditor({
             const rango = rangoSemana(ctx.bimestre.fecha_inicio, s.semana)
             return (
               <div key={s.id} className="rounded-2xl border bg-white p-5"
-                style={{ borderColor: '#E4E8EF', boxShadow: '0 4px 20px rgba(11,36,71,.05)' }}>
+                style={{ borderColor: '#DFE0E0', boxShadow: '0 4px 20px rgba(29,24,21,.05)' }}>
                 <div className="flex items-start justify-between gap-3 mb-3 flex-wrap">
                   <div className="flex items-center gap-3 flex-wrap">
                     <span className="inline-flex items-center justify-center px-2.5 py-1 rounded-lg text-[10px] font-black tracking-widest uppercase"
@@ -1730,7 +1730,7 @@ function VistaEditor({
                             className="px-2 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest transition-all"
                             style={activo
                               ? { background: t.bg, color: t.color, border: `1px solid ${t.borde}` }
-                              : { background: 'white', color: '#94A3B8', border: '1px solid #F1F5F9' }}>
+                              : { background: 'white', color: '#8B837E', border: '1px solid #EDEEEE' }}>
                             {t.t}
                           </button>
                         )
@@ -1750,7 +1750,7 @@ function VistaEditor({
                 <input defaultValue={s.titulo}
                   onBlur={e => { const v = e.target.value.trim(); if (v && v !== s.titulo) onCambioSesion(s.id, { titulo: v }) }}
                   className="w-full px-3 py-2.5 rounded-xl border bg-white font-bold mb-4"
-                  style={{ borderColor: '#E4E8EF', color: NAVY, fontSize: 15 }}
+                  style={{ borderColor: '#DFE0E0', color: NAVY, fontSize: 15 }}
                   placeholder="Ej: Introducción a las fracciones" />
 
                 <label className="block text-[10px] font-black uppercase tracking-widest text-slate-500 mb-1.5">
@@ -1760,7 +1760,7 @@ function VistaEditor({
                   onBlur={e => { const v = e.target.value; if (v !== (s.descripcion ?? '')) onCambioSesion(s.id, { descripcion: v }) }}
                   rows={3}
                   className="w-full px-3 py-2.5 rounded-xl border text-sm bg-white resize-y"
-                  style={{ borderColor: '#E4E8EF', lineHeight: 1.5 }}
+                  style={{ borderColor: '#DFE0E0', lineHeight: 1.5 }}
                   placeholder="¿De qué trata la clase? Tema, objetivos, actividades, materiales que el docente usará…" />
 
                 {objetivos.length > 0 && (
@@ -1771,7 +1771,7 @@ function VistaEditor({
                     <select value={s.objetivo_id ?? ''}
                       onChange={e => onCambioSesion(s.id, { objetivo_id: e.target.value || null })}
                       className="w-full px-3 py-2.5 rounded-xl border text-sm bg-white font-semibold"
-                      style={{ borderColor: '#E4E8EF', color: s.objetivo_id ? NAVY : '#94a3b8' }}>
+                      style={{ borderColor: '#DFE0E0', color: s.objetivo_id ? NAVY : '#8B837E' }}>
                       <option value="">— Sin vincular —</option>
                       {objetivos.map(o => (
                         <option key={o.id} value={o.id}>

@@ -1,6 +1,6 @@
 import { supabase } from '@/lib/supabase'
 
-export const PORTAL_FONDO_DEFAULT = '/foto_colegio.jpg'
+export const PORTAL_FONDO_DEFAULT = '/landing/chef-cocina.jpg'
 const CACHE_KEY = 'aceg:portal-fondo'
 
 /** Última URL conocida (para pintar al instante sin parpadeo). */

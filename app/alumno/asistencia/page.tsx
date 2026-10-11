@@ -62,7 +62,7 @@ export default function AlumnoAsistenciaPage() {
         return {
           asigId:    a.id,
           nombre:    a.cursos?.nombre ?? 'Curso',
-          color:     a.cursos?.color  ?? '#0d9488',
+          color:     a.cursos?.color  ?? '#944C0D',
           grado:     a.grado,
           grupo:     a.grupo,
           total:     fechasUnicas.length,
@@ -92,9 +92,9 @@ export default function AlumnoAsistenciaPage() {
 
       {cursosConData.length === 0 ? (
         <div className="rounded-2xl flex flex-col items-center justify-center py-24 gap-4"
-          style={{ background: 'white', border: '1.5px solid #ccfbf1' }}>
-          <div className="w-14 h-14 rounded-2xl flex items-center justify-center" style={{ background: '#f0fdfa' }}>
-            <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="#5eead4" strokeWidth="1.5">
+          style={{ background: 'white', border: '1.5px solid #FBE2CC' }}>
+          <div className="w-14 h-14 rounded-2xl flex items-center justify-center" style={{ background: '#FDF6F0' }}>
+            <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="#EA9F5E" strokeWidth="1.5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
             </svg>
           </div>
@@ -112,7 +112,7 @@ export default function AlumnoAsistenciaPage() {
 
             return (
               <div key={c.asigId} className="rounded-2xl overflow-hidden"
-                style={{ background: 'white', border: '1.5px solid #ccfbf1', boxShadow: '0 2px 12px rgba(13,148,136,.05)' }}>
+                style={{ background: 'white', border: '1.5px solid #FBE2CC', boxShadow: '0 2px 12px rgba(148,76,13,.05)' }}>
 
                 {/* Franja color */}
                 <div className="h-1" style={{ background: `linear-gradient(90deg,${c.color},${c.color}88)` }} />
@@ -152,7 +152,7 @@ export default function AlumnoAsistenciaPage() {
                   </div>
 
                   {/* Chevron */}
-                  <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="#94a3b8" strokeWidth="2.5"
+                  <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="#8B837E" strokeWidth="2.5"
                     className="shrink-0 transition-transform" style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0)' }}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7"/>
                   </svg>
@@ -160,7 +160,7 @@ export default function AlumnoAsistenciaPage() {
 
                 {/* Detalle ausencias */}
                 {isOpen && (
-                  <div style={{ borderTop: '1px solid #f0fdfa' }}>
+                  <div style={{ borderTop: '1px solid #FDF6F0' }}>
                     {c.ausencias.length === 0 ? (
                       <div className="px-5 py-4 flex items-center gap-2">
                         <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="#16a34a" strokeWidth="2.5">

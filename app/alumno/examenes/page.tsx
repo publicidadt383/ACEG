@@ -42,7 +42,7 @@ type RespuestasMap = Record<string, string> // pregunta_id → opcion_id | texto
 /* ── Helpers ───────────────────────────────────────────────────── */
 function notaColor(n: number) {
   if (n >= 18) return '#059669'
-  if (n >= 14) return '#2563eb'
+  if (n >= 14) return '#D9042F'
   if (n >= 11) return '#d97706'
   return '#dc2626'
 }
@@ -256,7 +256,7 @@ export default function ExamenesAlumno() {
       <div className="max-w-2xl mx-auto">
         {/* Header examen */}
         <div className="rounded-2xl px-5 py-4 mb-5 flex items-center justify-between"
-          style={{ background: 'white', border: '1.5px solid #ccfbf1' }}>
+          style={{ background: 'white', border: '1.5px solid #FBE2CC' }}>
           <div className="min-w-0 flex-1">
             <p className="font-black text-slate-800 truncate">{examenActivo.titulo}</p>
             <p className="text-xs text-teal-500 font-semibold mt-0.5">
@@ -285,16 +285,16 @@ export default function ExamenesAlumno() {
         </div>
 
         {/* Barra de progreso */}
-        <div className="h-1.5 rounded-full mb-5" style={{ background: '#e2e8f0' }}>
+        <div className="h-1.5 rounded-full mb-5" style={{ background: '#DCDEDE' }}>
           <div className="h-full rounded-full transition-all"
-            style={{ width: `${((pregActual + 1) / preguntas.length) * 100}%`, background: 'linear-gradient(90deg,#0F766E,#14B8A6)' }} />
+            style={{ width: `${((pregActual + 1) / preguntas.length) * 100}%`, background: 'linear-gradient(90deg,#763F0F,#B86114)' }} />
         </div>
 
         {px && (
-          <div className="rounded-2xl px-5 py-5 mb-4" style={{ background: 'white', border: '1.5px solid #ccfbf1' }}>
+          <div className="rounded-2xl px-5 py-5 mb-4" style={{ background: 'white', border: '1.5px solid #FBE2CC' }}>
             <div className="flex items-start gap-3 mb-4">
               <span className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 text-xs font-black text-white mt-0.5"
-                style={{ background: 'linear-gradient(135deg,#0F766E,#14B8A6)' }}>
+                style={{ background: 'linear-gradient(135deg,#763F0F,#B86114)' }}>
                 {pregActual + 1}
               </span>
               <p className="text-slate-800 font-semibold text-base leading-snug flex-1">{px.enunciado}</p>
@@ -307,7 +307,7 @@ export default function ExamenesAlumno() {
                 onChange={e => setRespuestas(prev => ({ ...prev, [px.id]: e.target.value }))}
                 rows={4}
                 className="w-full rounded-xl px-4 py-3 text-sm text-slate-700 outline-none resize-none"
-                style={{ background: '#f0fdfa', border: '1.5px solid #99f6e4' }}
+                style={{ background: '#FDF6F0', border: '1.5px solid #F6C499' }}
               />
             ) : (
               <div className="flex flex-col gap-2">
@@ -317,12 +317,12 @@ export default function ExamenesAlumno() {
                     <button key={o.id} onClick={() => setRespuestas(prev => ({ ...prev, [px.id]: o.id }))}
                       className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left transition-all"
                       style={sel
-                        ? { background: '#f0fdfa', border: '2px solid #0d9488' }
-                        : { background: '#F6F8FB', border: '1.5px solid #e2e8f0' }}>
+                        ? { background: '#FDF6F0', border: '2px solid #944C0D' }
+                        : { background: '#F5F5F4', border: '1.5px solid #DCDEDE' }}>
                       <span className="w-5 h-5 rounded-full shrink-0 flex items-center justify-center transition-all"
                         style={sel
-                          ? { background: '#0d9488', border: '2px solid #0d9488' }
-                          : { background: 'white', border: '2px solid #cbd5e1' }}>
+                          ? { background: '#944C0D', border: '2px solid #944C0D' }
+                          : { background: 'white', border: '2px solid #C9C5C1' }}>
                         {sel && <div className="w-2 h-2 rounded-full bg-white" />}
                       </span>
                       <span className="text-sm text-slate-700 font-medium">{o.texto}</span>
@@ -342,20 +342,20 @@ export default function ExamenesAlumno() {
         <div className="flex items-center gap-3">
           <button onClick={() => setPregActual(v => Math.max(0, v - 1))} disabled={pregActual === 0}
             className="px-4 py-2.5 rounded-xl text-sm font-bold transition-all"
-            style={{ background: '#f1f5f9', color: pregActual === 0 ? '#cbd5e1' : '#64748b' }}>
+            style={{ background: '#EDEEEE', color: pregActual === 0 ? '#C9C5C1' : '#6B625D' }}>
             ← Anterior
           </button>
 
           {pregActual < preguntas.length - 1 ? (
             <button onClick={() => setPregActual(v => Math.min(preguntas.length - 1, v + 1))}
               className="flex-1 py-2.5 rounded-xl text-sm font-bold text-white transition-all"
-              style={{ background: 'linear-gradient(135deg,#0F766E,#14B8A6)' }}>
+              style={{ background: 'linear-gradient(135deg,#763F0F,#B86114)' }}>
               Siguiente →
             </button>
           ) : (
             <button onClick={enviarExamen} disabled={enviando}
               className="flex-1 py-2.5 rounded-xl text-sm font-black text-white transition-all"
-              style={{ background: 'linear-gradient(135deg,#059669,#0d9488)', opacity: enviando ? 0.7 : 1 }}>
+              style={{ background: 'linear-gradient(135deg,#059669,#944C0D)', opacity: enviando ? 0.7 : 1 }}>
               {enviando ? 'Enviando…' : 'Enviar examen ✓'}
             </button>
           )}
@@ -367,10 +367,10 @@ export default function ExamenesAlumno() {
             <button key={p.id} onClick={() => setPregActual(i)}
               className="w-8 h-8 rounded-lg text-xs font-bold transition-all"
               style={i === pregActual
-                ? { background: '#0d9488', color: 'white' }
+                ? { background: '#944C0D', color: 'white' }
                 : respuestas[p.id]
                 ? { background: '#d1fae5', color: '#059669' }
-                : { background: '#f1f5f9', color: '#94a3b8' }}>
+                : { background: '#EDEEEE', color: '#8B837E' }}>
               {i + 1}
             </button>
           ))}
@@ -383,7 +383,7 @@ export default function ExamenesAlumno() {
   if (examenActivo && enviado && resultado) {
     return (
       <div className="max-w-md mx-auto text-center">
-        <div className="rounded-2xl px-6 py-8" style={{ background: 'white', border: '1.5px solid #ccfbf1' }}>
+        <div className="rounded-2xl px-6 py-8" style={{ background: 'white', border: '1.5px solid #FBE2CC' }}>
           <div className="w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-4"
             style={{ background: `${notaColor(resultado.nota)}15`, border: `2px solid ${notaColor(resultado.nota)}40` }}>
             <p className="text-3xl font-black" style={{ color: notaColor(resultado.nota) }}>
@@ -400,7 +400,7 @@ export default function ExamenesAlumno() {
           </p>
           <button onClick={() => { setExamenActivo(null); setEnviado(false) }}
             className="w-full py-3 rounded-xl text-sm font-black text-white"
-            style={{ background: 'linear-gradient(135deg,#0F766E,#14B8A6)' }}>
+            style={{ background: 'linear-gradient(135deg,#763F0F,#B86114)' }}>
             Volver a exámenes
           </button>
         </div>
@@ -418,8 +418,8 @@ export default function ExamenesAlumno() {
 
       {examenes.length === 0 ? (
         <div className="rounded-2xl p-12 text-center"
-          style={{ background: 'white', border: '1.5px solid #ccfbf1' }}>
-          <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="#99f6e4" strokeWidth="1.5" className="mx-auto mb-3">
+          style={{ background: 'white', border: '1.5px solid #FBE2CC' }}>
+          <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="#F6C499" strokeWidth="1.5" className="mx-auto mb-3">
             <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
           </svg>
           <p className="text-slate-400 text-sm">No hay exámenes publicados aún</p>
@@ -433,12 +433,12 @@ export default function ExamenesAlumno() {
 
             return (
               <div key={ex.id} className="rounded-2xl overflow-hidden"
-                style={{ background: 'white', border: '1.5px solid #e2e8f0' }}>
+                style={{ background: 'white', border: '1.5px solid #DCDEDE' }}>
                 <div className="flex items-start gap-4 px-5 py-4">
                   {/* Color curso */}
                   <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
-                    style={{ background: `${curso?.color ?? '#143875'}15` }}>
-                    <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke={curso?.color ?? '#143875'} strokeWidth="2">
+                    style={{ background: `${curso?.color ?? '#2A2420'}15` }}>
+                    <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke={curso?.color ?? '#2A2420'} strokeWidth="2">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
                     </svg>
                   </div>
@@ -449,7 +449,7 @@ export default function ExamenesAlumno() {
                         <p className="font-bold text-slate-800 truncate">{ex.titulo}</p>
                         {curso && <p className="text-xs font-semibold mt-0.5" style={{ color: curso.color }}>{curso.nombre}</p>}
                         {(ex.sesiones?.unidades?.nombre || ex.sesiones?.titulo) && (
-                          <p className="text-[10px] font-semibold mt-0.5" style={{ color: '#94a3b8' }}>
+                          <p className="text-[10px] font-semibold mt-0.5" style={{ color: '#8B837E' }}>
                             {ex.sesiones.unidades?.nombre}{ex.sesiones.unidades?.nombre && ex.sesiones.titulo ? ' · ' : ''}{ex.sesiones.titulo}
                           </p>
                         )}
@@ -502,7 +502,7 @@ export default function ExamenesAlumno() {
                     {estado === 'pendiente' && (
                       <button onClick={() => iniciarExamen(ex)} disabled={loadingEx}
                         className="mt-3 w-full py-2.5 rounded-xl text-sm font-black text-white transition-all"
-                        style={{ background: 'linear-gradient(135deg,#0F766E,#14B8A6)', opacity: loadingEx ? 0.7 : 1 }}>
+                        style={{ background: 'linear-gradient(135deg,#763F0F,#B86114)', opacity: loadingEx ? 0.7 : 1 }}>
                         {loadingEx ? 'Cargando…' : intento ? 'Continuar examen →' : 'Iniciar examen →'}
                       </button>
                     )}

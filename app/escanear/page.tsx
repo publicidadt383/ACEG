@@ -210,14 +210,14 @@ export default function EscanearPage() {
 
   return (
     <div className="min-h-screen flex flex-col"
-      style={{ background: 'linear-gradient(135deg, #F6F8FB 0%, #EFF3FA 50%, #E4E8EF 100%)' }}>
+      style={{ background: 'linear-gradient(135deg, #F5F5F4 0%, #F3F1EF 50%, #DFE0E0 100%)' }}>
 
       {/* Blobs */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-0 right-0 w-80 h-80 rounded-full opacity-40 translate-x-1/3 -translate-y-1/3"
-          style={{ background: 'radial-gradient(circle, #b6c5e3, #E4E8EF)', filter: 'blur(50px)' }} />
+          style={{ background: 'radial-gradient(circle, #D2CBC5, #DFE0E0)', filter: 'blur(50px)' }} />
         <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full opacity-30 -translate-x-1/4 translate-y-1/4"
-          style={{ background: 'radial-gradient(circle, #b6c5e3, #E4E8EF)', filter: 'blur(40px)' }} />
+          style={{ background: 'radial-gradient(circle, #D2CBC5, #DFE0E0)', filter: 'blur(40px)' }} />
       </div>
 
       {/* Top strip mínimo: logo + saludo (acciones movidas al rail lateral) */}
@@ -226,10 +226,10 @@ export default function EscanearPage() {
           background: 'rgba(255,255,255,.92)',
           backdropFilter: 'blur(16px) saturate(140%)',
           WebkitBackdropFilter: 'blur(16px) saturate(140%)',
-          borderBottom: '1px solid #E4E8EF',
-          boxShadow: '0 1px 2px rgba(15,23,42,.04)',
+          borderBottom: '1px solid #DFE0E0',
+          boxShadow: '0 1px 2px rgba(35,30,27,.04)',
         }}>
-        <div aria-hidden style={{ height: 3, background: 'linear-gradient(90deg, #0B2447 0%, #143875 55%, transparent 100%)' }} />
+        <div aria-hidden style={{ height: 3, background: 'linear-gradient(90deg, #1D1815 0%, #2A2420 55%, transparent 100%)' }} />
         <div className="flex items-center gap-3 px-4 py-2.5 max-w-3xl mx-auto"
           style={{ paddingTop: 'max(10px, env(safe-area-inset-top, 0px))' }}>
           <div className="relative w-9 h-9 shrink-0">
@@ -239,7 +239,7 @@ export default function EscanearPage() {
             <p className="text-slate-900 font-bold text-sm leading-tight truncate">Escuela Gastronómica ACEG</p>
             {userName && (
               <p className="text-[11px] text-slate-500 leading-tight truncate">
-                Hola, <span className="font-semibold" style={{ color: '#0B2447' }}>{userName}</span>
+                Hola, <span className="font-semibold" style={{ color: '#1D1815' }}>{userName}</span>
               </p>
             )}
           </div>
@@ -263,8 +263,8 @@ export default function EscanearPage() {
             background: 'rgba(255,255,255,.82)',
             backdropFilter: 'blur(14px) saturate(140%)',
             WebkitBackdropFilter: 'blur(14px) saturate(140%)',
-            borderRight: '1px solid #E4E8EF',
-            boxShadow: '1px 0 2px rgba(15,23,42,.03)',
+            borderRight: '1px solid #DFE0E0',
+            boxShadow: '1px 0 2px rgba(35,30,27,.03)',
           }}>
 
           {/* Inicio → portal del rol */}
@@ -275,9 +275,9 @@ export default function EscanearPage() {
               className="flex flex-col items-center justify-center gap-1 rounded-2xl transition-all active:scale-95"
               style={{
                 minHeight: 56, padding: '10px 4px',
-                background: '#EFF3FA',
-                border: '1.5px solid #b6c5e3',
-                color: '#0B2447',
+                background: '#F3F1EF',
+                border: '1.5px solid #D2CBC5',
+                color: '#1D1815',
               }}>
               <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" aria-hidden>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
@@ -313,8 +313,8 @@ export default function EscanearPage() {
             style={{
               minHeight: 56, padding: '10px 4px',
               background: 'white',
-              border: '1.5px solid #E4E8EF',
-              color: '#475569',
+              border: '1.5px solid #DFE0E0',
+              color: '#5C5450',
             }}>
             <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" aria-hidden>
               <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
@@ -363,8 +363,8 @@ export default function EscanearPage() {
             </div>
           ) : (
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-3 text-xs font-bold"
-              style={{ background: '#EFF3FA', border: '1.5px solid #b6c5e3', color: '#0B2447' }}>
-              <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: '#143875' }} />
+              style={{ background: '#F3F1EF', border: '1.5px solid #D2CBC5', color: '#1D1815' }}>
+              <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: '#2A2420' }} />
               Marcado por ubicación
             </div>
           )}
@@ -380,8 +380,8 @@ export default function EscanearPage() {
 
         {/* Marcado por ubicación */}
         <div className="w-full rounded-3xl overflow-hidden"
-          style={{ background: 'white', boxShadow: '0 16px 48px rgba(11,36,71,.12)', border: '1.5px solid #E4E8EF' }}>
-          <div className="h-1.5" style={{ background: 'linear-gradient(90deg, #0B2447, #1E40AF, #0EA5E9)' }} />
+          style={{ background: 'white', boxShadow: '0 16px 48px rgba(29,24,21,.12)', border: '1.5px solid #DFE0E0' }}>
+          <div className="h-1.5" style={{ background: 'linear-gradient(90deg, #B00326, #D9042F, #F08A24)' }} />
           <div className="p-5">
             <MarcarPorBoton
               disabled={procesando || marcasHoy === 2 || !!pendingSalida}
@@ -394,12 +394,12 @@ export default function EscanearPage() {
         {/* Procesando */}
         {procesando && (
           <div className="flex items-center gap-3 px-5 py-3.5 rounded-2xl"
-            style={{ background: '#EFF3FA', border: '1.5px solid #b6c5e3' }}>
-            <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24" fill="none" style={{ color: '#143875' }}>
+            style={{ background: '#F3F1EF', border: '1.5px solid #D2CBC5' }}>
+            <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24" fill="none" style={{ color: '#2A2420' }}>
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
             </svg>
-            <span className="text-sm font-semibold" style={{ color: '#0B2447' }}>Registrando asistencia...</span>
+            <span className="text-sm font-semibold" style={{ color: '#1D1815' }}>Registrando asistencia...</span>
           </div>
         )}
       </main>
@@ -412,10 +412,10 @@ export default function EscanearPage() {
       {/* ── MODAL CAMBIAR CONTRASEÑA ── */}
       {modalClave && (
         <div className="fixed inset-0 z-50 flex items-center justify-center px-4"
-          style={{ background: 'rgba(15,23,42,0.55)', backdropFilter: 'blur(6px)' }}>
+          style={{ background: 'rgba(35,30,27,0.55)', backdropFilter: 'blur(6px)' }}>
           <div className="w-full max-w-sm rounded-3xl overflow-hidden"
-            style={{ background: 'white', boxShadow: '0 24px 64px rgba(11,36,71,.25)' }}>
-            <div className="h-1.5" style={{ background: 'linear-gradient(90deg, #0B2447, #1E40AF, #0EA5E9)' }} />
+            style={{ background: 'white', boxShadow: '0 24px 64px rgba(29,24,21,.25)' }}>
+            <div className="h-1.5" style={{ background: 'linear-gradient(90deg, #B00326, #D9042F, #F08A24)' }} />
             <div className="p-6">
               <div className="flex items-center justify-between mb-5">
                 <h3 className="text-slate-800 font-black text-lg">Cambiar contraseña</h3>
@@ -449,11 +449,11 @@ export default function EscanearPage() {
                         onChange={e => setClaveActual(e.target.value)}
                         placeholder="••••••••"
                         className="w-full pl-4 pr-10 py-2.5 rounded-xl text-sm text-slate-800 placeholder-slate-300 outline-none transition-all"
-                        style={{ background: '#F6F8FB', border: '1.5px solid #E4E8EF' }}
-                        onFocus={e => { e.currentTarget.style.borderColor = '#143875'; e.currentTarget.style.boxShadow = '0 0 0 3px rgba(11,36,71,.1)' }}
-                        onBlur={e => { e.currentTarget.style.borderColor = '#E4E8EF'; e.currentTarget.style.boxShadow = 'none' }} />
+                        style={{ background: '#F5F5F4', border: '1.5px solid #DFE0E0' }}
+                        onFocus={e => { e.currentTarget.style.borderColor = '#2A2420'; e.currentTarget.style.boxShadow = '0 0 0 3px rgba(29,24,21,.1)' }}
+                        onBlur={e => { e.currentTarget.style.borderColor = '#DFE0E0'; e.currentTarget.style.boxShadow = 'none' }} />
                       <button type="button" onClick={() => setShowActual(!showActual)}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-[#143875] transition-colors">
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-[#2A2420] transition-colors">
                         {showActual
                           ? <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" /></svg>
                           : <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
@@ -472,11 +472,11 @@ export default function EscanearPage() {
                         onChange={e => setClaveNueva(e.target.value)}
                         placeholder="Mínimo 6 caracteres"
                         className="w-full pl-4 pr-10 py-2.5 rounded-xl text-sm text-slate-800 placeholder-slate-300 outline-none transition-all"
-                        style={{ background: '#F6F8FB', border: '1.5px solid #E4E8EF' }}
-                        onFocus={e => { e.currentTarget.style.borderColor = '#143875'; e.currentTarget.style.boxShadow = '0 0 0 3px rgba(11,36,71,.1)' }}
-                        onBlur={e => { e.currentTarget.style.borderColor = '#E4E8EF'; e.currentTarget.style.boxShadow = 'none' }} />
+                        style={{ background: '#F5F5F4', border: '1.5px solid #DFE0E0' }}
+                        onFocus={e => { e.currentTarget.style.borderColor = '#2A2420'; e.currentTarget.style.boxShadow = '0 0 0 3px rgba(29,24,21,.1)' }}
+                        onBlur={e => { e.currentTarget.style.borderColor = '#DFE0E0'; e.currentTarget.style.boxShadow = 'none' }} />
                       <button type="button" onClick={() => setShowNueva(!showNueva)}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-[#143875] transition-colors">
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-[#2A2420] transition-colors">
                         {showNueva
                           ? <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" /></svg>
                           : <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
@@ -494,9 +494,9 @@ export default function EscanearPage() {
                       onChange={e => setClaveConfirm(e.target.value)}
                       placeholder="Repite la nueva contraseña"
                       className="w-full px-4 py-2.5 rounded-xl text-sm text-slate-800 placeholder-slate-300 outline-none transition-all"
-                      style={{ background: '#F6F8FB', border: '1.5px solid #E4E8EF' }}
-                      onFocus={e => { e.currentTarget.style.borderColor = '#143875'; e.currentTarget.style.boxShadow = '0 0 0 3px rgba(11,36,71,.1)' }}
-                      onBlur={e => { e.currentTarget.style.borderColor = '#E4E8EF'; e.currentTarget.style.boxShadow = 'none' }} />
+                      style={{ background: '#F5F5F4', border: '1.5px solid #DFE0E0' }}
+                      onFocus={e => { e.currentTarget.style.borderColor = '#2A2420'; e.currentTarget.style.boxShadow = '0 0 0 3px rgba(29,24,21,.1)' }}
+                      onBlur={e => { e.currentTarget.style.borderColor = '#DFE0E0'; e.currentTarget.style.boxShadow = 'none' }} />
                   </div>
 
                   {claveError && (
@@ -512,12 +512,12 @@ export default function EscanearPage() {
                   <div className="flex gap-3 pt-1">
                     <button type="button" onClick={() => setModalClave(false)}
                       className="flex-1 py-2.5 rounded-xl text-sm font-bold text-slate-600 hover:bg-slate-100 transition-all"
-                      style={{ border: '1.5px solid #e2e8f0' }}>
+                      style={{ border: '1.5px solid #DCDEDE' }}>
                       Cancelar
                     </button>
                     <button type="submit" disabled={claveLoading}
                       className="flex-1 py-2.5 rounded-xl text-sm font-black text-white transition-all disabled:opacity-60 flex items-center justify-center gap-2"
-                      style={{ background: 'linear-gradient(135deg, #0B2447 0%, #1E40AF 100%)', boxShadow: '0 4px 16px rgba(11,36,71,.35)' }}>
+                      style={{ background: 'linear-gradient(135deg, #B00326 0%, #D9042F 100%)', boxShadow: '0 4px 16px rgba(29,24,21,.35)' }}>
                       {claveLoading && (
                         <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
                           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
@@ -537,9 +537,9 @@ export default function EscanearPage() {
       {/* ── MODAL JUSTIFICACIÓN ── */}
       {modalJustif && (
         <div className="fixed inset-0 z-50 flex items-center justify-center px-4"
-          style={{ background: 'rgba(15,23,42,0.55)', backdropFilter: 'blur(6px)' }}>
+          style={{ background: 'rgba(35,30,27,0.55)', backdropFilter: 'blur(6px)' }}>
           <div className="w-full max-w-sm rounded-3xl overflow-hidden"
-            style={{ background: 'white', boxShadow: '0 24px 64px rgba(15,23,42,.2)', border: '1.5px solid #fde68a' }}>
+            style={{ background: 'white', boxShadow: '0 24px 64px rgba(35,30,27,.2)', border: '1.5px solid #fde68a' }}>
             <div className="h-1.5" style={{ background: 'linear-gradient(90deg, #f59e0b, #fbbf24)' }} />
             <div className="p-6">
               <div className="flex items-center justify-between mb-5">
@@ -605,7 +605,7 @@ export default function EscanearPage() {
                   <div className="flex gap-3 pt-1">
                     <button type="button" onClick={() => setModalJustif(false)}
                       className="flex-1 py-2.5 rounded-xl text-sm font-bold transition-all"
-                      style={{ background: '#f8fafc', border: '1.5px solid #e2e8f0', color: '#64748b' }}>
+                      style={{ background: '#F7F7F6', border: '1.5px solid #DCDEDE', color: '#6B625D' }}>
                       Cancelar
                     </button>
                     <button type="submit" disabled={justifLoading || !justifMotivo.trim()}
@@ -633,7 +633,7 @@ export default function EscanearPage() {
           className="fixed inset-0 z-50 flex flex-col items-center justify-center px-6 text-center"
           style={{
             background: resultado.tipo === 'exito'
-              ? (esEntrada ? 'rgba(16,185,129,0.70)' : 'rgba(11,36,71,0.70)')
+              ? (esEntrada ? 'rgba(16,185,129,0.70)' : 'rgba(29,24,21,0.70)')
               : 'rgba(239,68,68,0.70)',
           }}
           onClick={cerrarModal}>
@@ -684,9 +684,9 @@ export default function EscanearPage() {
       {/* ── MODAL CONFIRMAR SALIDA ── */}
       {pendingSalida && (
         <div className="fixed inset-0 z-50 flex items-center justify-center px-4"
-          style={{ background: 'rgba(15,23,42,0.65)', backdropFilter: 'blur(8px)' }}>
+          style={{ background: 'rgba(35,30,27,0.65)', backdropFilter: 'blur(8px)' }}>
           <div className="w-full max-w-sm rounded-3xl overflow-hidden"
-            style={{ background: 'white', boxShadow: '0 24px 64px rgba(11,36,71,.3)' }}>
+            style={{ background: 'white', boxShadow: '0 24px 64px rgba(29,24,21,.3)' }}>
             <div className="h-1.5" style={{ background: 'linear-gradient(90deg, #F59E0B, #EF4444, #B91C1C)' }} />
             <div className="p-6 text-center">
               <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
@@ -705,7 +705,7 @@ export default function EscanearPage() {
               <div className="flex gap-3">
                 <button onClick={cancelarSalida}
                   className="flex-1 py-3 rounded-xl font-bold text-sm transition-all"
-                  style={{ background: '#f1f5f9', border: '1.5px solid #e2e8f0', color: '#475569' }}>
+                  style={{ background: '#EDEEEE', border: '1.5px solid #DCDEDE', color: '#5C5450' }}>
                   Cancelar
                 </button>
                 <button onClick={confirmarSalida}

@@ -129,8 +129,8 @@ export default function AlumnoHomePage() {
       userRoleLabel={sub}
       cards={cards}
       onLogout={handleLogout}
-      accent="#0F766E"
-      accent2="#14B8A6"
+      accent="#763F0F"
+      accent2="#B86114"
     />
   )
 }

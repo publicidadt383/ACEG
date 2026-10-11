@@ -35,16 +35,16 @@ const GRADOS_ORDEN = [
 /* Paleta del módulo (validada con el skill de dataviz): azul = puntuales,
    ámbar = tardanzas — ambos "asistieron". El ámbar es sub-3:1 sobre blanco,
    por eso cada fila lleva su etiqueta numérica visible y existe vista de tabla. */
-const C_PRESENTE = '#2a78d6'
+const C_PRESENTE = '#D62A4C'
 const C_TARDANZA = '#eda100'
-const C_TRACK    = '#edf0f4'   // resto de la barra: matriculados que no asistieron
+const C_TRACK    = '#F3F0EE'   // resto de la barra: matriculados que no asistieron
 const C_GRID     = '#e7e5e0'   // hairline de grilla
 const C_MUTED    = '#898781'   // texto de ejes
-const C_INK      = '#1e293b'
+const C_INK      = '#2A2420'
 
 const card: React.CSSProperties = {
-  background: 'white', border: '1px solid #E4E8EF',
-  boxShadow: '0 2px 12px rgba(11,36,71,.05)',
+  background: 'white', border: '1px solid #DFE0E0',
+  boxShadow: '0 2px 12px rgba(29,24,21,.05)',
 }
 
 const fmtN = (n: number) => n.toLocaleString('es-PE')
@@ -293,8 +293,8 @@ export function EstadisticasAsistenciaContent({ embedded = false }: Props = {}) 
       <div className={embedded ? 'py-20 flex justify-center' : 'min-h-screen flex items-center justify-center'}
         style={embedded ? undefined : { background: '#f7f5f1' }}>
         <svg className="animate-spin" width="28" height="28" viewBox="0 0 24 24" fill="none">
-          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="#0B2447" strokeWidth="4"/>
-          <path className="opacity-75" fill="#0B2447" d="M4 12a8 8 0 018-8v8z"/>
+          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="#1D1815" strokeWidth="4"/>
+          <path className="opacity-75" fill="#1D1815" d="M4 12a8 8 0 018-8v8z"/>
         </svg>
       </div>
     )
@@ -325,7 +325,7 @@ export function EstadisticasAsistenciaContent({ embedded = false }: Props = {}) 
         <div className="flex items-center gap-1.5 flex-wrap">
           <button onClick={() => setFecha(f => sumarDias(f, -1))}
             className="w-8 h-8 rounded-lg flex items-center justify-center transition-all"
-            style={{ background: '#f1f5f9', color: '#64748b' }} title="Día anterior">
+            style={{ background: '#EDEEEE', color: '#6B625D' }} title="Día anterior">
             <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7"/>
             </svg>
@@ -333,10 +333,10 @@ export function EstadisticasAsistenciaContent({ embedded = false }: Props = {}) 
           <input type="date" value={fecha} max={fechaHoyLima()}
             onChange={e => e.target.value && setFecha(e.target.value)}
             className="text-xs font-bold text-slate-700 px-3 py-1.5 rounded-lg outline-none"
-            style={{ background: 'white', border: '1.5px solid #E4E8EF' }} />
+            style={{ background: 'white', border: '1.5px solid #DFE0E0' }} />
           <button onClick={() => setFecha(f => sumarDias(f, 1))} disabled={esHoy}
             className="w-8 h-8 rounded-lg flex items-center justify-center transition-all disabled:opacity-40"
-            style={{ background: '#f1f5f9', color: '#64748b' }} title="Día siguiente">
+            style={{ background: '#EDEEEE', color: '#6B625D' }} title="Día siguiente">
             <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/>
             </svg>
@@ -344,16 +344,16 @@ export function EstadisticasAsistenciaContent({ embedded = false }: Props = {}) 
           {!esHoy && (
             <button onClick={() => setFecha(fechaHoyLima())}
               className="text-xs font-black px-3 py-1.5 rounded-lg transition-all"
-              style={{ background: '#0B2447', color: 'white' }}>
+              style={{ background: '#1D1815', color: 'white' }}>
               Hoy
             </button>
           )}
           {/* Vista gráficas / tabla (la tabla es la lectura sin color, siempre disponible) */}
-          <div className="flex rounded-lg overflow-hidden ml-1" style={{ border: '1.5px solid #E4E8EF' }}>
+          <div className="flex rounded-lg overflow-hidden ml-1" style={{ border: '1.5px solid #DFE0E0' }}>
             {([['graficas', 'Gráficas'], ['tabla', 'Tabla']] as const).map(([v, l]) => (
               <button key={v} onClick={() => setVista(v)}
                 className="text-xs font-black px-3 py-1.5 transition-all"
-                style={vista === v ? { background: '#0B2447', color: 'white' } : { background: 'white', color: '#64748b' }}>
+                style={vista === v ? { background: '#1D1815', color: 'white' } : { background: 'white', color: '#6B625D' }}>
                 {l}
               </button>
             ))}
@@ -432,14 +432,14 @@ export function EstadisticasAsistenciaContent({ embedded = false }: Props = {}) 
                   {tendencia.map((p, i) => (
                     <g key={p.fecha}>
                       <circle cx={x(i)} cy={y(p.asistieron)} r={p.fecha === fecha ? 5 : 4}
-                        fill={p.fecha === fecha ? '#0B2447' : C_PRESENTE} stroke="white" strokeWidth="2"/>
+                        fill={p.fecha === fecha ? '#1D1815' : C_PRESENTE} stroke="white" strokeWidth="2"/>
                       <rect x={x(i) - (W - padL - padR) / (2 * Math.max(n - 1, 1))} y={0}
                         width={(W - padL - padR) / Math.max(n - 1, 1)} height={H} fill="transparent"
                         onMouseEnter={() => setHoverTend(i)} onMouseLeave={() => setHoverTend(null)}
                         onClick={() => setFecha(p.fecha)} style={{ cursor: 'pointer' }}/>
                       <text x={x(i)} y={H - 9} textAnchor="middle" fontSize="9.5"
                         fontWeight={p.fecha === fecha ? 800 : 600}
-                        fill={p.fecha === fecha ? '#0B2447' : C_MUTED}>{p.label}</text>
+                        fill={p.fecha === fecha ? '#1D1815' : C_MUTED}>{p.label}</text>
                     </g>
                   ))}
 
@@ -454,7 +454,7 @@ export function EstadisticasAsistenciaContent({ embedded = false }: Props = {}) 
               <div className="absolute top-0 pointer-events-none px-3 py-2 rounded-xl whitespace-nowrap"
                 style={{
                   left: `${Math.min(78, Math.max(4, 7 + (hoverTend / Math.max(tendencia.length - 1, 1)) * 76))}%`,
-                  background: 'white', border: '1px solid #E4E8EF', boxShadow: '0 8px 24px rgba(11,36,71,.14)',
+                  background: 'white', border: '1px solid #DFE0E0', boxShadow: '0 8px 24px rgba(29,24,21,.14)',
                 }}>
                 <p className="text-[10px] font-bold text-slate-400 capitalize">{tendencia[hoverTend].label}</p>
                 <p className="flex items-center gap-1.5 mt-0.5">
@@ -476,7 +476,7 @@ export function EstadisticasAsistenciaContent({ embedded = false }: Props = {}) 
         <div className="flex items-center gap-4 px-1">
           {[{ c: C_PRESENTE, l: 'Puntuales' }, { c: C_TARDANZA, l: 'Con tardanza' }, { c: C_TRACK, l: 'No asistieron' }].map(it => (
             <span key={it.l} className="flex items-center gap-1.5 text-[11px] font-bold text-slate-500">
-              <span className="inline-block w-3 h-3 rounded" style={{ background: it.c, border: it.c === C_TRACK ? '1px solid #dde3ea' : 'none' }}/>
+              <span className="inline-block w-3 h-3 rounded" style={{ background: it.c, border: it.c === C_TRACK ? '1px solid #E7E3E0' : 'none' }}/>
               {it.l}
             </span>
           ))}
@@ -513,8 +513,8 @@ export function EstadisticasAsistenciaContent({ embedded = false }: Props = {}) 
               <button key={niv} onClick={() => setNivelFiltro(niv)}
                 className="px-3 py-1.5 rounded-lg text-xs font-black transition-all"
                 style={nivelFiltro === niv
-                  ? { background: '#0B2447', color: 'white' }
-                  : { background: '#f1f5f9', color: '#64748b' }}>
+                  ? { background: '#1D1815', color: 'white' }
+                  : { background: '#EDEEEE', color: '#6B625D' }}>
                 {niv}
               </button>
             ))}
@@ -545,7 +545,7 @@ export function EstadisticasAsistenciaContent({ embedded = false }: Props = {}) 
             style={{
               left: Math.min(barTip.x + 14, (rootRef.current?.clientWidth ?? 400) - 190),
               top: barTip.y - 78,
-              background: 'white', border: '1px solid #E4E8EF', boxShadow: '0 8px 24px rgba(11,36,71,.14)',
+              background: 'white', border: '1px solid #DFE0E0', boxShadow: '0 8px 24px rgba(29,24,21,.14)',
             }}>
             <p className="text-[10px] font-bold text-slate-400">{f.etiqueta}{f.sub ? ` · ${f.sub}` : ''}</p>
             <div className="mt-1 space-y-0.5">
@@ -560,7 +560,7 @@ export function EstadisticasAsistenciaContent({ embedded = false }: Props = {}) 
                 <span className="text-[10px] font-semibold text-slate-400">con tardanza</span>
               </p>
               <p className="flex items-center gap-1.5">
-                <span className="inline-block w-3 h-0.5 rounded-full" style={{ background: '#c9d2dd' }}/>
+                <span className="inline-block w-3 h-0.5 rounded-full" style={{ background: '#D9D2CD' }}/>
                 <span className="text-sm font-black" style={{ color: C_INK }}>{faltas}</span>
                 <span className="text-[10px] font-semibold text-slate-400">
                   faltas{f.justificadas > 0 ? ` · ${f.justificadas} justificadas` : ''}
@@ -578,10 +578,10 @@ export function EstadisticasAsistenciaContent({ embedded = false }: Props = {}) 
   return (
     <div className="min-h-screen" style={{ background: '#f7f5f1' }}>
       <header className="sticky top-0 z-40 px-4 py-3 flex items-center gap-3"
-        style={{ background: 'white', borderBottom: '1px solid #E4E8EF', borderTop: '3px solid #0B2447' }}>
+        style={{ background: 'white', borderBottom: '1px solid #DFE0E0', borderTop: '3px solid #1D1815' }}>
         <button onClick={() => router.push('/admin')}
           className="flex items-center gap-2 text-xs font-black px-3 py-2 rounded-xl"
-          style={{ background: '#F1F5F9', border: '1.5px solid #fecdd3', color: '#0B2447' }}>
+          style={{ background: '#EDEEEE', border: '1.5px solid #fecdd3', color: '#1D1815' }}>
           <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
             <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7"/>
           </svg>
@@ -611,7 +611,7 @@ function StatTile({ label, valor, delta, spark, sparkHoy, tono, swatch, extra }:
         {swatch && <span className="inline-block w-2 h-2 rounded-full" style={{ background: swatch }}/>}
         {label}
       </p>
-      <p className="text-2xl font-black leading-tight mt-0.5" style={{ color: tono ?? '#1e293b' }}>{valor}</p>
+      <p className="text-2xl font-black leading-tight mt-0.5" style={{ color: tono ?? '#2A2420' }}>{valor}</p>
       {delta && delta.n !== 0 && (
         <p className="text-[10px] font-bold" style={{ color: delta.n > 0 ? '#006300' : '#b91c1c' }}>
           {delta.n > 0 ? '▲' : '▼'} {Math.abs(delta.n)} <span className="text-slate-400 font-semibold">{delta.texto}</span>
@@ -691,7 +691,7 @@ function TablaStats({ filas, cargando }: { filas: FilaStat[]; cargando: boolean 
       <table className="w-full text-[12px]" style={{ fontVariantNumeric: 'tabular-nums' }}>
         <thead>
           <tr className="text-left text-[10px] font-black uppercase tracking-wider text-slate-400"
-            style={{ borderBottom: '1px solid #E4E8EF' }}>
+            style={{ borderBottom: '1px solid #DFE0E0' }}>
             <th className="py-2 pr-3 font-black">Sección</th>
             <th className="py-2 px-3 font-black text-right">Matric.</th>
             <th className="py-2 px-3 font-black text-right">Puntuales</th>
@@ -707,7 +707,7 @@ function TablaStats({ filas, cargando }: { filas: FilaStat[]; cargando: boolean 
             const faltas = Math.max(0, f.matriculados - asis - f.justificadas)
             const pct = f.matriculados > 0 ? Math.round((asis / f.matriculados) * 100) : 0
             return (
-              <tr key={f.clave} className="text-slate-600" style={{ borderBottom: '1px solid #f1f5f9' }}>
+              <tr key={f.clave} className="text-slate-600" style={{ borderBottom: '1px solid #EDEEEE' }}>
                 <td className="py-1.5 pr-3 font-bold">{f.etiqueta}{f.sub ? <span className="text-slate-400 font-semibold"> · {f.sub}</span> : ''}</td>
                 <td className="py-1.5 px-3 text-right">{f.matriculados}</td>
                 <td className="py-1.5 px-3 text-right">{f.presentes}</td>

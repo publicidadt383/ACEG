@@ -74,7 +74,7 @@ export function FondoSistemaContent({ embedded = false }: Props = {}) {
     if (!fondoUrl) return
     if (!(await confirmar({
       titulo: '¿Restaurar el fondo por defecto?',
-      mensaje: 'La imagen actual se borra del almacenamiento y los portales vuelven a la foto del colegio. Esta acción no se puede deshacer.',
+      mensaje: 'La imagen actual se borra del almacenamiento y los portales vuelven a la foto de cocina predeterminada. Esta acción no se puede deshacer.',
       tono: 'peligro', confirmarLabel: 'Restaurar',
     }))) return
     setError(''); setOk('')
@@ -110,11 +110,11 @@ export function FondoSistemaContent({ embedded = false }: Props = {}) {
 
       <div className="grid gap-5 lg:grid-cols-[1fr_300px]">
         {/* Vista previa simulando el portal */}
-        <div className="relative w-full rounded-2xl overflow-hidden shadow-sm" style={{ aspectRatio: '16/10', background: '#0B2447' }}>
+        <div className="relative w-full rounded-2xl overflow-hidden shadow-sm" style={{ aspectRatio: '16/10', background: '#1D1815' }}>
           <Image key={vista} src={vista} alt="Vista previa del fondo" fill sizes="(max-width: 1024px) 100vw, 640px" className="object-cover" />
           <div aria-hidden className="absolute inset-0" style={{
-            background: `radial-gradient(140% 90% at 50% 30%, transparent 0%, rgba(11,36,71,.35) 60%, rgba(8,17,33,.7) 100%),
-                         linear-gradient(180deg, rgba(11,36,71,.6) 0%, rgba(11,36,71,.35) 30%, rgba(15,23,42,.8) 100%)`,
+            background: `radial-gradient(140% 90% at 50% 30%, transparent 0%, rgba(29,24,21,.35) 60%, rgba(20,16,14,.7) 100%),
+                         linear-gradient(180deg, rgba(29,24,21,.6) 0%, rgba(29,24,21,.35) 30%, rgba(35,30,27,.8) 100%)`,
           }} />
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-white px-4">
             <div className="relative w-14 h-14" style={{ filter: 'drop-shadow(0 6px 14px rgba(0,0,0,.45))' }}>
@@ -128,7 +128,7 @@ export function FondoSistemaContent({ embedded = false }: Props = {}) {
             </div>
           </div>
           <span className="absolute top-3 left-3 text-[10px] font-black uppercase tracking-wide px-2.5 py-1 rounded-lg"
-            style={{ background: 'rgba(255,255,255,.9)', color: '#475569' }}>
+            style={{ background: 'rgba(255,255,255,.9)', color: '#5C5450' }}>
             {fondoUrl ? 'Fondo personalizado' : 'Fondo por defecto'}
           </span>
         </div>
@@ -140,7 +140,7 @@ export function FondoSistemaContent({ embedded = false }: Props = {}) {
             onClick={() => !subiendo && fileRef.current?.click()}
             disabled={subiendo}
             className="w-full rounded-2xl p-5 text-center border-2 border-dashed transition-all"
-            style={{ borderColor: subiendo ? '#C00F37' : '#E4C7CE', background: subiendo ? '#FDF2F4' : '#FAFAFB' }}>
+            style={{ borderColor: subiendo ? '#C00F37' : '#E4C7CE', background: subiendo ? '#FDF2F4' : '#FBFAFA' }}>
             <div className="w-10 h-10 rounded-xl mx-auto mb-2 flex items-center justify-center" style={{ background: '#FDF2F4' }}>
               {subiendo ? (
                 <svg className="animate-spin" width="18" height="18" viewBox="0 0 24 24" fill="none">
@@ -182,7 +182,7 @@ export function FondoSistemaContent({ embedded = false }: Props = {}) {
 
 export default function AdminFondoSistemaPage() {
   return (
-    <div className="min-h-screen p-4 lg:p-6" style={{ background: '#F6F8FB' }}>
+    <div className="min-h-screen p-4 lg:p-6" style={{ background: '#F5F5F4' }}>
       <FondoSistemaContent />
     </div>
   )

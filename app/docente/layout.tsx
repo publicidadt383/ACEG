@@ -111,10 +111,10 @@ export default function DocenteLayout({ children }: { children: React.ReactNode 
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ background: '#F6F8FB' }}>
+      <div className="min-h-screen flex items-center justify-center" style={{ background: '#F5F5F4' }}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
-          <Spinner size={40} color="#0B2447" />
-          <p style={{ color: '#94A3B8', fontSize: '10px', fontWeight: 700, letterSpacing: '.18em' }}>
+          <Spinner size={40} color="#1D1815" />
+          <p style={{ color: '#8B837E', fontSize: '10px', fontWeight: 700, letterSpacing: '.18em' }}>
             CARGANDO
           </p>
         </div>
@@ -171,8 +171,8 @@ export default function DocenteLayout({ children }: { children: React.ReactNode 
         userRoleLabel="Docente"
         banner={banner}
         showCambiarPassword={!simulando}
-        accent="#0B2447"
-        pageBg="#F6F8FB">
+        accent="#1D1815"
+        pageBg="#F5F5F4">
         {children}
       </PortalShell>
     </Ctx.Provider>

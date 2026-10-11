@@ -55,7 +55,7 @@ function saludoHora(d: Date): string {
   return 'Buenas noches'
 }
 
-const SANS = "var(--font-manrope), -apple-system, 'Segoe UI', system-ui, sans-serif"
+const SANS = "var(--font-barlow), -apple-system, 'Segoe UI', system-ui, sans-serif"
 
 const STYLES = `
   @keyframes phm-rise {
@@ -112,8 +112,8 @@ const STYLES = `
     box-shadow:
       inset 0 1px 0 rgba(255,255,255,.7),
       0 1px 2px rgba(0,0,0,.04),
-      0 8px 24px rgba(11,36,71,.18),
-      0 24px 56px rgba(11,36,71,.22);
+      0 8px 24px rgba(29,24,21,.18),
+      0 24px 56px rgba(29,24,21,.22);
     cursor: pointer;
     overflow: hidden;
     /* Capa de composición propia y estable para el backdrop-filter:
@@ -140,8 +140,8 @@ const STYLES = `
     box-shadow:
       inset 0 1px 0 rgba(255,255,255,.95),
       0 2px 4px rgba(0,0,0,.06),
-      0 22px 44px rgba(11,36,71,.32),
-      0 44px 96px rgba(11,36,71,.38);
+      0 22px 44px rgba(29,24,21,.32),
+      0 44px 96px rgba(29,24,21,.38);
   }
   .phm-card-btn:hover:not(:disabled)::before { transform: translateX(110%); }
   .phm-card-btn:hover:not(:disabled) .phm-icon { animation: phm-icon-wiggle .65s cubic-bezier(.22,.61,.36,1); }
@@ -153,8 +153,8 @@ const STYLES = `
     box-shadow:
       inset 0 1px 0 rgba(255,255,255,.85),
       0 0 0 3px rgba(255,255,255,.55),
-      0 0 0 5px rgba(11,36,71,.5),
-      0 16px 40px rgba(11,36,71,.32);
+      0 0 0 5px rgba(29,24,21,.5),
+      0 16px 40px rgba(29,24,21,.32);
   }
 
   .phm-icon       { transition: transform .35s cubic-bezier(.22,.61,.36,1); }
@@ -224,8 +224,8 @@ export default function PortalMenuFoto({
   backLabel = 'Volver',
   bannerSlot,
   topRightSlot,
-  accent  = '#0B2447',
-  accent2 = '#1E40AF',
+  accent  = '#1D1815',
+  accent2 = '#D9042F',
   greeting,
   showDate = true,
   showCambiarPassword = true,
@@ -316,8 +316,8 @@ export default function PortalMenuFoto({
       <div aria-hidden style={{
         position: 'fixed', inset: 0, zIndex: 1, pointerEvents: 'none',
         background: `
-          radial-gradient(140% 90% at 50% 30%, transparent 0%, rgba(11,36,71,.35) 60%, rgba(8,17,33,.7) 100%),
-          linear-gradient(180deg, rgba(11,36,71,.6) 0%, rgba(11,36,71,.35) 30%, rgba(15,23,42,.8) 100%)
+          radial-gradient(140% 90% at 50% 30%, transparent 0%, rgba(29,24,21,.35) 60%, rgba(20,16,14,.7) 100%),
+          linear-gradient(180deg, rgba(29,24,21,.6) 0%, rgba(29,24,21,.35) 30%, rgba(35,30,27,.8) 100%)
         `,
       }} />
 
@@ -325,14 +325,14 @@ export default function PortalMenuFoto({
       <div aria-hidden className="phm-blob" style={{
         position: 'fixed', top: '-12%', left: '-8%', width: 520, height: 520,
         borderRadius: '50%', zIndex: 1, pointerEvents: 'none',
-        background: 'radial-gradient(circle, rgba(99,102,241,.4), transparent 70%)',
+        background: 'radial-gradient(circle, rgba(241,99,127,.4), transparent 70%)',
         filter: 'blur(80px)', mixBlendMode: 'screen',
         animation: 'phm-pulse 12s ease-in-out infinite',
       }} />
       <div aria-hidden className="phm-blob" style={{
         position: 'fixed', bottom: '-15%', right: '-10%', width: 580, height: 580,
         borderRadius: '50%', zIndex: 1, pointerEvents: 'none',
-        background: 'radial-gradient(circle, rgba(56,189,248,.35), transparent 70%)',
+        background: 'radial-gradient(circle, rgba(240,138,36,.35), transparent 70%)',
         filter: 'blur(80px)', mixBlendMode: 'screen',
         animation: 'phm-pulse 14s ease-in-out infinite',
         animationDelay: '-4s',
@@ -383,7 +383,7 @@ export default function PortalMenuFoto({
               {/* glow */}
               <div className="phm-glow" style={{
                 position: 'absolute', inset: -18, borderRadius: '50%',
-                background: 'radial-gradient(circle, rgba(147,197,253,.5), transparent 65%)',
+                background: 'radial-gradient(circle, rgba(253,147,168,.5), transparent 65%)',
                 filter: 'blur(18px)',
                 animation: 'phm-pulse 4.5s ease-in-out infinite',
                 pointerEvents: 'none',
@@ -590,9 +590,9 @@ export default function PortalMenuFoto({
                       width: '52px', height: '52px', borderRadius: '14px',
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
                       background: c.disabled
-                        ? 'rgba(148,163,184,.18)'
+                        ? 'rgba(178,164,154,.18)'
                         : `linear-gradient(135deg, ${accent}, ${accent2})`,
-                      color: c.disabled ? 'rgba(100,116,139,.6)' : 'white',
+                      color: c.disabled ? 'rgba(136,117,103,.6)' : 'white',
                       flexShrink: 0,
                       boxShadow: c.disabled ? 'none' : `0 8px 20px ${accent}40, inset 0 1px 0 rgba(255,255,255,.3)`,
                     }}
@@ -606,7 +606,7 @@ export default function PortalMenuFoto({
                   fontSize: '15px', fontWeight: 700,
                   lineHeight: 1.18,
                   letterSpacing: '-.01em',
-                  color: c.disabled ? 'rgba(100,116,139,.6)' : '#0F172A',
+                  color: c.disabled ? 'rgba(136,117,103,.6)' : '#231E1B',
                   margin: 0,
                 }}>
                   {c.label}
@@ -616,7 +616,7 @@ export default function PortalMenuFoto({
                 {c.description && (
                   <p style={{
                     fontSize: '12px', fontWeight: 500,
-                    color: c.disabled ? 'rgba(100,116,139,.5)' : '#64748B',
+                    color: c.disabled ? 'rgba(136,117,103,.5)' : '#6B625D',
                     lineHeight: 1.4,
                     margin: 0,
                     maxWidth: '160px',
@@ -634,8 +634,8 @@ export default function PortalMenuFoto({
                     position: 'absolute', bottom: '10px',
                     fontSize: '8.5px', fontWeight: 700, letterSpacing: '.2em',
                     padding: '3px 8px', borderRadius: '999px',
-                    background: 'rgba(148,163,184,.15)',
-                    color: 'rgba(71,85,105,.8)',
+                    background: 'rgba(178,164,154,.15)',
+                    color: 'rgba(100,86,76,.8)',
                     textTransform: 'uppercase',
                   }}>
                     Pronto

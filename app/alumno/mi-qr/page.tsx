@@ -68,7 +68,7 @@ export default function MiQrPage() {
     const DORADO2 = '#F0C75A'
     const VINO    = '#7B1D3A'
     const BLANCO  = '#FFFFFF'
-    const FONDO   = '#F8F9FB'   // fondo cuerpo tarjeta
+    const FONDO   = '#FAF9F9'   // fondo cuerpo tarjeta
 
     const W = 480, H = 730
     const canvas = document.createElement('canvas')
@@ -83,7 +83,7 @@ export default function MiQrPage() {
       bg.crossOrigin = 'anonymous'   // evita tainted-canvas en Vercel
       bg.onload = () => {
         ctx.drawImage(bg, 0, 0, W, H)
-        ctx.fillStyle = 'rgba(10,15,30,0.55)'
+        ctx.fillStyle = 'rgba(23,20,17,0.55)'
         ctx.fillRect(0, 0, W, H)
         resolve()
       }
@@ -179,7 +179,7 @@ export default function MiQrPage() {
     const qrX = (W - QR) / 2
     const qrY = 266
 
-    ctx.shadowColor   = 'rgba(15,23,42,0.12)'
+    ctx.shadowColor   = 'rgba(35,30,27,0.12)'
     ctx.shadowBlur    = 20
     ctx.shadowOffsetY = 6
     ctx.fillStyle     = BLANCO
@@ -189,7 +189,7 @@ export default function MiQrPage() {
     ctx.shadowBlur = 0; ctx.shadowColor = 'transparent'; ctx.shadowOffsetY = 0
 
     // Borde sutil contenedor QR
-    ctx.strokeStyle = '#E2E8F0'
+    ctx.strokeStyle = '#DCDEDE'
     ctx.lineWidth   = 1.5
     ctx.beginPath()
     ctx.roundRect(qrX - 18, qrY - 18, QR + 36, QR + 36, 16)
@@ -303,26 +303,26 @@ export default function MiQrPage() {
       {qrToken ? (
         <>
           <div className="w-full rounded-3xl overflow-hidden"
-            style={{ background: 'white', border: '1.5px solid #ccfbf1', boxShadow: '0 16px 48px rgba(13,148,136,.12)' }}>
-            <div className="h-1.5" style={{ background: 'linear-gradient(90deg,#0F766E,#14B8A6,#5EEAD4)' }} />
+            style={{ background: 'white', border: '1.5px solid #FBE2CC', boxShadow: '0 16px 48px rgba(148,76,13,.12)' }}>
+            <div className="h-1.5" style={{ background: 'linear-gradient(90deg,#763F0F,#B86114,#EA9F5E)' }} />
             <div className="p-8 flex flex-col items-center gap-5">
 
               {/* QR visible */}
-              <div className="p-4 rounded-2xl" style={{ background: '#f0fdfa', border: '1.5px solid #99f6e4' }}>
-                <QRCodeSVG value={qrToken} size={220} level="H" bgColor="transparent" fgColor="#0f766e" />
+              <div className="p-4 rounded-2xl" style={{ background: '#FDF6F0', border: '1.5px solid #F6C499' }}>
+                <QRCodeSVG value={qrToken} size={220} level="H" bgColor="transparent" fgColor="#763F0F" />
               </div>
 
               {/* Info alumno */}
               <div className="text-center">
                 <p className="font-black text-slate-800 text-base">{nombre}</p>
-                <p className="text-sm font-semibold mt-0.5" style={{ color: '#0d9488' }}>
+                <p className="text-sm font-semibold mt-0.5" style={{ color: '#944C0D' }}>
                   {grado} — Sección {grupo}
                 </p>
               </div>
 
               {/* Badge */}
               <div className="flex items-center gap-2 px-4 py-2 rounded-full"
-                style={{ background: '#f0fdfa', border: '1.5px solid #99f6e4' }}>
+                style={{ background: '#FDF6F0', border: '1.5px solid #F6C499' }}>
                 <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse" />
                 <span className="text-xs font-bold text-teal-700">Código único e intransferible</span>
               </div>
@@ -338,7 +338,7 @@ export default function MiQrPage() {
               size={460}
               level="H"
               bgColor="#ffffff"
-              fgColor="#0F172A"
+              fgColor="#231E1B"
             />
           </div>
 
@@ -347,7 +347,7 @@ export default function MiQrPage() {
             onClick={handleDescargar}
             disabled={descargando}
             className="w-full flex items-center justify-center gap-2.5 py-3.5 rounded-2xl text-sm font-black text-white transition-all hover:opacity-90 active:scale-[.98] disabled:opacity-60"
-            style={{ background: 'linear-gradient(135deg,#0F766E,#14B8A6)', boxShadow: '0 8px 24px rgba(13,148,136,.3)' }}>
+            style={{ background: 'linear-gradient(135deg,#763F0F,#B86114)', boxShadow: '0 8px 24px rgba(148,76,13,.3)' }}>
             {descargando ? (
               <>
                 <svg className="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none">
@@ -368,7 +368,7 @@ export default function MiQrPage() {
         </>
       ) : (
         <div className="rounded-3xl p-12 flex items-center justify-center"
-          style={{ background: 'white', border: '1.5px solid #ccfbf1' }}>
+          style={{ background: 'white', border: '1.5px solid #FBE2CC' }}>
           <p className="text-sm text-slate-400 font-medium">
             Tu código QR aún no fue generado. Contacta al administrador.
           </p>
@@ -377,7 +377,7 @@ export default function MiQrPage() {
 
       {/* Instrucción */}
       <div className="w-full rounded-2xl p-4 flex items-start gap-3"
-        style={{ background: '#f0fdfa', border: '1.5px solid #ccfbf1' }}>
+        style={{ background: '#FDF6F0', border: '1.5px solid #FBE2CC' }}>
         <svg className="text-teal-400 shrink-0 mt-0.5" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
           <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
         </svg>

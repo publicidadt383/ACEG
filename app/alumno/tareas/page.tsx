@@ -106,7 +106,7 @@ export default function AlumnoTareasPage() {
       }[]).map(t => {
         const unidId  = sesToUnid.get(t.sesion_id) ?? ''
         const asigId  = unidToAsig.get(unidId) ?? ''
-        const meta    = asigMeta.get(asigId) ?? { nombre: 'Curso', color: '#0d9488' }
+        const meta    = asigMeta.get(asigId) ?? { nombre: 'Curso', color: '#944C0D' }
         const entregada = entregaMap.has(t.id)
         return {
           id:            t.id,
@@ -174,7 +174,7 @@ export default function AlumnoTareasPage() {
               className="flex items-center gap-2 px-4 py-2.5 rounded-2xl text-sm font-black transition-all"
               style={activo
                 ? { background: t.color, color: 'white', boxShadow: `0 4px 16px ${t.color}40` }
-                : { background: 'white', color: '#64748b', border: '1.5px solid #e2e8f0' }}>
+                : { background: 'white', color: '#6B625D', border: '1.5px solid #DCDEDE' }}>
               {t.label}
               <span className="text-[11px] font-black px-1.5 py-0.5 rounded-full min-w-[20px] text-center"
                 style={activo
@@ -190,10 +190,10 @@ export default function AlumnoTareasPage() {
       {/* Lista */}
       {lista.length === 0 ? (
         <div className="rounded-2xl flex flex-col items-center justify-center py-20 gap-4"
-          style={{ background: 'white', border: '1.5px solid #e2e8f0' }}>
+          style={{ background: 'white', border: '1.5px solid #DCDEDE' }}>
           <div className="w-14 h-14 rounded-2xl flex items-center justify-center"
-            style={{ background: '#f8fafc', border: '2px dashed #e2e8f0' }}>
-            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#cbd5e1" strokeWidth="1.5">
+            style={{ background: '#F7F7F6', border: '2px dashed #DCDEDE' }}>
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#C9C5C1" strokeWidth="1.5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
             </svg>
           </div>
@@ -212,13 +212,13 @@ export default function AlumnoTareasPage() {
             const vencida   = t.fecha_limite && new Date(t.fecha_limite) < ahora
             const hoyFin    = new Date(); hoyFin.setHours(23, 59, 59)
             const proxima   = t.fecha_limite && new Date(t.fecha_limite) <= hoyFin && !vencida
-            const notaColor = t.nota == null ? '#94a3b8' : t.nota >= 14 ? '#16a34a' : t.nota >= 11 ? '#d97706' : '#dc2626'
+            const notaColor = t.nota == null ? '#8B837E' : t.nota >= 14 ? '#16a34a' : t.nota >= 11 ? '#d97706' : '#dc2626'
 
             return (
               <button key={t.id}
                 onClick={() => router.push(`/alumno/tareas/${t.id}`)}
                 className="w-full flex items-stretch rounded-2xl overflow-hidden text-left transition-all hover:scale-[1.005] active:scale-[.998]"
-                style={{ background: 'white', border: '1.5px solid #e2e8f0', boxShadow: '0 2px 8px rgba(0,0,0,.04)' }}>
+                style={{ background: 'white', border: '1.5px solid #DCDEDE', boxShadow: '0 2px 8px rgba(0,0,0,.04)' }}>
 
                 {/* Acento lateral */}
                 <div className="w-1 shrink-0" style={{ background: t.curso_color }} />
@@ -248,14 +248,14 @@ export default function AlumnoTareasPage() {
                       )}
                       {t.entregada && t.nota == null && (
                         <span className="text-[10px] font-black px-2 py-0.5 rounded-full"
-                          style={{ background: '#EFF3FA', color: '#143875' }}>
+                          style={{ background: '#F3F1EF', color: '#2A2420' }}>
                           Entregada
                         </span>
                       )}
                     </div>
                     <p className="text-sm font-black text-slate-800 truncate">{t.titulo}</p>
                     {(t.unidad_nombre || t.sesion_titulo) && (
-                      <p className="text-[10px] font-semibold truncate mt-0.5" style={{ color: '#94a3b8' }}>
+                      <p className="text-[10px] font-semibold truncate mt-0.5" style={{ color: '#8B837E' }}>
                         {t.unidad_nombre}{t.unidad_nombre && t.sesion_titulo ? ' · ' : ''}{t.sesion_titulo}
                       </p>
                     )}
@@ -268,7 +268,7 @@ export default function AlumnoTareasPage() {
                   <div className="shrink-0 text-right space-y-0.5">
                     {t.fecha_limite ? (
                       <p className="text-[11px] font-bold"
-                        style={{ color: vencida ? '#ef4444' : proxima ? '#f97316' : '#94a3b8' }}>
+                        style={{ color: vencida ? '#ef4444' : proxima ? '#f97316' : '#8B837E' }}>
                         {vencida ? 'Venció ' : proxima ? 'Hoy · ' : ''}{formatFecha(t.fecha_limite)}
                       </p>
                     ) : (
@@ -278,7 +278,7 @@ export default function AlumnoTareasPage() {
                   </div>
 
                   {/* Flecha */}
-                  <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="#cbd5e1" strokeWidth="2.5" className="shrink-0">
+                  <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="#C9C5C1" strokeWidth="2.5" className="shrink-0">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/>
                   </svg>
                 </div>

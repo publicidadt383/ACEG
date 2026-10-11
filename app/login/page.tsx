@@ -17,17 +17,19 @@ import Spinner from '@/components/Spinner'
    ──────────────────────────────────────────────────────────────── */
 
 const C = {
-  bg:        '#F6F8FB',  // azul muy lavado, casi blanco
+  bg:        '#F5F5F4',  // acero muy claro
   card:      '#FFFFFF',
-  border:    '#E4E8EF',
-  borderHi:  '#CBD3DE',
-  navy:      '#0E0F21',  // azul noche de la marca ACEG
-  navyHi:    '#1C1E3A',
-  navySoft:  '#D9042F',
-  ink:       '#0F172A',
-  inkSoft:   '#475569',
-  inkMuted:  '#94A3B8',
-  ring:      'rgba(14,15,33,.10)',
+  border:    '#DFE0E0',
+  borderHi:  '#DAD4CF',
+  navy:      '#1B1714',  // carbón (hierro fundido)
+  navyHi:    '#312A25',
+  navySoft:  '#D9042F',  // rojo ACEG
+  rojo:      '#D9042F',
+  rojoHi:    '#B00326',
+  ink:       '#231E1B',
+  inkSoft:   '#5C5450',
+  inkMuted:  '#8B837E',
+  ring:      'rgba(27,23,20,.10)',
   amber:     '#B45309',
   amberSoft: '#FEF3C7',
   danger:    '#B91C1C',
@@ -120,10 +122,10 @@ function LoginForm() {
   return (
     <div ref={wrapRef} className="habich-login min-h-screen flex flex-col" style={{ color: C.ink }}>
 
-      {/* ── Fondo: foto de la escuela + scrim ─────────────────────── */}
+      {/* ── Fondo: foto de cocina + scrim ─────────────────────── */}
       <div aria-hidden className="login-photo">
         <Image
-          src="/foto_colegio.jpg"
+          src="/landing/chef-cocina.jpg"
           alt=""
           fill
           priority
@@ -319,7 +321,7 @@ function LoginForm() {
       {/* ── Estilos locales ──────────────────────────────────────── */}
       <style>{`
         .habich-login {
-          font-family: var(--font-manrope), -apple-system, 'Segoe UI', system-ui, sans-serif;
+          font-family: var(--font-barlow), -apple-system, 'Segoe UI', system-ui, sans-serif;
           font-feature-settings: 'ss01' 1, 'cv11' 1;
           -webkit-font-smoothing: antialiased;
           --mx: 0; --my: 0;
@@ -338,8 +340,8 @@ function LoginForm() {
         .login-scrim {
           position: fixed; inset: 0; z-index: 1; pointer-events: none;
           background:
-            radial-gradient(120% 80% at 50% 30%, transparent 0%, rgba(11,36,71,.35) 60%, rgba(8,17,33,.7) 100%),
-            linear-gradient(180deg, rgba(11,36,71,.55) 0%, rgba(11,36,71,.35) 35%, rgba(15,23,42,.75) 100%);
+            radial-gradient(120% 80% at 50% 30%, transparent 0%, rgba(29,24,21,.35) 60%, rgba(20,16,14,.7) 100%),
+            linear-gradient(180deg, rgba(29,24,21,.55) 0%, rgba(29,24,21,.35) 35%, rgba(35,30,27,.75) 100%);
         }
 
         /* Blobs ambient flotantes (movimiento orgánico) */
@@ -350,12 +352,12 @@ function LoginForm() {
         }
         .blob-a {
           top: -10%; left: -10%; width: 520px; height: 520px;
-          background: radial-gradient(circle, rgba(30,64,175,.45), transparent 70%);
+          background: radial-gradient(circle, rgba(217,4,47,.45), transparent 70%);
           animation: drift-a 24s ease-in-out infinite;
         }
         .blob-b {
           bottom: -15%; right: -10%; width: 580px; height: 580px;
-          background: radial-gradient(circle, rgba(56,189,248,.4), transparent 70%);
+          background: radial-gradient(circle, rgba(240,138,36,.4), transparent 70%);
           animation: drift-b 30s ease-in-out infinite;
         }
 
@@ -378,7 +380,7 @@ function LoginForm() {
         /* Glow azul difuso DETRÁS (no encima de la insignia) */
         .logo-glow {
           position: absolute; inset: -28px; border-radius: 50%;
-          background: radial-gradient(circle, rgba(147,197,253,.55), transparent 65%);
+          background: radial-gradient(circle, rgba(253,147,168,.55), transparent 65%);
           filter: blur(26px);
           animation: pulse-glow 4.5s ease-in-out infinite;
           z-index: 0;
@@ -428,7 +430,7 @@ function LoginForm() {
             inset 0 1px 0 rgba(255,255,255,.8),
             0 1px 2px rgba(0,0,0,.05),
             0 8px 24px rgba(0,0,0,.12),
-            0 30px 64px rgba(11,36,71,.28);
+            0 30px 64px rgba(29,24,21,.28);
           overflow: hidden;
           transform: translate3d(calc(var(--mx) * 4px), calc(var(--my) * 3px), 0);
           transition: transform .35s cubic-bezier(.2,.7,.2,1);
@@ -438,8 +440,8 @@ function LoginForm() {
         .card-glow {
           position: absolute; inset: -1px; z-index: -1; border-radius: 20px;
           background:
-            radial-gradient(60% 50% at 50% 100%, rgba(30,64,175,.5), transparent 70%),
-            radial-gradient(70% 60% at 50% 0%, rgba(56,189,248,.35), transparent 70%);
+            radial-gradient(60% 50% at 50% 100%, rgba(217,4,47,.5), transparent 70%),
+            radial-gradient(70% 60% at 50% 0%, rgba(240,138,36,.35), transparent 70%);
           filter: blur(20px);
           animation: pulse-card 5.5s ease-in-out infinite;
           pointer-events: none;
@@ -480,7 +482,7 @@ function LoginForm() {
           background: #FFFFFF;
           border: 1px solid ${C.border};
           border-radius: 10px;
-          font-family: var(--font-manrope), sans-serif;
+          font-family: var(--font-barlow), sans-serif;
           font-size: 14.5px;
           font-weight: 500;
           color: ${C.ink};
@@ -501,18 +503,18 @@ function LoginForm() {
           width: 100%;
           height: 46px;
           margin-top: 4px;
-          background: ${C.navy};
+          background: ${C.rojo};
           color: #FFFFFF;
-          border: 1px solid ${C.navy};
+          border: 1px solid ${C.rojo};
           border-radius: 10px;
-          font-family: var(--font-manrope), sans-serif;
-          font-size: 14.5px;
-          font-weight: 600;
+          font-family: var(--font-barlow-cond), sans-serif;
+          font-size: 18px;
+          font-weight: 700;
           letter-spacing: -.003em;
           cursor: pointer;
           display: flex; align-items: center; justify-content: center; gap: 8px;
           transition: background .15s ease, border-color .15s ease, box-shadow .15s ease, transform .1s ease;
-          box-shadow: 0 1px 2px rgba(11,36,71,.18), 0 6px 14px rgba(11,36,71,.22);
+          box-shadow: 0 1px 2px rgba(29,24,21,.18), 0 6px 14px rgba(29,24,21,.22);
           overflow: hidden;
         }
         .login-submit::after {
@@ -522,9 +524,9 @@ function LoginForm() {
           transition: transform .9s cubic-bezier(.4,0,.2,1);
         }
         .login-submit:hover:not(:disabled) {
-          background: ${C.navyHi};
-          border-color: ${C.navyHi};
-          box-shadow: 0 2px 4px rgba(11,36,71,.28), 0 14px 28px rgba(11,36,71,.36);
+          background: ${C.rojoHi};
+          border-color: ${C.rojoHi};
+          box-shadow: 0 2px 4px rgba(29,24,21,.28), 0 14px 28px rgba(29,24,21,.36);
           transform: translateY(-1px);
         }
         .login-submit:hover:not(:disabled)::after { transform: translateX(110%); }
@@ -532,7 +534,7 @@ function LoginForm() {
         .login-submit:disabled { opacity: .65; cursor: not-allowed; }
         .login-submit:focus-visible {
           outline: none;
-          box-shadow: 0 0 0 4px rgba(30,64,175,.3), 0 6px 14px rgba(11,36,71,.22);
+          box-shadow: 0 0 0 4px rgba(217,4,47,.3), 0 6px 14px rgba(29,24,21,.22);
         }
 
         /* ── Reveals escalonados (entrada cinematográfica) ── */

@@ -94,7 +94,7 @@ export default function AlumnoCalendarioPage() {
           titulo: t.titulo as string,
           fecha_limite: (t.fecha_limite as string).slice(0, 10),
           cursoNombre: curso?.nombre ?? 'Curso',
-          cursoColor:  curso?.color  ?? '#0d9488',
+          cursoColor:  curso?.color  ?? '#944C0D',
           entregada: entregaSet.has(t.id),
         }
       }))
@@ -141,7 +141,7 @@ export default function AlumnoCalendarioPage() {
         <button
           onClick={() => { setMes({ year: new Date().getFullYear(), month: new Date().getMonth() }); setSelDate(today) }}
           className="px-3 py-1.5 rounded-xl text-xs font-black transition-all"
-          style={{ background: '#f0fdfa', color: '#0d9488', border: '1.5px solid #99f6e4' }}>
+          style={{ background: '#FDF6F0', color: '#944C0D', border: '1.5px solid #F6C499' }}>
           Hoy
         </button>
       </div>
@@ -150,10 +150,10 @@ export default function AlumnoCalendarioPage() {
 
         {/* ── Calendario ─────────────────────────── */}
         <div className="rounded-2xl overflow-hidden"
-          style={{ background: 'white', border: '1.5px solid #ccfbf1', boxShadow: '0 4px 24px rgba(13,148,136,.06)' }}>
+          style={{ background: 'white', border: '1.5px solid #FBE2CC', boxShadow: '0 4px 24px rgba(148,76,13,.06)' }}>
 
           {/* Mes nav */}
-          <div className="flex items-center justify-between px-5 py-4" style={{ borderBottom: '1px solid #f0fdfa' }}>
+          <div className="flex items-center justify-between px-5 py-4" style={{ borderBottom: '1px solid #FDF6F0' }}>
             <button onClick={() => setMes(p => { const d = new Date(p.year, p.month - 1); return { year: d.getFullYear(), month: d.getMonth() } })}
               className="w-8 h-8 rounded-xl flex items-center justify-center text-slate-400 transition-all hover:bg-teal-50">
               <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
@@ -191,12 +191,12 @@ export default function AlumnoCalendarioPage() {
                   onClick={() => setSelDate(iso)}
                   className="relative flex flex-col items-center justify-start pt-1.5 pb-1 h-14 rounded-xl transition-all"
                   style={
-                    isSel  ? { background: '#0d9488', color: 'white' }
-                    : isToday ? { background: '#f0fdfa', color: '#0d9488', border: '1.5px solid #5eead4' }
-                    : { color: isPast ? '#cbd5e1' : '#475569' }
+                    isSel  ? { background: '#944C0D', color: 'white' }
+                    : isToday ? { background: '#FDF6F0', color: '#944C0D', border: '1.5px solid #EA9F5E' }
+                    : { color: isPast ? '#C9C5C1' : '#5C5450' }
                   }
-                  onMouseEnter={e => { if (!isSel) e.currentTarget.style.background = '#f0fdfa' }}
-                  onMouseLeave={e => { if (!isSel) e.currentTarget.style.background = isToday ? '#f0fdfa' : 'transparent' }}>
+                  onMouseEnter={e => { if (!isSel) e.currentTarget.style.background = '#FDF6F0' }}
+                  onMouseLeave={e => { if (!isSel) e.currentTarget.style.background = isToday ? '#FDF6F0' : 'transparent' }}>
                   <span className="text-[13px] font-black leading-none">{day}</span>
                   {tasks.length > 0 && (
                     <div className="flex gap-0.5 mt-1 flex-wrap justify-center" style={{ maxWidth: 36 }}>
@@ -212,7 +212,7 @@ export default function AlumnoCalendarioPage() {
           </div>
 
           {/* Stats strip */}
-          <div className="flex items-center gap-5 px-5 py-3" style={{ borderTop: '1px solid #f0fdfa', background: '#f8fffe' }}>
+          <div className="flex items-center gap-5 px-5 py-3" style={{ borderTop: '1px solid #FDF6F0', background: '#FFFBF8' }}>
             <div className="text-[11px] text-slate-400">
               <span className="font-black text-slate-600">{tareasEsteMes.length}</span> tareas este mes
             </div>
@@ -234,9 +234,9 @@ export default function AlumnoCalendarioPage() {
 
         {/* ── Lista del día seleccionado ─────────── */}
         <div className="rounded-2xl overflow-hidden flex flex-col"
-          style={{ background: 'white', border: '1.5px solid #ccfbf1', boxShadow: '0 4px 24px rgba(13,148,136,.06)', minHeight: 200 }}>
+          style={{ background: 'white', border: '1.5px solid #FBE2CC', boxShadow: '0 4px 24px rgba(148,76,13,.06)', minHeight: 200 }}>
 
-          <div className="px-5 py-4" style={{ borderBottom: '1px solid #f0fdfa' }}>
+          <div className="px-5 py-4" style={{ borderBottom: '1px solid #FDF6F0' }}>
             <p className="text-sm font-black text-slate-700 capitalize">{labelDia(selDate, today)}</p>
             <p className="text-[11px] text-slate-400 mt-0.5">
               {selTareas.length === 0 ? 'Sin tareas' : `${selTareas.length} ${selTareas.length === 1 ? 'tarea' : 'tareas'}`}
@@ -246,8 +246,8 @@ export default function AlumnoCalendarioPage() {
           <div className="flex-1 overflow-y-auto p-3 space-y-2">
             {selTareas.length === 0 ? (
               <div className="flex flex-col items-center justify-center py-12 gap-3">
-                <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: '#f0fdfa' }}>
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="#5eead4" strokeWidth="1.5">
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: '#FDF6F0' }}>
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="#EA9F5E" strokeWidth="1.5">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
                   </svg>
                 </div>
@@ -257,7 +257,7 @@ export default function AlumnoCalendarioPage() {
               selTareas.map(t => {
                 const overdue = !t.entregada && t.fecha_limite < today
                 const bgColor = t.entregada ? '#f0fdf4' : overdue ? '#fff1f2' : 'white'
-                const brColor = t.entregada ? '#bbf7d0' : overdue ? '#fecdd3' : '#e2e8f0'
+                const brColor = t.entregada ? '#bbf7d0' : overdue ? '#fecdd3' : '#DCDEDE'
                 const dotColor = t.entregada ? '#22c55e' : overdue ? '#ef4444' : t.cursoColor
 
                 return (
@@ -295,8 +295,8 @@ export default function AlumnoCalendarioPage() {
         if (!proximas.length) return null
         return (
           <div className="rounded-2xl overflow-hidden"
-            style={{ background: 'white', border: '1.5px solid #ccfbf1', boxShadow: '0 4px 24px rgba(13,148,136,.06)' }}>
-            <div className="px-5 py-4" style={{ borderBottom: '1px solid #f0fdfa' }}>
+            style={{ background: 'white', border: '1.5px solid #FBE2CC', boxShadow: '0 4px 24px rgba(148,76,13,.06)' }}>
+            <div className="px-5 py-4" style={{ borderBottom: '1px solid #FDF6F0' }}>
               <p className="text-sm font-black text-slate-700">Próximas entregas</p>
             </div>
             <div className="divide-y" style={{ '--tw-divide-opacity': 1 } as React.CSSProperties}>
@@ -308,7 +308,7 @@ export default function AlumnoCalendarioPage() {
                     <p className="text-[10px] text-slate-400">{t.cursoNombre}</p>
                   </div>
                   <span className="text-[11px] font-black shrink-0"
-                    style={{ color: t.fecha_limite === today ? '#f97316' : '#64748b' }}>
+                    style={{ color: t.fecha_limite === today ? '#f97316' : '#6B625D' }}>
                     {t.fecha_limite === today ? 'Hoy' : formatFecha(t.fecha_limite)}
                   </span>
                 </div>

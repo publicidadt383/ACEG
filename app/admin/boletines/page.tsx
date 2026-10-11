@@ -32,7 +32,7 @@ function notaLiteral(n: number | null) {
   return 'C'
 }
 function notaColor(n: number | null) {
-  if (n === null) return '#94a3b8'
+  if (n === null) return '#8B837E'
   if (n >= 14) return '#16a34a'
   if (n >= 11) return '#d97706'
   return '#ef4444'
@@ -192,7 +192,7 @@ export function BoletinesContent({ embedded = false }: BoletinesProps = {}) {
         const notas       = calificadas.map(e => e.calificaciones[0].nota)
         const promedio    = notas.length > 0 ? Math.round(notas.reduce((s, n) => s + n, 0) / notas.length * 10) / 10 : null
         return {
-          asigId: a.id, nombre: a.cursos?.nombre ?? 'Curso', color: a.cursos?.color ?? '#143875',
+          asigId: a.id, nombre: a.cursos?.nombre ?? 'Curso', color: a.cursos?.color ?? '#2A2420',
           promedio,
         }
       }),
@@ -212,8 +212,8 @@ export function BoletinesContent({ embedded = false }: BoletinesProps = {}) {
     const GOLD2  = '#FDF3DC'
     const WHITE  = '#FFFFFF'
     const DARK   = '#1C1C1C'
-    const GRAY   = '#64748B'
-    const GRAY2  = '#F3F4F6'
+    const GRAY   = '#6B625D'
+    const GRAY2  = '#F6F4F3'
 
     const W      = 600
     const ROW    = 32
@@ -352,19 +352,19 @@ export function BoletinesContent({ embedded = false }: BoletinesProps = {}) {
 
       // Separador horizontal
       if (idx < alumno.cursos.length - 1) {
-        ctx.strokeStyle = '#E5E7EB'; ctx.lineWidth = 0.5
+        ctx.strokeStyle = '#EBE8E5'; ctx.lineWidth = 0.5
         ctx.beginPath(); ctx.moveTo(16, ry + ROW); ctx.lineTo(W - 16, ry + ROW); ctx.stroke()
       }
     })
 
     // Línea borde tabla
     const tBottom = tY + 34 + ROWS * ROW
-    ctx.strokeStyle = '#E5E7EB'; ctx.lineWidth = 1
+    ctx.strokeStyle = '#EBE8E5'; ctx.lineWidth = 1
     ctx.strokeRect(16, tY, tW, 34 + ROWS * ROW)
 
     // Separadores verticales columnas en cuerpo
     ;[COL[1], COL[2]].forEach(x => {
-      ctx.strokeStyle = '#E5E7EB'; ctx.lineWidth = 0.5
+      ctx.strokeStyle = '#EBE8E5'; ctx.lineWidth = 0.5
       ctx.beginPath(); ctx.moveTo(x, tY + 34); ctx.lineTo(x, tBottom); ctx.stroke()
     })
 
@@ -468,7 +468,7 @@ export function BoletinesContent({ embedded = false }: BoletinesProps = {}) {
       {/* Header (oculto en embedded) */}
       {!embedded && (
       <header className="sticky top-0 z-50 px-4 py-3 flex items-center gap-3"
-        style={{ background: 'white', borderBottom: '1px solid #E4E8EF', boxShadow: '0 1px 12px rgba(107,15,26,.06)', borderTop: '3px solid #0B2447' }}>
+        style={{ background: 'white', borderBottom: '1px solid #DFE0E0', boxShadow: '0 1px 12px rgba(107,15,26,.06)', borderTop: '3px solid #1D1815' }}>
         <Link href="/admin" className="flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-indigo-900 transition-colors">
           <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
             <polyline points="15 18 9 12 15 6"/>
@@ -478,7 +478,7 @@ export function BoletinesContent({ embedded = false }: BoletinesProps = {}) {
         <span className="text-slate-300">/</span>
         <div className="flex items-center gap-2">
           <div className="w-6 h-6 rounded-lg flex items-center justify-center"
-            style={{ background: 'linear-gradient(135deg,#0B2447,#1E3A8A)' }}>
+            style={{ background: 'linear-gradient(135deg,#B00326,#B00326)' }}>
             <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth="2.5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
             </svg>
@@ -495,7 +495,7 @@ export function BoletinesContent({ embedded = false }: BoletinesProps = {}) {
           )}
           <select value={cicloId} onChange={e => cambiarCiclo(e.target.value)}
             className="text-xs font-bold px-3 py-1.5 rounded-lg outline-none"
-            style={{ background: '#F1F5F9', color: '#0B2447', border: '1.5px solid #fecdd3' }}>
+            style={{ background: '#EDEEEE', color: '#1D1815', border: '1.5px solid #fecdd3' }}>
             {ciclos.map(c => (
               <option key={c.id} value={c.id}>{c.nombre}{c.activo ? ' ★' : ''}</option>
             ))}
@@ -515,7 +515,7 @@ export function BoletinesContent({ embedded = false }: BoletinesProps = {}) {
           )}
           <select value={cicloId} onChange={e => cambiarCiclo(e.target.value)}
             className="text-xs font-bold px-3 py-1.5 rounded-lg outline-none"
-            style={{ background: '#F1F5F9', color: '#0B2447', border: '1.5px solid #fecdd3' }}>
+            style={{ background: '#EDEEEE', color: '#1D1815', border: '1.5px solid #fecdd3' }}>
             {ciclos.map(c => (
               <option key={c.id} value={c.id}>{c.nombre}{c.activo ? ' ★' : ''}</option>
             ))}
@@ -528,12 +528,12 @@ export function BoletinesContent({ embedded = false }: BoletinesProps = {}) {
         {/* Stats */}
         <div className="grid grid-cols-3 gap-3">
           {[
-            { label: 'Total estudiantes', value: alumnos.length, color: '#0B2447' },
-            { label: 'Salones',       value: salones.length, color: '#1E40AF' },
-            { label: 'Ciclo',         value: cicloActual?.nombre ?? '—', color: '#0d9488' },
+            { label: 'Total estudiantes', value: alumnos.length, color: '#1D1815' },
+            { label: 'Salones',       value: salones.length, color: '#D9042F' },
+            { label: 'Ciclo',         value: cicloActual?.nombre ?? '—', color: '#944C0D' },
           ].map(s => (
             <div key={s.label} className="rounded-2xl p-4 text-center"
-              style={{ background: 'white', border: '1.5px solid #E4E8EF', boxShadow: '0 2px 12px rgba(107,15,26,.05)' }}>
+              style={{ background: 'white', border: '1.5px solid #DFE0E0', boxShadow: '0 2px 12px rgba(107,15,26,.05)' }}>
               <p className="font-black text-xl" style={{ color: s.color }}>{s.value}</p>
               <p className="text-xs text-slate-400 font-semibold mt-0.5">{s.label}</p>
             </div>
@@ -555,13 +555,13 @@ export function BoletinesContent({ embedded = false }: BoletinesProps = {}) {
         {cargando ? (
           <div className="flex justify-center py-20">
             <svg className="animate-spin" width="28" height="28" viewBox="0 0 24 24" fill="none">
-              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="#0B2447" strokeWidth="4"/>
-              <path className="opacity-75" fill="#0B2447" d="M4 12a8 8 0 018-8v8z"/>
+              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="#1D1815" strokeWidth="4"/>
+              <path className="opacity-75" fill="#1D1815" d="M4 12a8 8 0 018-8v8z"/>
             </svg>
           </div>
         ) : alumnos.length === 0 ? (
           <div className="rounded-2xl py-16 text-center"
-            style={{ background: 'white', border: '1.5px solid #E4E8EF' }}>
+            style={{ background: 'white', border: '1.5px solid #DFE0E0' }}>
             <p className="text-slate-400 text-sm font-bold">No hay estudiantes matriculados en este ciclo</p>
           </div>
         ) : (
@@ -576,30 +576,30 @@ export function BoletinesContent({ embedded = false }: BoletinesProps = {}) {
                     onClick={() => { if (!isActive) cargarReporte(s); else { setSalonSel(null); setReportes([]) } }}
                     className="rounded-2xl p-4 text-left transition-all hover:-translate-y-0.5"
                     style={{
-                      background: isActive ? 'linear-gradient(135deg,#0B2447,#1E3A8A)' : 'white',
-                      border: isActive ? 'none' : '1.5px solid #E4E8EF',
+                      background: isActive ? 'linear-gradient(135deg,#B00326,#B00326)' : 'white',
+                      border: isActive ? 'none' : '1.5px solid #DFE0E0',
                       boxShadow: isActive ? '0 6px 20px rgba(107,15,26,.28)' : '0 2px 12px rgba(107,15,26,.05)',
                     }}>
                     <div className="flex items-start justify-between gap-2 mb-2">
                       <div className="w-8 h-8 rounded-xl flex items-center justify-center text-sm font-black"
-                        style={{ background: isActive ? 'rgba(255,255,255,.2)' : '#F1F5F9', color: isActive ? 'white' : '#0B2447' }}>
+                        style={{ background: isActive ? 'rgba(255,255,255,.2)' : '#EDEEEE', color: isActive ? 'white' : '#1D1815' }}>
                         {s.grupo}
                       </div>
-                      <span className="text-lg font-black" style={{ color: isActive ? 'rgba(255,255,255,.85)' : '#64748b' }}>
+                      <span className="text-lg font-black" style={{ color: isActive ? 'rgba(255,255,255,.85)' : '#6B625D' }}>
                         {s.count}
                       </span>
                     </div>
-                    <p className="text-xs font-black leading-tight" style={{ color: isActive ? 'white' : '#1e293b' }}>
+                    <p className="text-xs font-black leading-tight" style={{ color: isActive ? 'white' : '#2A2420' }}>
                       {s.grado}
                     </p>
                     {s.salon_nombre && (
                       <p className="text-[10px] font-semibold mt-0.5 truncate"
-                        style={{ color: isActive ? 'rgba(255,255,255,.7)' : '#94a3b8' }}>
+                        style={{ color: isActive ? 'rgba(255,255,255,.7)' : '#8B837E' }}>
                         {s.salon_nombre}
                       </p>
                     )}
                     <p className="text-[10px] mt-1.5 font-semibold"
-                      style={{ color: isActive ? 'rgba(255,255,255,.6)' : '#cbd5e1' }}>
+                      style={{ color: isActive ? 'rgba(255,255,255,.6)' : '#C9C5C1' }}>
                       {s.count} {s.count === 1 ? 'alumno' : 'alumnos'}
                     </p>
                   </button>
@@ -610,8 +610,8 @@ export function BoletinesContent({ embedded = false }: BoletinesProps = {}) {
             {/* Panel del salón seleccionado */}
             {salonSel && (
               <div className="rounded-2xl overflow-hidden"
-                style={{ background: 'white', border: '1.5px solid #E4E8EF', boxShadow: '0 4px 20px rgba(107,15,26,.06)' }}>
-                <div className="h-1" style={{ background: 'linear-gradient(90deg,#0B2447,#1E3A8A,#1E40AF)' }} />
+                style={{ background: 'white', border: '1.5px solid #DFE0E0', boxShadow: '0 4px 20px rgba(107,15,26,.06)' }}>
+                <div className="h-1" style={{ background: 'linear-gradient(90deg,#B00326,#B00326,#D9042F)' }} />
 
                 {/* Cabecera del panel */}
                 <div className="p-4 flex items-center justify-between gap-3 flex-wrap border-b border-slate-100">
@@ -628,7 +628,7 @@ export function BoletinesContent({ embedded = false }: BoletinesProps = {}) {
                     onClick={descargarTodos}
                     disabled={dlActivo || cargandoReporte || reportes.length === 0}
                     className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-black text-white transition-all hover:opacity-90 disabled:opacity-50"
-                    style={{ background: 'linear-gradient(135deg,#0B2447,#1E3A8A)', boxShadow: '0 3px 12px rgba(107,15,26,.25)' }}>
+                    style={{ background: 'linear-gradient(135deg,#B00326,#B00326)', boxShadow: '0 3px 12px rgba(107,15,26,.25)' }}>
                     <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth="2.5">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
                     </svg>
@@ -639,8 +639,8 @@ export function BoletinesContent({ embedded = false }: BoletinesProps = {}) {
                 {cargandoReporte ? (
                   <div className="flex flex-col items-center justify-center py-12 gap-3">
                     <svg className="animate-spin" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="#0B2447" strokeWidth="4"/>
-                      <path className="opacity-75" fill="#0B2447" d="M4 12a8 8 0 018-8v8z"/>
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="#1D1815" strokeWidth="4"/>
+                      <path className="opacity-75" fill="#1D1815" d="M4 12a8 8 0 018-8v8z"/>
                     </svg>
                     <p className="text-xs text-slate-400 font-semibold">Cargando calificaciones…</p>
                   </div>
@@ -661,7 +661,7 @@ export function BoletinesContent({ embedded = false }: BoletinesProps = {}) {
                           <div className="flex items-center gap-3 px-4 py-3 hover:bg-indigo-50/30 transition-colors">
                             {/* Avatar */}
                             <div className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-sm font-black text-white"
-                              style={{ background: 'linear-gradient(135deg,#0B2447,#1E3A8A)' }}>
+                              style={{ background: 'linear-gradient(135deg,#B00326,#B00326)' }}>
                               {(al.apellidos ?? al.nombre).charAt(0).toUpperCase()}
                             </div>
                             {/* Nombre + stats */}
@@ -682,7 +682,7 @@ export function BoletinesContent({ embedded = false }: BoletinesProps = {}) {
                                 className="w-8 h-8 rounded-lg flex items-center justify-center transition-all hover:bg-indigo-100"
                                 title={isOpen ? 'Ocultar cursos' : 'Ver cursos'}>
                                 <svg width="14" height="14" fill="none" viewBox="0 0 24 24"
-                                  stroke="#0B2447" strokeWidth="2"
+                                  stroke="#1D1815" strokeWidth="2"
                                   className={`transition-transform ${isOpen ? 'rotate-180' : ''}`}>
                                   <polyline points="6 9 12 15 18 9"/>
                                 </svg>
@@ -692,7 +692,7 @@ export function BoletinesContent({ embedded = false }: BoletinesProps = {}) {
                                 disabled={dlActivo}
                                 title="Descargar boletín"
                                 className="w-8 h-8 rounded-lg flex items-center justify-center transition-all hover:opacity-80 disabled:opacity-40"
-                                style={{ background: 'linear-gradient(135deg,#0B2447,#1E3A8A)' }}>
+                                style={{ background: 'linear-gradient(135deg,#B00326,#B00326)' }}>
                                 <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth="2.5">
                                   <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
                                 </svg>
@@ -702,14 +702,14 @@ export function BoletinesContent({ embedded = false }: BoletinesProps = {}) {
 
                           {/* Detalle cursos (expandible) */}
                           {isOpen && (
-                            <div className="px-4 pb-4 space-y-3" style={{ background: '#F6F8FB' }}>
+                            <div className="px-4 pb-4 space-y-3" style={{ background: '#F5F5F4' }}>
 
                               {/* ── Tabla de cursos ── */}
                               <div className="rounded-xl overflow-hidden"
-                                style={{ border: '1px solid #E4E8EF' }}>
+                                style={{ border: '1px solid #DFE0E0' }}>
                                 <table className="w-full text-xs">
                                   <thead>
-                                    <tr style={{ background: '#F1F5F9' }}>
+                                    <tr style={{ background: '#EDEEEE' }}>
                                       <th className="text-left px-3 py-2 font-black text-slate-500 uppercase tracking-wider">Curso</th>
                                       <th className="text-center px-3 py-2 font-black text-slate-500 uppercase tracking-wider w-16">Promedio</th>
                                       <th className="text-center px-3 py-2 font-black text-slate-500 uppercase tracking-wider w-16">Literal</th>
@@ -718,7 +718,7 @@ export function BoletinesContent({ embedded = false }: BoletinesProps = {}) {
                                   <tbody>
                                     {al.cursos.map((c, i) => (
                                       <tr key={c.asigId}
-                                        style={{ background: i % 2 ? '#F6F8FB' : 'white', borderTop: '1px solid #f1f5f9' }}>
+                                        style={{ background: i % 2 ? '#F5F5F4' : 'white', borderTop: '1px solid #EDEEEE' }}>
                                         <td className="px-3 py-2.5">
                                           <div className="flex items-center gap-2">
                                             <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: c.color }} />
@@ -731,8 +731,8 @@ export function BoletinesContent({ embedded = false }: BoletinesProps = {}) {
                                         <td className="px-3 py-2.5 text-center">
                                           <span className="inline-flex items-center justify-center w-7 h-5 rounded-md text-[10px] font-black"
                                             style={{
-                                              background: c.promedio !== null ? notaColor(c.promedio) + '22' : '#f1f5f9',
-                                              color: c.promedio !== null ? notaColor(c.promedio) : '#94a3b8',
+                                              background: c.promedio !== null ? notaColor(c.promedio) + '22' : '#EDEEEE',
+                                              color: c.promedio !== null ? notaColor(c.promedio) : '#8B837E',
                                             }}>
                                             {notaLiteral(c.promedio)}
                                           </span>
@@ -762,7 +762,7 @@ export function BoletinesContent({ embedded = false }: BoletinesProps = {}) {
           <div className="rounded-3xl p-8 flex flex-col items-center gap-4 w-72"
             style={{ background: 'white', boxShadow: '0 24px 64px rgba(0,0,0,.2)' }}>
             <div className="w-14 h-14 rounded-2xl flex items-center justify-center"
-              style={{ background: 'linear-gradient(135deg,#0B2447,#1E3A8A)' }}>
+              style={{ background: 'linear-gradient(135deg,#B00326,#B00326)' }}>
               <svg className="animate-spin" width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="white" strokeWidth="4"/>
                 <path className="opacity-75" fill="white" d="M4 12a8 8 0 018-8v8z"/>
@@ -772,9 +772,9 @@ export function BoletinesContent({ embedded = false }: BoletinesProps = {}) {
               <p className="font-black text-slate-800 text-sm">Generando boletines…</p>
               <p className="text-xs text-slate-400 mt-1">{dlProgreso} de {dlTotal} estudiantes</p>
             </div>
-            <div className="w-full rounded-full overflow-hidden" style={{ background: '#E4E8EF', height: 8 }}>
+            <div className="w-full rounded-full overflow-hidden" style={{ background: '#DFE0E0', height: 8 }}>
               <div className="h-full rounded-full transition-all"
-                style={{ width: `${dlTotal > 0 ? (dlProgreso / dlTotal) * 100 : 0}%`, background: 'linear-gradient(90deg,#0B2447,#1E3A8A,#1E40AF)' }} />
+                style={{ width: `${dlTotal > 0 ? (dlProgreso / dlTotal) * 100 : 0}%`, background: 'linear-gradient(90deg,#B00326,#B00326,#D9042F)' }} />
             </div>
             <p className="text-[10px] text-slate-400 font-semibold">
               {dlTotal > 1 ? 'Se descargará un archivo .zip al finalizar' : 'Se descargará la imagen al finalizar'}

@@ -166,7 +166,7 @@ export default function AsistenciaPanel({ asignacionId, grado, grupo, color }: P
             { label: 'Alumnos',             val: alumnos.length },
           ].map(s => (
             <div key={s.label} className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white text-xs font-semibold text-slate-500"
-              style={{ border: '1.5px solid #f1f5f9' }}>
+              style={{ border: '1.5px solid #EDEEEE' }}>
               <span className="text-base font-black" style={{ color }}>{s.val}</span>
               {s.label}
             </div>
@@ -220,8 +220,8 @@ export default function AsistenciaPanel({ asignacionId, grado, grupo, color }: P
                   className="flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold transition-all text-left"
                   style={{
                     background: actual === true ? `${color}12` : actual === false ? '#fff1f2' : '#fafafa',
-                    border: `1.5px solid ${actual === true ? color + '40' : actual === false ? '#fecdd3' : '#f1f5f9'}`,
-                    color: actual === true ? color : actual === false ? '#e11d48' : '#64748b',
+                    border: `1.5px solid ${actual === true ? color + '40' : actual === false ? '#fecdd3' : '#EDEEEE'}`,
+                    color: actual === true ? color : actual === false ? '#e11d48' : '#6B625D',
                   }}>
                   <span style={{ fontSize: 14 }}>{actual === true ? '✓' : actual === false ? '✗' : '○'}</span>
                   <span className="truncate">{displayAlumno(a)}</span>
@@ -234,7 +234,7 @@ export default function AsistenciaPanel({ asignacionId, grado, grupo, color }: P
 
       {/* ── Sin fechas ── */}
       {fechas.length === 0 && !tomarHoy && (
-        <div className="rounded-2xl py-20 text-center bg-white" style={{ border: '1.5px solid #f1f5f9' }}>
+        <div className="rounded-2xl py-20 text-center bg-white" style={{ border: '1.5px solid #EDEEEE' }}>
           <p className="text-slate-300 text-sm font-semibold">Sin clases registradas aún</p>
           <p className="text-slate-300 text-xs mt-1">Usa &ldquo;Tomar asistencia&rdquo; para empezar</p>
         </div>
@@ -242,14 +242,14 @@ export default function AsistenciaPanel({ asignacionId, grado, grupo, color }: P
 
       {/* ── Grid de asistencia ── */}
       {fechas.length > 0 && (
-        <div className="rounded-2xl overflow-hidden bg-white" style={{ border: '1.5px solid #f1f5f9' }}>
+        <div className="rounded-2xl overflow-hidden bg-white" style={{ border: '1.5px solid #EDEEEE' }}>
           <div className="overflow-x-auto">
             <table className="w-full border-collapse" style={{ minWidth: `${300 + fechas.length * 56}px` }}>
               <thead>
-                <tr style={{ background: '#fafafa', borderBottom: '1.5px solid #f1f5f9' }}>
+                <tr style={{ background: '#fafafa', borderBottom: '1.5px solid #EDEEEE' }}>
                   {/* Columna nombre */}
                   <th className="sticky left-0 z-10 text-left px-4 py-3 text-[10px] font-black uppercase tracking-widest text-slate-400 bg-white"
-                    style={{ minWidth: 200, borderRight: '1px solid #f1f5f9' }}>
+                    style={{ minWidth: 200, borderRight: '1px solid #EDEEEE' }}>
                     Estudiante
                   </th>
                   {/* Columnas por fecha */}
@@ -281,12 +281,12 @@ export default function AsistenciaPanel({ asignacionId, grado, grupo, color }: P
               <tbody>
                 {alumnos.map((a, idx) => {
                   const { pct, presentes } = statsAlumno(a.id)
-                  const pctColor = pct === null ? '#94a3b8' : pct >= 75 ? '#16a34a' : pct >= 50 ? '#d97706' : '#e11d48'
+                  const pctColor = pct === null ? '#8B837E' : pct >= 75 ? '#16a34a' : pct >= 50 ? '#d97706' : '#e11d48'
                   return (
-                    <tr key={a.id} style={{ background: idx % 2 === 0 ? 'white' : '#fafcff', borderBottom: '1px solid #f8fafc' }}>
+                    <tr key={a.id} style={{ background: idx % 2 === 0 ? 'white' : '#FDFCFC', borderBottom: '1px solid #F7F7F6' }}>
                       {/* Nombre */}
                       <td className="sticky left-0 z-10 px-4 py-2.5 bg-inherit"
-                        style={{ borderRight: '1px solid #f1f5f9' }}>
+                        style={{ borderRight: '1px solid #EDEEEE' }}>
                         <span className="text-xs font-semibold text-slate-700 truncate block" style={{ maxWidth: 190 }}>
                           {displayAlumno(a)}
                         </span>
@@ -302,8 +302,8 @@ export default function AsistenciaPanel({ asignacionId, grado, grupo, color }: P
                               title={estado === true ? 'Presente — clic para cambiar' : 'Ausente — clic para cambiar'}
                               className="w-8 h-8 rounded-lg flex items-center justify-center mx-auto transition-all hover:scale-110 disabled:opacity-50"
                               style={{
-                                background: estado === true ? `${color}18` : estado === false ? '#fff1f2' : '#f8fafc',
-                                border: `1.5px solid ${estado === true ? color + '50' : estado === false ? '#fecdd3' : '#f1f5f9'}`,
+                                background: estado === true ? `${color}18` : estado === false ? '#fff1f2' : '#F7F7F6',
+                                border: `1.5px solid ${estado === true ? color + '50' : estado === false ? '#fecdd3' : '#EDEEEE'}`,
                               }}>
                               {saving
                                 ? <svg className="animate-spin h-3 w-3 text-slate-400" viewBox="0 0 24 24" fill="none"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/></svg>
@@ -339,9 +339,9 @@ export default function AsistenciaPanel({ asignacionId, grado, grupo, color }: P
               {/* Fila resumen por fecha */}
               {alumnos.length > 0 && (
                 <tfoot>
-                  <tr style={{ background: '#f8fafc', borderTop: '1.5px solid #f1f5f9' }}>
+                  <tr style={{ background: '#F7F7F6', borderTop: '1.5px solid #EDEEEE' }}>
                     <td className="sticky left-0 z-10 px-4 py-2 text-[10px] font-black text-slate-400 uppercase tracking-widest bg-slate-50"
-                      style={{ borderRight: '1px solid #f1f5f9' }}>
+                      style={{ borderRight: '1px solid #EDEEEE' }}>
                       Total presentes
                     </td>
                     {fechas.map(f => {
@@ -368,7 +368,7 @@ export default function AsistenciaPanel({ asignacionId, grado, grupo, color }: P
             {[
               { icon: '✓', label: 'Presente', c: color, bg: `${color}18` },
               { icon: '✗', label: 'Ausente',  c: '#e11d48', bg: '#fff1f2' },
-              { icon: '—', label: 'Sin registro', c: '#94a3b8', bg: '#f8fafc' },
+              { icon: '—', label: 'Sin registro', c: '#8B837E', bg: '#F7F7F6' },
             ].map(l => (
               <div key={l.label} className="flex items-center gap-1.5">
                 <div className="w-5 h-5 rounded flex items-center justify-center text-[10px] font-black"

@@ -24,7 +24,7 @@ interface LibretaPeriodo{ periodo: string; notas: LibretaNota[]; examenes?: Exam
 
 function letraCalif(n: number) {
   if (n >= 18) return { letra: 'AD', color: '#15803d', bg: '#effaf3', border: '#bbe9cb' }
-  if (n >= 14) return { letra: 'A',  color: '#1d4ed8', bg: '#eef1fe', border: '#cfd6fb' }
+  if (n >= 14) return { letra: 'A',  color: '#C20329', bg: '#F7F6F5', border: '#E9E4E1' }
   if (n >= 11) return { letra: 'B',  color: '#b45309', bg: '#fdf4e7', border: '#f3dcb6' }
   return              { letra: 'C',  color: '#dc2626', bg: '#fdeeee', border: '#f6cccc' }
 }
@@ -66,39 +66,39 @@ const IconSpinner   = function I({ size = 18 }: { size?: number }) {
 const CSS = `
   /* ── Paleta sobria: azul/índigo institucional + vidrio + oro mate ── */
   .pp {
-    --c-ink:    #1f2740;          /* texto principal */
-    --c-soft:   #5a6379;          /* texto secundario */
-    --c-faint:  #98a0b3;          /* texto terciario */
-    --c-line:   #e8ebf3;
+    --c-ink:    #362E29;          /* texto principal */
+    --c-soft:   #78675B;          /* texto secundario */
+    --c-faint:  #B2A399;          /* texto terciario */
+    --c-line:   #F0EDEB;
     --glass:    rgba(255,255,255,.78);
-    --c-acc:    #1d4ed8;          /* azul real profundo */
-    --c-acc-2:  #2563eb;          /* azul medio */
+    --c-acc:    #C20329;          /* azul real profundo */
+    --c-acc-2:  #D9042F;          /* azul medio */
     --c-gold:   #9a7b34;          /* oro mate (etiquetas) */
     --c-gold-l: #d9bf7a;          /* oro suave (acentos sobre oscuro) */
     --c-green:  #15803d;
     --c-red:    #dc2626;
     --c-amber:  #b45309;
-    --grad:     linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
-    --grad-soft:linear-gradient(135deg, rgba(37,99,235,.13), rgba(37,99,235,.13));
-    --el-1: 0 1px 2px rgba(20,28,55,.08);
-    --el-2: 0 12px 32px -16px rgba(18,28,60,.45), 0 2px 8px rgba(18,28,60,.08);
-    --el-3: 0 28px 60px -26px rgba(12,20,50,.55), 0 6px 16px rgba(12,20,50,.12);
+    --grad:     linear-gradient(135deg, #D9042F 0%, #D9042F 100%);
+    --grad-soft:linear-gradient(135deg, rgba(217,4,47,.13), rgba(217,4,47,.13));
+    --el-1: 0 1px 2px rgba(43,37,32,.08);
+    --el-2: 0 12px 32px -16px rgba(44,38,34,.45), 0 2px 8px rgba(44,38,34,.08);
+    --el-3: 0 28px 60px -26px rgba(35,30,27,.55), 0 6px 16px rgba(35,30,27,.12);
 
     position: relative;
     min-height: 100dvh;
     font-family: var(--dm), system-ui, sans-serif;
     color: var(--c-ink);
     background:
-      radial-gradient(72% 42% at 50% -6%, rgba(37,99,235,.08), transparent 62%),
-      radial-gradient(38% 30% at 96% 2%, rgba(37,99,235,.06), transparent 60%),
-      radial-gradient(45% 35% at 4% 34%, rgba(59,130,246,.05), transparent 60%),
+      radial-gradient(72% 42% at 50% -6%, rgba(217,4,47,.08), transparent 62%),
+      radial-gradient(38% 30% at 96% 2%, rgba(217,4,47,.06), transparent 60%),
+      radial-gradient(45% 35% at 4% 34%, rgba(217,4,47,.05), transparent 60%),
       #ffffff;
     overflow-x: hidden;
     -webkit-tap-highlight-color: transparent;
   }
   .pp * { box-sizing: border-box; }
   .pp button, .pp a { touch-action: manipulation; }
-  .pp ::selection { background: rgba(37,99,235,.25); }
+  .pp ::selection { background: rgba(217,4,47,.25); }
 
   @keyframes pp-up   { from { opacity: 0; transform: translateY(16px) } to { opacity: 1; transform: none } }
   @keyframes pp-in   { from { opacity: 0 } to { opacity: 1 } }
@@ -122,7 +122,7 @@ const CSS = `
   .pp-head { position: sticky; top: 0; z-index: 40;
     background: rgba(255,255,255,.82);
     -webkit-backdrop-filter: blur(16px) saturate(1.4); backdrop-filter: blur(16px) saturate(1.4);
-    border-bottom: 1px solid #eceff5; box-shadow: 0 6px 22px -16px rgba(20,28,60,.4); }
+    border-bottom: 1px solid #F3F0EE; box-shadow: 0 6px 22px -16px rgba(46,39,34,.4); }
   .pp-head-in { height: 62px; display: flex; align-items: center; justify-content: space-between; }
   .pp-brand { display: flex; align-items: center; gap: 11px; text-decoration: none; }
   .pp-brand-medal { width: 44px; height: 44px; flex: none; display: grid; place-items: center; }
@@ -131,22 +131,22 @@ const CSS = `
     color: var(--c-gold); text-transform: uppercase; font-style: normal; line-height: 1; }
   .pp-brand-txt b { display: block; font-family: var(--pf); font-size: 14px; font-weight: 700; color: var(--c-ink); line-height: 1.25; margin-top: 3px; }
   .pp-head-cta { display: inline-flex; align-items: center; gap: 7px; padding: 10px 16px; border-radius: 999px; text-decoration: none;
-    background: var(--grad-soft); border: 1px solid rgba(37,99,235,.22); color: var(--c-acc);
+    background: var(--grad-soft); border: 1px solid rgba(217,4,47,.22); color: var(--c-acc);
     font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; transition: all .2s; }
-  .pp-head-cta:hover { background: var(--grad); border-color: transparent; color: #fff; box-shadow: 0 8px 18px -8px rgba(37,99,235,.5); }
+  .pp-head-cta:hover { background: var(--grad); border-color: transparent; color: #fff; box-shadow: 0 8px 18px -8px rgba(217,4,47,.5); }
 
   /* ── Hero ── */
   .pp-hero { text-align: center; margin: 60px 0 36px; animation: pp-up .6s ease both; }
   .pp-crest { width: 112px; height: 112px; margin: 0 auto 24px; position: relative;
     display: grid; place-items: center; }
-  .pp-crest::after { content: ''; position: absolute; inset: 5px; border-radius: 50%; border: 1px dashed rgba(37,99,235,.28); }
+  .pp-crest::after { content: ''; position: absolute; inset: 5px; border-radius: 50%; border: 1px dashed rgba(217,4,47,.28); }
   .pp-crest img { width: 74%; height: 74%; object-fit: contain; }
   .pp-eyebrow { display: inline-flex; align-items: center; font-size: 10px; font-weight: 700; letter-spacing: .3em;
     text-transform: uppercase; color: var(--c-acc); margin-bottom: 16px; }
   .pp-hero h1 { font-family: var(--pf); font-size: clamp(31px, 6vw, 46px); font-weight: 800; color: var(--c-ink);
     line-height: 1.08; letter-spacing: -.015em; margin: 0 0 14px; }
   .pp-hero h1 em { font-style: italic; font-weight: 500;
-    background: linear-gradient(90deg, #1e3a8a, #2563eb); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    background: linear-gradient(90deg, #B00326, #D9042F); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
   .pp-hero p { font-size: 15px; line-height: 1.65; color: var(--c-soft); max-width: 440px; margin: 0 auto; }
   @media (max-width: 480px) {
     .pp-wrap { padding: 0 16px; }
@@ -165,10 +165,10 @@ const CSS = `
   .pp-card-h { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 20px; }
   .pp-card-h-l { display: flex; align-items: center; gap: 12px; min-width: 0; }
   .pp-card-ic { width: 40px; height: 40px; border-radius: 12px; flex: none; display: grid; place-items: center;
-    background: var(--grad); color: #fff; box-shadow: 0 8px 18px -8px rgba(37,99,235,.55); }
+    background: var(--grad); color: #fff; box-shadow: 0 8px 18px -8px rgba(217,4,47,.55); }
   .pp-card-t { font-family: var(--pf); font-size: 18px; font-weight: 700; color: var(--c-ink); margin: 0; }
   .pp-tag { font-size: 10.5px; font-weight: 700; letter-spacing: .06em; padding: 5px 11px; border-radius: 999px; flex: none;
-    background: var(--grad-soft); color: var(--c-acc); border: 1px solid rgba(37,99,235,.22); }
+    background: var(--grad-soft); color: var(--c-acc); border: 1px solid rgba(217,4,47,.22); }
   .pp-tag-red { background: linear-gradient(135deg, #ef6a3a, #e0581f); color: #fff; border-color: transparent; }
 
   /* ── Search ── */
@@ -184,14 +184,14 @@ const CSS = `
   .pp-field:focus-within > svg { color: var(--c-acc); }
   .pp-input { width: 100%; height: 54px; padding: 0 16px 0 46px; border-radius: 14px; font-family: var(--ui-font-mono), monospace;
     font-size: 18px; font-weight: 600; letter-spacing: .12em; color: var(--c-ink); background: rgba(255,255,255,.6);
-    border: 1.5px solid rgba(37,99,235,.16); outline: none; transition: border-color .2s, box-shadow .2s, background .2s; }
+    border: 1.5px solid rgba(217,4,47,.16); outline: none; transition: border-color .2s, box-shadow .2s, background .2s; }
   .pp-input::placeholder { color: var(--c-faint); font-weight: 500; letter-spacing: .06em; }
-  .pp-input:focus { border-color: var(--c-acc); background: rgba(255,255,255,.92); box-shadow: 0 0 0 4px rgba(37,99,235,.13); }
+  .pp-input:focus { border-color: var(--c-acc); background: rgba(255,255,255,.92); box-shadow: 0 0 0 4px rgba(217,4,47,.13); }
   .pp-btn { height: 54px; padding: 0 26px; min-width: 138px; border: none; cursor: pointer; border-radius: 14px;
     display: inline-flex; align-items: center; justify-content: center; gap: 8px; color: #fff; font-family: var(--dm);
     font-size: 12px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
-    background: var(--grad); background-size: 150% 150%; box-shadow: 0 12px 26px -10px rgba(37,99,235,.55); transition: transform .2s, box-shadow .2s, opacity .2s, background-position .4s; }
-  .pp-btn:hover:not(:disabled) { transform: translateY(-2px); background-position: 100% 0; box-shadow: 0 16px 30px -10px rgba(37,99,235,.6); }
+    background: var(--grad); background-size: 150% 150%; box-shadow: 0 12px 26px -10px rgba(217,4,47,.55); transition: transform .2s, box-shadow .2s, opacity .2s, background-position .4s; }
+  .pp-btn:hover:not(:disabled) { transform: translateY(-2px); background-position: 100% 0; box-shadow: 0 16px 30px -10px rgba(217,4,47,.6); }
   .pp-btn:disabled { opacity: .45; cursor: not-allowed; }
   .pp-btn:focus-visible { outline: 2px solid var(--c-gold-l); outline-offset: 3px; }
   .pp-err { margin-top: 15px; display: flex; align-items: flex-start; gap: 10px; padding: 13px 15px; border-radius: 12px;
@@ -204,7 +204,7 @@ const CSS = `
 
   /* Carnet del alumno */
   .pp-id { border-radius: 20px; overflow: hidden; position: relative; animation: pp-up .5s ease both;
-    background: linear-gradient(135deg, #11205a 0%, #1a3aa6 55%, #1d4ed8 100%);
+    background: linear-gradient(135deg, #3D342E 0%, #A61A36 55%, #C20329 100%);
     box-shadow: var(--el-3); border: 1px solid rgba(255,255,255,.16); }
   .pp-id::before { content: ''; position: absolute; inset: 0; opacity: .6; pointer-events: none;
     background: radial-gradient(50% 70% at 86% 8%, rgba(217,191,122,.28), transparent 60%),
@@ -217,7 +217,7 @@ const CSS = `
   .pp-id-name { font-family: var(--pf); font-size: clamp(19px, 4.4vw, 25px); font-weight: 800; color: #fff; line-height: 1.12; margin: 0 0 9px; }
   .pp-id-tags { display: flex; flex-wrap: wrap; gap: 7px; }
   .pp-id-tag { display: inline-flex; align-items: center; gap: 6px; padding: 4px 11px; border-radius: 999px;
-    background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); font-size: 11.5px; font-weight: 600; color: #eaf0ff; }
+    background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); font-size: 11.5px; font-weight: 600; color: #F6F4F3; }
   .pp-id-tag.mono { font-family: var(--ui-font-mono), monospace; letter-spacing: .04em; }
 
   /* Asistencia: ring + stats */
@@ -238,7 +238,7 @@ const CSS = `
   /* Lista de asistencia */
   .pp-days { display: flex; flex-direction: column; gap: 7px; max-height: 430px; overflow-y: auto; padding-right: 3px; }
   .pp-days::-webkit-scrollbar { width: 5px; }
-  .pp-days::-webkit-scrollbar-thumb { background: rgba(37,99,235,.2); border-radius: 999px; }
+  .pp-days::-webkit-scrollbar-thumb { background: rgba(217,4,47,.2); border-radius: 999px; }
   .pp-day { display: flex; align-items: center; gap: 13px; padding: 10px 14px; border-radius: 13px; border: 1px solid; border-left-width: 4px; transition: transform .18s ease, box-shadow .18s ease; }
   .pp-day:hover { transform: translateX(3px); box-shadow: var(--el-1); }
   .pp-day-box { width: 44px; height: 44px; border-radius: 11px; flex: none; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; }
@@ -269,10 +269,10 @@ const CSS = `
 
   /* Tareas */
   .pp-list { display: flex; flex-direction: column; gap: 9px; }
-  .pp-task { display: flex; align-items: center; gap: 13px; padding: 13px 16px; border-radius: 14px; background: rgba(255,255,255,.5); border: 1px solid rgba(37,99,235,.1); transition: border-color .2s, background .2s, transform .2s; }
+  .pp-task { display: flex; align-items: center; gap: 13px; padding: 13px 16px; border-radius: 14px; background: rgba(255,255,255,.5); border: 1px solid rgba(217,4,47,.1); transition: border-color .2s, background .2s, transform .2s; }
   .pp-task:hover { background: rgba(255,255,255,.9); border-color: var(--c-acc); transform: translateX(2px); }
   .pp-task.late { background: rgba(220,38,38,.06); border-color: rgba(220,38,38,.2); }
-  .pp-dot { width: 9px; height: 9px; border-radius: 50%; flex: none; background: linear-gradient(135deg, #1e40af, #2563eb); box-shadow: 0 0 0 3px rgba(29,78,216,.18); }
+  .pp-dot { width: 9px; height: 9px; border-radius: 50%; flex: none; background: linear-gradient(135deg, #D9042F, #D9042F); box-shadow: 0 0 0 3px rgba(216,29,66,.18); }
   .pp-task.late .pp-dot { background: var(--c-red); box-shadow: 0 0 0 3px rgba(220,38,38,.16); }
   .pp-task-b { flex: 1; min-width: 0; }
   .pp-task-t { font-size: 13.5px; font-weight: 700; color: var(--c-ink); margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -281,7 +281,7 @@ const CSS = `
   .pp-task.late .pp-task-due { color: var(--c-red); text-transform: uppercase; letter-spacing: .06em; }
 
   /* Calificaciones */
-  .pp-grade { display: flex; align-items: center; gap: 15px; padding: 13px 16px; border-radius: 14px; background: rgba(255,255,255,.5); border: 1px solid rgba(37,99,235,.1); transition: border-color .2s, background .2s, transform .2s; }
+  .pp-grade { display: flex; align-items: center; gap: 15px; padding: 13px 16px; border-radius: 14px; background: rgba(255,255,255,.5); border: 1px solid rgba(217,4,47,.1); transition: border-color .2s, background .2s, transform .2s; }
   .pp-grade:hover { background: rgba(255,255,255,.9); border-color: var(--c-acc); transform: translateX(2px); }
   .pp-grade-l { width: 48px; height: 48px; border-radius: 13px; flex: none; display: grid; place-items: center; font-family: var(--pf); font-size: 16px; font-weight: 800; border: 1px solid; }
   .pp-grade-b { flex: 1; min-width: 0; }
@@ -297,13 +297,13 @@ const CSS = `
   .pp-lib-avg { font-size: 11px; font-weight: 700; padding: 4px 11px; border-radius: 999px; border: 1px solid; flex: none; }
 
   /* Exámenes por preguntas (1 punto por correcta) */
-  .pp-exam { border: 1px solid rgba(37,99,235,.14); border-radius: 14px; padding: 14px 16px; background: rgba(255,255,255,.55); }
+  .pp-exam { border: 1px solid rgba(217,4,47,.14); border-radius: 14px; padding: 14px 16px; background: rgba(255,255,255,.55); }
   .pp-exam + .pp-exam { margin-top: 10px; }
   .pp-exam-h { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
   .pp-exam-t { font-size: 13.5px; font-weight: 700; color: var(--c-ink); margin: 0; }
   .pp-exam-final { font-family: var(--ui-font-mono), monospace; font-size: 13px; font-weight: 700; padding: 4px 12px; border-radius: 999px; border: 1px solid; flex: none; }
   .pp-exam-areas { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 10px; }
-  .pp-exam-area { font-size: 11.5px; font-weight: 700; padding: 4px 10px; border-radius: 999px; background: rgba(37,99,235,.08); border: 1px solid rgba(37,99,235,.16); color: var(--c-ink); }
+  .pp-exam-area { font-size: 11.5px; font-weight: 700; padding: 4px 10px; border-radius: 999px; background: rgba(217,4,47,.08); border: 1px solid rgba(217,4,47,.16); color: var(--c-ink); }
   .pp-exam-btn { margin-top: 11px; display: inline-flex; align-items: center; gap: 6px; background: none; border: none; cursor: pointer; color: var(--c-acc); font-family: var(--dm); font-size: 12px; font-weight: 700; padding: 0; }
   .pp-exam-btn:hover { color: var(--c-acc-2); }
   .pp-exam-det { margin-top: 12px; display: flex; flex-direction: column; gap: 10px; }
@@ -361,7 +361,7 @@ export default function PadresPage() {
   const faltas        = totalAsist - presentes
   const porcentaje    = totalAsist ? Math.round((presentes / totalAsist) * 100) : null
 
-  const pctColor = porcentaje === null ? '#1d4ed8'
+  const pctColor = porcentaje === null ? '#C20329'
     : porcentaje >= 75 ? '#15803d'
     : porcentaje >= 60 ? '#b45309'
     : '#dc2626'
@@ -474,12 +474,12 @@ export default function PadresPage() {
 
                 {totalAsist === 0 ? (
                   <div className="pp-empty">
-                    <div className="pp-empty-ic" style={{ background: 'rgba(37,99,235,.1)', color: '#1d4ed8', border: '1px solid rgba(37,99,235,.2)' }}>
+                    <div className="pp-empty-ic" style={{ background: 'rgba(217,4,47,.1)', color: '#C20329', border: '1px solid rgba(217,4,47,.2)' }}>
                       <IconCalendar size={24} />
                     </div>
                     {asisInfo?.sin_registros ? (
                       <>
-                        <p className="pp-empty-t" style={{ color: '#1d4ed8' }}>Aún sin registros en el ciclo {asisInfo.ciclo}</p>
+                        <p className="pp-empty-t" style={{ color: '#C20329' }}>Aún sin registros en el ciclo {asisInfo.ciclo}</p>
                         <p className="pp-empty-s">La escuela todavía no ha tomado asistencia este ciclo. Vuelve a consultar más adelante.</p>
                       </>
                     ) : (
@@ -491,7 +491,7 @@ export default function PadresPage() {
                     <div className="pp-att">
                       <div className="pp-ring">
                         <svg width="124" height="124" viewBox="0 0 124 124">
-                          <circle cx="62" cy="62" r={R} fill="none" stroke="rgba(37,99,235,.14)" strokeWidth="10" />
+                          <circle cx="62" cy="62" r={R} fill="none" stroke="rgba(217,4,47,.14)" strokeWidth="10" />
                           <circle cx="62" cy="62" r={R} fill="none" stroke={pctColor} strokeWidth="10" strokeLinecap="round"
                             strokeDasharray={C} strokeDashoffset={dashOffset} style={{ animation: 'pp-ring .9s ease both' }} />
                         </svg>
@@ -506,9 +506,9 @@ export default function PadresPage() {
                           <div><span className="pp-pill-n" style={{ color: '#15803d' }}>{presentes}</span></div>
                           <span className="pp-pill-l">días asistidos</span>
                         </div>
-                        <div className="pp-pill" style={{ background: faltas > 0 ? 'rgba(220,38,38,.07)' : 'rgba(255,255,255,.5)', borderColor: faltas > 0 ? 'rgba(220,38,38,.2)' : 'rgba(37,99,235,.1)' }}>
-                          <span className="pp-pill-ic" style={{ background: faltas > 0 ? '#f7dcdc' : '#e8eaf2', color: faltas > 0 ? '#dc2626' : '#5a6379' }}><IconX size={16} stroke={2.5} /></span>
-                          <div><span className="pp-pill-n" style={{ color: faltas > 0 ? '#dc2626' : '#5a6379' }}>{faltas}</span></div>
+                        <div className="pp-pill" style={{ background: faltas > 0 ? 'rgba(220,38,38,.07)' : 'rgba(255,255,255,.5)', borderColor: faltas > 0 ? 'rgba(220,38,38,.2)' : 'rgba(217,4,47,.1)' }}>
+                          <span className="pp-pill-ic" style={{ background: faltas > 0 ? '#f7dcdc' : '#F0EDEA', color: faltas > 0 ? '#dc2626' : '#78675B' }}><IconX size={16} stroke={2.5} /></span>
+                          <div><span className="pp-pill-n" style={{ color: faltas > 0 ? '#dc2626' : '#78675B' }}>{faltas}</span></div>
                           <span className="pp-pill-l">faltas</span>
                         </div>
                       </div>
@@ -623,7 +623,7 @@ export default function PadresPage() {
                         <div className="pp-lib-h">
                           <p className="pp-lib-t">{per.periodo}</p>
                           {hayDatos && (
-                            <span className="pp-lib-avg" style={{ background: '#eef1fe', color: '#1d4ed8', borderColor: '#cfd6fb' }}>
+                            <span className="pp-lib-avg" style={{ background: '#F7F6F5', color: '#C20329', borderColor: '#E9E4E1' }}>
                               Total: {total} {total === 1 ? 'punto' : 'puntos'}
                             </span>
                           )}
@@ -714,7 +714,7 @@ export default function PadresPage() {
 
                 {califs.length === 0 ? (
                   <div className="pp-empty">
-                    <div className="pp-empty-ic" style={{ background: 'rgba(37,99,235,.1)', color: '#1d4ed8', border: '1px solid rgba(37,99,235,.2)' }}>
+                    <div className="pp-empty-ic" style={{ background: 'rgba(217,4,47,.1)', color: '#C20329', border: '1px solid rgba(217,4,47,.2)' }}>
                       <IconAward size={24} />
                     </div>
                     <p className="pp-empty-t" style={{ color: 'var(--c-soft)' }}>Sin calificaciones registradas</p>

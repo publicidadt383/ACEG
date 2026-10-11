@@ -110,7 +110,7 @@ export default function DocenteHorarioPage() {
   }
 
   const cursoSelObj   = cursos.find(c => c.nombre === cursoBuscado)
-  const colorBusqueda = cursoSelObj?.color ?? '#143875'
+  const colorBusqueda = cursoSelObj?.color ?? '#2A2420'
   const diasConClases = DIAS.filter(d =>
     resultados.some(h => (ORDEN_DIAS[h.dia] ?? 0) === ORDEN_DIAS[d])
   )
@@ -121,7 +121,7 @@ export default function DocenteHorarioPage() {
 
   function colorDeCurso(materia: string) {
     const asig = asigs.find(a => a.cursos?.nombre === materia)
-    return asig?.cursos?.color ?? '#143875'
+    return asig?.cursos?.color ?? '#2A2420'
   }
 
   // Total clases por día
@@ -155,9 +155,9 @@ export default function DocenteHorarioPage() {
           {modo === 'propio' && clases.length > 0 && (
             <button onClick={() => window.print()}
               className="no-print flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-black transition-all"
-              style={{ background: '#F6F8FB', border: '1.5px solid #E4E8EF', color: '#64748b' }}
-              onMouseEnter={e => { e.currentTarget.style.background = '#EFF3FA'; e.currentTarget.style.color = '#0B2447' }}
-              onMouseLeave={e => { e.currentTarget.style.background = '#F6F8FB'; e.currentTarget.style.color = '#64748b' }}>
+              style={{ background: '#F5F5F4', border: '1.5px solid #DFE0E0', color: '#6B625D' }}
+              onMouseEnter={e => { e.currentTarget.style.background = '#F3F1EF'; e.currentTarget.style.color = '#1D1815' }}
+              onMouseLeave={e => { e.currentTarget.style.background = '#F5F5F4'; e.currentTarget.style.color = '#6B625D' }}>
               <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/>
                 <rect x="6" y="14" width="12" height="8" rx="1"/>
@@ -166,13 +166,13 @@ export default function DocenteHorarioPage() {
             </button>
           )}
           {/* Tabs */}
-          <div className="no-print flex rounded-xl overflow-hidden" style={{ border: '1.5px solid #E4E8EF' }}>
+          <div className="no-print flex rounded-xl overflow-hidden" style={{ border: '1.5px solid #DFE0E0' }}>
             {(['propio', 'curso'] as const).map(m => (
               <button key={m} onClick={() => setModo(m)}
                 className="px-4 py-2 text-xs font-black transition-all"
                 style={modo === m
-                  ? { background: '#0B2447', color: 'white' }
-                  : { background: 'white', color: '#64748b' }}>
+                  ? { background: '#1D1815', color: 'white' }
+                  : { background: 'white', color: '#6B625D' }}>
                 {m === 'propio' ? 'Mi horario' : 'Por curso'}
               </button>
             ))}
@@ -189,20 +189,20 @@ export default function DocenteHorarioPage() {
             return (
               <div key={dia} className="rounded-xl px-3 py-2.5 text-center transition-all"
                 style={{
-                  background: esHoy ? '#0B2447' : count > 0 ? 'white' : '#f8fafc',
-                  border: esHoy ? '1.5px solid #081832' : '1.5px solid #E4E8EF',
-                  boxShadow: esHoy ? '0 4px 16px rgba(79,70,229,.25)' : 'none',
+                  background: esHoy ? '#1D1815' : count > 0 ? 'white' : '#F7F7F6',
+                  border: esHoy ? '1.5px solid #151110' : '1.5px solid #DFE0E0',
+                  boxShadow: esHoy ? '0 4px 16px rgba(229,70,102,.25)' : 'none',
                 }}>
                 <p className="text-[10px] font-black uppercase tracking-wider"
-                  style={{ color: esHoy ? '#b6c5e3' : '#94a3b8' }}>
+                  style={{ color: esHoy ? '#D2CBC5' : '#8B837E' }}>
                   {dia.slice(0, 3)}
                 </p>
                 <p className="text-lg font-black mt-0.5"
-                  style={{ color: esHoy ? 'white' : count > 0 ? '#1e293b' : '#cbd5e1' }}>
+                  style={{ color: esHoy ? 'white' : count > 0 ? '#2A2420' : '#C9C5C1' }}>
                   {count}
                 </p>
                 <p className="text-[9px] font-semibold"
-                  style={{ color: esHoy ? '#a5b4fc' : '#94a3b8' }}>
+                  style={{ color: esHoy ? '#FCA5B6' : '#8B837E' }}>
                   {count === 1 ? 'clase' : 'clases'}
                 </p>
               </div>
@@ -213,13 +213,13 @@ export default function DocenteHorarioPage() {
 
       {/* ── Grilla ──────────────────────────────────────────────────── */}
       {modo === 'propio' && <div className="rounded-2xl overflow-hidden"
-        style={{ background: 'white', border: '1.5px solid #E4E8EF', boxShadow: '0 4px 24px rgba(11,36,71,.06)' }}>
-        <div className="h-1" style={{ background: 'linear-gradient(90deg,#143875,#143875,#06b6d4)' }} />
+        style={{ background: 'white', border: '1.5px solid #DFE0E0', boxShadow: '0 4px 24px rgba(29,24,21,.06)' }}>
+        <div className="h-1" style={{ background: 'linear-gradient(90deg,#2A2420,#2A2420,#CD670D)' }} />
 
         {clases.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-20 gap-3">
             <div className="w-14 h-14 rounded-2xl flex items-center justify-center"
-              style={{ background: '#EFF3FA', border: '1.5px solid #b6c5e3' }}>
+              style={{ background: '#F3F1EF', border: '1.5px solid #D2CBC5' }}>
               <svg className="w-7 h-7 text-indigo-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
               </svg>
@@ -236,7 +236,7 @@ export default function DocenteHorarioPage() {
                 <tr>
                   {/* columna hora */}
                   <th className="w-20 px-4 py-3 text-left sticky left-0 z-10"
-                    style={{ background: '#f8fafc', borderBottom: '1.5px solid #E4E8EF' }}>
+                    style={{ background: '#F7F7F6', borderBottom: '1.5px solid #DFE0E0' }}>
                     <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Hora</span>
                   </th>
                   {DIAS.map(d => {
@@ -244,18 +244,18 @@ export default function DocenteHorarioPage() {
                     return (
                       <th key={d} className="px-2 py-3 text-center"
                         style={{
-                          background: esHoy ? '#EFF3FA' : '#f8fafc',
-                          borderLeft: '1px solid #E4E8EF',
-                          borderBottom: '1.5px solid #E4E8EF',
+                          background: esHoy ? '#F3F1EF' : '#F7F7F6',
+                          borderLeft: '1px solid #DFE0E0',
+                          borderBottom: '1.5px solid #DFE0E0',
                         }}>
                         <div className="flex flex-col items-center gap-0.5">
                           <span className="text-[11px] font-black"
-                            style={{ color: esHoy ? '#0B2447' : '#64748b' }}>
+                            style={{ color: esHoy ? '#1D1815' : '#6B625D' }}>
                             {d}
                           </span>
                           {esHoy && (
                             <span className="text-[8px] font-black px-1.5 py-0.5 rounded-full"
-                              style={{ background: '#0B2447', color: 'white' }}>
+                              style={{ background: '#1D1815', color: 'white' }}>
                               HOY
                             </span>
                           )}
@@ -270,11 +270,11 @@ export default function DocenteHorarioPage() {
               <tbody>
                 {horas.map((hora, idx) => (
                   <tr key={hora}
-                    style={{ borderBottom: idx < horas.length - 1 ? '1px solid #f1f5f9' : 'none' }}>
+                    style={{ borderBottom: idx < horas.length - 1 ? '1px solid #EDEEEE' : 'none' }}>
 
                     {/* Hora */}
                     <td className="px-4 py-2 sticky left-0"
-                      style={{ background: '#f8fafc', verticalAlign: 'middle', borderRight: '1px solid #E4E8EF' }}>
+                      style={{ background: '#F7F7F6', verticalAlign: 'middle', borderRight: '1px solid #DFE0E0' }}>
                       <p className="text-[11px] font-black text-slate-500 font-mono tabular-nums">{hora}</p>
                     </td>
 
@@ -282,14 +282,14 @@ export default function DocenteHorarioPage() {
                     {DIAS.map(dia => {
                       const clase = clases.find(c => c.dia === dia && c.hora_inicio === hora)
                       const esHoy  = dia === diaHoy
-                      const color  = clase ? colorDeCurso(clase.materia) : '#143875'
+                      const color  = clase ? colorDeCurso(clase.materia) : '#2A2420'
 
                       return (
                         <td key={dia} className="px-1.5 py-1.5"
                           style={{
-                            borderLeft: '1px solid #E4E8EF',
+                            borderLeft: '1px solid #DFE0E0',
                             verticalAlign: 'middle',
-                            background: esHoy ? '#fafbff' : 'transparent',
+                            background: esHoy ? '#FDFCFC' : 'transparent',
                           }}>
                           {clase ? (
                             <div className="rounded-xl px-2.5 py-2.5"
@@ -346,14 +346,14 @@ export default function DocenteHorarioPage() {
 
           {/* Selector */}
           <div className="rounded-2xl p-5"
-            style={{ background: 'white', border: '1.5px solid #E4E8EF', boxShadow: '0 4px 24px rgba(11,36,71,.06)' }}>
+            style={{ background: 'white', border: '1.5px solid #DFE0E0', boxShadow: '0 4px 24px rgba(29,24,21,.06)' }}>
             <label className="block text-xs font-black text-slate-600 mb-2">Selecciona un curso</label>
             <div className="flex gap-3">
               <select
                 value={cursoBuscado}
                 onChange={e => { setCursoBuscado(e.target.value); setBuscadoYa(false) }}
                 className="flex-1 px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-700 outline-none"
-                style={{ background: '#F6F8FB', border: '1.5px solid #E4E8EF' }}>
+                style={{ background: '#F5F5F4', border: '1.5px solid #DFE0E0' }}>
                 <option value="">— Elige un curso —</option>
                 {cursos.map(c => (
                   <option key={c.id} value={c.nombre}>{c.nombre}</option>
@@ -362,8 +362,8 @@ export default function DocenteHorarioPage() {
               <button onClick={buscarPorCurso} disabled={!cursoBuscado || buscando}
                 className="px-5 py-2.5 rounded-xl text-sm font-black transition-all"
                 style={{
-                  background: cursoBuscado ? `linear-gradient(135deg,${colorBusqueda},${colorBusqueda}cc)` : '#e2e8f0',
-                  color: cursoBuscado ? 'white' : '#94a3b8',
+                  background: cursoBuscado ? `linear-gradient(135deg,${colorBusqueda},${colorBusqueda}cc)` : '#DCDEDE',
+                  color: cursoBuscado ? 'white' : '#8B837E',
                   cursor: cursoBuscado && !buscando ? 'pointer' : 'default',
                 }}>
                 {buscando ? 'Buscando…' : 'Ver horario'}
@@ -375,9 +375,9 @@ export default function DocenteHorarioPage() {
           {buscadoYa && (
             resultados.length === 0 ? (
               <div className="rounded-2xl flex flex-col items-center justify-center py-16 gap-3"
-                style={{ background: 'white', border: '1.5px solid #E4E8EF' }}>
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ background: '#EFF3FA' }}>
-                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="#a5b4fc" strokeWidth="1.5">
+                style={{ background: 'white', border: '1.5px solid #DFE0E0' }}>
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ background: '#F3F1EF' }}>
+                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="#FCA5B6" strokeWidth="1.5">
                     <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
                   </svg>
                 </div>
@@ -385,7 +385,7 @@ export default function DocenteHorarioPage() {
               </div>
             ) : (
               <div className="rounded-2xl overflow-hidden"
-                style={{ background: 'white', border: '1.5px solid #E4E8EF', boxShadow: '0 4px 24px rgba(11,36,71,.06)' }}>
+                style={{ background: 'white', border: '1.5px solid #DFE0E0', boxShadow: '0 4px 24px rgba(29,24,21,.06)' }}>
 
                 {/* Banner */}
                 <div className="px-5 py-4 flex items-center gap-3"
@@ -411,7 +411,7 @@ export default function DocenteHorarioPage() {
                     if (!filas.length) return null
                     return (
                       <div key={dia}>
-                        <div className="px-5 py-2.5 flex items-center gap-2" style={{ background: '#fafbff' }}>
+                        <div className="px-5 py-2.5 flex items-center gap-2" style={{ background: '#FDFCFC' }}>
                           <div className="w-1.5 h-4 rounded-full" style={{ background: colorBusqueda }} />
                           <span className="text-xs font-black text-slate-600">{dia}</span>
                           <span className="text-[10px] font-bold text-slate-400">
@@ -420,7 +420,7 @@ export default function DocenteHorarioPage() {
                         </div>
                         {filas.map(h => (
                           <div key={h.id} className="flex items-center gap-4 px-5 py-3"
-                            style={{ borderTop: '1px solid #f1f5f9' }}>
+                            style={{ borderTop: '1px solid #EDEEEE' }}>
                             {/* Hora */}
                             <div className="flex items-center gap-1.5 w-28 shrink-0">
                               <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke={colorBusqueda} strokeWidth="2">

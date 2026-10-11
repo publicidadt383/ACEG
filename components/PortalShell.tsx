@@ -25,7 +25,7 @@ export interface PortalShellProps {
   maxWidth?: string | number
 }
 
-const SANS = "var(--font-manrope), -apple-system, 'Segoe UI', system-ui, sans-serif"
+const SANS = "var(--font-barlow), -apple-system, 'Segoe UI', system-ui, sans-serif"
 
 export default function PortalShell({
   title,
@@ -39,12 +39,12 @@ export default function PortalShell({
   topRightSlot,
   showCambiarPassword = true,
   children,
-  accent  = '#0B2447',
-  pageBg  = '#F6F8FB',
+  accent  = '#1D1815',
+  pageBg  = '#F5F5F4',
   maxWidth = '1280px',
 }: PortalShellProps) {
   return (
-    <div style={{ minHeight: '100vh', background: pageBg, display: 'flex', flexDirection: 'column', fontFamily: SANS, color: '#0F172A' }}>
+    <div style={{ minHeight: '100vh', background: pageBg, display: 'flex', flexDirection: 'column', fontFamily: SANS, color: '#231E1B' }}>
 
       {/* En móvil, un header sticky con backdrop-filter recalcula el blur en cada
           frame del scroll → jank/parpadeo. Como el fondo ya es casi opaco, lo
@@ -67,8 +67,8 @@ export default function PortalShell({
         background: 'rgba(255,255,255,.92)',
         backdropFilter: 'blur(14px) saturate(140%)',
         WebkitBackdropFilter: 'blur(14px) saturate(140%)',
-        borderBottom: '1px solid #E4E8EF',
-        boxShadow: '0 1px 2px rgba(15,23,42,.03), 0 4px 12px rgba(15,23,42,.04)',
+        borderBottom: '1px solid #DFE0E0',
+        boxShadow: '0 1px 2px rgba(35,30,27,.03), 0 4px 12px rgba(35,30,27,.04)',
       }}>
         {/* Hairline acento del rol */}
         <div aria-hidden style={{
@@ -90,9 +90,9 @@ export default function PortalShell({
                 style={{
                   display: 'flex', alignItems: 'center', gap: '8px',
                   padding: '8px 14px', borderRadius: '10px',
-                  background: '#F1F5F9',
-                  border: '1px solid #E4E8EF',
-                  color: '#0F172A',
+                  background: '#EDEEEE',
+                  border: '1px solid #DFE0E0',
+                  color: '#231E1B',
                   fontFamily: SANS,
                   fontSize: '13px', fontWeight: 600,
                   letterSpacing: '-.003em',
@@ -100,8 +100,8 @@ export default function PortalShell({
                   transition: 'all .14s ease',
                   flexShrink: 0,
                 }}
-                onMouseEnter={e => { e.currentTarget.style.background = '#E2E8F0'; e.currentTarget.style.borderColor = '#CBD5E1' }}
-                onMouseLeave={e => { e.currentTarget.style.background = '#F1F5F9'; e.currentTarget.style.borderColor = '#E4E8EF' }}
+                onMouseEnter={e => { e.currentTarget.style.background = '#DCDEDE'; e.currentTarget.style.borderColor = '#C9C5C1' }}
+                onMouseLeave={e => { e.currentTarget.style.background = '#EDEEEE'; e.currentTarget.style.borderColor = '#DFE0E0' }}
               >
                 <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.4">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -118,7 +118,7 @@ export default function PortalShell({
 
             <div style={{ minWidth: 0 }}>
               <p style={{
-                fontSize: '14px', fontWeight: 700, color: '#0F172A',
+                fontSize: '14px', fontWeight: 700, color: '#231E1B',
                 lineHeight: 1.15, letterSpacing: '-.012em',
                 whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
                 margin: 0,
@@ -127,7 +127,7 @@ export default function PortalShell({
               </p>
               {sectionTitle && (
                 <p style={{
-                  fontSize: '10.5px', fontWeight: 700, color: '#94A3B8',
+                  fontSize: '10.5px', fontWeight: 700, color: '#8B837E',
                   letterSpacing: '.16em', textTransform: 'uppercase',
                   margin: '2px 0 0',
                 }}>
@@ -147,11 +147,11 @@ export default function PortalShell({
                 style={{
                   display: 'flex', flexDirection: 'column', alignItems: 'flex-end',
                   padding: '5px 12px', borderRadius: '10px',
-                  background: '#F8FAFC',
-                  border: '1px solid #E4E8EF',
+                  background: '#F7F7F6',
+                  border: '1px solid #DFE0E0',
                 }}
               >
-                <p style={{ fontSize: '12px', fontWeight: 700, color: '#0F172A', lineHeight: 1.1, margin: 0, letterSpacing: '-.005em' }}>
+                <p style={{ fontSize: '12px', fontWeight: 700, color: '#231E1B', lineHeight: 1.1, margin: 0, letterSpacing: '-.005em' }}>
                   {userName}
                 </p>
                 {userRoleLabel && (

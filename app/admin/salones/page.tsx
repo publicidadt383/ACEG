@@ -221,7 +221,7 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
     if (!alumno.qr_token) return null
 
     const QRCode  = (await import('qrcode')).default
-    const SLATE   = '#0F172A'
+    const SLATE   = '#231E1B'
     const DORADO  = '#D4A847'
     const DORADO2 = '#F0C75A'
     const VINO    = '#7B1D3A'
@@ -238,11 +238,11 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
       bg.crossOrigin = 'anonymous'
       bg.onload = () => {
         ctx.drawImage(bg, 0, 0, W, H)
-        ctx.fillStyle = 'rgba(10,15,30,0.55)'
+        ctx.fillStyle = 'rgba(23,20,17,0.55)'
         ctx.fillRect(0, 0, W, H)
         resolve()
       }
-      bg.onerror = () => { ctx.fillStyle = '#F8F9FB'; ctx.fillRect(0, 0, W, H); resolve() }
+      bg.onerror = () => { ctx.fillStyle = '#FAF9F9'; ctx.fillRect(0, 0, W, H); resolve() }
       bg.src = fondoUrl
     })
 
@@ -287,11 +287,11 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
     ctx.fillText('● CÓDIGO QR · ASISTENCIA', W / 2, labelY + 17)
 
     const QR = 220, qrX = (W - QR) / 2, qrY = 266
-    ctx.shadowColor = 'rgba(15,23,42,0.12)'; ctx.shadowBlur = 20; ctx.shadowOffsetY = 6
+    ctx.shadowColor = 'rgba(35,30,27,0.12)'; ctx.shadowBlur = 20; ctx.shadowOffsetY = 6
     ctx.fillStyle = BLANCO
     ctx.beginPath(); ctx.roundRect(qrX - 18, qrY - 18, QR + 36, QR + 36, 16); ctx.fill()
     ctx.shadowBlur = 0; ctx.shadowColor = 'transparent'; ctx.shadowOffsetY = 0
-    ctx.strokeStyle = '#E2E8F0'; ctx.lineWidth = 1.5
+    ctx.strokeStyle = '#DCDEDE'; ctx.lineWidth = 1.5
     ctx.beginPath(); ctx.roundRect(qrX - 18, qrY - 18, QR + 36, QR + 36, 16); ctx.stroke()
     const cSize = 14, cX = qrX - 18, cY = qrY - 18, cW = QR + 36, cH = QR + 36
     ctx.strokeStyle = DORADO; ctx.lineWidth = 2.5
@@ -646,7 +646,7 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
       {/* ── Header (oculto en modo embedded — admin provee su propio header) ── */}
       {!embedded && (
       <header className="sticky top-0 z-50 px-4 py-3 flex items-center gap-3"
-        style={{ background: 'white', borderBottom: '1px solid #E4E8EF', boxShadow: '0 1px 12px rgba(107,15,26,.06)', borderTop: '3px solid #0B2447' }}>
+        style={{ background: 'white', borderBottom: '1px solid #DFE0E0', boxShadow: '0 1px 12px rgba(107,15,26,.06)', borderTop: '3px solid #1D1815' }}>
         <Link href="/admin" className="flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-indigo-900 transition-colors">
           <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
             <polyline points="15 18 9 12 15 6"/>
@@ -656,7 +656,7 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
         <span className="text-slate-300">/</span>
         <div className="flex items-center gap-2">
           <div className="w-6 h-6 rounded-lg flex items-center justify-center"
-            style={{ background: 'linear-gradient(135deg,#0B2447,#1E3A8A)' }}>
+            style={{ background: 'linear-gradient(135deg,#B00326,#B00326)' }}>
             <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth="2.5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0112 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/>
             </svg>
@@ -668,7 +668,7 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
         <div className="ml-auto flex items-center gap-2">
           <Link href="/admin/qr-fondos"
             className="flex items-center gap-1.5 text-[11px] font-black px-3 py-1.5 rounded-lg transition-all hover:opacity-90"
-            style={{ background: 'linear-gradient(135deg,#0B2447,#1E3A8A)', color: 'white' }}>
+            style={{ background: 'linear-gradient(135deg,#B00326,#B00326)', color: 'white' }}>
             <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
               <rect x="3" y="3" width="18" height="18" rx="2"/>
               <circle cx="8.5" cy="8.5" r="1.5"/>
@@ -684,7 +684,7 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
           )}
           <select value={cicloId} onChange={e => cambiarCiclo(e.target.value)}
             className="text-xs font-bold px-3 py-1.5 rounded-lg outline-none"
-            style={{ background: '#F1F5F9', color: '#0B2447', border: '1.5px solid #fecdd3' }}>
+            style={{ background: '#EDEEEE', color: '#1D1815', border: '1.5px solid #fecdd3' }}>
             {ciclos.map(c => (
               <option key={c.id} value={c.id}>{c.nombre}{c.activo ? ' ★' : ''}</option>
             ))}
@@ -698,7 +698,7 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
         <div className="mb-5 flex items-center gap-2 flex-wrap">
           <Link href="/admin/qr-fondos"
             className="flex items-center gap-1.5 text-[11px] font-black px-3 py-1.5 rounded-lg transition-all hover:opacity-90"
-            style={{ background: 'linear-gradient(135deg,#0B2447,#1E3A8A)', color: 'white' }}>
+            style={{ background: 'linear-gradient(135deg,#B00326,#B00326)', color: 'white' }}>
             <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
               <rect x="3" y="3" width="18" height="18" rx="2"/>
               <circle cx="8.5" cy="8.5" r="1.5"/>
@@ -714,7 +714,7 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
           )}
           <select value={cicloId} onChange={e => cambiarCiclo(e.target.value)}
             className="text-xs font-bold px-3 py-1.5 rounded-lg outline-none"
-            style={{ background: '#F1F5F9', color: '#0B2447', border: '1.5px solid #fecdd3' }}>
+            style={{ background: '#EDEEEE', color: '#1D1815', border: '1.5px solid #fecdd3' }}>
             {ciclos.map(c => (
               <option key={c.id} value={c.id}>{c.nombre}{c.activo ? ' ★' : ''}</option>
             ))}
@@ -727,12 +727,12 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
         {/* ── Stats bar ── */}
         <div className="grid grid-cols-3 gap-3">
           {[
-            { label: 'Total estudiantes', value: alumnos.length, color: '#0B2447' },
-            { label: 'Salones',       value: salones.length, color: '#1E40AF' },
-            { label: 'Ciclo',         value: cicloActual?.nombre ?? '—', color: '#0d9488' },
+            { label: 'Total estudiantes', value: alumnos.length, color: '#1D1815' },
+            { label: 'Salones',       value: salones.length, color: '#D9042F' },
+            { label: 'Ciclo',         value: cicloActual?.nombre ?? '—', color: '#944C0D' },
           ].map(s => (
             <div key={s.label} className="rounded-2xl p-4 text-center"
-              style={{ background: 'white', border: '1.5px solid #E4E8EF', boxShadow: '0 2px 12px rgba(107,15,26,.05)' }}>
+              style={{ background: 'white', border: '1.5px solid #DFE0E0', boxShadow: '0 2px 12px rgba(107,15,26,.05)' }}>
               <p className="font-black text-xl" style={{ color: s.color }}>{s.value}</p>
               <p className="text-xs text-slate-400 font-semibold mt-0.5">{s.label}</p>
             </div>
@@ -741,7 +741,7 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
 
         {/* ── View tabs + Descargar todo ── */}
         <div className="flex items-center gap-3">
-          <div className="flex p-1 rounded-xl gap-1" style={{ background: 'white', border: '1.5px solid #E4E8EF' }}>
+          <div className="flex p-1 rounded-xl gap-1" style={{ background: 'white', border: '1.5px solid #DFE0E0' }}>
             {([
               { id: 'salones', label: 'Por salón',       icon: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4' },
               { id: 'todos',   label: 'Todos los estudiantes', icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z' },
@@ -749,10 +749,10 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
               <button key={v.id} onClick={() => { setView(v.id); setSearch(''); setSalonSel(null) }}
                 className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-black transition-all"
                 style={view === v.id
-                  ? { background: 'linear-gradient(135deg,#0B2447,#1E3A8A)', color: 'white', boxShadow: '0 3px 12px rgba(107,15,26,.25)' }
-                  : { color: '#64748b' }}>
+                  ? { background: 'linear-gradient(135deg,#B00326,#B00326)', color: 'white', boxShadow: '0 3px 12px rgba(107,15,26,.25)' }
+                  : { color: '#6B625D' }}>
                 <svg width="13" height="13" fill="none" viewBox="0 0 24 24"
-                  stroke={view === v.id ? 'white' : '#94a3b8'} strokeWidth="2">
+                  stroke={view === v.id ? 'white' : '#8B837E'} strokeWidth="2">
                   <path strokeLinecap="round" strokeLinejoin="round" d={v.icon}/>
                 </svg>
                 {v.label}
@@ -764,7 +764,7 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
             <button onClick={() => descargarQR(alumnos, 'QR-todos-los-alumnos')}
               disabled={qrDescargando}
               className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-black text-white transition-all hover:opacity-90 disabled:opacity-50"
-              style={{ background: 'linear-gradient(135deg,#0B2447,#4a0910)', boxShadow: '0 3px 12px rgba(107,15,26,.25)' }}>
+              style={{ background: 'linear-gradient(135deg,#1D1815,#4a0910)', boxShadow: '0 3px 12px rgba(107,15,26,.25)' }}>
               <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth="2.5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v1m0 14v1M5.636 5.636l.707.707m11.314 11.314.707.707M4 12H3m18 0h-1M5.636 18.364l.707-.707M18.364 5.636l-.707.707M12 8a4 4 0 100 8 4 4 0 000-8z"/>
               </svg>
@@ -772,7 +772,7 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
             </button>
             <button onClick={() => { setDlScope('todos'); setDlOpen(true) }}
               className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-black text-white transition-all hover:opacity-90"
-              style={{ background: 'linear-gradient(135deg,#0d9488,#06b6d4)', boxShadow: '0 3px 12px rgba(13,148,136,.3)' }}>
+              style={{ background: 'linear-gradient(135deg,#944C0D,#CD670D)', boxShadow: '0 3px 12px rgba(148,76,13,.3)' }}>
               <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth="2.5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
               </svg>
@@ -785,15 +785,15 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
           <div className="flex justify-center py-20">
             <div className="flex flex-col items-center gap-3">
               <svg className="animate-spin" width="28" height="28" viewBox="0 0 24 24" fill="none">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="#0B2447" strokeWidth="4"/>
-                <path className="opacity-75" fill="#0B2447" d="M4 12a8 8 0 018-8v8z"/>
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="#1D1815" strokeWidth="4"/>
+                <path className="opacity-75" fill="#1D1815" d="M4 12a8 8 0 018-8v8z"/>
               </svg>
               <p className="text-xs text-slate-400 font-semibold">Cargando estudiantes…</p>
             </div>
           </div>
         ) : alumnos.length === 0 ? (
           <div className="rounded-2xl py-16 text-center"
-            style={{ background: 'white', border: '1.5px solid #E4E8EF' }}>
+            style={{ background: 'white', border: '1.5px solid #DFE0E0' }}>
             <p className="text-slate-400 text-sm font-bold">No hay estudiantes matriculados en este ciclo</p>
           </div>
         ) : view === 'salones' ? (
@@ -810,31 +810,31 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
                     onClick={() => setSalonSel(isActive ? null : s)}
                     className="rounded-2xl p-4 text-left transition-all hover:-translate-y-0.5"
                     style={{
-                      background: isActive ? 'linear-gradient(135deg,#0B2447,#1E3A8A)' : 'white',
-                      border: isActive ? 'none' : '1.5px solid #E4E8EF',
+                      background: isActive ? 'linear-gradient(135deg,#B00326,#B00326)' : 'white',
+                      border: isActive ? 'none' : '1.5px solid #DFE0E0',
                       boxShadow: isActive ? '0 6px 20px rgba(107,15,26,.28)' : '0 2px 12px rgba(107,15,26,.05)',
                       color: isActive ? 'white' : 'inherit',
                     }}>
                     <div className="flex items-start justify-between gap-2 mb-2">
                       <div className="w-8 h-8 rounded-xl flex items-center justify-center text-sm font-black"
-                        style={{ background: isActive ? 'rgba(255,255,255,.2)' : '#F1F5F9', color: isActive ? 'white' : '#0B2447' }}>
+                        style={{ background: isActive ? 'rgba(255,255,255,.2)' : '#EDEEEE', color: isActive ? 'white' : '#1D1815' }}>
                         {s.grupo}
                       </div>
-                      <span className="text-lg font-black" style={{ color: isActive ? 'rgba(255,255,255,.85)' : '#64748b' }}>
+                      <span className="text-lg font-black" style={{ color: isActive ? 'rgba(255,255,255,.85)' : '#6B625D' }}>
                         {s.count}
                       </span>
                     </div>
-                    <p className="text-xs font-black leading-tight" style={{ color: isActive ? 'white' : '#1e293b' }}>
+                    <p className="text-xs font-black leading-tight" style={{ color: isActive ? 'white' : '#2A2420' }}>
                       {s.grado}
                     </p>
                     {s.salon_nombre && (
                       <p className="text-[10px] font-semibold mt-0.5 truncate"
-                        style={{ color: isActive ? 'rgba(255,255,255,.7)' : '#94a3b8' }}>
+                        style={{ color: isActive ? 'rgba(255,255,255,.7)' : '#8B837E' }}>
                         {s.salon_nombre}
                       </p>
                     )}
                     <p className="text-[10px] mt-1.5 font-semibold"
-                      style={{ color: isActive ? 'rgba(255,255,255,.6)' : '#cbd5e1' }}>
+                      style={{ color: isActive ? 'rgba(255,255,255,.6)' : '#C9C5C1' }}>
                       {s.count} {s.count === 1 ? 'alumno' : 'alumnos'}
                     </p>
                   </button>
@@ -845,8 +845,8 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
             {/* Lista de alumnos del salón seleccionado */}
             {salonSel && (
               <div className="rounded-2xl overflow-hidden"
-                style={{ background: 'white', border: '1.5px solid #E4E8EF', boxShadow: '0 4px 20px rgba(107,15,26,.06)' }}>
-                <div className="h-1" style={{ background: 'linear-gradient(90deg,#0B2447,#1E3A8A,#1E40AF)' }} />
+                style={{ background: 'white', border: '1.5px solid #DFE0E0', boxShadow: '0 4px 20px rgba(107,15,26,.06)' }}>
+                <div className="h-1" style={{ background: 'linear-gradient(90deg,#B00326,#B00326,#D9042F)' }} />
                 <div className="p-4 flex items-center justify-between gap-3 flex-wrap">
                   <div>
                     <p className="font-black text-slate-800 text-sm">
@@ -866,7 +866,7 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
                       }}
                       disabled={qrDescargando}
                       className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-black text-white disabled:opacity-50"
-                      style={{ background: 'linear-gradient(135deg,#0B2447,#4a0910)' }}>
+                      style={{ background: 'linear-gradient(135deg,#1D1815,#4a0910)' }}>
                       <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth="2.5">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v1m0 14v1M5.636 5.636l.707.707m11.314 11.314.707.707M4 12H3m18 0h-1M5.636 18.364l.707-.707M18.364 5.636l-.707.707M12 8a4 4 0 100 8 4 4 0 000-8z"/>
                       </svg>
@@ -874,7 +874,7 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
                     </button>
                     <button onClick={() => { setDlScope('salon'); setDlOpen(true) }}
                       className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-black text-white"
-                      style={{ background: 'linear-gradient(135deg,#0B2447,#1E3A8A)' }}>
+                      style={{ background: 'linear-gradient(135deg,#B00326,#B00326)' }}>
                       <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth="2.5">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
                       </svg>
@@ -886,7 +886,7 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
                 <div className="overflow-x-auto">
                   <table className="w-full text-sm">
                     <thead>
-                      <tr style={{ borderTop: '1px solid #f1f5f9', borderBottom: '1px solid #f1f5f9', background: '#F6F8FB' }}>
+                      <tr style={{ borderTop: '1px solid #EDEEEE', borderBottom: '1px solid #EDEEEE', background: '#F5F5F4' }}>
                         <th className="text-left px-4 py-2.5 text-[10px] font-black text-slate-400 uppercase tracking-widest w-8">#</th>
                         <th className="text-left px-4 py-2.5 text-[10px] font-black text-slate-400 uppercase tracking-widest">Apellidos y nombre</th>
                         <th className="text-left px-4 py-2.5 text-[10px] font-black text-slate-400 uppercase tracking-widest">DNI</th>
@@ -898,7 +898,7 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
                       {alumnos
                         .filter(a => a.grado === salonSel.grado && a.grupo === salonSel.grupo)
                         .map((a, i) => (
-                          <tr key={a.id} style={{ borderBottom: '1px solid #F6F8FB' }}
+                          <tr key={a.id} style={{ borderBottom: '1px solid #F5F5F4' }}
                             className="hover:bg-indigo-50/30 transition-colors">
                             <td className="px-4 py-2.5 text-xs text-slate-400 font-bold">{i + 1}</td>
                             <td className="px-4 py-2.5">
@@ -914,7 +914,7 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
                                 disabled={!a.qr_token || qrDescargando}
                                 title="Descargar QR"
                                 className="w-7 h-7 rounded-lg flex items-center justify-center transition-all hover:opacity-80 disabled:opacity-30"
-                                style={{ background: 'linear-gradient(135deg,#0B2447,#4a0910)' }}>
+                                style={{ background: 'linear-gradient(135deg,#1D1815,#4a0910)' }}>
                                 <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth="2.5">
                                   <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
                                 </svg>
@@ -933,14 +933,14 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
 
           /* ════════════ VISTA TODOS ════════════ */
           <div className="rounded-2xl overflow-hidden"
-            style={{ background: 'white', border: '1.5px solid #E4E8EF', boxShadow: '0 4px 20px rgba(107,15,26,.06)' }}>
-            <div className="h-1" style={{ background: 'linear-gradient(90deg,#0B2447,#1E3A8A,#1E40AF)' }} />
+            style={{ background: 'white', border: '1.5px solid #DFE0E0', boxShadow: '0 4px 20px rgba(107,15,26,.06)' }}>
+            <div className="h-1" style={{ background: 'linear-gradient(90deg,#B00326,#B00326,#D9042F)' }} />
 
             {/* Search */}
             <div className="p-4 border-b border-slate-100">
               <div className="relative">
                 <svg className="absolute left-3.5 top-1/2 -translate-y-1/2" width="14" height="14"
-                  fill="none" viewBox="0 0 24 24" stroke="#94a3b8" strokeWidth="2">
+                  fill="none" viewBox="0 0 24 24" stroke="#8B837E" strokeWidth="2">
                   <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
                 </svg>
                 <input
@@ -948,7 +948,7 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
                   onChange={e => setSearch(e.target.value)}
                   placeholder="Buscar por nombre, apellido o DNI…"
                   className="w-full pl-9 pr-4 py-2.5 rounded-xl text-sm outline-none"
-                  style={{ background: '#F6F8FB', border: '1.5px solid #E4E8EF' }}
+                  style={{ background: '#F5F5F4', border: '1.5px solid #DFE0E0' }}
                 />
                 {search && (
                   <button onClick={() => setSearch('')}
@@ -969,7 +969,7 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr style={{ borderBottom: '1.5px solid #f1f5f9', background: '#F6F8FB' }}>
+                  <tr style={{ borderBottom: '1.5px solid #EDEEEE', background: '#F5F5F4' }}>
                     <th className="text-left px-4 py-3 text-[10px] font-black text-slate-400 uppercase tracking-widest w-8">#</th>
                     <th className="text-left px-4 py-3 text-[10px] font-black text-slate-400 uppercase tracking-widest">Apellidos y nombre</th>
                     <th className="text-left px-4 py-3 text-[10px] font-black text-slate-400 uppercase tracking-widest">DNI</th>
@@ -982,7 +982,7 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
                 <tbody>
                   {alumnosVista.map((a, i) => (
                     <tr key={a.id} className="hover:bg-indigo-50/30 transition-colors"
-                      style={{ borderBottom: '1px solid #F6F8FB' }}>
+                      style={{ borderBottom: '1px solid #F5F5F4' }}>
                       <td className="px-4 py-3 text-xs text-slate-400 font-bold">{i + 1}</td>
                       <td className="px-4 py-3">
                         <p className="font-bold text-slate-800">
@@ -994,7 +994,7 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
                         <span className="inline-flex items-center gap-1">
                           <span className="text-xs font-bold text-slate-700">{a.grado}</span>
                           <span className="text-[10px] font-black px-1.5 py-0.5 rounded-md"
-                            style={{ background: '#F1F5F9', color: '#0B2447' }}>
+                            style={{ background: '#EDEEEE', color: '#1D1815' }}>
                             {a.grupo}
                           </span>
                         </span>
@@ -1009,7 +1009,7 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
                           disabled={!a.qr_token || qrDescargando}
                           title="Descargar QR"
                           className="w-7 h-7 rounded-lg flex items-center justify-center transition-all hover:opacity-80 disabled:opacity-30"
-                          style={{ background: 'linear-gradient(135deg,#0B2447,#4a0910)' }}>
+                          style={{ background: 'linear-gradient(135deg,#1D1815,#4a0910)' }}>
                           <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth="2.5">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
                           </svg>
@@ -1039,10 +1039,10 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
             style={{ background: 'white', boxShadow: '0 24px 64px rgba(0,0,0,.2)' }}>
 
             {/* Header */}
-            <div className="h-1" style={{ background: 'linear-gradient(90deg,#0B2447,#1E3A8A,#1E40AF)' }} />
+            <div className="h-1" style={{ background: 'linear-gradient(90deg,#B00326,#B00326,#D9042F)' }} />
             <div className="px-6 py-4 flex items-center justify-between border-b border-slate-100">
               <div className="flex items-center gap-2">
-                <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="#0B2447" strokeWidth="2">
+                <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="#1D1815" strokeWidth="2">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
                 </svg>
                 <p className="font-black text-slate-800 text-sm">Configurar descarga</p>
@@ -1069,14 +1069,14 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
                       disabled={opt.id === 'salon' && !salonSel}
                       className="rounded-xl p-3 text-left transition-all disabled:opacity-40"
                       style={{
-                        background: dlScope === opt.id ? 'linear-gradient(135deg,#F1F5F9,#E2E8F0)' : '#F8FAFC',
-                        border: `1.5px solid ${dlScope === opt.id ? '#fecdd3' : '#E4E8EF'}`,
+                        background: dlScope === opt.id ? 'linear-gradient(135deg,#EDEEEE,#DCDEDE)' : '#F7F7F6',
+                        border: `1.5px solid ${dlScope === opt.id ? '#fecdd3' : '#DFE0E0'}`,
                       }}>
                       <svg width="16" height="16" fill="none" viewBox="0 0 24 24"
-                        stroke={dlScope === opt.id ? '#0B2447' : '#94a3b8'} strokeWidth="2" className="mb-1.5">
+                        stroke={dlScope === opt.id ? '#1D1815' : '#8B837E'} strokeWidth="2" className="mb-1.5">
                         <path strokeLinecap="round" strokeLinejoin="round" d={opt.icon}/>
                       </svg>
-                      <p className="text-xs font-black" style={{ color: dlScope === opt.id ? '#0B2447' : '#475569' }}>
+                      <p className="text-xs font-black" style={{ color: dlScope === opt.id ? '#1D1815' : '#5C5450' }}>
                         {opt.label}
                       </p>
                       <p className="text-[10px] text-slate-400 mt-0.5">{opt.sub}</p>
@@ -1107,11 +1107,11 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
                     <button key={c.key} onClick={() => toggleCampo(c.key)}
                       className="flex items-center gap-2 px-3 py-2 rounded-xl text-left transition-all"
                       style={{
-                        background: campos[c.key] ? '#F1F5F9' : '#F8FAFC',
-                        border: `1.5px solid ${campos[c.key] ? '#fecdd3' : '#E4E8EF'}`,
+                        background: campos[c.key] ? '#EDEEEE' : '#F7F7F6',
+                        border: `1.5px solid ${campos[c.key] ? '#fecdd3' : '#DFE0E0'}`,
                       }}>
                       <div className="w-3.5 h-3.5 rounded-md shrink-0 flex items-center justify-center transition-all"
-                        style={{ background: campos[c.key] ? '#0B2447' : 'white', border: `1.5px solid ${campos[c.key] ? '#0B2447' : '#d1d5db'}` }}>
+                        style={{ background: campos[c.key] ? '#1D1815' : 'white', border: `1.5px solid ${campos[c.key] ? '#1D1815' : '#DBD5D1'}` }}>
                         {campos[c.key] && (
                           <svg width="8" height="8" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth="3.5">
                             <polyline points="20 6 9 17 4 12"/>
@@ -1119,7 +1119,7 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
                         )}
                       </div>
                       <span className="text-[11px] font-semibold"
-                        style={{ color: campos[c.key] ? '#0B2447' : '#64748b' }}>
+                        style={{ color: campos[c.key] ? '#1D1815' : '#6B625D' }}>
                         {c.label}
                       </span>
                     </button>
@@ -1146,7 +1146,7 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
                   onClick={() => { descargar() }}
                   disabled={descargando || !Object.values(campos).some(Boolean) || (dlScope === 'salon' && !salonSel)}
                   className="flex items-center gap-2 px-5 py-2 rounded-xl text-xs font-black text-white transition-all disabled:opacity-50"
-                  style={{ background: 'linear-gradient(135deg,#0B2447,#1E3A8A)', boxShadow: '0 4px 14px rgba(11,36,71,.35)' }}>
+                  style={{ background: 'linear-gradient(135deg,#B00326,#B00326)', boxShadow: '0 4px 14px rgba(29,24,21,.35)' }}>
                   {descargando ? (
                     <svg className="animate-spin" width="13" height="13" viewBox="0 0 24 24" fill="none">
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="white" strokeWidth="4"/>
@@ -1172,7 +1172,7 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
           <div className="rounded-3xl p-8 flex flex-col items-center gap-4 w-72"
             style={{ background: 'white', boxShadow: '0 24px 64px rgba(0,0,0,.2)' }}>
             <div className="w-14 h-14 rounded-2xl flex items-center justify-center"
-              style={{ background: 'linear-gradient(135deg,#0B2447,#4a0910)' }}>
+              style={{ background: 'linear-gradient(135deg,#1D1815,#4a0910)' }}>
               <svg className="animate-spin" width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="white" strokeWidth="4"/>
                 <path className="opacity-75" fill="white" d="M4 12a8 8 0 018-8v8z"/>
@@ -1182,9 +1182,9 @@ export function SalonesContent({ embedded = false }: SalonesProps = {}) {
               <p className="font-black text-slate-800 text-sm">Generando tarjetas QR…</p>
               <p className="text-xs text-slate-400 mt-1">{qrProgreso} de {qrTotal} estudiantes</p>
             </div>
-            <div className="w-full rounded-full overflow-hidden" style={{ background: '#E4E8EF', height: 8 }}>
+            <div className="w-full rounded-full overflow-hidden" style={{ background: '#DFE0E0', height: 8 }}>
               <div className="h-full rounded-full transition-all"
-                style={{ width: `${qrTotal > 0 ? (qrProgreso / qrTotal) * 100 : 0}%`, background: 'linear-gradient(90deg,#0B2447,#1E40AF)' }} />
+                style={{ width: `${qrTotal > 0 ? (qrProgreso / qrTotal) * 100 : 0}%`, background: 'linear-gradient(90deg,#B00326,#D9042F)' }} />
             </div>
             <p className="text-[10px] text-slate-400 font-semibold">
               {qrTotal > 1 ? 'Se descargará un archivo .zip al finalizar' : 'Se descargará la imagen al finalizar'}

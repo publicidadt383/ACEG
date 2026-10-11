@@ -56,15 +56,15 @@ function displayAlumno(a: { nombre: string; apellidos?: string | null; usuario?:
 }
 
 function notaColor(n: number | null) {
-  if (n === null) return '#94a3b8'
+  if (n === null) return '#8B837E'
   if (n >= 18) return '#059669'
-  if (n >= 14) return '#2563eb'
+  if (n >= 14) return '#D9042F'
   if (n >= 11) return '#d97706'
   return '#dc2626'
 }
 
 const inputCls = 'w-full rounded-xl px-3 py-2.5 text-sm text-slate-700 outline-none transition-all'
-const inputStyle = { background: '#F6F8FB', border: '1.5px solid #E4E8EF' }
+const inputStyle = { background: '#F5F5F4', border: '1.5px solid #DFE0E0' }
 
 /* ── Componente ────────────────────────────────────────────────── */
 export default function ExamenesDocente() {
@@ -329,7 +329,7 @@ export default function ExamenesDocente() {
       {/* Selector de asignación */}
       {asigs.length === 0 ? (
         <div className="rounded-2xl p-8 text-center text-slate-400 text-sm"
-          style={{ background: 'white', border: '1.5px solid #E4E8EF' }}>
+          style={{ background: 'white', border: '1.5px solid #DFE0E0' }}>
           No tienes cursos asignados.
         </div>
       ) : (
@@ -338,8 +338,8 @@ export default function ExamenesDocente() {
             <button key={a.id} onClick={() => { setAsigSel(a.id); setExamenAbierto(null); setVerResultados(null) }}
               className="px-4 py-2 rounded-xl text-xs font-bold transition-all"
               style={asigSel === a.id
-                ? { background: a.cursos?.color ?? '#143875', color: 'white', border: '2px solid transparent' }
-                : { background: 'white', color: '#64748b', border: '1.5px solid #E4E8EF' }}>
+                ? { background: a.cursos?.color ?? '#2A2420', color: 'white', border: '2px solid transparent' }
+                : { background: 'white', color: '#6B625D', border: '1.5px solid #DFE0E0' }}>
               {a.cursos?.nombre ?? 'Curso'} · {a.grado} &quot;{a.grupo}&quot;
             </button>
           ))}
@@ -351,19 +351,19 @@ export default function ExamenesDocente() {
 
           {/* ── Lista de exámenes ──────────────────────────────── */}
           <div className="lg:col-span-2">
-            <div className="rounded-2xl overflow-hidden" style={{ background: 'white', border: '1.5px solid #E4E8EF' }}>
-              <div className="flex items-center justify-between px-4 py-3" style={{ borderBottom: '1px solid #f1f5f9' }}>
+            <div className="rounded-2xl overflow-hidden" style={{ background: 'white', border: '1.5px solid #DFE0E0' }}>
+              <div className="flex items-center justify-between px-4 py-3" style={{ borderBottom: '1px solid #EDEEEE' }}>
                 <p className="text-xs font-black text-slate-600 uppercase tracking-widest">Exámenes</p>
                 <button onClick={() => { setShowForm(v => !v); setMsg('') }}
                   className="text-xs font-bold px-3 py-1.5 rounded-lg transition-all"
-                  style={{ background: '#EFF3FA', color: '#0B2447', border: '1.5px solid #b6c5e3' }}>
+                  style={{ background: '#F3F1EF', color: '#1D1815', border: '1.5px solid #D2CBC5' }}>
                   + Nuevo
                 </button>
               </div>
 
               {/* Formulario nuevo examen */}
               {showForm && (
-                <div className="px-4 py-3" style={{ borderBottom: '1px solid #f1f5f9', background: '#F6F8FB' }}>
+                <div className="px-4 py-3" style={{ borderBottom: '1px solid #EDEEEE', background: '#F5F5F4' }}>
                   <div className="flex flex-col gap-2">
                     <input placeholder="Título del examen *" value={form.titulo}
                       onChange={e => setForm({ ...form, titulo: e.target.value })}
@@ -404,7 +404,7 @@ export default function ExamenesDocente() {
                     {msg && <p className="text-xs text-red-500 font-semibold">{msg}</p>}
                     <button onClick={crearExamen} disabled={saving}
                       className="w-full py-2 rounded-xl text-xs font-black text-white transition-all"
-                      style={{ background: 'linear-gradient(135deg,#0B2447,#0B2447)', opacity: saving ? 0.7 : 1 }}>
+                      style={{ background: 'linear-gradient(135deg,#1D1815,#1D1815)', opacity: saving ? 0.7 : 1 }}>
                       {saving ? 'Guardando…' : 'Crear examen'}
                     </button>
                   </div>
@@ -429,15 +429,15 @@ export default function ExamenesDocente() {
                       <div key={ex.id}
                         className="px-4 py-3 cursor-pointer transition-colors"
                         style={{
-                          borderBottom: '1px solid #f1f5f9',
-                          background: isOpen ? '#EFF3FA' : 'transparent',
+                          borderBottom: '1px solid #EDEEEE',
+                          background: isOpen ? '#F3F1EF' : 'transparent',
                         }}
                         onClick={() => abrirExamen(ex)}>
                         <div className="flex items-start gap-2">
                           <div className="flex-1 min-w-0">
                             <p className="text-sm font-bold text-slate-800 truncate">{ex.titulo}</p>
                             {ex.sesiones && (
-                              <p className="text-[10px] font-semibold mt-0.5" style={{ color: '#94a3b8' }}>
+                              <p className="text-[10px] font-semibold mt-0.5" style={{ color: '#8B837E' }}>
                                 {ex.sesiones.unidades?.nombre && `${ex.sesiones.unidades.nombre} · `}{ex.sesiones.titulo}
                               </p>
                             )}
@@ -450,7 +450,7 @@ export default function ExamenesDocente() {
                           <span className="shrink-0 text-[9px] font-black px-2 py-0.5 rounded-full"
                             style={ex.publicado
                               ? { background: '#d1fae5', color: '#059669' }
-                              : { background: '#f1f5f9', color: '#94a3b8' }}>
+                              : { background: '#EDEEEE', color: '#8B837E' }}>
                             {ex.publicado ? 'PUBLICADO' : 'BORRADOR'}
                           </span>
                         </div>
@@ -464,7 +464,7 @@ export default function ExamenesDocente() {
                           </button>
                           <button onClick={e => { e.stopPropagation(); abrirResultados(ex) }}
                             className="text-[10px] font-bold px-2 py-1 rounded-lg transition-all"
-                            style={{ background: '#eff6ff', color: '#1d4ed8', border: '1px solid #bfdbfe' }}>
+                            style={{ background: '#FDEDF0', color: '#C20329', border: '1px solid #F6C3CD' }}>
                             Resultados
                           </button>
                           <button onClick={e => { e.stopPropagation(); setConfirmEliminarId(ex.id) }}
@@ -486,8 +486,8 @@ export default function ExamenesDocente() {
 
             {/* Panel de preguntas */}
             {examenAbierto && (
-              <div className="rounded-2xl overflow-hidden" style={{ background: 'white', border: '1.5px solid #E4E8EF' }}>
-                <div className="px-5 py-4" style={{ borderBottom: '1px solid #f1f5f9' }}>
+              <div className="rounded-2xl overflow-hidden" style={{ background: 'white', border: '1.5px solid #DFE0E0' }}>
+                <div className="px-5 py-4" style={{ borderBottom: '1px solid #EDEEEE' }}>
                   <div className="flex items-center gap-3 flex-wrap">
                     <div className="flex-1 min-w-0">
                       <p className="font-black text-slate-800">{examenAbierto.titulo}</p>
@@ -501,7 +501,7 @@ export default function ExamenesDocente() {
                       </span>
                       <button onClick={() => setShowPxForm(v => !v)}
                         className="text-xs font-bold px-3 py-1.5 rounded-lg"
-                        style={{ background: '#EFF3FA', color: '#0B2447', border: '1.5px solid #b6c5e3' }}>
+                        style={{ background: '#F3F1EF', color: '#1D1815', border: '1.5px solid #D2CBC5' }}>
                         + Pregunta
                       </button>
                     </div>
@@ -510,7 +510,7 @@ export default function ExamenesDocente() {
 
                 {/* Formulario nueva pregunta */}
                 {showPxForm && (
-                  <div className="px-5 py-4" style={{ borderBottom: '1px solid #f1f5f9', background: '#F6F8FB' }}>
+                  <div className="px-5 py-4" style={{ borderBottom: '1px solid #EDEEEE', background: '#F5F5F4' }}>
                     <div className="flex flex-col gap-3">
                       {/* Tipo */}
                       <div className="flex gap-2">
@@ -522,8 +522,8 @@ export default function ExamenesDocente() {
                           }}
                             className="flex-1 py-2 rounded-xl text-[11px] font-bold transition-all"
                             style={pxForm.tipo === t
-                              ? { background: '#0B2447', color: 'white' }
-                              : { background: '#f1f5f9', color: '#64748b' }}>
+                              ? { background: '#1D1815', color: 'white' }
+                              : { background: '#EDEEEE', color: '#6B625D' }}>
                             {t === 'opcion_multiple' ? 'Opción múltiple' : t === 'verdadero_falso' ? 'Verdadero / Falso' : 'Texto corto'}
                           </button>
                         ))}
@@ -544,7 +544,7 @@ export default function ExamenesDocente() {
                                 className="w-5 h-5 rounded-full shrink-0 flex items-center justify-center transition-all"
                                 style={o.es_correcta
                                   ? { background: '#059669', border: '2px solid #059669' }
-                                  : { background: 'white', border: '2px solid #cbd5e1' }}>
+                                  : { background: 'white', border: '2px solid #C9C5C1' }}>
                                 {o.es_correcta && <div className="w-2 h-2 rounded-full bg-white" />}
                               </button>
                               <input placeholder={`Opción ${i + 1}`} value={o.texto}
@@ -574,7 +574,7 @@ export default function ExamenesDocente() {
                               className="flex-1 py-2.5 rounded-xl text-sm font-bold transition-all"
                               style={opciones[0]?.es_correcta === v
                                 ? { background: '#059669', color: 'white' }
-                                : { background: '#f1f5f9', color: '#64748b' }}>
+                                : { background: '#EDEEEE', color: '#6B625D' }}>
                               {v ? 'Verdadero ✓' : 'Falso ✗'}
                             </button>
                           ))}
@@ -601,12 +601,12 @@ export default function ExamenesDocente() {
                       <div className="flex gap-2">
                         <button onClick={guardarPregunta} disabled={savingPx}
                           className="flex-1 py-2 rounded-xl text-xs font-black text-white"
-                          style={{ background: 'linear-gradient(135deg,#0B2447,#0B2447)', opacity: savingPx ? 0.7 : 1 }}>
+                          style={{ background: 'linear-gradient(135deg,#1D1815,#1D1815)', opacity: savingPx ? 0.7 : 1 }}>
                           {savingPx ? 'Guardando…' : 'Guardar pregunta'}
                         </button>
                         <button onClick={() => setShowPxForm(false)}
                           className="px-4 py-2 rounded-xl text-xs font-bold text-slate-400"
-                          style={{ background: '#f1f5f9' }}>
+                          style={{ background: '#EDEEEE' }}>
                           Cancelar
                         </button>
                       </div>
@@ -630,14 +630,14 @@ export default function ExamenesDocente() {
                       <div key={p.id} className="px-5 py-4">
                         <div className="flex items-start gap-3">
                           <span className="w-6 h-6 rounded-lg flex items-center justify-center shrink-0 text-[10px] font-black text-white mt-0.5"
-                            style={{ background: 'linear-gradient(135deg,#143875,#143875)' }}>
+                            style={{ background: 'linear-gradient(135deg,#2A2420,#2A2420)' }}>
                             {i + 1}
                           </span>
                           <div className="flex-1 min-w-0">
                             <p className="text-sm font-semibold text-slate-800">{p.enunciado}</p>
                             <div className="flex items-center gap-2 mt-1">
                               <span className="text-[10px] font-bold px-2 py-0.5 rounded-full"
-                                style={{ background: '#EFF3FA', color: '#0B2447' }}>
+                                style={{ background: '#F3F1EF', color: '#1D1815' }}>
                                 {p.tipo === 'opcion_multiple' ? 'Opción múltiple' : p.tipo === 'verdadero_falso' ? 'V/F' : 'Texto corto'}
                               </span>
                               <span className="text-[10px] text-slate-400 font-semibold">{p.puntos} pt{p.puntos !== 1 ? 's' : ''}</span>
@@ -649,7 +649,7 @@ export default function ExamenesDocente() {
                                     <span className="w-3.5 h-3.5 rounded-full shrink-0 flex items-center justify-center"
                                       style={o.es_correcta
                                         ? { background: '#059669' }
-                                        : { background: '#e2e8f0' }}>
+                                        : { background: '#DCDEDE' }}>
                                       {o.es_correcta && <svg width="8" height="8" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth="3.5"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"/></svg>}
                                     </span>
                                     <span className="text-xs text-slate-600">{o.texto}</span>
@@ -675,8 +675,8 @@ export default function ExamenesDocente() {
 
             {/* Panel de resultados */}
             {verResultados && (
-              <div className="rounded-2xl overflow-hidden" style={{ background: 'white', border: '1.5px solid #E4E8EF' }}>
-                <div className="px-5 py-4" style={{ borderBottom: '1px solid #f1f5f9' }}>
+              <div className="rounded-2xl overflow-hidden" style={{ background: 'white', border: '1.5px solid #DFE0E0' }}>
+                <div className="px-5 py-4" style={{ borderBottom: '1px solid #EDEEEE' }}>
                   <p className="font-black text-slate-800">{verResultados.titulo}</p>
                   <p className="text-xs text-slate-400 mt-0.5">Resultados de estudiantes</p>
                 </div>
@@ -724,8 +724,8 @@ export default function ExamenesDocente() {
             {/* Placeholder vacío */}
             {!examenAbierto && !verResultados && (
               <div className="rounded-2xl flex flex-col items-center justify-center py-16 gap-3"
-                style={{ background: 'white', border: '1.5px dashed #E4E8EF' }}>
-                <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="#b6c5e3" strokeWidth="1.5">
+                style={{ background: 'white', border: '1.5px dashed #DFE0E0' }}>
+                <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="#D2CBC5" strokeWidth="1.5">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
                 </svg>
                 <p className="text-slate-300 text-sm font-semibold">Selecciona un examen para editarlo</p>
@@ -753,7 +753,7 @@ export default function ExamenesDocente() {
             <div className="flex gap-3">
               <button onClick={() => setConfirmEliminarId(null)}
                 className="flex-1 py-2.5 rounded-xl text-sm font-bold text-slate-600"
-                style={{ background: '#f1f5f9', border: '1.5px solid #e2e8f0' }}>
+                style={{ background: '#EDEEEE', border: '1.5px solid #DCDEDE' }}>
                 Cancelar
               </button>
               <button onClick={() => eliminarExamen(confirmEliminarId)}

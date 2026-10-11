@@ -202,7 +202,7 @@ export default function DocenteCursosPage() {
         <h1 style={{ fontSize: '30px', fontWeight: '900', color: '#1a0305', letterSpacing: '-.02em', lineHeight: '1.1' }}>
           Mis Cursos
         </h1>
-        <p style={{ fontSize: '14px', color: '#6b7280', marginTop: '6px', fontWeight: '500' }}>
+        <p style={{ fontSize: '14px', color: '#80746B', marginTop: '6px', fontWeight: '500' }}>
           {totalCursos > 0
             ? `${totalCursos} ${totalCursos === 1 ? 'curso asignado' : 'cursos asignados'}${cicloNombre ? ` · ciclo ${cicloNombre}` : ' este año'}`
             : 'Contacta al administrador para asignar tus cursos'}
@@ -213,18 +213,18 @@ export default function DocenteCursosPage() {
       {grupos.length === 0 && (
         <div style={{
           borderRadius: '20px', padding: '64px 24px', textAlign: 'center',
-          background: 'white', border: '1.5px solid #E4E8EF'
+          background: 'white', border: '1.5px solid #DFE0E0'
         }}>
           <div style={{
             width: '60px', height: '60px', borderRadius: '16px', margin: '0 auto 16px',
-            background: 'linear-gradient(135deg, #F1F5F9, #E4E8EF)',
+            background: 'linear-gradient(135deg, #EDEEEE, #DFE0E0)',
             display: 'flex', alignItems: 'center', justifyContent: 'center'
           }}>
-            <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="rgba(11,36,71,.4)" strokeWidth="1.5">
+            <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="rgba(29,24,21,.4)" strokeWidth="1.5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
             </svg>
           </div>
-          <p style={{ color: '#6b7280', fontSize: '14px', fontWeight: '600' }}>Sin cursos asignados aún</p>
+          <p style={{ color: '#80746B', fontSize: '14px', fontWeight: '600' }}>Sin cursos asignados aún</p>
         </div>
       )}
 
@@ -234,12 +234,12 @@ export default function DocenteCursosPage() {
 
           {/* Cabecera sección */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '20px' }}>
-            <div style={{ width: '3px', height: '18px', borderRadius: '2px', flexShrink: 0, background: 'linear-gradient(to bottom, #0B2447, #1E3A8A)' }} />
-            <h2 style={{ fontSize: '11px', fontWeight: '800', color: '#0B2447', textTransform: 'uppercase', letterSpacing: '.14em' }}>
+            <div style={{ width: '3px', height: '18px', borderRadius: '2px', flexShrink: 0, background: 'linear-gradient(to bottom, #B00326, #B00326)' }} />
+            <h2 style={{ fontSize: '11px', fontWeight: '800', color: '#1D1815', textTransform: 'uppercase', letterSpacing: '.14em' }}>
               {grupo.label}
             </h2>
-            <div style={{ flex: 1, height: '1px', background: 'linear-gradient(to right, #E4E8EF, transparent)' }} />
-            <span style={{ fontSize: '10px', fontWeight: '700', color: '#6b7280' }}>
+            <div style={{ flex: 1, height: '1px', background: 'linear-gradient(to right, #DFE0E0, transparent)' }} />
+            <span style={{ fontSize: '10px', fontWeight: '700', color: '#80746B' }}>
               {grupo.items.length} {grupo.items.length === 1 ? 'curso' : 'cursos'}
             </span>
           </div>
@@ -247,7 +247,7 @@ export default function DocenteCursosPage() {
           {/* Grid de cards */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '18px' }}>
             {grupo.items.map(asig => {
-              const color  = asig.cursos?.color ?? '#0B2447'
+              const color  = asig.cursos?.color ?? '#1D1815'
               const nombre = asig.cursos?.nombre ?? 'Curso'
               const initials = nombre.split(' ').slice(0, 2).map((w: string) => w[0]?.toUpperCase()).join('')
 
@@ -257,8 +257,8 @@ export default function DocenteCursosPage() {
                   style={{
                     borderRadius: '20px', overflow: 'hidden',
                     background: 'white',
-                    border: '1.5px solid #E4E8EF',
-                    boxShadow: '0 4px 24px rgba(11,36,71,.06)',
+                    border: '1.5px solid #DFE0E0',
+                    boxShadow: '0 4px 24px rgba(29,24,21,.06)',
                     cursor: 'pointer', textAlign: 'left',
                     transition: 'transform .16s ease, box-shadow .16s ease',
                     display: 'flex', flexDirection: 'column'
@@ -269,7 +269,7 @@ export default function DocenteCursosPage() {
                   }}
                   onMouseLeave={e => {
                     e.currentTarget.style.transform = 'translateY(0)'
-                    e.currentTarget.style.boxShadow = '0 4px 24px rgba(11,36,71,.06)'
+                    e.currentTarget.style.boxShadow = '0 4px 24px rgba(29,24,21,.06)'
                   }}>
 
                   {/* Zona ilustración */}
@@ -323,7 +323,7 @@ export default function DocenteCursosPage() {
                     }}>
                       {nombre}
                     </p>
-                    <p style={{ fontSize: '12px', color: '#6b7280', fontWeight: '600', marginBottom: '14px' }}>
+                    <p style={{ fontSize: '12px', color: '#80746B', fontWeight: '600', marginBottom: '14px' }}>
                       {asig.grado} · Sección {asig.grupo}
                     </p>
 

@@ -90,9 +90,9 @@ export default function MarcarPorBoton({ disabled, etiqueta, onMarcar }: Props) 
         </div>
       ) : !pos ? (
         <div className="flex items-center gap-2.5 px-4 py-3 rounded-2xl"
-          style={{ background: '#EFF3FA', border: '1.5px solid #b6c5e3' }}>
-          <span className="w-2.5 h-2.5 rounded-full animate-pulse shrink-0" style={{ background: '#143875' }} />
-          <p className="text-xs font-bold" style={{ color: '#0B2447' }}>Obteniendo tu ubicación…</p>
+          style={{ background: '#F3F1EF', border: '1.5px solid #D2CBC5' }}>
+          <span className="w-2.5 h-2.5 rounded-full animate-pulse shrink-0" style={{ background: '#2A2420' }} />
+          <p className="text-xs font-bold" style={{ color: '#1D1815' }}>Obteniendo tu ubicación…</p>
         </div>
       ) : dentro ? (
         <div className="flex items-center gap-2.5 px-4 py-3 rounded-2xl"
@@ -118,8 +118,8 @@ export default function MarcarPorBoton({ disabled, etiqueta, onMarcar }: Props) 
         disabled={disabled || !dentro}
         className="w-full py-4 rounded-2xl font-black text-base text-white transition-all active:scale-[0.98] disabled:active:scale-100"
         style={dentro && !disabled
-          ? { background: 'linear-gradient(135deg, #0B2447, #1E40AF)', boxShadow: '0 10px 28px rgba(11,36,71,.35)' }
-          : { background: '#cbd5e1', cursor: 'not-allowed' }}>
+          ? { background: 'linear-gradient(135deg, #B00326, #D9042F)', boxShadow: '0 10px 28px rgba(29,24,21,.35)' }
+          : { background: '#C9C5C1', cursor: 'not-allowed' }}>
         {etiqueta}
       </button>
       <p className="text-[10px] text-slate-400 text-center -mt-1">

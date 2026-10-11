@@ -25,7 +25,7 @@ interface CursoBoletin {
 }
 
 function notaColor(n: number | null) {
-  if (n === null) return '#94a3b8'
+  if (n === null) return '#8B837E'
   if (n >= 14)  return '#16a34a'
   if (n >= 11)  return '#d97706'
   return '#ef4444'
@@ -154,7 +154,7 @@ export default function BoletinPage() {
         return {
           asigId:            a.id,
           nombre:            a.cursos?.nombre ?? 'Curso',
-          color:             a.cursos?.color  ?? '#0d9488',
+          color:             a.cursos?.color  ?? '#944C0D',
           totalTareas:       misTareas.length,
           tareasEntregadas:  misEntregas.length,
           tareasCalificadas: calificadas.length,
@@ -198,7 +198,7 @@ export default function BoletinPage() {
       <div className="grid grid-cols-2 gap-3">
         {/* Promedio general */}
         <div className="rounded-2xl p-4 flex flex-col gap-1"
-          style={{ background: 'white', border: '1.5px solid #ccfbf1', boxShadow: '0 2px 12px rgba(13,148,136,.05)' }}>
+          style={{ background: 'white', border: '1.5px solid #FBE2CC', boxShadow: '0 2px 12px rgba(148,76,13,.05)' }}>
           <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Promedio General</p>
           <p className="text-3xl font-black" style={{ color: notaColor(promedioGlobal) }}>
             {promedioGlobal ?? '—'}
@@ -213,7 +213,7 @@ export default function BoletinPage() {
 
         {/* Asistencia global */}
         <div className="rounded-2xl p-4 flex flex-col gap-1"
-          style={{ background: 'white', border: '1.5px solid #ccfbf1', boxShadow: '0 2px 12px rgba(13,148,136,.05)' }}>
+          style={{ background: 'white', border: '1.5px solid #FBE2CC', boxShadow: '0 2px 12px rgba(148,76,13,.05)' }}>
           <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Asistencia Global</p>
           <p className="text-3xl font-black" style={{ color: pctColor(pctGlobal ?? 0) }}>
             {pctGlobal !== null ? `${pctGlobal}%` : '—'}
@@ -230,7 +230,7 @@ export default function BoletinPage() {
           <div className="flex items-center gap-2">
             <h2 className="text-sm font-black text-slate-700 uppercase tracking-wider">Libreta oficial</h2>
             <span className="text-[10px] font-black px-2 py-0.5 rounded-full"
-              style={{ background: '#ccfbf1', color: '#0d9488' }}>
+              style={{ background: '#FBE2CC', color: '#944C0D' }}>
               Publicado por la escuela
             </span>
           </div>
@@ -243,12 +243,12 @@ export default function BoletinPage() {
             const hayDatos  = per.notas.length > 0 || (per.examenes ?? []).length > 0
             return (
             <div key={i} className="rounded-2xl overflow-hidden"
-              style={{ background: 'white', border: '1.5px solid #ccfbf1', boxShadow: '0 2px 12px rgba(13,148,136,.05)' }}>
+              style={{ background: 'white', border: '1.5px solid #FBE2CC', boxShadow: '0 2px 12px rgba(148,76,13,.05)' }}>
               <div className="px-5 py-3 border-b border-slate-50 flex items-center justify-between gap-2 flex-wrap">
                 <p className="text-sm font-black text-slate-800">{per.periodo}</p>
                 {hayDatos && (
                   <span className="text-xs font-black px-3 py-1 rounded-full"
-                    style={{ background: '#ccfbf1', color: '#0d9488' }}>
+                    style={{ background: '#FBE2CC', color: '#944C0D' }}>
                     Total: {totalPer} {totalPer === 1 ? 'punto' : 'puntos'}
                   </span>
                 )}
@@ -260,7 +260,7 @@ export default function BoletinPage() {
                   <div className="space-y-2">
                     {per.notas.map((n, j) => (
                       <div key={j} className="flex items-center gap-3 px-3 py-2 rounded-xl"
-                        style={{ background: '#f8fafc', border: '1px solid #f1f5f9' }}>
+                        style={{ background: '#F7F7F6', border: '1px solid #EDEEEE' }}>
                         <div className="flex-1 min-w-0">
                           <p className="text-xs font-bold text-slate-700 truncate">{n.titulo}</p>
                           {n.comentario && <p className="text-[11px] text-slate-400 italic mt-0.5">{n.comentario}</p>}
@@ -281,13 +281,13 @@ export default function BoletinPage() {
                   const abiertoEx = detalleEx === key
                   return (
                     <div key={key} className="rounded-xl p-4"
-                      style={{ background: '#f8fafc', border: '1px solid #f1f5f9' }}>
+                      style={{ background: '#F7F7F6', border: '1px solid #EDEEEE' }}>
                       <div className="flex items-center justify-between gap-2 flex-wrap">
                         <p className="text-xs font-black text-slate-700">{ex.titulo}</p>
                         <span className="text-xs font-black px-3 py-1 rounded-full"
                           style={{
-                            background: aprueba ? '#ccfbf1' : '#fee2e2',
-                            color:      aprueba ? '#0d9488' : '#ef4444',
+                            background: aprueba ? '#FBE2CC' : '#fee2e2',
+                            color:      aprueba ? '#944C0D' : '#ef4444',
                           }}>
                           Nota final: {r.puntos} / {r.total}
                         </span>
@@ -295,14 +295,14 @@ export default function BoletinPage() {
                       <div className="flex flex-wrap gap-1.5 mt-2.5">
                         {r.areas.map(a => (
                           <span key={a.area} className="text-[11px] font-bold px-2.5 py-1 rounded-full"
-                            style={{ background: 'white', border: '1px solid #e2e8f0', color: '#334155' }}>
+                            style={{ background: 'white', border: '1px solid #DCDEDE', color: '#3D3632' }}>
                             {a.area}: {a.puntos} {a.puntos === 1 ? 'punto' : 'puntos'} de {a.total}
                           </span>
                         ))}
                       </div>
                       <button onClick={() => setDetalleEx(abiertoEx ? null : key)}
                         className="mt-3 text-[11px] font-black flex items-center gap-1"
-                        style={{ color: '#0d9488' }}>
+                        style={{ color: '#944C0D' }}>
                         {abiertoEx ? 'Ocultar detalle' : 'Ver detalle'}
                         <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"
                           style={{ transform: abiertoEx ? 'rotate(180deg)' : 'none', transition: 'transform .2s' }}>
@@ -347,9 +347,9 @@ export default function BoletinPage() {
       {/* Por curso */}
       {cursosConData.length === 0 ? (
         <div className="rounded-2xl flex flex-col items-center justify-center py-24 gap-4"
-          style={{ background: 'white', border: '1.5px solid #ccfbf1' }}>
-          <div className="w-14 h-14 rounded-2xl flex items-center justify-center" style={{ background: '#f0fdfa' }}>
-            <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="#5eead4" strokeWidth="1.5">
+          style={{ background: 'white', border: '1.5px solid #FBE2CC' }}>
+          <div className="w-14 h-14 rounded-2xl flex items-center justify-center" style={{ background: '#FDF6F0' }}>
+            <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="#EA9F5E" strokeWidth="1.5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
             </svg>
           </div>
@@ -366,7 +366,7 @@ export default function BoletinPage() {
 
             return (
               <div key={c.asigId} className="rounded-2xl overflow-hidden"
-                style={{ background: 'white', border: '1.5px solid #ccfbf1', boxShadow: '0 2px 12px rgba(13,148,136,.05)' }}>
+                style={{ background: 'white', border: '1.5px solid #FBE2CC', boxShadow: '0 2px 12px rgba(148,76,13,.05)' }}>
 
                 {/* Franja color */}
                 <div className="h-1" style={{ background: `linear-gradient(90deg,${c.color},${c.color}88)` }} />
@@ -412,7 +412,7 @@ export default function BoletinPage() {
                     </div>
                   </div>
 
-                  <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="#94a3b8" strokeWidth="2.5"
+                  <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="#8B837E" strokeWidth="2.5"
                     className="shrink-0 transition-transform" style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0)' }}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7"/>
                   </svg>
@@ -420,7 +420,7 @@ export default function BoletinPage() {
 
                 {/* Detalle */}
                 {isOpen && (
-                  <div style={{ borderTop: '1px solid #f0fdfa' }}>
+                  <div style={{ borderTop: '1px solid #FDF6F0' }}>
                     <div className="grid grid-cols-2 divide-x divide-slate-50">
 
                       {/* Notas */}

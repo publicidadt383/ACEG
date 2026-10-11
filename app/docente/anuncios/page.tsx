@@ -108,9 +108,9 @@ export default function DocenteAnunciosPage() {
 
   if (loading) return null
 
-  const colorAsig = (id: string) => asigs.find(a => a.id === id)?.cursos?.color ?? '#143875'
+  const colorAsig = (id: string) => asigs.find(a => a.id === id)?.cursos?.color ?? '#2A2420'
   const selAsig   = asigs.find(a => a.id === asigId)
-  const colorSel  = selAsig?.cursos?.color ?? '#143875'
+  const colorSel  = selAsig?.cursos?.color ?? '#2A2420'
 
   return (
     <div className="max-w-3xl mx-auto space-y-6">
@@ -124,7 +124,7 @@ export default function DocenteAnunciosPage() {
         </div>
         <button onClick={() => { setAbierto(v => !v); setError('') }}
           className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-black text-white transition-all"
-          style={{ background: 'linear-gradient(135deg,#143875,#143875)', boxShadow: '0 4px 16px rgba(11,36,71,.3)' }}>
+          style={{ background: 'linear-gradient(135deg,#2A2420,#2A2420)', boxShadow: '0 4px 16px rgba(29,24,21,.3)' }}>
           <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth="2.5">
             <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
           </svg>
@@ -135,7 +135,7 @@ export default function DocenteAnunciosPage() {
       {/* Form nuevo anuncio */}
       {abierto && (
         <form onSubmit={publicar} className="rounded-2xl p-5 space-y-4"
-          style={{ background: 'white', border: '1.5px solid #E4E8EF', boxShadow: '0 4px 24px rgba(11,36,71,.08)' }}>
+          style={{ background: 'white', border: '1.5px solid #DFE0E0', boxShadow: '0 4px 24px rgba(29,24,21,.08)' }}>
           <p className="text-sm font-black text-slate-700">Nuevo anuncio</p>
 
           {/* Selector de curso */}
@@ -144,15 +144,15 @@ export default function DocenteAnunciosPage() {
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
               {asigs.map(a => {
                 const sel  = asigId === a.id
-                const col  = a.cursos?.color ?? '#143875'
+                const col  = a.cursos?.color ?? '#2A2420'
                 return (
                   <button type="button" key={a.id}
                     onClick={() => setAsigId(a.id)}
                     className="rounded-xl p-2.5 text-left transition-all"
                     style={sel
                       ? { background: `${col}18`, border: `2px solid ${col}`, boxShadow: `0 0 0 3px ${col}20` }
-                      : { background: '#F6F8FB', border: '1.5px solid #E4E8EF' }}>
-                    <p className="text-[11px] font-black truncate" style={{ color: sel ? col : '#475569' }}>
+                      : { background: '#F5F5F4', border: '1.5px solid #DFE0E0' }}>
+                    <p className="text-[11px] font-black truncate" style={{ color: sel ? col : '#5C5450' }}>
                       {a.cursos?.nombre ?? 'Curso'}
                     </p>
                     <p className="text-[10px] text-slate-400">{a.grado} · Sección {a.grupo}</p>
@@ -168,7 +168,7 @@ export default function DocenteAnunciosPage() {
             <input value={titulo} onChange={e => setTitulo(e.target.value)}
               placeholder="Ej: Cambio de horario del lunes"
               className="w-full px-4 py-2.5 rounded-xl text-sm outline-none"
-              style={{ background: '#F6F8FB', border: `1.5px solid ${asigId ? colorSel + '40' : '#E4E8EF'}` }} />
+              style={{ background: '#F5F5F4', border: `1.5px solid ${asigId ? colorSel + '40' : '#DFE0E0'}` }} />
           </div>
 
           {/* Contenido */}
@@ -177,7 +177,7 @@ export default function DocenteAnunciosPage() {
             <textarea value={contenido} onChange={e => setContenido(e.target.value)}
               rows={4} placeholder="Escribe el mensaje para tus estudiantes…"
               className="w-full px-4 py-2.5 rounded-xl text-sm outline-none resize-none"
-              style={{ background: '#F6F8FB', border: `1.5px solid ${asigId ? colorSel + '40' : '#E4E8EF'}` }} />
+              style={{ background: '#F5F5F4', border: `1.5px solid ${asigId ? colorSel + '40' : '#DFE0E0'}` }} />
           </div>
 
           {error && <p className="text-xs text-red-500 font-semibold">{error}</p>}
@@ -189,8 +189,8 @@ export default function DocenteAnunciosPage() {
             </button>
             <button type="submit" disabled={guardando}
               className="px-5 py-2 rounded-xl text-xs font-black text-white transition-all"
-              style={{ background: asigId ? `linear-gradient(135deg,${colorSel},${colorSel}cc)` : '#e2e8f0',
-                       color: asigId ? 'white' : '#94a3b8' }}>
+              style={{ background: asigId ? `linear-gradient(135deg,${colorSel},${colorSel}cc)` : '#DCDEDE',
+                       color: asigId ? 'white' : '#8B837E' }}>
               {guardando ? 'Publicando…' : 'Publicar'}
             </button>
           </div>
@@ -200,9 +200,9 @@ export default function DocenteAnunciosPage() {
       {/* Lista */}
       {anuncios.length === 0 ? (
         <div className="rounded-2xl flex flex-col items-center justify-center py-24 gap-4"
-          style={{ background: 'white', border: '1.5px solid #E4E8EF' }}>
-          <div className="w-14 h-14 rounded-2xl flex items-center justify-center" style={{ background: '#EFF3FA' }}>
-            <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="#a5b4fc" strokeWidth="1.5">
+          style={{ background: 'white', border: '1.5px solid #DFE0E0' }}>
+          <div className="w-14 h-14 rounded-2xl flex items-center justify-center" style={{ background: '#F3F1EF' }}>
+            <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="#FCA5B6" strokeWidth="1.5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/>
             </svg>
           </div>
@@ -218,7 +218,7 @@ export default function DocenteAnunciosPage() {
             const sec  = a.asignaciones
             return (
               <div key={a.id} className="rounded-2xl overflow-hidden"
-                style={{ background: 'white', border: '1.5px solid #E4E8EF', boxShadow: '0 2px 12px rgba(11,36,71,.05)' }}>
+                style={{ background: 'white', border: '1.5px solid #DFE0E0', boxShadow: '0 2px 12px rgba(29,24,21,.05)' }}>
                 {/* Franja color */}
                 <div className="h-1" style={{ background: `linear-gradient(90deg,${col},${col}88)` }} />
                 <div className="p-4">
@@ -238,9 +238,9 @@ export default function DocenteAnunciosPage() {
                     </div>
                     <button onClick={() => eliminar(a.id)}
                       className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-all hover:bg-red-50"
-                      style={{ color: '#94a3b8' }}
+                      style={{ color: '#8B837E' }}
                       onMouseEnter={e => (e.currentTarget.style.color = '#ef4444')}
-                      onMouseLeave={e => (e.currentTarget.style.color = '#94a3b8')}>
+                      onMouseLeave={e => (e.currentTarget.style.color = '#8B837E')}>
                       <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                         <polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6m4-6v6"/><path d="M9 6V4a1 1 0 011-1h4a1 1 0 011 1v2"/>
                       </svg>

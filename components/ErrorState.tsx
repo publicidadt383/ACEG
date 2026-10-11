@@ -29,7 +29,7 @@ export default function ErrorState({
         alignItems: 'center',
         justifyContent: 'center',
         padding: '2rem 1.25rem',
-        fontFamily: 'var(--font-manrope, system-ui, sans-serif)',
+        fontFamily: 'var(--font-barlow, system-ui, sans-serif)',
       }}
     >
       <div
@@ -38,10 +38,10 @@ export default function ErrorState({
           width: '100%',
           textAlign: 'center',
           background: 'var(--surface-0, #fff)',
-          border: '1px solid #e2e8f0',
+          border: '1px solid #DCDEDE',
           borderRadius: 18,
           padding: '2.25rem 1.75rem',
-          boxShadow: '0 12px 40px -18px rgba(11, 36, 71, 0.35)',
+          boxShadow: '0 12px 40px -18px rgba(29,24,21, 0.35)',
         }}
       >
         <div
@@ -54,8 +54,8 @@ export default function ErrorState({
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            background: '#eef2f8',
-            color: '#0B2447',
+            background: '#F5F3F1',
+            color: '#1D1815',
           }}
         >
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -65,11 +65,11 @@ export default function ErrorState({
           </svg>
         </div>
 
-        <h2 style={{ margin: 0, fontSize: '1.25rem', fontWeight: 700, color: '#0B2447' }}>{titulo}</h2>
-        <p style={{ margin: '0.6rem 0 1.5rem', fontSize: '0.95rem', lineHeight: 1.5, color: '#475569' }}>{detalle}</p>
+        <h2 style={{ margin: 0, fontSize: '1.25rem', fontWeight: 700, color: '#1D1815' }}>{titulo}</h2>
+        <p style={{ margin: '0.6rem 0 1.5rem', fontSize: '0.95rem', lineHeight: 1.5, color: '#5C5450' }}>{detalle}</p>
 
         {error?.digest && (
-          <p style={{ margin: '0 0 1.25rem', fontSize: '0.75rem', color: '#94a3b8', fontFamily: 'var(--font-plex-mono, monospace)' }}>
+          <p style={{ margin: '0 0 1.25rem', fontSize: '0.75rem', color: '#8B837E', fontFamily: 'var(--font-plex-mono, monospace)' }}>
             Ref: {error.digest}
           </p>
         )}
@@ -80,7 +80,7 @@ export default function ErrorState({
             appearance: 'none',
             border: 'none',
             cursor: 'pointer',
-            background: '#0B2447',
+            background: '#1D1815',
             color: '#fff',
             fontWeight: 600,
             fontSize: '0.95rem',

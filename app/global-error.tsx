@@ -30,7 +30,7 @@ export default function GlobalError({
             alignItems: 'center',
             justifyContent: 'center',
             padding: '2rem 1.25rem',
-            background: '#f8fafc',
+            background: '#F7F7F6',
             fontFamily: 'system-ui, -apple-system, Segoe UI, Roboto, sans-serif',
           }}
         >
@@ -40,16 +40,16 @@ export default function GlobalError({
               width: '100%',
               textAlign: 'center',
               background: '#fff',
-              border: '1px solid #e2e8f0',
+              border: '1px solid #DCDEDE',
               borderRadius: 18,
               padding: '2.25rem 1.75rem',
-              boxShadow: '0 12px 40px -18px rgba(11, 36, 71, 0.35)',
+              boxShadow: '0 12px 40px -18px rgba(29,24,21, 0.35)',
             }}
           >
-            <h2 style={{ margin: 0, fontSize: '1.25rem', fontWeight: 700, color: '#0B2447' }}>
+            <h2 style={{ margin: 0, fontSize: '1.25rem', fontWeight: 700, color: '#1D1815' }}>
               Algo salió mal
             </h2>
-            <p style={{ margin: '0.6rem 0 1.5rem', fontSize: '0.95rem', lineHeight: 1.5, color: '#475569' }}>
+            <p style={{ margin: '0.6rem 0 1.5rem', fontSize: '0.95rem', lineHeight: 1.5, color: '#5C5450' }}>
               Ocurrió un error inesperado. Intenta de nuevo; si el problema persiste, recarga la página.
             </p>
             <button
@@ -57,7 +57,7 @@ export default function GlobalError({
               style={{
                 border: 'none',
                 cursor: 'pointer',
-                background: '#0B2447',
+                background: '#1D1815',
                 color: '#fff',
                 fontWeight: 600,
                 fontSize: '0.95rem',

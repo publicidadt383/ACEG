@@ -23,7 +23,7 @@ const CENTRO_DEFAULT: [number, number] = [-15.4995, -70.1333]
 
 const PIN_SVG = `
 <svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M12 2C7.6 2 4 5.6 4 10c0 5.6 8 12 8 12s8-6.4 8-12c0-4.4-3.6-8-8-8z" fill="#0B2447" stroke="white" stroke-width="1.5"/>
+  <path d="M12 2C7.6 2 4 5.6 4 10c0 5.6 8 12 8 12s8-6.4 8-12c0-4.4-3.6-8-8-8z" fill="#1D1815" stroke="white" stroke-width="1.5"/>
   <circle cx="12" cy="10" r="3" fill="#F0C75A"/>
 </svg>`
 
@@ -68,11 +68,11 @@ export default function MapaGeocerca({ lat, lng, radio, onSelect, editable = tru
       const icono = L.divIcon({ className: '', html: PIN_SVG, iconSize: [34, 34], iconAnchor: [17, 32] })
       const marker = L.marker(CENTRO_DEFAULT, { icon: icono, draggable: editableRef.current }).addTo(map)
       const circle = L.circle(CENTRO_DEFAULT, {
-        radius: 150, color: '#143875', weight: 2, fillColor: '#1E40AF', fillOpacity: 0.15,
+        radius: 150, color: '#2A2420', weight: 2, fillColor: '#D9042F', fillOpacity: 0.15,
       }).addTo(map)
       // Punto azul: posición en vivo del usuario (oculto hasta tener señal).
       const userDot = L.circleMarker(CENTRO_DEFAULT, {
-        radius: 7, color: '#ffffff', weight: 2.5, fillColor: '#2563EB', fillOpacity: 0, opacity: 0,
+        radius: 7, color: '#ffffff', weight: 2.5, fillColor: '#D9042F', fillOpacity: 0, opacity: 0,
       }).addTo(map)
 
       if (editableRef.current) {
@@ -126,8 +126,8 @@ export default function MapaGeocerca({ lat, lng, radio, onSelect, editable = tru
   }, [listo, posicionUsuario, lat, lng])
 
   return (
-    <div className="relative z-0 rounded-2xl overflow-hidden" style={{ isolation: 'isolate', border: '1.5px solid #E4E8EF' }}>
-      <div ref={contRef} className={`${altoCls} w-full`} style={{ background: '#F6F8FB' }} />
+    <div className="relative z-0 rounded-2xl overflow-hidden" style={{ isolation: 'isolate', border: '1.5px solid #DFE0E0' }}>
+      <div ref={contRef} className={`${altoCls} w-full`} style={{ background: '#F5F5F4' }} />
       {!listo && (
         <div className="absolute inset-0 flex items-center justify-center">
           <p className="text-xs font-bold text-slate-400">Cargando mapa…</p>

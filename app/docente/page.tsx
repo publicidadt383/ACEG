@@ -117,8 +117,8 @@ export default function DocenteHomePage() {
       cards={cards}
       onLogout={handleLogout}
       showCambiarPassword={!simulando}
-      accent="#0B2447"
-      accent2="#1E40AF"
+      accent="#1D1815"
+      accent2="#D9042F"
     />
   )
 }

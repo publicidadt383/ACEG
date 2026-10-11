@@ -15,7 +15,7 @@ export default function AsistenciaPage() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center gap-4"
-      style={{ background: 'linear-gradient(135deg, #F6F8FB 0%, #EFF3FA 50%, #E4E8EF 100%)' }}>
+      style={{ background: 'linear-gradient(135deg, #F5F5F4 0%, #F3F1EF 50%, #DFE0E0 100%)' }}>
       <Spinner cls="h-8 w-8" />
       <p className="text-sm font-bold text-slate-500">Llevándote al marcado por ubicación…</p>
     </div>
